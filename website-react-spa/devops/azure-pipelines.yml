@@ -32,8 +32,8 @@ stages:
             displayName: 'Build the project'
           - task: CopyFiles@2
             inputs:
-              sourceFolder: 'build'
-              contents: '/website-react-spa/**/*'
+              sourceFolder: '/website-react-spa/build'
+              contents: '**/*'
               targetFolder: '$(Build.ArtifactStagingDirectory)'
               cleanTargetFolder: true
           - task: ArchiveFiles@2
