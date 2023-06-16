@@ -25,13 +25,10 @@ stages:
           - script: 'npm install --global yarn'
             displayName: 'Install Yarn'
           - script: |
-              dir
-            displayName: 'list dir'
-          - script: |
-              cd .\website-react-spa\ && yarn install
+              cd website-react-spa && yarn install
             displayName: 'Initialize project'
           - script: |
-              yarn build
+              cd website-react-spa && yarn build
             displayName: 'Build the project'
           - task: CopyFiles@2
             inputs:
