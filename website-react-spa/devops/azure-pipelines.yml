@@ -28,9 +28,15 @@ stages:
               dir
             displayName: 'List dir contents'
           - script: |
+              cd .\website-react-spa\
+            displayName: 'move to project workspace'
+          - script: |
+              dir
+            displayName: 'List dir contents'
+          - script: |
               yarn install
             displayName: 'Initialize project'
-            workingDirectory: $(Pipeline.Workspace)/website-react-spa
+            workingDirectory: $(Pipeline.Workspace)
           - script: |
               yarn build
             displayName: 'Build the project'
