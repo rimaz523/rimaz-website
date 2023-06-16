@@ -25,6 +25,9 @@ stages:
           - script: 'npm install --global yarn'
             displayName: 'Install Yarn'
           - script: |
+              dir
+            displayName: 'List dir contents'
+          - script: |
               yarn install
             displayName: 'Initialize project'
             workingDirectory: $(Pipeline.Workspace)/website-react-spa
