@@ -1,0 +1,69 @@
+trigger:
+  branches:
+    include:
+      - master
+
+variables:
+  - template: variables/build.yml
+  - template: variables/dev.yml
+  - template: variables/service-connections.yml
+
+stages:
+  - stage: 'Build'
+    displayName: 'Build the front end react web application'
+    jobs:
+      - job: 'Build'
+        displayName: 'Build job'
+        pool:
+          vmImage: '$(buildVmImage)'
+
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '$(nodeVersion)'
+            displayName: 'Install Node.js'
+          - script: 'npm install --global yarn'
+            displayName: 'Install Yarn'
+          - script: |
+              yarn install
+            displayName: 'Initialize project'
+          - script: |
+              yarn build
+            displayName: 'Build the project'
+          - task: CopyFiles@2
+            inputs:
+              sourceFolder: 'build'
+              contents: '**/*'
+              targetFolder: '$(Build.ArtifactStagingDirectory)'
+              cleanTargetFolder: true
+          - task: ArchiveFiles@2
+            inputs:
+              rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+              archiveType: 'zip'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+              includeRootFolder: false
+              replaceExistingArchive: true
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish Artifact: drop'
+            inputs:
+              pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+
+  - stage: 'Deploy_Dev'
+    displayName: 'Deploy to Dev'
+    jobs:
+      - deployment: 'Deploy'
+        displayName: 'Deploy job'
+        environment: DEV
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+                - task: AzureWebApp@1
+                  displayName: 'Deploy react front-end webapp to azure app service'
+                  inputs:
+                    azureSubscription: '$(managedIdentityName)'
+                    appName: '$(project)-$(environment)-$(webAppName)'
+                    appType: 'webAppLinux'
+                    package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
