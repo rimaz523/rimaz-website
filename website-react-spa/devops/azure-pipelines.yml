@@ -27,7 +27,7 @@ stages:
           - script: |
               yarn install
             displayName: 'Initialize project'
-            workingDirectory: $(Agent.BuildDirectory)/website-react-spa/
+            workingDirectory: $(Agent.BuildDirectory)/website-react-spa
           - script: |
               yarn build
             displayName: 'Build the project'
