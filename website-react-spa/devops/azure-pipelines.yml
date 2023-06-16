@@ -34,10 +34,9 @@ stages:
           - task: CopyFiles@2
             inputs:
               sourceFolder: 'build'
-              contents: '**/*'
+              contents: '/website-react-spa/**/*'
               targetFolder: '$(Build.ArtifactStagingDirectory)'
               cleanTargetFolder: true
-            workingDirectory: $(Agent.BuildDirectory)/website-react-spa/
           - task: ArchiveFiles@2
             inputs:
               rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
@@ -45,12 +44,10 @@ stages:
               archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
               includeRootFolder: false
               replaceExistingArchive: true
-            workingDirectory: $(Agent.BuildDirectory)/website-react-spa/
           - task: PublishBuildArtifacts@1
             displayName: 'Publish Artifact: drop'
             inputs:
               pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-            workingDirectory: $(Agent.BuildDirectory)/website-react-spa/
 
   - stage: 'Deploy_Dev'
     displayName: 'Deploy to Dev'
