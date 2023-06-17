@@ -27,7 +27,8 @@ steps:
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
-      echo "##vso[task.setvariable variable=ARM_ACCESS_KEY]$(az storage account keys list -g rimaz-admin-rg -n mktadminstore --query [0].value -o tsv)"
+      az account set --subscription "Rimaz" &&
+      echo "##vso[task.setvariable variable=ARM_ACCESS_KEY]$(az storage account keys list -g rimaz-admin-rg -n rmzadminstore --query [0].value -o tsv)"
 
 - task: TerraformCLI@0
   displayName: 'Initialize Terraform'
