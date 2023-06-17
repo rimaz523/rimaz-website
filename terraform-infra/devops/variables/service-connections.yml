@@ -1,0 +1,3 @@
+variables:
+- name: azure-connection
+  value: rimaz-service-conn

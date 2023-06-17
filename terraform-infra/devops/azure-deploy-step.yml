@@ -1,0 +1,54 @@
+parameters:
+- name : serviceConnection
+
+steps:
+- download: current
+  artifact: drop
+
+- task: qetza.replacetokens.replacetokens-task.replacetokens@5
+  displayName: 'Replace tokens'
+  inputs:
+    targetFiles: |
+      $(Pipeline.Workspace)/drop/**/variables.tf
+      $(Pipeline.Workspace)/drop/**/providers.tf
+    verbosity: detailed
+    tokenPrefix: '#{'
+    tokenSuffix: '}#'
+
+- task: TerraformInstaller@0
+  displayName: "Install Terraform Latest"
+  inputs:
+    terraformVersion: latest
+
+- task: AzureCLI@2
+  displayName: "Set Storage Access key"
+  inputs:
+    azureSubscription: '${{ parameters.serviceConnection }}'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      echo "##vso[task.setvariable variable=ARM_ACCESS_KEY]$(az storage account keys list -g rimaz-admin-rg -n mktadminstore --query [0].value -o tsv)"
+
+- task: TerraformCLI@0
+  displayName: 'Initialize Terraform'
+  inputs:
+    command: 'init'
+    workingDirectory: '$(Pipeline.Workspace)/drop/terraform/'
+    backendServiceArm: '${{ parameters.serviceConnection }}'
+
+- task: TerraformCLI@0
+  displayName: 'Terraform Plan'
+  inputs:
+    command: 'plan'
+    environmentServiceName: '${{ parameters.serviceConnection }}'
+    runAzLogin: true
+    workingDirectory: '$(Pipeline.Workspace)/drop/terraform/'
+    publishPlanResults: 'terraform.tfplan'
+
+- task: TerraformCLI@0
+  displayName: 'Terraform Apply'
+  inputs:
+    command: 'apply'
+    environmentServiceName: '${{ parameters.serviceConnection }}'
+    runAzLogin: true
+    workingDirectory: '$(Pipeline.Workspace)/drop/terraform/'

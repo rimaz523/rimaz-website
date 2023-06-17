@@ -1,0 +1,48 @@
+trigger:
+  branches:
+    include:
+      - master
+
+variables:
+  - template: 'variables/service-connections.yml'
+  - template: 'variables/build.yml'
+
+pool:
+  vmImage: '$(buildVmImage)'
+
+stages:
+  - stage: 'Build'
+    displayName: 'Build Terraform IAC'
+    jobs:
+      - job: 'Build'
+        displayName: 'Build job'
+        steps:
+          - task: CopyFiles@2
+            displayName: 'Copy Terraform code'
+            inputs:
+              sourceFolder: 'terraform-infra/terraform'
+              contents: '**/*'
+              targetFolder: '$(Build.ArtifactStagingDirectory)/terraform'
+              cleanTargetFolder: true
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish Terraform Code: drop'
+            inputs:
+              pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+
+  - stage: 'Dev_Deploy'
+    displayName: 'Deploy to Dev Environment'
+    dependsOn: 'Build'
+    variables:
+    - template: 'variables/dev.yml'
+    jobs:
+      - deployment: 'Deploy'
+        environment: 'DEV'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - template: './azure-deploy-step.yml'
+                  parameters:
+                    serviceConnection: $(azure-connection)

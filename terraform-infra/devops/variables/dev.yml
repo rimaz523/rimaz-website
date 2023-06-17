@@ -1,0 +1,9 @@
+variables:
+- name: terraform-state-key
+  value: 'dev.terraform.tfstate'
+- name: resource_group_location
+  value: australiaeast
+- name: environment
+  value: dev
+- name: project
+  value: Rimaz
