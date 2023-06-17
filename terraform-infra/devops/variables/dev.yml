@@ -7,3 +7,7 @@ variables:
   value: dev
 - name: project
   value: Rimaz
+- name: app_service_sku
+  value: B1
+- name: app_service_os
+  value: Linux

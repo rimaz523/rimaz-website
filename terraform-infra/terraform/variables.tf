@@ -19,3 +19,31 @@ variable "resource_groups" {
     }
   }
 }
+
+variable "service_plans" {
+  description = "create app service plans"
+  type = map(object({
+    sku = string
+    os  = string
+  }))
+  default = {
+    "asp" = {
+      sku = "#{app_service_sku}#"
+      os  = "#{app_service_os}#"
+    }
+  }
+}
+
+variable "linux_webapps" {
+  description = "create linux web apps for deploying the marketplace api and frontends"
+  type = map(object({
+    stack         = string
+    stack_version = string
+  }))
+  default = {
+    "react" = {
+      stack         = "node"
+      stack_version = "18-lts"
+    }
+  }
+}

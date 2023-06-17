@@ -2,6 +2,10 @@ trigger:
   branches:
     include:
       - master
+  paths:
+    exclude:
+      - website-react-spa
+      - Readme.md
 
 variables:
   - template: 'variables/service-connections.yml'

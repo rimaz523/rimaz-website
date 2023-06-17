@@ -6,3 +6,10 @@ resource_groups = {
     location = "australiaeast"
   }
 }
+
+service_plans = {
+  "asp" = {
+    sku = "B1"
+    os  = "Linux"
+  }
+}
