@@ -63,3 +63,18 @@ variable "ssl_certificates" {
     }
   }
 }
+
+variable "web_app_ssl_domains" {
+  description = "Custom domain and ssl bindings for the hosted web apps"
+  type = map(object({
+    ssl_state = string
+  }))
+  default = {
+    "rimaz.dev" = {
+      ssl_state = "IpBasedEnabled"
+    }
+    "www.rimaz.dev" = {
+      ssl_state = "SniEnabled"
+    }
+  }
+}
