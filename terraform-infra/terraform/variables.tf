@@ -47,3 +47,34 @@ variable "linux_webapps" {
     }
   }
 }
+
+variable "ssl_certificates" {
+  description = "get ssl certificates for the hosted web apps"
+  type = map(object({
+    kv_name           = string
+    kv_resource_group = string
+    ssl_cert_name     = string
+  }))
+  default = {
+    "react-ssl" = {
+      kv_name           = "#{admin_key_vault}#"
+      kv_resource_group = "#{admin_resource_group}#"
+      ssl_cert_name     = "#{kv_ssl_cert_name}#"
+    }
+  }
+}
+
+variable "web_app_ssl_domains" {
+  description = "Custom domain and ssl bindings for the hosted web apps"
+  type = map(object({
+    ssl_state = string
+  }))
+  default = {
+    "rimaz.dev" = {
+      ssl_state = "IpBasedEnabled"
+    }
+    "www.rimaz.dev" = {
+      ssl_state = "SniEnabled"
+    }
+  }
+}

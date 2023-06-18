@@ -19,53 +19,9 @@ resource "azurerm_linux_web_app" "webapp_linux" {
   }
 }
 
-resource "azurerm_app_service_custom_hostname_binding" "custom_domain_main" {
-  hostname            = "rimaz.dev"
-  app_service_name    = azurerm_linux_web_app.webapp_linux.name
-  resource_group_name = var.resource_group_name
-
-  # Ignore ssl_state and thumbprint as they are managed using azurerm_app_service_certificate_binding
-  lifecycle {
-    ignore_changes = [ssl_state, thumbprint]
-  }
-}
-
-resource "azurerm_app_service_custom_hostname_binding" "custom_domain_www" {
-  hostname            = "www.rimaz.dev"
-  app_service_name    = azurerm_linux_web_app.webapp_linux.name
-  resource_group_name = var.resource_group_name
-
-  # Ignore ssl_state and thumbprint as they are managed using azurerm_app_service_certificate_binding
-  lifecycle {
-    ignore_changes = [ssl_state, thumbprint]
-  }
-}
-
-data "azurerm_key_vault" "rimaz_kv" {
-  name                = "rimaz-kv"
-  resource_group_name = "rimaz-admin-rg"
-}
-
-data "azurerm_key_vault_certificate" "pfx_cert" {
-  name         = "rimaz-dev-pfx-cert"
-  key_vault_id = data.azurerm_key_vault.rimaz_kv.id
-}
-
 resource "azurerm_app_service_certificate" "app_ssl_cert" {
-  name                = "rimaz_ssl_cert"
+  name                = var.app_ssl_cert_name
   resource_group_name = var.resource_group_name
   location            = var.location
-  key_vault_secret_id = data.azurerm_key_vault_certificate.pfx_cert.secret_id
-}
-
-resource "azurerm_app_service_certificate_binding" "domain_binding" {
-  hostname_binding_id = azurerm_app_service_custom_hostname_binding.custom_domain_main.id
-  certificate_id      = azurerm_app_service_certificate.app_ssl_cert.id
-  ssl_state           = "IpBasedEnabled"
-}
-
-resource "azurerm_app_service_certificate_binding" "www_binding" {
-  hostname_binding_id = azurerm_app_service_custom_hostname_binding.custom_domain_www.id
-  certificate_id      = azurerm_app_service_certificate.app_ssl_cert.id
-  ssl_state           = "SniEnabled"
+  key_vault_secret_id = var.ssl_cert_kv_secret_id
 }

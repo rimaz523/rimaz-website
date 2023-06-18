@@ -13,3 +13,11 @@ service_plans = {
     os  = "Linux"
   }
 }
+
+ssl_certificates = {
+  "react-ssl" = {
+    kv_name           = "rimaz-kv"
+    kv_resource_group = "rimaz-admin-rg"
+    ssl_cert_name     = "rimaz-dev-pfx-cert"
+  }
+}
