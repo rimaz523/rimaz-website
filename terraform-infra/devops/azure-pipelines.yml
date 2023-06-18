@@ -45,6 +45,7 @@ stages:
         strategy:
           runOnce:
             deploy:
+            pool: server
               steps:
                 - checkout: self
                 - template: './azure-deploy-step.yml'
