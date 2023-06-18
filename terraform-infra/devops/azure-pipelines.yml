@@ -42,10 +42,10 @@ stages:
     jobs:
       - deployment: 'Deploy'
         environment: 'DEV'
+        pool: server
         strategy:
           runOnce:
             deploy:
-            pool: server
               steps:
                 - checkout: self
                 - template: './azure-deploy-step.yml'
