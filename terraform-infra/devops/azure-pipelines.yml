@@ -42,7 +42,6 @@ stages:
     jobs:
       - deployment: 'Deploy'
         environment: 'DEV'
-        pool: server
         strategy:
           runOnce:
             deploy:
