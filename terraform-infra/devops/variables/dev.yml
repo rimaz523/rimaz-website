@@ -11,3 +11,9 @@ variables:
   value: B1
 - name: app_service_os
   value: Linux
+- name: admin_resource_group
+  value: rimaz-admin-rg
+- name: admin_key_vault
+  value: rimaz-kv
+- name: kv_ssl_cert_name
+  value: rimaz-dev-pfx-cert

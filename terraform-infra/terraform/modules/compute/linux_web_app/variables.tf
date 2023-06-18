@@ -37,3 +37,13 @@ variable "stack_version" {
   description = "Version of the stack."
   type        = string
 }
+
+variable "app_ssl_cert_name" {
+  description = "Name of the ssl cert."
+  type        = string
+}
+
+variable "ssl_cert_kv_secret_id" {
+  description = "The ID of the associated Key Vault secret."
+  type        = string
+}
