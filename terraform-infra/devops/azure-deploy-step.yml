@@ -46,6 +46,12 @@ steps:
     workingDirectory: '$(Pipeline.Workspace)/drop/terraform/'
     publishPlanResults: 'terraform.tfplan'
 
+- task: ManualValidation@0
+  timeoutInMinutes: 60 # task times out in 1 hour
+  inputs:
+    notifyUsers: 'rimazmohommed523@gmail.com'
+    instructions: 'Please validate the Terraform plan and approve/reject'
+
 - task: TerraformCLI@0
   displayName: 'Terraform Apply'
   inputs:
