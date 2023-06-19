@@ -9,6 +9,6 @@ module "web_app_ssl_custom_domain" {
   certificate_id     = module.linux_web_app["react"].certificate_id
 
   depends_on = [
-    module.resource_group["azurerm_linux_web_app"].id
+    module.linux_web_app["react"].id
   ]
 }
