@@ -4,8 +4,7 @@ trigger:
       - master
   paths:
     exclude:
-      - website-react-spa
-      - Readme.md
+      - website-react-spa/*
 
 variables:
   - template: 'variables/service-connections.yml'
