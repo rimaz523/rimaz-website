@@ -17,6 +17,12 @@ variable "resource_groups" {
     "app" = {
       location = "#{resource_group_location}#"
     }
+    "data" = {
+      location = "#{resource_group_location}#"
+    }
+    "common" = {
+      location = "#{resource_group_location}#"
+    }
   }
 }
 
