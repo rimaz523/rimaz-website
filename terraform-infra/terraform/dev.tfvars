@@ -5,6 +5,12 @@ resource_groups = {
   "app" = {
     location = "australiaeast"
   }
+  "data" = {
+    location = "australiaeast"
+  }
+  "common" = {
+    location = "australiaeast"
+  }
 }
 
 service_plans = {
