@@ -84,3 +84,17 @@ variable "web_app_ssl_domains" {
     }
   }
 }
+
+variable "laws" {
+  description = "create log analytics workspaces"
+  type = map(object({
+    retention_days = string
+    sku            = string
+  }))
+  default = {
+    "app" = {
+      retention_days = "90"
+      sku            = "PerGB2018"
+    }
+  }
+}
