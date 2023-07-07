@@ -27,3 +27,10 @@ ssl_certificates = {
     ssl_cert_name     = "rimaz-dev-pfx-cert"
   }
 }
+
+key_vaults = {
+  "app" = {
+    tenant_id = "dd8e7948-f3de-4949-8fa8-cec81e0878d8"
+    sku       = "standard"
+  }
+}
