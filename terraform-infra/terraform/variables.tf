@@ -98,3 +98,17 @@ variable "laws" {
     }
   }
 }
+
+variable "app_insights" {
+  description = "create application insights resources"
+  type = map(object({
+    retention_days   = string
+    application_type = string
+  }))
+  default = {
+    "app" = {
+      retention_days   = "90"
+      application_type = "web"
+    }
+  }
+}
