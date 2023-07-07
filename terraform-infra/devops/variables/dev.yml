@@ -17,3 +17,5 @@ variables:
   value: rimaz-kv
 - name: kv_ssl_cert_name
   value: rimaz-dev-pfx-cert
+- name: tenant_id
+  value: "dd8e7948-f3de-4949-8fa8-cec81e0878d8"
