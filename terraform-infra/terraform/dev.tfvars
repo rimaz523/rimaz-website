@@ -34,3 +34,27 @@ key_vaults = {
     sku       = "standard"
   }
 }
+
+app_key_vault_rbac = {
+  "app_kv_rmz_principal" = {
+    "principal_id"                   = "edc7ac20-a3a1-4255-9846-cd486dcefc1c"
+    "roles"                          = ["Owner", "Key Vault Secrets Officer"]
+    skip_service_principal_aad_check = false
+    is_managed_identity              = false
+    mi_key                           = ""
+  }
+  "app_kv_usr_rimaz" = {
+    "principal_id"                   = "3207c7da-5eed-46eb-abd3-1deb49b95e1e"
+    "roles"                          = ["Owner", "Key Vault Secrets Officer"]
+    skip_service_principal_aad_check = false
+    is_managed_identity              = false
+    mi_key                           = ""
+  }
+  "app_kv_web_app_sami_react" = {
+    "principal_id"                   = ""
+    "roles"                          = ["Reader", "Key Vault Secrets Officer"]
+    skip_service_principal_aad_check = false
+    is_managed_identity              = true
+    mi_key                           = "react"
+  }
+}

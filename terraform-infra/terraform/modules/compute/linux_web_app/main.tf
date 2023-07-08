@@ -17,6 +17,16 @@ resource "azurerm_linux_web_app" "webapp_linux" {
       node_version   = var.stack == "node" ? var.stack_version : null
     }
   }
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+  lifecycle {
+    ignore_changes = [
+      app_settings
+    ]
+  }
 }
 
 resource "azurerm_app_service_certificate" "app_ssl_cert" {
