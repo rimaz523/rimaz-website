@@ -126,3 +126,52 @@ variable "key_vaults" {
     }
   }
 }
+
+variable "app_key_vault_rbac" {
+  description = "RBAC role assignments for app key vault"
+  type = map(object({
+    roles                            = list(string)
+    principal_id                     = string
+    skip_service_principal_aad_check = bool
+    is_managed_identity              = bool
+    mi_key                           = string
+  }))
+  default = {
+    "app_kv_rmz_principal" = {
+      "principal_id"                   = "#{devops_service_principal_id}#"
+      "roles"                          = ["Owner", "Key Vault Secrets Officer"]
+      skip_service_principal_aad_check = false
+      is_managed_identity              = false
+      mi_key                           = ""
+    }
+    "app_kv_usr_rimaz" = {
+      "principal_id"                   = "#{local_user_id}#"
+      "roles"                          = ["Owner", "Key Vault Secrets Officer"]
+      skip_service_principal_aad_check = false
+      is_managed_identity              = false
+      mi_key                           = ""
+    }
+    "app_kv_web_app_sami_react" = {
+      "principal_id"                   = ""
+      "roles"                          = ["Reader", "Key Vault Secrets Officer"]
+      skip_service_principal_aad_check = false
+      is_managed_identity              = true
+      mi_key                           = "react"
+    }
+  }
+}
+
+variable "app_key_vault_secrets" {
+  description = "create key vault resources"
+  type = map(object({
+    secret = string
+  }))
+  default = {
+    "application-insights-key" = {
+      secret = "instrumentation_key"
+    }
+    "application-insights-conn-string" = {
+      secret = "connection_string"
+    }
+  }
+}

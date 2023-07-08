@@ -19,3 +19,7 @@ variables:
   value: rimaz-dev-pfx-cert
 - name: tenant_id
   value: "dd8e7948-f3de-4949-8fa8-cec81e0878d8"
+- name: devops_service_principal_id
+  value: "edc7ac20-a3a1-4255-9846-cd486dcefc1c"
+- name: local_user_id
+  value: "3207c7da-5eed-46eb-abd3-1deb49b95e1e"
