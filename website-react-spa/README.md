@@ -7,6 +7,7 @@ This is the frontend of my dev website created using react js.
 ## Technologies & Tools used in the front-end single page web application include:
 
 - ReactJS ^18.2.0
+- Material UI ^5.13.7
 - Yarn v1.22.19
 - Node v18.13.0 LTS
 - CI/CD using Azure DevOps
