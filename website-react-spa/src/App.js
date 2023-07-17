@@ -1,18 +1,27 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
-import Button from '@mui/material/Button'
+import MainAppBar from './components/appbar/MainAppBar'
+import { StyledEngineProvider, ThemeProvider, createTheme } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
 
 function App() {
+  const theme = createTheme({
+    palette: {
+      mode: 'dark',
+      primary: {
+        main: '#FFFFFF',
+        contrastText: '#263238',
+      },
+    },
+  })
+
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <div>
-          <Button variant='contained'>Hello World</Button>
-        </div>
-      </header>
-    </div>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <CssBaseline enableColorScheme />
+        <MainAppBar />
+      </ThemeProvider>
+    </StyledEngineProvider>
   )
 }
 
