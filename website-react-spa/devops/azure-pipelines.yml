@@ -53,6 +53,8 @@ stages:
 
   - stage: 'Deploy_Dev'
     displayName: 'Deploy to Dev'
+    dependsOn: 'Build'
+    condition: and (succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
     jobs:
       - deployment: 'Deploy'
         displayName: 'Deploy job'
