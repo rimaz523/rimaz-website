@@ -36,6 +36,7 @@ stages:
   - stage: 'Dev_Deploy'
     displayName: 'Deploy to Dev Environment'
     dependsOn: 'Build'
+    condition: and (succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
     variables:
     - template: 'variables/dev.yml'
     jobs:
