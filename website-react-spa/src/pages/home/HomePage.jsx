@@ -1,21 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Box } from '@mui/material'
+import Hero from '../../components/hero/Hero'
 
-const HomePage = ({ content }) => {
+const HomePage = () => {
   return (
-    <Box textAlign='center' pt={{ xs: 25 }} pb={{ xs: 25 }}>
-      <h1>{content}</h1>
-    </Box>
+    <>
+      <Hero />
+    </>
   )
-}
-
-HomePage.propTypes = {
-  content: PropTypes.string,
-}
-
-HomePage.defaultProps = {
-  content: 'Welcome to my blog!',
 }
 
 export default HomePage
