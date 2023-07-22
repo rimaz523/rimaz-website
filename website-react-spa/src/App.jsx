@@ -6,6 +6,7 @@ import HomePage from './pages/home/HomePage'
 import Footer from './components/footer/Footer'
 import { Routes, Route } from 'react-router-dom'
 import AboutPage from './pages/about/AboutPage'
+import BlogPage from './pages/blog/BlogPage'
 import PageNotFound from './pages/page-not-found/PageNotFound'
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/about' element={<AboutPage />} />
+          <Route path='/blog' element={<BlogPage />} />
           {/* Using path="*"" means "match anything", so this route
               acts like a catch-all for URLs that we don't have explicit
               routes for. */}
