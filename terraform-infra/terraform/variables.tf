@@ -175,3 +175,17 @@ variable "app_key_vault_secrets" {
     }
   }
 }
+
+variable "storage_accounts" {
+  description = "create storage account resources"
+  type = map(object({
+    replication_type = string
+    sku              = string
+  }))
+  default = {
+    "app" = {
+      replication_type = "LRS"
+      sku              = "Standard"
+    }
+  }
+}
