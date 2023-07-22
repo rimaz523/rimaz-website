@@ -6,7 +6,7 @@ const Hero = () => {
   return (
     <Box position='relative' width='100%' height='400px'>
       <Image
-        src='hero-image.jpg'
+        src='https://rimazdevappstore.blob.core.windows.net/app/hero-image.jpg'
         showLoading
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       />
