@@ -17,10 +17,8 @@ const Hero = () => {
         textAlign='center'
         style={{ transform: 'translate(-50%, -50%)' }}
       >
-        <Typography variant='h2' component='h2' sx={{ fontWeight: '900' }}>
-          Hi, I&apos;m Rimaz.
-        </Typography>
-        <Typography variant='h4' component='h4' sx={{ fontWeight: '600' }}>
+        <Typography variant='h4'>Hi, I&apos;m Rimaz.</Typography>
+        <Typography variant='h6'>
           I am a full stack .NET developer specializing in Azure. Welcome to my blog!
         </Typography>
       </Box>
