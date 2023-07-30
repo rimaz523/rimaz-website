@@ -11,6 +11,7 @@ import ListItemText from '@mui/material/ListItemText'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import DescriptionIcon from '@mui/icons-material/Description'
 import LightModeIcon from '@mui/icons-material/LightMode'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
 import EmailIcon from '@mui/icons-material/Email'
 
 const MainMenu = () => {
@@ -69,6 +70,12 @@ const MainMenu = () => {
                 <LightModeIcon sx={{ color: 'primary.main' }} />
               </ListItemIcon>
               <ListItemText primary='Light Mode' />
+            </ListItemButton>
+            <ListItemButton>
+              <ListItemIcon>
+                <DarkModeIcon sx={{ color: 'primary.main' }} />
+              </ListItemIcon>
+              <ListItemText primary='Dark Mode' />
             </ListItemButton>
           </Box>
         </Box>
