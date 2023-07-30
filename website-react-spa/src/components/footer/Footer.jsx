@@ -1,5 +1,7 @@
 import React from 'react'
+
 import PropTypes from 'prop-types'
+
 import { Box, Container } from '@mui/material'
 
 const Footer = ({ preContent, postContent }) => {

@@ -5,5 +5,19 @@
   "singleQuote": true,
   "trailingComma": "all",
   "jsxSingleQuote": true,
-  "bracketSpacing": true
+  "bracketSpacing": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^react",
+    "^redux-persist",
+    "^prop-types",
+    "^@mui/material",
+    "^@mui/icons-material",
+    "^mui-image",
+    "^@testing-library",
+    "^@core/(.*)$",
+    "^@server/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true
 }
