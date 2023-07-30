@@ -8,11 +8,13 @@ import { Routes, Route } from 'react-router-dom'
 import AboutPage from './pages/about/AboutPage'
 import BlogPage from './pages/blog/BlogPage'
 import PageNotFound from './pages/page-not-found/PageNotFound'
+import { useSelector } from 'react-redux'
 
 function App() {
+  const isDarkMode = useSelector((state) => state.theme.darkmode)
   const theme = createTheme({
     palette: {
-      mode: 'dark',
+      mode: isDarkMode ? 'dark' : 'light',
       primary: {
         main: '#FFFFFF',
         contrastText: '#263238',

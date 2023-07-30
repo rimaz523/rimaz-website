@@ -11,9 +11,15 @@ import ListItemText from '@mui/material/ListItemText'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import DescriptionIcon from '@mui/icons-material/Description'
 import LightModeIcon from '@mui/icons-material/LightMode'
+import DarkModeIcon from '@mui/icons-material/DarkMode'
+import EmailIcon from '@mui/icons-material/Email'
+import { useSelector, useDispatch } from 'react-redux'
+import { setLightMode, setDarkMode } from '../../features/theme/themeSlice'
 
 const MainMenu = () => {
   const [open, setState] = useState(false)
+  const isDarkMode = useSelector((state) => state.theme.darkmode)
+  const dispatch = useDispatch()
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -47,22 +53,37 @@ const MainMenu = () => {
           <Box sx={{ mb: 2, width: { sm: 300 } }}>
             <ListItemButton>
               <ListItemIcon>
-                <DescriptionIcon sx={{ color: 'primary.main' }} />
+                <DescriptionIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
               <ListItemText primary='Blog' />
             </ListItemButton>
             <ListItemButton>
               <ListItemIcon>
-                <AccountCircleIcon sx={{ color: 'primary.main' }} />
+                <AccountCircleIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
               <ListItemText primary='About' />
             </ListItemButton>
             <ListItemButton>
               <ListItemIcon>
-                <LightModeIcon sx={{ color: 'primary.main' }} />
+                <EmailIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
-              <ListItemText primary='Light Mode' />
+              <ListItemText primary='Contact' />
             </ListItemButton>
+            {isDarkMode ? (
+              <ListItemButton onClick={() => dispatch(setLightMode())}>
+                <ListItemIcon>
+                  <LightModeIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
+                </ListItemIcon>
+                <ListItemText primary='Light Mode' />
+              </ListItemButton>
+            ) : (
+              <ListItemButton onClick={() => dispatch(setDarkMode())}>
+                <ListItemIcon>
+                  <DarkModeIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
+                </ListItemIcon>
+                <ListItemText primary='Dark Mode' />
+              </ListItemButton>
+            )}
           </Box>
         </Box>
       </Drawer>
