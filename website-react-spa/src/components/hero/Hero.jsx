@@ -1,8 +1,11 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
-import Image from 'mui-image'
-import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
+
+import PropTypes from 'prop-types'
+
+import { Box, Typography } from '@mui/material'
+
+import Image from 'mui-image'
 
 const Hero = ({ title, subtitle }) => {
   const isDarkMode = useSelector((state) => state.theme.darkmode)

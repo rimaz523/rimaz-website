@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+
 import Box from '@mui/material/Box'
-import IconButton from '@mui/material/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
-import Drawer from '@mui/material/Drawer'
-import CloseIcon from '@mui/icons-material/Close'
 import Divider from '@mui/material/Divider'
+import Drawer from '@mui/material/Drawer'
+import IconButton from '@mui/material/IconButton'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
+
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import DescriptionIcon from '@mui/icons-material/Description'
-import LightModeIcon from '@mui/icons-material/LightMode'
+import CloseIcon from '@mui/icons-material/Close'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
+import DescriptionIcon from '@mui/icons-material/Description'
 import EmailIcon from '@mui/icons-material/Email'
-import { useSelector, useDispatch } from 'react-redux'
+import LightModeIcon from '@mui/icons-material/LightMode'
+import MenuIcon from '@mui/icons-material/Menu'
+
 import { setLightMode, setDarkMode } from '../../features/theme/themeSlice'
 
 const MainMenu = () => {

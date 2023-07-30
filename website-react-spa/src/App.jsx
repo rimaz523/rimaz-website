@@ -1,14 +1,16 @@
 import React from 'react'
-import MainAppBar from './components/appbar/MainAppBar'
-import { StyledEngineProvider, ThemeProvider, createTheme } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import HomePage from './pages/home/HomePage'
-import Footer from './components/footer/Footer'
+import { useSelector } from 'react-redux'
 import { Routes, Route } from 'react-router-dom'
+
+import CssBaseline from '@mui/material/CssBaseline'
+import { StyledEngineProvider, ThemeProvider, createTheme } from '@mui/material/styles'
+
+import MainAppBar from './components/appbar/MainAppBar'
+import Footer from './components/footer/Footer'
 import AboutPage from './pages/about/AboutPage'
 import BlogPage from './pages/blog/BlogPage'
+import HomePage from './pages/home/HomePage'
 import PageNotFound from './pages/page-not-found/PageNotFound'
-import { useSelector } from 'react-redux'
 
 function App() {
   const isDarkMode = useSelector((state) => state.theme.darkmode)

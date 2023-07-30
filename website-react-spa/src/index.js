@@ -1,11 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
-import reportWebVitals from './reportWebVitals'
-import { BrowserRouter as Router } from 'react-router-dom'
-import { persistor, store } from './app/store'
 import { Provider } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom'
+
 import { PersistGate } from 'redux-persist/integration/react'
+
+import App from './App'
+import { persistor, store } from './app/store'
+import reportWebVitals from './reportWebVitals'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
