@@ -2,12 +2,19 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 import Image from 'mui-image'
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
 const Hero = ({ title, subtitle }) => {
+  const isDarkMode = useSelector((state) => state.theme.darkmode)
+
   return (
     <Box position='relative' width='100%' height='400px'>
       <Image
-        src='https://rimazdevappstore.blob.core.windows.net/app/hero-image.jpg'
+        src={
+          isDarkMode
+            ? 'https://rimazdevappstore.blob.core.windows.net/app/hero-dark.jpg'
+            : 'https://rimazdevappstore.blob.core.windows.net/app/hero-light.jpg'
+        }
         showLoading
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       />
