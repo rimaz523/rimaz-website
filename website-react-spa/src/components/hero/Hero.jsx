@@ -13,11 +13,9 @@ const Hero = ({ title, subtitle }) => {
   return (
     <Box position='relative' width='100%' height='400px'>
       <Image
-        src={
-          isDarkMode
-            ? 'https://rimazdevappstore.blob.core.windows.net/app/hero-dark.jpg'
-            : 'https://rimazdevappstore.blob.core.windows.net/app/hero-light.jpg'
-        }
+        src={process.env.REACT_APP_BLOB_STORE_BASE_URL.concat(
+          isDarkMode ? '/app/hero-dark.jpg' : '/app/hero-light.jpg',
+        )}
         showLoading
         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
       />
