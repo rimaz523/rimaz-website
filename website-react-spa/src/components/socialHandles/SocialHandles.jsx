@@ -35,6 +35,7 @@ export default function SocialHandles() {
               '&:hover': {
                 opacity: [0.9, 0.8, 0.7],
               },
+              color: isDarkMode ? '#ffffff' : '#000000',
             }}
           />
         </IconButton>
@@ -71,6 +72,7 @@ export default function SocialHandles() {
               '&:hover': {
                 opacity: [0.9, 0.8, 0.7],
               },
+              color: isDarkMode ? '#ffffff' : '#000000',
             }}
           />
         </IconButton>
@@ -116,6 +118,7 @@ export default function SocialHandles() {
               '&:hover': {
                 opacity: [0.9, 0.8, 0.7],
               },
+              color: isDarkMode ? '#ffffff' : '#000000',
             }}
           />
         </IconButton>
