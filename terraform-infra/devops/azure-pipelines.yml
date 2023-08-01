@@ -5,6 +5,7 @@ trigger:
   paths:
     exclude:
       - website-react-spa/*
+      - integrations-dotnet-api/*
 
 variables:
   - template: 'variables/service-connections.yml'
