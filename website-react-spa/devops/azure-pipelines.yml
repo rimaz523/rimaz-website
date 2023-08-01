@@ -5,6 +5,7 @@ trigger:
   paths:
     exclude:
       - terraform-infra/*
+      - integrations-dotnet-api/*
 
 variables:
   - template: variables/build.yml
