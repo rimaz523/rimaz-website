@@ -33,7 +33,7 @@ stages:
             displayName: Restore
             inputs:
               command: 'restore'
-              projects: '**/*.csproj'
+              projects: '**/*.sln'
               includeNuGetOrg: true
 
           - task: DotNetCoreCLI@2
@@ -48,7 +48,7 @@ stages:
             displayName: Build
             inputs:
               command: build
-              projects: '**/*.csproj'
+              projects: '**/*.sln'
               arguments: '--no-restore --configuration $(buildConfiguration)'
 
           - task: DotNetCoreCLI@2
