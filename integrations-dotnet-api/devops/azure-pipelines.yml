@@ -42,8 +42,7 @@ stages:
             inputs:
               command: 'custom'
               custom: 'format'
-              projects: '**/*.sln'
-              arguments: ' integrations-dotnet-api/integrations-dotnet-api.sln --verify-no-changes --verbosity detailed'
+              arguments: 'integrations-dotnet-api/integrations-dotnet-api.sln --verify-no-changes --verbosity detailed'
 
           - task: DotNetCoreCLI@2
             displayName: Build
