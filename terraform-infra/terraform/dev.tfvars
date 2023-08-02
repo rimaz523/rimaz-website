@@ -21,7 +21,7 @@ service_plans = {
 }
 
 ssl_certificates = {
-  "react-ssl" = {
+  "rimaz-ssl" = {
     kv_name           = "rimaz-kv"
     kv_resource_group = "rimaz-admin-rg"
     ssl_cert_name     = "rimaz-dev-pfx-cert"
