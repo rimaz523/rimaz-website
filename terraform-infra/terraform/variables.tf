@@ -50,6 +50,10 @@ variable "linux_webapps" {
     "react" = {
       stack         = "node"
       stack_version = "18-lts"
+    },
+    "api" = {
+      stack         = "dotnet"
+      stack_version = "6.0"
     }
   }
 }
@@ -62,7 +66,7 @@ variable "ssl_certificates" {
     ssl_cert_name     = string
   }))
   default = {
-    "react-ssl" = {
+    "rimaz-ssl" = {
       kv_name           = "#{admin_key_vault}#"
       kv_resource_group = "#{admin_resource_group}#"
       ssl_cert_name     = "#{kv_ssl_cert_name}#"
@@ -73,14 +77,21 @@ variable "ssl_certificates" {
 variable "web_app_ssl_domains" {
   description = "Custom domain and ssl bindings for the hosted web apps"
   type = map(object({
-    ssl_state = string
+    web_app_key = string
+    ssl_state   = string
   }))
   default = {
     "rimaz.dev" = {
-      ssl_state = "IpBasedEnabled"
+      web_app_key = "react"
+      ssl_state   = "IpBasedEnabled"
     }
     "www.rimaz.dev" = {
-      ssl_state = "SniEnabled"
+      web_app_key = "react"
+      ssl_state   = "SniEnabled"
+    }
+    "api.rimaz.dev" = {
+      web_app_key = "api"
+      ssl_state   = "SniEnabled"
     }
   }
 }
