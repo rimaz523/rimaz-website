@@ -1,0 +1,88 @@
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+      - terraform-infra/*
+      - website-react-spa/*
+
+variables:
+  - template: variables/build.yml
+  - template: variables/dev.yml
+  - template: variables/service-connections.yml
+
+stages:
+  - stage: 'Build'
+    displayName: 'Build the backend REST api'
+    jobs:
+      - job: 'Build'
+        displayName: 'Build job'
+        pool:
+          vmImage: '$(buildVmImage)'
+
+        steps:
+          - task: UseDotNet@2
+            displayName: 'Install .NET Core SDK'
+            inputs:
+              version: 6.x
+              performMultiLevelLookup: true
+              includePreviewVersions: true # Required for preview versions
+
+          - task: DotNetCoreCLI@2
+            displayName: Restore
+            inputs:
+              command: 'restore'
+              projects: '**/*.sln'
+              includeNuGetOrg: true
+
+          - task: DotNetCoreCLI@2
+            displayName: 'Verify no formatting errors'
+            continueOnError: true
+            inputs:
+              command: 'custom'
+              custom: 'format'
+              arguments: 'integrations-dotnet-api/integrations-dotnet-api.sln --verify-no-changes --verbosity detailed'
+
+          - task: DotNetCoreCLI@2
+            displayName: Build
+            inputs:
+              command: build
+              projects: '**/*.sln'
+              arguments: '--no-restore --configuration $(buildConfiguration)'
+
+          - task: DotNetCoreCLI@2
+            displayName: Publish
+            inputs:
+              command: publish
+              projects: '**/*.sln'
+              publishWebProjects: false
+              arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
+              zipAfterPublish: true
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish Artifact: drop'
+            condition: succeeded()
+
+  - stage: 'Deploy_Dev'
+    displayName: 'Deploy to Dev'
+    dependsOn: 'Build'
+    condition: and (succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
+    jobs:
+      - deployment: 'Deploy'
+        displayName: 'Deploy job'
+        environment: DEV
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - download: current
+                  artifact: drop
+
+                - task: AzureWebApp@1
+                  displayName: 'Deploy .net core api to azure app service'
+                  inputs:
+                    azureSubscription: '$(managedIdentityName)'
+                    appName: '$(project)-$(environment)-$(webAppName)'
+                    appType: 'webAppLinux'
+                    package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
