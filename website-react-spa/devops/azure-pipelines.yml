@@ -30,6 +30,7 @@ stages:
             displayName: 'Install Yarn'
           - script: |
               cd website-react-spa && yarn install
+            retryCountOnTaskFailure: 3
             displayName: 'Initialize project'
           - script: |
               cd website-react-spa && yarn build
