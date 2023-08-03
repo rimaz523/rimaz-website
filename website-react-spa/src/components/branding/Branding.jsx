@@ -1,20 +1,36 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import PropTypes from 'prop-types'
 
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
-const Branding = ({ title, subtitle }) => (
-  <Stack justifyContent='flex-end' sx={{ flexGrow: 1 }} spacing={0.5}>
-    <Typography variant='h5' component='div' sx={{ flexGrow: 1, mt: 2 }}>
-      {title}
-    </Typography>
-    <Typography variant='overline' display='block' gutterBottom>
-      {subtitle}
-    </Typography>
-  </Stack>
-)
+const Branding = ({ title, subtitle }) => {
+  const navigate = useNavigate()
+
+  return (
+    <Stack
+      justifyContent='flex-end'
+      sx={{
+        flexGrow: 1,
+        '&:hover': {
+          opacity: [0.9, 0.8, 0.7],
+          cursor: 'pointer',
+        },
+      }}
+      spacing={0.5}
+      onClick={() => navigate('/')}
+    >
+      <Typography variant='h5' component='div' sx={{ flexGrow: 1, mt: 2 }}>
+        {title}
+      </Typography>
+      <Typography variant='overline' display='block' gutterBottom>
+        {subtitle}
+      </Typography>
+    </Stack>
+  )
+}
 
 Branding.propTypes = {
   title: PropTypes.string,
