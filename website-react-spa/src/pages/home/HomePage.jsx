@@ -1,5 +1,6 @@
 import React from 'react'
 
+import BlogList from '../../components/blogList/BlogList'
 import Hero from '../../components/hero/Hero'
 import SocialHandles from '../../components/socialHandles/SocialHandles'
 
@@ -8,6 +9,7 @@ const HomePage = () => {
     <>
       <Hero />
       <SocialHandles />
+      <BlogList />
     </>
   )
 }
