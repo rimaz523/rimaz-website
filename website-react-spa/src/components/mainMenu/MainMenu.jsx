@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
@@ -20,16 +21,23 @@ import MenuIcon from '@mui/icons-material/Menu'
 import { setLightMode, setDarkMode } from '../../features/theme/themeSlice'
 
 const MainMenu = () => {
-  const [open, setState] = useState(false)
+  const [open, setDrawerOpenState] = useState(false)
   const isDarkMode = useSelector((state) => state.theme.darkmode)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const routeToPage = (url) => {
+    setDrawerOpenState(false)
+    navigate(url)
+  }
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return
     }
-    setState(open)
+    setDrawerOpenState(open)
   }
+
   return (
     <>
       <IconButton
@@ -54,19 +62,19 @@ const MainMenu = () => {
           <Divider sx={{ mb: 2 }} />
 
           <Box sx={{ mb: 2, width: { sm: 300 } }}>
-            <ListItemButton>
+            <ListItemButton onClick={() => routeToPage('/blog')}>
               <ListItemIcon>
                 <DescriptionIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
               <ListItemText primary='Blog' />
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton onClick={() => routeToPage('/about')}>
               <ListItemIcon>
                 <AccountCircleIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
               <ListItemText primary='About' />
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton onClick={() => routeToPage('/contact')}>
               <ListItemIcon>
                 <EmailIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>

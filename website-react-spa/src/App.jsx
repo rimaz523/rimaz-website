@@ -9,6 +9,7 @@ import MainAppBar from './components/appbar/MainAppBar'
 import Footer from './components/footer/Footer'
 import AboutPage from './pages/about/AboutPage'
 import BlogPage from './pages/blog/BlogPage'
+import ContactPage from './pages/contact/ContactPage'
 import HomePage from './pages/home/HomePage'
 import PageNotFound from './pages/page-not-found/PageNotFound'
 
@@ -33,6 +34,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='/blog' element={<BlogPage />} />
+          <Route path='/contact' element={<ContactPage />} />
           {/* Using path="*"" means "match anything", so this route
               acts like a catch-all for URLs that we don't have explicit
               routes for. */}
