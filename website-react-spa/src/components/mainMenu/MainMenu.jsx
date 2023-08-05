@@ -15,6 +15,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import DescriptionIcon from '@mui/icons-material/Description'
 import EmailIcon from '@mui/icons-material/Email'
+import HomeIcon from '@mui/icons-material/Home'
 import LightModeIcon from '@mui/icons-material/LightMode'
 import MenuIcon from '@mui/icons-material/Menu'
 
@@ -62,6 +63,12 @@ const MainMenu = () => {
           <Divider sx={{ mb: 2 }} />
 
           <Box sx={{ mb: 2, width: { sm: 300 } }}>
+            <ListItemButton onClick={() => routeToPage('/')}>
+              <ListItemIcon>
+                <HomeIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
+              </ListItemIcon>
+              <ListItemText primary='Home' />
+            </ListItemButton>
             <ListItemButton onClick={() => routeToPage('/blog')}>
               <ListItemIcon>
                 <DescriptionIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
