@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 
 import Branding from '../branding/Branding'
-import MainMenu from '../mainMenu/MainMenu'
+import MainMenu from '../main-menu/MainMenu'
 
 export default function MainAppBar() {
   return (

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { Box } from '@mui/material'
 
-import BlogList from '../../components/blogList/BlogList'
+import BlogList from '../../components/blog-list/BlogList'
 
 const BlogPage = ({ content }) => {
   return (
