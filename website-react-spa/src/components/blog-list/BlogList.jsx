@@ -1,13 +1,11 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 
-import { Box, Button } from '@mui/material'
+import { Box } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 
-import BlogPreview from '../blogPreview/BlogPreview'
+import BlogPreview from '../blog-preview/BlogPreview'
 
 const BlogList = () => {
-  const navigate = useNavigate()
   const blogPreviews = [
     {
       id: 1,
@@ -55,11 +53,6 @@ const BlogList = () => {
             )
           })}
         </Grid>
-      </Box>
-      <Box textAlign='center' pt={{ xs: 2 }} pb={{ xs: 2 }}>
-        <Button variant='contained' onClick={() => navigate('/blog')}>
-          View more
-        </Button>
       </Box>
     </>
   )
