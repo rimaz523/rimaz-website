@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useMatch } from 'react-router-dom'
 
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
@@ -26,6 +26,10 @@ const MainMenu = () => {
   const isDarkMode = useSelector((state) => state.theme.darkmode)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const isHomeRouteMatched = useMatch('/') !== null
+  const isBlogRouteMatched = useMatch('/blog') !== null
+  const isAboutRouteMatched = useMatch('/about') !== null
+  const isContactRouteMatched = useMatch('/contact') !== null
 
   const routeToPage = (url) => {
     setDrawerOpenState(false)
@@ -63,25 +67,28 @@ const MainMenu = () => {
           <Divider sx={{ mb: 2 }} />
 
           <Box sx={{ mb: 2, width: { sm: 300 } }}>
-            <ListItemButton onClick={() => routeToPage('/')}>
+            <ListItemButton onClick={() => routeToPage('/')} selected={isHomeRouteMatched}>
               <ListItemIcon>
                 <HomeIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
               <ListItemText primary='Home' />
             </ListItemButton>
-            <ListItemButton onClick={() => routeToPage('/blog')}>
+            <ListItemButton onClick={() => routeToPage('/blog')} selected={isBlogRouteMatched}>
               <ListItemIcon>
                 <DescriptionIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
               <ListItemText primary='Blog' />
             </ListItemButton>
-            <ListItemButton onClick={() => routeToPage('/about')}>
+            <ListItemButton onClick={() => routeToPage('/about')} selected={isAboutRouteMatched}>
               <ListItemIcon>
                 <AccountCircleIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
               <ListItemText primary='About' />
             </ListItemButton>
-            <ListItemButton onClick={() => routeToPage('/contact')}>
+            <ListItemButton
+              onClick={() => routeToPage('/contact')}
+              selected={isContactRouteMatched}
+            >
               <ListItemIcon>
                 <EmailIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>

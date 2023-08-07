@@ -23,6 +23,17 @@ function App() {
         contrastText: '#263238',
       },
     },
+    components: {
+      MuiListItemButton: {
+        styleOverrides: {
+          root: {
+            '&.Mui-selected': {
+              backgroundColor: '#adadad',
+            },
+          },
+        },
+      },
+    },
   })
 
   return (
