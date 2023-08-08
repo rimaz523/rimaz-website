@@ -9,6 +9,7 @@ module "app_key_vault_rbac" {
 
   depends_on = [
     module.key_vault["app"].id,
-    module.linux_web_app["react"].id
+    module.linux_web_app["react"].id,
+    module.linux_web_app["api"].id
   ]
 }

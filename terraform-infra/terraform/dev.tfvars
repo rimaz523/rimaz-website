@@ -57,4 +57,11 @@ app_key_vault_rbac = {
     is_managed_identity              = true
     mi_key                           = "react"
   }
+  "app_kv_web_app_sami_api" = {
+    "principal_id"                   = ""
+    "roles"                          = ["Reader", "Key Vault Secrets Officer"]
+    skip_service_principal_aad_check = false
+    is_managed_identity              = true
+    mi_key                           = "api"
+  }
 }
