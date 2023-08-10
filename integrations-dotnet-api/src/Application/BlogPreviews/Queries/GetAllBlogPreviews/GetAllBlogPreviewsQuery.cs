@@ -6,14 +6,14 @@ namespace Application.BlogPreviews.Queries.GetAllBlogPreviews
     {
     }
 
-    public class GetAllBlogPreviewsQueryHandler : IRequestHandler<GetAllBlogPreviewsQuery, List<BlogPreviewDto>> 
+    public class GetAllBlogPreviewsQueryHandler : IRequestHandler<GetAllBlogPreviewsQuery, List<BlogPreviewDto>>
     {
         public async Task<List<BlogPreviewDto>> Handle(GetAllBlogPreviewsQuery request, CancellationToken cancellationToken)
         {
             var blogPreviews = new List<BlogPreviewDto>
             {
                 new BlogPreviewDto
-                { 
+                {
                     Id = Guid.NewGuid(),
                     Title = "React 101 : Creating your starter React app using Yarn Berry (yarn@3.3.1)",
                     Content = "In this article I’ll be showing you how to set up a starter react app in windows using the create-react-app command, configure your editor — VS Code, and version control the app.",

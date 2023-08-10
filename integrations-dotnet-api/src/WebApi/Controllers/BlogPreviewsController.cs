@@ -10,7 +10,7 @@ namespace WebApi.Controllers
         private readonly ILogger<BlogPreviewsController> _logger;
 
         public BlogPreviewsController(ILogger<BlogPreviewsController> logger)
-        { 
+        {
             _logger = logger;
         }
 
