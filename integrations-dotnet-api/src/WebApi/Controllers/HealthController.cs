@@ -4,7 +4,7 @@ namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class HealthController : ControllerBase
+    public class HealthController : ApiControllerBase
     {
         private readonly ILogger<HealthController> _logger;
 
