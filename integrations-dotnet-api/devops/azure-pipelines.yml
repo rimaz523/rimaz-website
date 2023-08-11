@@ -63,7 +63,7 @@ stages:
           - task: AzureFileCopy@4
             displayName: Copy swagger json definition to az storage
             inputs:
-              sourcePath: '**/swagger.json'
+              sourcePath: 'integrations-dotnet-api/src/WebApi/swagger.json'
               azureSubscription: $(managedIdentityName)
               destination: AzureBlob
               storage: $(adminStorageAccount)
