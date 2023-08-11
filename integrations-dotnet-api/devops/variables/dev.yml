@@ -9,3 +9,7 @@ variables:
   value: '@Microsoft.KeyVault(SecretUri=https://rimaz-dev-app-kv.vault.azure.net/secrets/application-insights-key/)'
 - name: keyVaultAppInsightsConnectionString
   value: '@Microsoft.KeyVault(SecretUri=https://rimaz-dev-app-kv.vault.azure.net/secrets/application-insights-conn-string/)'
+- name: adminStorageAccount
+  value: rmzadminstore
+- name: swaggerContainer
+  value: swagger-v1-dev
