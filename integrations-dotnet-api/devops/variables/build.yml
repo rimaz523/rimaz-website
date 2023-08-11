@@ -3,7 +3,3 @@ variables:
   value: Release
 - name: buildVmImage
   value: windows-latest
-- name: adminStorageAccount
-  value: rmzadminstore
-- name: swaggerContainer
-  value: swagger

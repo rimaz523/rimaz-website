@@ -60,19 +60,14 @@ stages:
               arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
               zipAfterPublish: true
 
-          - task: AzureFileCopy@4
-            displayName: Copy swagger json definition to az storage
-            inputs:
-              sourcePath: 'integrations-dotnet-api/src/WebApi/swagger.json'
-              azureSubscription: $(managedIdentityName)
-              destination: AzureBlob
-              storage: $(adminStorageAccount)
-              containerName: $(swaggerContainer)
-              cleanTargetBeforeCopy: true
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish Artifact: Dotnet Release to  drop'
 
           - task: PublishBuildArtifacts@1
-            displayName: 'Publish Artifact: drop'
-            condition: succeeded()
+            displayName: 'Publish Artifact: Swagger json to drop'
+            inputs:
+              pathtoPublish: 'integrations-dotnet-api/src/WebApi/swagger.json'
+
 
   - stage: 'Deploy_Dev'
     displayName: 'Deploy to Dev'
@@ -88,6 +83,16 @@ stages:
               steps:
                 - download: current
                   artifact: drop
+
+                - task: AzureFileCopy@4
+                  displayName: Copy swagger json definition to az storage
+                  inputs:
+                    sourcePath: '$(Pipeline.Workspace)/drop/swagger.json'
+                    azureSubscription: $(managedIdentityName)
+                    destination: AzureBlob
+                    storage: $(adminStorageAccount)
+                    containerName: $(swaggerContainer)
+                    cleanTargetBeforeCopy: true
 
                 - task: AzureWebApp@1
                   displayName: 'Deploy .net core api to azure app service'
