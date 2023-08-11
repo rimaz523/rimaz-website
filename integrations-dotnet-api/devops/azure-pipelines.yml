@@ -9,7 +9,6 @@ trigger:
 
 variables:
   - template: variables/build.yml
-  - template: variables/dev.yml
   - template: variables/service-connections.yml
 
 stages:
@@ -72,10 +71,14 @@ stages:
   - stage: 'Deploy_Dev'
     displayName: 'Deploy to Dev'
     dependsOn: 'Build'
+    variables:
+    - template: variables/dev.yml
     condition: and (succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
     jobs:
       - deployment: 'Deploy'
         displayName: 'Deploy job'
+        pool:
+          vmImage: '$(deployVmImage)'
         environment: DEV
         strategy:
           runOnce:
