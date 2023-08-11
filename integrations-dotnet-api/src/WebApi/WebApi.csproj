@@ -22,7 +22,7 @@
     <None Include="C:\Users\rimaz\source\repos\projects\rimaz-website\integrations-dotnet-api\src\WebApi\.editorconfig" />
   </ItemGroup>
 
-  <Target Name="CreateSwaggerJson" AfterTargets="Build">
+  <Target Name="CreateSwaggerJson" AfterTargets="Build" Condition="$(Configuration)=='Debug'">
     <Exec Command="dotnet swagger tofile --output swagger.json $(OutputPath)$(AssemblyName).dll v1" WorkingDirectory="$(ProjectDir)"/>
   </Target>
 
