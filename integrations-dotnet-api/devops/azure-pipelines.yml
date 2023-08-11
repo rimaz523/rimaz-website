@@ -60,6 +60,16 @@ stages:
               arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
               zipAfterPublish: true
 
+          - task: AzureFileCopy@4
+            displayName: Copy swagger json definition to az storage
+            inputs:
+              sourcePath: 'integrations-dotnet-api/src/WebApi/swagger.json'
+              azureSubscription: $(managedIdentityName)
+              destination: AzureBlob
+              storage: $(adminStorageAccount)
+              containerName: $(swaggerContainer)
+              cleanTargetBeforeCopy: true
+
           - task: PublishBuildArtifacts@1
             displayName: 'Publish Artifact: drop'
             condition: succeeded()
