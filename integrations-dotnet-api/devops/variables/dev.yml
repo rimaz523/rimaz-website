@@ -3,6 +3,8 @@ variables:
   value: rimaz
 - name: environment
   value: dev
+- name: deployVmImage
+  value: windows-latest
 - name: webAppName
   value: dotnet-api
 - name: keyVaultAppInsightsKey
