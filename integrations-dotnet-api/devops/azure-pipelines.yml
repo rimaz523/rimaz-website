@@ -11,14 +11,15 @@ variables:
   - template: variables/build.yml
   - template: variables/service-connections.yml
 
+pool:
+  vmImage: '$(buildVmImage)'
+
 stages:
   - stage: 'Build'
     displayName: 'Build the backend REST api'
     jobs:
       - job: 'Build'
         displayName: 'Build job'
-        pool:
-          vmImage: '$(buildVmImage)'
 
         steps:
           - task: UseDotNet@2
@@ -77,8 +78,6 @@ stages:
     jobs:
       - deployment: 'Deploy'
         displayName: 'Deploy job'
-        pool:
-          vmImage: '$(deployVmImage)'
         environment: DEV
         strategy:
           runOnce:
