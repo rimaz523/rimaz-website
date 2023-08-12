@@ -23,3 +23,13 @@ variables:
   value: "edc7ac20-a3a1-4255-9846-cd486dcefc1c"
 - name: local_user_id
   value: "3207c7da-5eed-46eb-abd3-1deb49b95e1e"
+- name: company_name
+  value: Rimaz
+- name: company_email
+  value: rimazmohommed523@gmail.com
+- name: apim_sku
+  value: Consumption_0
+- name: api_domain_url
+  value: "https://api.rimaz.dev"
+- name: az_storage_container_url_for_swagger
+  value: "https://rmzadminstore.blob.core.windows.net/swagger-v1-dev/"
