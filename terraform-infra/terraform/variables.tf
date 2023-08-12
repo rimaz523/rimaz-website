@@ -207,3 +207,41 @@ variable "storage_accounts" {
     }
   }
 }
+
+variable "apims" {
+  description = "create APIMs"
+  type = map(object({
+    company = string
+    email   = string
+    sku     = string
+  }))
+  default = {
+    "backend" = {
+      company = "#{company_name}#"
+      email   = "#{company_email}#"
+      sku     = "#{apim_sku}#"
+    }
+  }
+}
+
+variable "apis" {
+  description = "create APIs"
+  type = map(object({
+    api_revision                            = string
+    path                                    = string
+    service_url                             = string
+    azure_storage_container_url_for_swagger = string
+    swagger_file_name                       = string
+    swagger_format                          = string
+  }))
+  default = {
+    "Backend" = {
+      api_revision                            = "v1"
+      path                                    = "v1"
+      service_url                             = "#{api_domain_url}#"
+      azure_storage_container_url_for_swagger = "#{az_storage_container_url_for_swagger}#"
+      swagger_file_name                       = "swagger.json"
+      swagger_format                          = "openapi+json-link"
+    }
+  }
+}

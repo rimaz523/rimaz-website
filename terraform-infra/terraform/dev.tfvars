@@ -65,3 +65,22 @@ app_key_vault_rbac = {
     mi_key                           = "api"
   }
 }
+
+apims = {
+  "backend" = {
+    company = "Rimaz"
+    email   = "rimazmohommed523@gmail.com"
+    sku     = "Consumption_0"
+  }
+}
+
+apis = {
+  "Backend" = {
+    api_revision                            = "v1"
+    path                                    = "v1"
+    service_url                             = "https://api.rimaz.dev"
+    azure_storage_container_url_for_swagger = "https://rmzadminstore.blob.core.windows.net/swagger-v1-dev/"
+    swagger_file_name                       = "swagger.json"
+    swagger_format                          = "openapi+json-link"
+  }
+}
