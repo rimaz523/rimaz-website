@@ -16,11 +16,33 @@ resource "azurerm_linux_web_app" "webapp_linux" {
       dotnet_version = var.stack == "dotnet" ? var.stack_version : null
       node_version   = var.stack == "node" ? var.stack_version : null
     }
+    dynamic "ip_restriction" {
+      for_each = var.stack == "dotnet" ? [1] : []
+      content {
+        name       = "Allow APIM AustraliaEast IPs"
+        action     = "Allow"
+        ip_address = "20.53.133.253/32"
+        priority   = "200"
+      }
+    }
+    dynamic "ip_restriction" {
+      for_each = var.stack == "dotnet" ? [1] : []
+      content {
+        name       = "Allow APIM AustraliaEast IPs"
+        action     = "Allow"
+        ip_address = "20.53.133.212/32"
+        priority   = "210"
+      }
+    }
   }
 
   identity {
     type = "SystemAssigned"
   }
+
+
+
+
 
   lifecycle {
     ignore_changes = [
