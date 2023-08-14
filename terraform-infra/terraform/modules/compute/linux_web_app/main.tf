@@ -31,7 +31,16 @@ resource "azurerm_linux_web_app" "webapp_linux" {
         name       = "Allow APIM AustraliaEast IPs"
         action     = "Allow"
         ip_address = "20.53.133.212/32"
-        priority   = "210"
+        priority   = "300"
+      }
+    }
+    dynamic "ip_restriction" {
+      for_each = var.stack == "dotnet" ? [1] : []
+      content {
+        name       = "Allow APIM AustraliaEast IPs"
+        action     = "Allow"
+        ip_address = "20.193.11.198/32"
+        priority   = "400"
       }
     }
   }
