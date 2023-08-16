@@ -82,5 +82,7 @@ apis = {
     azure_storage_container_url_for_swagger = "https://rmzadminstore.blob.core.windows.net/swagger-v1-dev/"
     swagger_file_name                       = "swagger.json"
     swagger_format                          = "openapi+json-link"
+    whitelist_localhost_domain              = "http://localhost:3000/"
+    whitelist_frontend_webapp_domain        = "https://rimaz.dev/"
   }
 }

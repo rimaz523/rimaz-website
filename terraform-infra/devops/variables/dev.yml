@@ -33,3 +33,5 @@ variables:
   value: "https://api.rimaz.dev"
 - name: az_storage_container_url_for_swagger
   value: "https://rmzadminstore.blob.core.windows.net/swagger-v1-dev/"
+- name: apim_policy_whitelist_frontend_webapp_domain
+  value: "https://rimaz.dev/"

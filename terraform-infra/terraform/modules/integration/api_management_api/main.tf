@@ -17,6 +17,19 @@ resource "azurerm_api_management_api" "api" {
   }
 }
 
+resource "azurerm_api_management_api_policy" "api_policies" {
+  api_name            = azurerm_api_management_api.api.name
+  api_management_name = var.api_management_name
+  resource_group_name = var.resource_group_name
+
+  xml_content = templatefile("${path.root}/modules/integration/api_management_api/policies/inbound_cors_policy_xml.tftpl",
+    {
+      localhost            = var.whitelist_localhost_domain
+      hostedFrontendWebapp = var.whitelist_frontend_webapp_domain
+    }
+  )
+}
+
 resource "azurerm_api_management_product" "apim_product" {
   product_id            = lower("${var.project}-${var.name}-${var.environment}-api-product")
   api_management_name   = var.api_management_name
