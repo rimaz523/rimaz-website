@@ -245,7 +245,7 @@ variable "apis" {
       swagger_file_name                       = "swagger.json"
       swagger_format                          = "openapi+json-link"
       whitelist_localhost_domain              = "http://localhost:3000/"
-      whitelist_frontend_webapp_domain        = "#{apim_policy_whitelist_frontend_webapp_domain}"
+      whitelist_frontend_webapp_domain        = "#{apim_policy_whitelist_frontend_webapp_domain}#"
     }
   }
 }
