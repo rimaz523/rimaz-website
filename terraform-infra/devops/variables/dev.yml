@@ -35,3 +35,5 @@ variables:
   value: "https://rmzadminstore.blob.core.windows.net/swagger-v1-dev/"
 - name: apim_policy_whitelist_frontend_webapp_domain
   value: "https://rimaz.dev/"
+- name: apim_policy_whitelist_frontend_webapp_domain_www
+  value: "https://www.rimaz.dev/"

@@ -84,5 +84,6 @@ apis = {
     swagger_format                          = "openapi+json-link"
     whitelist_localhost_domain              = "http://localhost:3000/"
     whitelist_frontend_webapp_domain        = "https://rimaz.dev/"
+    whitelist_frontend_webapp_domain_www    = "https://www.rimaz.dev/"
   }
 }

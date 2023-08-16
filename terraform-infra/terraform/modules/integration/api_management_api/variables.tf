@@ -62,3 +62,8 @@ variable "whitelist_frontend_webapp_domain" {
   description = "Frontend Webapp url to whitelist for APIM access."
   type        = string
 }
+
+variable "whitelist_frontend_webapp_domain_www" {
+  description = "Frontend Webapp url to whitelist for APIM access for www prefix."
+  type        = string
+}

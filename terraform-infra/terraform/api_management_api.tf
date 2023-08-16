@@ -15,6 +15,7 @@ module "api_management_api" {
   swagger_format                          = each.value.swagger_format
   whitelist_localhost_domain              = each.value.whitelist_localhost_domain
   whitelist_frontend_webapp_domain        = each.value.whitelist_frontend_webapp_domain
+  whitelist_frontend_webapp_domain_www    = each.value.whitelist_frontend_webapp_domain_www
 
   depends_on = [
     module.resource_group["common"].id,

@@ -235,6 +235,7 @@ variable "apis" {
     swagger_format                          = string
     whitelist_localhost_domain              = string
     whitelist_frontend_webapp_domain        = string
+    whitelist_frontend_webapp_domain_www    = string
   }))
   default = {
     "Backend" = {
@@ -246,6 +247,7 @@ variable "apis" {
       swagger_format                          = "openapi+json-link"
       whitelist_localhost_domain              = "http://localhost:3000/"
       whitelist_frontend_webapp_domain        = "#{apim_policy_whitelist_frontend_webapp_domain}#"
+      whitelist_frontend_webapp_domain_www    = "#{apim_policy_whitelist_frontend_webapp_domain_www}#"
     }
   }
 }
