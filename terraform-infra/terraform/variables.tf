@@ -233,6 +233,8 @@ variable "apis" {
     azure_storage_container_url_for_swagger = string
     swagger_file_name                       = string
     swagger_format                          = string
+    whitelist_localhost_domain              = string
+    whitelist_frontend_webapp_domain        = string
   }))
   default = {
     "Backend" = {
@@ -242,6 +244,8 @@ variable "apis" {
       azure_storage_container_url_for_swagger = "#{az_storage_container_url_for_swagger}#"
       swagger_file_name                       = "swagger.json"
       swagger_format                          = "openapi+json-link"
+      whitelist_localhost_domain              = "http://localhost:3000/"
+      whitelist_frontend_webapp_domain        = "#{apim_policy_whitelist_frontend_webapp_domain}"
     }
   }
 }

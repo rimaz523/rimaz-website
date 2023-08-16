@@ -13,6 +13,8 @@ module "api_management_api" {
   azure_storage_container_url_for_swagger = each.value.azure_storage_container_url_for_swagger
   swagger_file_name                       = each.value.swagger_file_name
   swagger_format                          = each.value.swagger_format
+  whitelist_localhost_domain              = each.value.whitelist_localhost_domain
+  whitelist_frontend_webapp_domain        = each.value.whitelist_frontend_webapp_domain
 
   depends_on = [
     module.resource_group["common"].id,

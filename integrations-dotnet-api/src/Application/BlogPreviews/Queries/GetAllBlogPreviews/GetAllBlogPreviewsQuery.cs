@@ -17,6 +17,7 @@ namespace Application.BlogPreviews.Queries.GetAllBlogPreviews
                     Id = Guid.NewGuid(),
                     Title = "React 101 : Creating your starter React app using Yarn Berry (yarn@3.3.1)",
                     Content = "In this article I’ll be showing you how to set up a starter react app in windows using the create-react-app command, configure your editor — VS Code, and version control the app.",
+                    Image = "/blog-preview-url/reactjs-v1.jpg",
                     Url = "https://rimazmohommed523.medium.com/react-101-creating-your-starter-react-app-using-yarn-berry-yarn-3-3-1-e40ed98ec14"
                 },
                 new BlogPreviewDto
@@ -24,7 +25,7 @@ namespace Application.BlogPreviews.Queries.GetAllBlogPreviews
                     Id = Guid.NewGuid(),
                     Title = "React 102 : Configuring code formatting using Prettier, ESLint & Husky",
                     Content = "In this article I’ll be diving into setting up pettier, eslint and husky for configuring the code formatting rules for your react js application. I will be using yarn as my package manager.",
-                    Image = "/blog-preview-url/reactjs-v1.jpg",
+                    Image = "/blog-preview-url/reactjs-v2.jpg",
                     Url = "https://rimazmohommed523.medium.com/react-101-creating-your-starter-react-app-using-yarn-berry-yarn-3-3-1-e40ed98ec14"
                 },
                 new BlogPreviewDto
