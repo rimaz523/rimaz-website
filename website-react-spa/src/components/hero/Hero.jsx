@@ -26,10 +26,10 @@ const Hero = ({ title, subtitle }) => {
         textAlign='center'
         style={{ transform: 'translate(-50%, -50%)' }}
       >
-        <Typography variant='h4' sx={{ color: 'primary.main' }}>
+        <Typography variant='h4' sx={{ color: '#FFFFFF' }}>
           {title}
         </Typography>
-        <Typography variant='h6' sx={{ color: 'primary.main', fontWeight: 'bold' }}>
+        <Typography variant='h6' sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>
           {subtitle}
         </Typography>
       </Box>

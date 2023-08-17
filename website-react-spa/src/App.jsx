@@ -19,19 +19,16 @@ function App() {
     palette: {
       mode: isDarkMode ? 'dark' : 'light',
       primary: {
-        main: '#FFFFFF',
-        contrastText: '#263238',
+        light: '#cfd8dc',
+        main: '#455a64',
+        dark: '#263238',
+        contrastText: '#fff',
       },
-    },
-    components: {
-      MuiListItemButton: {
-        styleOverrides: {
-          root: {
-            '&.Mui-selected': {
-              backgroundColor: '#adadad',
-            },
-          },
-        },
+      secondary: {
+        light: '#fafafa',
+        main: '#eeeeee',
+        dark: '#bdbdbd',
+        contrastText: '#000',
       },
     },
   })
