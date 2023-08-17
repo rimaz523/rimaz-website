@@ -1,0 +1,5 @@
+rule_name,action,priority,ip_address
+Allow APIM AustraliaEast IPs,Allow,200,20.53.133.253/32
+Allow APIM AustraliaEast IPs,Allow,300,20.53.133.212/32
+Allow APIM AustraliaEast IPs,Allow,400,20.193.11.198/32
+Allow APIM AustraliaEast IPs,Allow,500,20.193.31.39/32

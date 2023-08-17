@@ -16,31 +16,14 @@ resource "azurerm_linux_web_app" "webapp_linux" {
       dotnet_version = var.stack == "dotnet" ? var.stack_version : null
       node_version   = var.stack == "node" ? var.stack_version : null
     }
+
     dynamic "ip_restriction" {
-      for_each = var.stack == "dotnet" ? [1] : []
+      for_each = var.stack == "dotnet" ? csvdecode(file("${path.root}/modules/compute/linux_web_app/ip_restrictions/apim_australiaeast_whitelist_ips.csv")) : []
       content {
-        name       = "Allow APIM AustraliaEast IPs"
-        action     = "Allow"
-        ip_address = "20.53.133.253/32"
-        priority   = "200"
-      }
-    }
-    dynamic "ip_restriction" {
-      for_each = var.stack == "dotnet" ? [1] : []
-      content {
-        name       = "Allow APIM AustraliaEast IPs"
-        action     = "Allow"
-        ip_address = "20.53.133.212/32"
-        priority   = "300"
-      }
-    }
-    dynamic "ip_restriction" {
-      for_each = var.stack == "dotnet" ? [1] : []
-      content {
-        name       = "Allow APIM AustraliaEast IPs"
-        action     = "Allow"
-        ip_address = "20.193.11.198/32"
-        priority   = "400"
+        name       = ip_restriction.value.rule_name
+        action     = ip_restriction.value.action
+        ip_address = ip_restriction.value.ip_address
+        priority   = ip_restriction.value.priority
       }
     }
   }
@@ -48,10 +31,6 @@ resource "azurerm_linux_web_app" "webapp_linux" {
   identity {
     type = "SystemAssigned"
   }
-
-
-
-
 
   lifecycle {
     ignore_changes = [
