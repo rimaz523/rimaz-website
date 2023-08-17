@@ -10,7 +10,7 @@ import MainMenu from '../main-menu/MainMenu'
 export default function MainAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='static'>
+      <AppBar position='static' color='secondary'>
         <Toolbar>
           <Branding title='Rimaz Mohommed' subtitle='Full Stack Developer • DevOps Engineer' />
           <MainMenu />
