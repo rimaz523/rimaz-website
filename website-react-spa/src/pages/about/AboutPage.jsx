@@ -1,23 +1,31 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import { Typography, Box } from '@mui/material'
 import Avatar from '@mui/material/Avatar'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 
 import WorkIcon from '@mui/icons-material/Work'
 
 const AboutPage = () => {
+  const isDarkMode = useSelector((state) => state.theme.darkmode)
+
   return (
     <>
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
-        justifyContent='center'
         alignItems='center'
         spacing={2}
-        sx={{ height: '100%' }}
+        sx={{
+          backgroundImage: `url(${process.env.REACT_APP_BLOB_STORE_BASE_URL.concat(
+            '/app/wanaka-backdrop.jpg',
+          )})`,
+          height: '100%',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+        }}
         pt={4}
         pb={10}
         pl={{ xs: 0, md: 4 }}
@@ -25,19 +33,18 @@ const AboutPage = () => {
         <Avatar
           alt='Rimaz Mohommed'
           src={process.env.REACT_APP_BLOB_STORE_BASE_URL.concat('/about/profile.jpg')}
-          sx={{ width: 300, height: 300 }}
-          component={Paper}
-          elevation={4}
+          sx={{ width: 300, height: 300, border: 4, borderColor: isDarkMode ? '#000' : '#fff' }}
         />
-        <Stack direction='column' sx={{ height: '100%' }} justifyContent='center' spacing={2}>
-          <Typography variant='h4' px={{ xs: 2, md: 10 }} pt={{ xs: 2, md: 0 }}>
+        <Stack direction='column' sx={{ height: '100%' }} spacing={2}>
+          {/* <Typography variant='h4' px={{ xs: 2, md: 10 }} pt={{ xs: 2, md: 0 }}>
             Hi, I&apos;m Rimaz
-          </Typography>
+          </Typography> */}
           <Typography
             variant='h6'
             px={{ xs: 2, md: 10 }}
-            pt={{ xs: 4 }}
+            pt={{ xs: 0 }}
             sx={{ fontWeight: 'bold' }}
+            color='#fff'
           >
             I specialize as a full-stack developer creating & deploying web and mobile apps using
             .NET, React, Vue, Flutter, Terraform, Azure Cloud technologies & Azure Devops.
@@ -45,11 +52,21 @@ const AboutPage = () => {
           <Typography
             variant='h6'
             px={{ xs: 2, md: 10 }}
-            pt={{ xs: 2 }}
+            pt={{ xs: 0 }}
             sx={{ fontWeight: 'bold' }}
+            color='#fff'
           >
             Outside of work, I enjoy working out at the gym, reading novels, Netflix, and improving
             my acoustic guitar skills.
+          </Typography>
+          <Typography
+            variant='h6'
+            px={{ xs: 2, md: 10 }}
+            pt={{ xs: 0 }}
+            sx={{ fontWeight: 'bold' }}
+            color='#fff'
+          >
+            I currently reside in New Zealand.
           </Typography>
         </Stack>
       </Stack>
@@ -57,7 +74,7 @@ const AboutPage = () => {
         <Typography variant='h4' px={{ xs: 2, md: 2 }} py={{ xs: 4 }}>
           Experience
         </Typography>
-        <Card>
+        <Card px={2}>
           <CardContent>
             <Stack direction='row' alignItems='center'>
               <WorkIcon />
