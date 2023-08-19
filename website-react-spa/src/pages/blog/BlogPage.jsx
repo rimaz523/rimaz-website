@@ -2,15 +2,17 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 
 import BlogList from '../../components/blog-list/BlogList'
 
 const BlogPage = ({ content }) => {
   return (
     <>
-      <Box textAlign='center' pt={{ xs: 2 }} pb={{ xs: 2 }}>
-        <h1>{content}</h1>
+      <Box textAlign='center' pt={{ xs: 4 }}>
+        <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+          {content}
+        </Typography>
       </Box>
 
       <BlogList />
@@ -23,7 +25,7 @@ BlogPage.propTypes = {
 }
 
 BlogPage.defaultProps = {
-  content: 'Welcome to my blogs!',
+  content: 'Venture into my realm of thoughts and musings!',
 }
 
 export default BlogPage
