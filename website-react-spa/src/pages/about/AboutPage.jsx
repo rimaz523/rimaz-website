@@ -20,11 +20,12 @@ const AboutPage = () => {
         spacing={2}
         sx={{
           backgroundImage: `url(${process.env.REACT_APP_BLOB_STORE_BASE_URL.concat(
-            '/app/wanaka-backdrop.jpg',
+            '/app/coding3-backdrop.jpg',
           )})`,
           height: '100%',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
         pt={4}
         pb={10}
@@ -36,9 +37,6 @@ const AboutPage = () => {
           sx={{ width: 300, height: 300, border: 4, borderColor: isDarkMode ? '#000' : '#fff' }}
         />
         <Stack direction='column' sx={{ height: '100%' }} spacing={2}>
-          {/* <Typography variant='h4' px={{ xs: 2, md: 10 }} pt={{ xs: 2, md: 0 }}>
-            Hi, I&apos;m Rimaz
-          </Typography> */}
           <Typography
             variant='h6'
             px={{ xs: 2, md: 10 }}
@@ -71,20 +69,20 @@ const AboutPage = () => {
         </Stack>
       </Stack>
       <Box sx={{ flexGrow: 1 }}>
-        <Typography variant='h4' px={{ xs: 2, md: 2 }} py={{ xs: 4 }}>
-          Experience
+        <Typography variant='h4' px={{ xs: 2, md: 2 }} py={{ xs: 4 }} textAlign='center'>
+          Work Experience
         </Typography>
-        <Card px={2}>
+        <Card>
           <CardContent>
             <Stack direction='row' alignItems='center'>
               <WorkIcon />
               <Typography px={2} variant='subtitle1' component={'div'} sx={{ fontWeight: 'bold' }}>
                 Statistics New Zealand
               </Typography>
-              <Typography px={2} variant='overline' component={'div'}>
-                Oct 2022 - Present
-              </Typography>
             </Stack>
+            <Typography variant='overline' component={'div'}>
+              Oct 2022 - Present
+            </Typography>
             <Typography sx={{ mb: 1.5 }} color='text.secondary'>
               Developed a comprehensive integration solution utilizing .NET 6.0 with Azure functions
               featuring HTTP and Queue triggers to efficiently handle and process large data
@@ -103,10 +101,10 @@ const AboutPage = () => {
               <Typography px={2} variant='subtitle1' component={'div'} sx={{ fontWeight: 'bold' }}>
                 Intergen
               </Typography>
-              <Typography px={2} variant='overline' component={'div'}>
-                Jan 2019 - Oct 2022
-              </Typography>
             </Stack>
+            <Typography variant='overline' component={'div'}>
+              Jan 2019 - Oct 2022
+            </Typography>
             <Typography sx={{ mb: 1.5 }} color='text.secondary'>
               Although my official title was Full-Stack Developer, my role involved a blend of
               DevOps and Dev functions, including setting up infrastructure and deployment
@@ -122,10 +120,10 @@ const AboutPage = () => {
               <Typography px={2} variant='subtitle1' component={'div'} sx={{ fontWeight: 'bold' }}>
                 OrangeHRM
               </Typography>
-              <Typography px={2} variant='overline' component={'div'}>
-                Feb 2014 - Jan 2019
-              </Typography>
             </Stack>
+            <Typography variant='overline' component={'div'}>
+              Feb 2014 - Jan 2019
+            </Typography>
             <Typography sx={{ mb: 1.5 }} color='text.secondary'>
               Spearheaded the implementation & design to make the product GDPR compliant for our
               European clients. Integrated the Time module with Toggl to provide a seamless user
