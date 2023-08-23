@@ -25,8 +25,9 @@ const Hero = ({ title, subtitle }) => {
         left='50%'
         textAlign='center'
         style={{ transform: 'translate(-50%, -50%)' }}
+        width='100%'
       >
-        <Typography variant='h4' sx={{ color: '#FFFFFF' }}>
+        <Typography variant='h6' sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>
           {title}
         </Typography>
         <Typography variant='h6' sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>
@@ -44,8 +45,8 @@ Hero.propTypes = {
 
 Hero.defaultProps = {
   // prettier-ignore
-  title: 'Hi, I\'m Rimaz.',
-  subtitle: 'I am a full stack .NET developer specializing in Azure. Welcome to my blog!',
+  title: 'I am a full stack .NET developer specializing in Azure.',
+  subtitle: 'Welcome to my blog!',
 }
 
 export default Hero
