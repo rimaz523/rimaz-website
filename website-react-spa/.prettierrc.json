@@ -10,6 +10,7 @@
   "importOrder": [
     "^react",
     "^redux-persist",
+    "^@hookform",
     "^prop-types",
     "^@mui/material",
     "^@mui/icons-material",
