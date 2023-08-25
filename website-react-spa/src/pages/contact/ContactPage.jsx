@@ -8,7 +8,7 @@ import ContactForm from '../../components/forms/ContactForm'
 
 const ContactPage = ({ content }) => {
   return (
-    <Box textAlign='center' pt={{ xs: 4 }}>
+    <Box textAlign='center' pt={{ xs: 15 }}>
       <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
         {content}
       </Typography>

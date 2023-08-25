@@ -27,7 +27,7 @@ const AboutPage = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
-        pt={4}
+        pt={15}
         pb={10}
         pl={{ xs: 0, md: 4 }}
       >
