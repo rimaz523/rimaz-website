@@ -28,10 +28,9 @@ const ContactForm = () => {
   return (
     <>
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
-        <Typography variant='h4' pt={2} pb={2}>
+        <Typography variant='h4' pt={2}>
           Contact me
         </Typography>
-
         <Stack spacing={4} justifyContent='center' alignItems='center' border={0}>
           <Fade in={success === true} timeout={4000}>
             <Alert severity='success'>Thank you for your message!</Alert>
@@ -42,6 +41,10 @@ const ContactForm = () => {
             variant='outlined'
             {...register('name', {
               required: 'Name is required.',
+              maxLength: {
+                value: 100,
+                message: 'Please enter a name with a maximum of 100 characters.',
+              },
             })}
             required
             error={!!errors.name}
@@ -58,6 +61,10 @@ const ContactForm = () => {
                 value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                 message: 'Please enter a valid email.',
               },
+              maxLength: {
+                value: 100,
+                message: 'Please enter an email with a maximum of 100 characters.',
+              },
             })}
             required
             error={!!errors.email}
@@ -71,6 +78,10 @@ const ContactForm = () => {
             rows={10}
             {...register('message', {
               required: 'Message is required.',
+              maxLength: {
+                value: 500,
+                message: 'Please enter a message with a maximum of 500 characters.',
+              },
             })}
             required
             error={!!errors.message}
