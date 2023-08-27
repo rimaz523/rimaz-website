@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using Domain.Entities;
+using MediatR;
 
 namespace Application.BlogPreviews.Queries.GetAllBlogPreviews
 {
@@ -8,11 +10,19 @@ namespace Application.BlogPreviews.Queries.GetAllBlogPreviews
 
     public class GetAllBlogPreviewsQueryHandler : IRequestHandler<GetAllBlogPreviewsQuery, List<BlogPreviewDto>>
     {
+        private readonly IMapper _mapper;
+
+        public GetAllBlogPreviewsQueryHandler(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+
         public async Task<List<BlogPreviewDto>> Handle(GetAllBlogPreviewsQuery request, CancellationToken cancellationToken)
         {
-            var blogPreviews = new List<BlogPreviewDto>
+
+            var blogPosts = new List<BlogPost>
             {
-                new BlogPreviewDto
+                new BlogPost
                 {
                     Id = Guid.NewGuid(),
                     Title = "React 101 : Creating your starter React app using Yarn Berry (yarn@3.3.1)",
@@ -20,7 +30,7 @@ namespace Application.BlogPreviews.Queries.GetAllBlogPreviews
                     Image = "/blog-preview-url/reactjs-v1.jpg",
                     Url = "https://rimazmohommed523.medium.com/react-101-creating-your-starter-react-app-using-yarn-berry-yarn-3-3-1-e40ed98ec14"
                 },
-                new BlogPreviewDto
+                new BlogPost
                 {
                     Id = Guid.NewGuid(),
                     Title = "React 102 : Configuring code formatting using Prettier, ESLint & Husky",
@@ -28,7 +38,7 @@ namespace Application.BlogPreviews.Queries.GetAllBlogPreviews
                     Image = "/blog-preview-url/reactjs-v2.jpg",
                     Url = "https://rimazmohommed523.medium.com/react-101-creating-your-starter-react-app-using-yarn-berry-yarn-3-3-1-e40ed98ec14"
                 },
-                new BlogPreviewDto
+                new BlogPost
                 {
                     Id = Guid.NewGuid(),
                     Title = "JMeter Load Testing : Part 1 — Installing JMeter on Windows",
@@ -36,7 +46,7 @@ namespace Application.BlogPreviews.Queries.GetAllBlogPreviews
                     Image = "/blog-preview-url/jmeter-v1.jpg",
                     Url = "https://rimazmohommed523.medium.com/jmeter-load-testing-part-1-installing-jmeter-on-windows-fa524da15ae0"
                 },
-                new BlogPreviewDto
+                new BlogPost
                 {
                     Id = Guid.NewGuid(),
                     Title = "AZ-303 Azure Architect Technologies : Study Guide",
@@ -45,7 +55,8 @@ namespace Application.BlogPreviews.Queries.GetAllBlogPreviews
                     Url = "https://rimazmohommed523.medium.com/az-303-azure-architect-technologies-study-guide-e0bb6e3e2ee4"
                 }
             };
-            return blogPreviews;
+
+            return _mapper.Map<List<BlogPreviewDto>>(blogPosts);
         }
     }
 }

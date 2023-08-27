@@ -1,4 +1,5 @@
-﻿using Application.BlogPreviews.Queries.GetAllBlogPreviews;
+﻿using System.Reflection;
+using Application.BlogPreviews.Queries.GetAllBlogPreviews;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application
@@ -7,6 +8,7 @@ namespace Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<GetAllBlogPreviewsQuery>());
             return services;
         }
