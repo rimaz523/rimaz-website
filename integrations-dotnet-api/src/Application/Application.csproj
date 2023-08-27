@@ -11,14 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EditorConfigFiles Remove="C:\Users\rimaz\source\repos\projects\rimaz-website\integrations-dotnet-api\src\Application\.editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="C:\Users\rimaz\source\repos\projects\rimaz-website\integrations-dotnet-api\src\Application\.editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
   </ItemGroup>
 
