@@ -1,24 +1,23 @@
 ﻿using Application.BlogPreviews.Queries.GetAllBlogPreviews;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApi.Controllers
+namespace WebApi.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class BlogPreviewsController : ApiControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class BlogPreviewsController : ApiControllerBase
+    private readonly ILogger<BlogPreviewsController> _logger;
+
+    public BlogPreviewsController(ILogger<BlogPreviewsController> logger)
     {
-        private readonly ILogger<BlogPreviewsController> _logger;
+        _logger = logger;
+    }
 
-        public BlogPreviewsController(ILogger<BlogPreviewsController> logger)
-        {
-            _logger = logger;
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<List<BlogPreviewDto>>> GetBlogPreviews()
-        {
-            var query = new GetAllBlogPreviewsQuery();
-            return await Mediator.Send(query);
-        }
+    [HttpGet]
+    public async Task<ActionResult<List<BlogPreviewDto>>> GetBlogPreviews()
+    {
+        var query = new GetAllBlogPreviewsQuery();
+        return await Mediator.Send(query);
     }
 }
