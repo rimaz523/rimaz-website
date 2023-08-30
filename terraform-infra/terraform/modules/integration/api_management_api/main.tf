@@ -17,10 +17,20 @@ resource "azurerm_api_management_api" "api" {
   path                = var.path
   protocols           = ["https"]
   service_url         = var.service_url
+  protocols = [
+    "https"
+  ]
+
+  subscription_required = true
 
   import {
     content_format = var.swagger_format
     content_value  = "${var.azure_storage_container_url_for_swagger}${var.swagger_file_name}"
+  }
+
+  subscription_key_parameter_names {
+    header = "Ocp-Apim-Subscription-Key"
+    query  = "subscription-key"
   }
 }
 
