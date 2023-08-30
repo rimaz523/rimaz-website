@@ -8,7 +8,7 @@ public class IntegrationOptionsSetup : IConfigureOptions<IntegrationOptions>
     private readonly IConfiguration _configuration;
 
     public IntegrationOptionsSetup(IConfiguration configuration)
-    { 
+    {
         _configuration = configuration;
     }
 
