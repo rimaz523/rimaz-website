@@ -1,6 +1,13 @@
 # azurerm_api_management_api
 # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/api_management_api
 
+data "http" "swagger" {
+  url = "${var.azure_storage_container_url_for_swagger}${var.swagger_file_name}"
+  request_headers = {
+    Accept = "application/json"
+  }
+}
+
 resource "azurerm_api_management_api" "api" {
   name                = lower("${var.project}-${var.name}-${var.environment}-api")
   resource_group_name = var.resource_group_name
