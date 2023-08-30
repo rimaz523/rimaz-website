@@ -10,6 +10,7 @@ public class SendMessagesCommandValidator : AbstractValidator<SendMessagesComman
             .MaximumLength(255);
         RuleFor(sendMessageCommand => sendMessageCommand.Email)
             .NotEmpty()
+            .EmailAddress()
             .MaximumLength(255);
         RuleFor(sendMessageCommand => sendMessageCommand.Content)
             .NotEmpty()

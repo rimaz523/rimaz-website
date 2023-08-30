@@ -13,3 +13,7 @@ variables:
   value: rmzadminstore
 - name: swaggerContainer
   value: swagger-v1-dev
+- name: keyVaultLogicAppSendEmailUrlKey
+  value: '@Microsoft.KeyVault(SecretUri=https://rimaz-dev-app-kv.vault.azure.net/secrets/logic-app-send-email-url/)'
+- name: logicAppDomainUrl
+  value: 'https://prod-13.australiaeast.logic.azure.com:443/'
