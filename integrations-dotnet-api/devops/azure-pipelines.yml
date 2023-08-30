@@ -115,3 +115,5 @@ stages:
                       -XDT_MicrosoftApplicationInsights_BaseExtensions ~1 
                       -XDT_MicrosoftApplicationInsights_Mode recommended 
                       -XDT_MicrosoftApplicationInsights_PreemptSdk disabled 
+                      -IntegrationOptions__LogicAppSendEmailUrl $(keyVaultLogicAppSendEmailUrlKey) 
+                      -IntegrationOptions__LogicAppDomain $(logicAppDomainUrl) 
