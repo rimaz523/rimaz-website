@@ -17,9 +17,6 @@ resource "azurerm_api_management_api" "api" {
   path                = var.path
   protocols           = ["https"]
   service_url         = var.service_url
-  protocols = [
-    "https"
-  ]
 
   subscription_required = true
 
