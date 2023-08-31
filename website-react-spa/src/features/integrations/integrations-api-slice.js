@@ -6,9 +6,11 @@ export const integrationsApiSlice = createApi({
     baseUrl: 'https://rimaz-dev-backend-apim.azure-api.net/v1/api/',
     prepareHeaders(headers) {
       headers.set('Ocp-Apim-Subscription-Key', process.env.REACT_APP_APIM_KEY)
+      headers.set('Content-Type', 'application/json')
       return headers
     },
   }),
+  tagTypes: ['Get', 'Post'],
   endpoints(builder) {
     return {
       blogPreviews: builder.query({
@@ -16,8 +18,19 @@ export const integrationsApiSlice = createApi({
           return 'blogPreviews'
         },
       }),
+      sendMessage: builder.mutation({
+        query: (data) => {
+          const { message, ...body } = data
+          body.content = message
+          return {
+            url: 'message',
+            method: 'POST',
+            body,
+          }
+        },
+      }),
     }
   },
 })
 
-export const { useBlogPreviewsQuery } = integrationsApiSlice
+export const { useBlogPreviewsQuery, useSendMessageMutation } = integrationsApiSlice

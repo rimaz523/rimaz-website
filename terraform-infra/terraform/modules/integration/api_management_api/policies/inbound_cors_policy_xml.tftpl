@@ -7,10 +7,19 @@
                 <origin>${hostedFrontendWebapp}</origin>
                 <origin>${hostedFrontendWebappWWW}</origin>
             </allowed-origins>
-            <allowed-methods>
+            <allowed-methods preflight-result-max-age="300">
                 <method>GET</method>
                 <method>POST</method>
+                <method>PUT</method>
+                <method>PATCH</method>
+                <method>DELETE</method>
+                <method>OPTIONS</method>
             </allowed-methods>
+            <allowed-headers>
+                <header>ocp-apim-subscription-key</header>
+                <header>content-type</header>
+                <header>accept</header>
+            </allowed-headers>
         </cors>
     </inbound>
     <backend>

@@ -5,8 +5,11 @@ import { DevTool } from '@hookform/devtools'
 
 import { Alert, TextField, Stack, Typography, Button, Fade } from '@mui/material'
 
+import { useSendMessageMutation } from '../../features/integrations/integrations-api-slice'
+
 const ContactForm = () => {
   const [success, setSuccess] = useState(false)
+  const [sendMessage] = useSendMessageMutation()
   const form = useForm({
     defaultValues: {
       name: '',
@@ -18,11 +21,11 @@ const ContactForm = () => {
   const { errors } = formState
   const onSubmit = (data) => {
     setSuccess(true)
+    sendMessage(data)
     setTimeout(() => {
       setSuccess(false)
     }, 4000)
     reset()
-    console.log(data)
   }
 
   return (
