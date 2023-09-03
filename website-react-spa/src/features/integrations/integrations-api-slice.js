@@ -14,8 +14,11 @@ export const integrationsApiSlice = createApi({
   endpoints(builder) {
     return {
       blogPreviews: builder.query({
-        query: () => {
-          return 'blogPreviews'
+        query: ({ limit }) => {
+          return {
+            url: limit > 0 ? 'blogPreviews?limit=' + limit : 'blogPreviews',
+            method: 'GET',
+          }
         },
       }),
       sendMessage: builder.mutation({
