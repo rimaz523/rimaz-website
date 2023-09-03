@@ -15,9 +15,8 @@ public class BlogPreviewsController : ApiControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<BlogPreviewDto>>> GetBlogPreviews()
+    public async Task<ActionResult<List<BlogPreviewDto>>> GetBlogPreviews([FromQuery] GetAllBlogPreviewsQuery query)
     {
-        var query = new GetAllBlogPreviewsQuery();
         return await Mediator.Send(query);
     }
 }

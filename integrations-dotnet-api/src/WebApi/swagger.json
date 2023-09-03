@@ -10,6 +10,16 @@
         "tags": [
           "BlogPreviews"
         ],
+        "parameters": [
+          {
+            "name": "Limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -111,6 +121,10 @@
           "url": {
             "type": "string",
             "nullable": true
+          },
+          "publishedDate": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false
