@@ -1,5 +1,7 @@
 import React from 'react'
 
+import PropTypes from 'prop-types'
+
 import { Box } from '@mui/material'
 import LinearProgress from '@mui/material/LinearProgress'
 import Grid from '@mui/material/Unstable_Grid2'
@@ -7,8 +9,8 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { useBlogPreviewsQuery } from '../../features/integrations/integrations-api-slice'
 import BlogPreview from '../blog-preview/BlogPreview'
 
-const BlogList = () => {
-  const { data = [], isFetching } = useBlogPreviewsQuery()
+const BlogList = ({ limit }) => {
+  const { data = [], isFetching } = useBlogPreviewsQuery({ limit })
 
   return isFetching ? (
     <Box sx={{ width: '100%' }}>
@@ -27,6 +29,14 @@ const BlogList = () => {
       </Grid>
     </Box>
   )
+}
+
+BlogList.propTypes = {
+  limit: PropTypes.number,
+}
+
+BlogList.defaultProps = {
+  limit: 100,
 }
 
 export default BlogList

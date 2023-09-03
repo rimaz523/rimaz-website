@@ -13,7 +13,7 @@ const HomePage = () => {
     <>
       <Hero />
       <SocialHandles />
-      <BlogList />
+      <BlogList limit={4} />
       <Box textAlign='center' pt={{ xs: 2 }} pb={{ xs: 2 }}>
         <Button variant='contained' onClick={() => navigate('/blog')}>
           View more
