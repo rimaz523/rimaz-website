@@ -1,5 +1,6 @@
-project     = "Rimaz"
-environment = "dev"
+project         = "Rimaz"
+environment     = "dev"
+subscription_id = "51a010a5-fba7-4264-975c-8bf5c0451428"
 
 resource_groups = {
   "app" = {

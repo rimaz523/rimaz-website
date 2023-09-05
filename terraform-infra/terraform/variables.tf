@@ -8,6 +8,11 @@ variable "environment" {
   description = "The deployed environment."
 }
 
+variable "subscription_id" {
+  default     = "#{subscription_id}#"
+  description = "The azure subscription id."
+}
+
 variable "resource_groups" {
   description = "create resource groups in the project's environment"
   type = map(object({
@@ -248,6 +253,21 @@ variable "apis" {
       whitelist_localhost_domain              = "http://localhost:3000/"
       whitelist_frontend_webapp_domain        = "#{apim_policy_whitelist_frontend_webapp_domain}#"
       whitelist_frontend_webapp_domain_www    = "#{apim_policy_whitelist_frontend_webapp_domain_www}#"
+    }
+  }
+}
+
+variable "logic_apps" {
+  description = "create logic apps"
+  type = map(object({
+    deployment_mode = string
+    connection_name = string
+
+  }))
+  default = {
+    "send-email" = {
+      deployment_mode = "Incremental"
+      connection_name = "gmail"
     }
   }
 }
