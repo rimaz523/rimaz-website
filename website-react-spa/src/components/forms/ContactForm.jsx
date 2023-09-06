@@ -82,8 +82,8 @@ const ContactForm = () => {
             {...register('message', {
               required: 'Message is required.',
               maxLength: {
-                value: 500,
-                message: 'Please enter a message with a maximum of 500 characters.',
+                value: 200,
+                message: 'Please enter a message with a maximum of 200 characters.',
               },
             })}
             required
