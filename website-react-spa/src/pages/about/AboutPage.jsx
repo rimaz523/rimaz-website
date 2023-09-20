@@ -1,12 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { Typography, Box } from '@mui/material'
+import { Typography, Box, Button } from '@mui/material'
 import Avatar from '@mui/material/Avatar'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Stack from '@mui/material/Stack'
 
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload'
 import WorkIcon from '@mui/icons-material/Work'
 
 const AboutPage = () => {
@@ -36,7 +37,7 @@ const AboutPage = () => {
           src={process.env.REACT_APP_BLOB_STORE_BASE_URL.concat('/about/profile.jpg')}
           sx={{ width: 300, height: 300, border: 4, borderColor: isDarkMode ? '#000' : '#fff' }}
         />
-        <Stack direction='column' sx={{ height: '100%' }} spacing={2}>
+        <Stack direction='column' sx={{ height: '100%' }} spacing={2} alignItems={'center'}>
           <Typography
             variant='h6'
             px={{ xs: 2, md: 10 }}
@@ -57,15 +58,18 @@ const AboutPage = () => {
             Outside of work, I enjoy working out at the gym, reading novels, Netflix, and improving
             my acoustic guitar skills.
           </Typography>
-          <Typography
-            variant='h6'
-            px={{ xs: 2, md: 10 }}
-            pt={{ xs: 0 }}
-            sx={{ fontWeight: 'bold' }}
-            color='#fff'
+          <Button
+            startIcon={<CloudDownloadIcon />}
+            variant='contained'
+            style={{ width: '300px' }}
+            onClick={() => {
+              window.open(
+                'https://raw.githubusercontent.com/rimaz523/Resume/master/RimazMohommed.pdf',
+              )
+            }}
           >
-            I currently reside in New Zealand.
-          </Typography>
+            Download Resume
+          </Button>
         </Stack>
       </Stack>
       <Box sx={{ flexGrow: 1 }}>
