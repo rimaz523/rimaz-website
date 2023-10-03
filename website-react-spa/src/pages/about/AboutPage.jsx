@@ -44,6 +44,7 @@ const AboutPage = () => {
             pt={{ xs: 0 }}
             sx={{ fontWeight: 'bold' }}
             color='#fff'
+            textAlign={'center'}
           >
             I specialize as a full-stack developer creating & deploying web and mobile apps using
             .NET, React, Vue, Flutter, Terraform, Azure Cloud technologies & Azure Devops.
@@ -54,6 +55,7 @@ const AboutPage = () => {
             pt={{ xs: 0 }}
             sx={{ fontWeight: 'bold' }}
             color='#fff'
+            textAlign={'center'}
           >
             Outside of work, I enjoy working out at the gym, reading novels, Netflix, and improving
             my acoustic guitar skills.
@@ -74,7 +76,7 @@ const AboutPage = () => {
       </Stack>
       <Box sx={{ flexGrow: 1 }}>
         <Typography variant='h4' px={{ xs: 2, md: 2 }} py={{ xs: 4 }} textAlign='center'>
-          Work Experience
+          Experience
         </Typography>
         <Card>
           <CardContent>
