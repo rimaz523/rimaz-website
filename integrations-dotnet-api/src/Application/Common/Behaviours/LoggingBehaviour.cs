@@ -8,22 +8,22 @@ public class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest,
     private readonly ILogger<LoggingBehaviour<TRequest, TResponse>> _logger;
 
     public LoggingBehaviour(ILogger<LoggingBehaviour<TRequest, TResponse>> logger)
-    { 
+    {
         _logger = logger;
     }
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Starting Request {@RequestName}, {@DateTimeUtc}", typeof(TRequest).Name, DateTime.UtcNow);
-        try 
+        try
         {
             var result = await next();
             _logger.LogInformation("Completed Request {@RequestName}, {@DateTimeUtc}", typeof(TRequest).Name, DateTime.UtcNow);
             return result;
         }
-        catch (Exception ex) 
+        catch (Exception ex)
         {
             _logger.LogError(ex, "Unhandled Exception for Request {Name} {@Request}", typeof(TRequest).Name, request);
-            throw;  
+            throw;
         }
     }
 }
