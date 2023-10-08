@@ -79,6 +79,24 @@ variable "ssl_certificates" {
   }
 }
 
+variable "key_vault_secrets" {
+  description = "get secrets from the key vault"
+  type = map(object({
+    kv_name           = string
+    kv_resource_group = string
+  }))
+  default = {
+    "sql-app-db-server-admin-login-name" = {
+      kv_name           = "#{app_key_vault}#"
+      kv_resource_group = "#{data_resource_group}#"
+    },
+    "sql-app-db-server-admin-login-password" = {
+      kv_name           = "#{app_key_vault}#"
+      kv_resource_group = "#{data_resource_group}#"
+    }
+  }
+}
+
 variable "web_app_ssl_domains" {
   description = "Custom domain and ssl bindings for the hosted web apps"
   type = map(object({
@@ -268,6 +286,18 @@ variable "logic_apps" {
     "send-email" = {
       deployment_mode = "Incremental"
       connection_name = "gmail"
+    }
+  }
+}
+
+variable "sql_servers" {
+  description = "create SQL servers"
+  type = map(object({
+    sku = string
+  }))
+  default = {
+    "app" = {
+      sku = "Basic"
     }
   }
 }
