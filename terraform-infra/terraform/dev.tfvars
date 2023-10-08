@@ -29,6 +29,17 @@ ssl_certificates = {
   }
 }
 
+key_vault_secrets = {
+  "sql-app-db-server-admin-login-name" = {
+    kv_name           = "rimaz-dev-app-kv"
+    kv_resource_group = "rimaz-data-dev-rg"
+  },
+  "sql-app-db-server-admin-login-password" = {
+    kv_name           = "rimaz-dev-app-kv"
+    kv_resource_group = "rimaz-data-dev-rg"
+  }
+}
+
 key_vaults = {
   "app" = {
     tenant_id = "dd8e7948-f3de-4949-8fa8-cec81e0878d8"
