@@ -13,7 +13,7 @@ namespace Infrastructure
 {
     public static class ConfigureServices
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddHttpClient<ILogicAppApiService, LogicAppApiService>()
                 .SetHandlerLifetime(TimeSpan.FromMinutes(1))
@@ -21,7 +21,7 @@ namespace Infrastructure
 
             services.ConfigureOptions<IntegrationOptionsSetup>();
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                options.UseSqlServer("Server=tcp:rimaz-dev-app-db-server.database.windows.net,1433;Initial Catalog=app-db;Persist Security Info=False;User ID=rimaz;Password=Blog@!23;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
                     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
             services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
             services.AddScoped<ApplicationDbContextInitialiser>();
