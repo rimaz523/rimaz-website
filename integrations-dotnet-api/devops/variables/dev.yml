@@ -17,3 +17,5 @@ variables:
   value: '@Microsoft.KeyVault(SecretUri=https://rimaz-dev-app-kv.vault.azure.net/secrets/logic-app-send-email-url/)'
 - name: logicAppDomainUrl
   value: 'https://prod-20.australiaeast.logic.azure.com:443/'
+- name: sqlServerConnString
+  value: '@Microsoft.KeyVault(SecretUri=https://rimaz-dev-app-kv.vault.azure.net/secrets/sql-app-db-connection-string/)'

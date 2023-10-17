@@ -117,3 +117,4 @@ stages:
                       -XDT_MicrosoftApplicationInsights_PreemptSdk disabled 
                       -IntegrationOptions__LogicAppSendEmailUrl $(keyVaultLogicAppSendEmailUrlKey) 
                       -IntegrationOptions__LogicAppDomain $(logicAppDomainUrl) 
+                      -Persistence__SqlServerConnectionString $(sqlServerConnString) 
