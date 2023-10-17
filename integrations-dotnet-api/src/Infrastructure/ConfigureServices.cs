@@ -21,7 +21,7 @@ namespace Infrastructure
 
             services.ConfigureOptions<IntegrationOptionsSetup>();
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetSection("Persistence").GetSection("SqlServerConnectionString").Value,
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
                     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
             services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
             services.AddScoped<ApplicationDbContextInitialiser>();
