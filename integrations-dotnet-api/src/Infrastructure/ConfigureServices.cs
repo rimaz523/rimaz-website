@@ -1,13 +1,13 @@
 ﻿using Application.Common.Interfaces.ApiServices;
+using Application.Common.Interfaces.Persistence;
 using Infrastructure.ApiServices;
 using Infrastructure.Common;
-using Microsoft.Extensions.DependencyInjection;
-using Polly.Extensions.Http;
-using Polly;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Application.Common.Interfaces.Persistence;
+using Microsoft.Extensions.DependencyInjection;
+using Polly;
+using Polly.Extensions.Http;
 
 namespace Infrastructure
 {

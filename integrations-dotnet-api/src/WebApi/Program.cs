@@ -23,7 +23,6 @@ public class Program
 
         if (app.Environment.IsDevelopment())
         {
-
             // Initialise and seed database
             using (var scope = app.Services.CreateScope())
             {
