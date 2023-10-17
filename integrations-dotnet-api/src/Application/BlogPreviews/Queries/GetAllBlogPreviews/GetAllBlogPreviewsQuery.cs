@@ -8,7 +8,7 @@ namespace Application.BlogPreviews.Queries.GetAllBlogPreviews;
 
 public class GetAllBlogPreviewsQuery : IRequest<List<BlogPreviewDto>>
 {
-    public int? Limit { get; set; } = 10;
+    public int? Limit { get; set; }
 }
 
 public class GetAllBlogPreviewsQueryHandler : IRequestHandler<GetAllBlogPreviewsQuery, List<BlogPreviewDto>>
