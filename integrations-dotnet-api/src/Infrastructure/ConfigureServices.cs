@@ -21,9 +21,9 @@ namespace Infrastructure
                 .AddPolicyHandler(GetRetryPolicy());
 
             services.ConfigureOptions<IntegrationOptionsSetup>();
-            services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer("Server=tcp:rimaz-dev-app-db-server.database.windows.net,1433;Initial Catalog=app-db;Persist Security Info=False;User ID=rimaz;Password=Blog@!23;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
-            services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //options.UseSqlServer("Server=tcp:rimaz-dev-app-db-server.database.windows.net,1433;Initial Catalog=app-db;Persist Security Info=False;User ID=rimaz;Password=Blog@!23;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+            //services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
             //services.AddScoped<ApplicationDbContextInitialiser>();
 
 
