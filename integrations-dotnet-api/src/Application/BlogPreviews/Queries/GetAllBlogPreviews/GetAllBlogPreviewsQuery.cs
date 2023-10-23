@@ -14,17 +14,18 @@ public class GetAllBlogPreviewsQuery : IRequest<List<BlogPreviewDto>>
 public class GetAllBlogPreviewsQueryHandler : IRequestHandler<GetAllBlogPreviewsQuery, List<BlogPreviewDto>>
 {
     private readonly IMapper _mapper;
-    private readonly IApplicationDbContext _dbContext;
+    //private readonly IApplicationDbContext _dbContext;
 
-    public GetAllBlogPreviewsQueryHandler(IMapper mapper, IApplicationDbContext dbContext)
+    public GetAllBlogPreviewsQueryHandler(IMapper mapper)//, IApplicationDbContext dbContext)
     {
         _mapper = mapper;
-        _dbContext = dbContext;
+        //_dbContext = dbContext;
     }
 
     public async Task<List<BlogPreviewDto>> Handle(GetAllBlogPreviewsQuery request, CancellationToken cancellationToken)
     {
-        var results = request.Limit.HasValue ? _dbContext.BlogPosts.Take(request.Limit.Value).ToList() : _dbContext.BlogPosts.ToList();
+        //var results = request.Limit.HasValue ? _dbContext.BlogPosts.Take(request.Limit.Value).ToList() : _dbContext.BlogPosts.ToList();
+        var results = new List<BlogPost>();
         return _mapper.Map<List<BlogPreviewDto>>(results);
     }
 }
