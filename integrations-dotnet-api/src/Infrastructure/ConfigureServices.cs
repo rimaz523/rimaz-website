@@ -4,6 +4,7 @@ using Infrastructure.ApiServices;
 using Infrastructure.Common;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.Extensions.Http;
@@ -12,7 +13,7 @@ namespace Infrastructure
 {
     public static class ConfigureServices
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHttpClient<ILogicAppApiService, LogicAppApiService>()
                 .SetHandlerLifetime(TimeSpan.FromMinutes(1))
@@ -20,7 +21,7 @@ namespace Infrastructure
             services.ConfigureOptions<IntegrationOptionsSetup>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer("Server=tcp:rimaz-dev-app-db-server.database.windows.net,1433;Initial Catalog=app-db;Persist Security Info=False;User ID=rimaz;Password=Blog@!23;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+                options.UseSqlServer(configuration.GetSection("Persistence").GetSection("SqlServerConnectionString").Value));
             services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
             return services;
         }
