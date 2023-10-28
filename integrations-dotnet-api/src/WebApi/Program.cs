@@ -1,5 +1,6 @@
 using Application;
 using Infrastructure;
+using Infrastructure.Persistence;
 
 namespace WebApi;
 
@@ -20,6 +21,17 @@ public class Program
 
         var app = builder.Build();
 
+        if (app.Environment.IsDevelopment())
+        {
+            // Initialise and seed database
+            using (var scope = app.Services.CreateScope())
+            {
+                var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
+                initialiser.InitialiseAsync().GetAwaiter().GetResult();
+                initialiser.SeedAsync().GetAwaiter().GetResult();
+            }
+
+        }
         // Configure the HTTP request pipeline.
         app.UseSwagger();
         app.UseSwaggerUI();
