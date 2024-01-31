@@ -58,7 +58,7 @@ variable "linux_webapps" {
     },
     "api" = {
       stack         = "dotnet"
-      stack_version = "6.0"
+      stack_version = "8.0"
     }
   }
 }

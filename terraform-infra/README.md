@@ -7,7 +7,7 @@ Site URL : https://rimaz.dev.
 
 ## Technologies & Tools used include:
 
-- Terraform v1.3.8
+- Terraform v1.7.1
 - CI/CD using Azure DevOps
 
 
