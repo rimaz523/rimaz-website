@@ -297,7 +297,7 @@ variable "sql_servers" {
   }))
   default = {
     "app" = {
-      sku = "Basic"
+      sku = "GP_S_Gen5_1"
     }
   }
 }
