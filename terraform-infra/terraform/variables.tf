@@ -296,8 +296,14 @@ variable "sql_servers" {
     sku = string
   }))
   default = {
-    "app" = {
-      sku = "GP_S_Gen5_1"
-    }
+    # NOTE : Switching from Serverless DB to using the Azure free offer for SQL DB to save costs.
+    # As such the serverless sql db, server and firewalls will be removed by commenting out the options below.
+    # Currently the free offer can only be applied by creating the db via the portal which is why terraform is not being used here.
+    # For more info see : https://learn.microsoft.com/en-us/azure/azure-sql/database/free-offer?view=azuresql
+    # To reactivate the serverless db, uncomment the lines below.
+
+    # "app" = {
+    #   sku = "GP_S_Gen5_1"
+    # }
   }
 }
