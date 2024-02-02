@@ -26,6 +26,18 @@ Site URL : https://rimaz.dev.
 - Run `terraform plan -out terraform.tfplan --var-file="dev.tfvars"` to see your planned changes
 - Run `terraform apply terraform.tfplan` to apply your changes to the cloud environment
 
+## Upgrading to a newer version of Terraform
+
+- Download/Install the latest terraform binary from https://developer.hashicorp.com/terraform/install
+- Replace the old binary with the new one (Your Environment variable should point to the binary)
+- Run `terraform -v` to check if newer version is running
+- Update the `providers.tf` file in your code and set the latest terraform (and optionally azurem provider) version
+- In the terminal change to the `/terraform` directory.
+- Run `terraform init -upgrade`
+- Run `terraform init -backend-config="key=dev.terraform.tfstate"`
+- Run `terraform plan -out terraform.tfplan --var-file="dev.tfvars"` to see your planned changes
+- Run `terraform apply terraform.tfplan` to apply your changes to the cloud environment
+- 
 
 ## Configuring VSCode
 
