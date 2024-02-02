@@ -1,4 +1,5 @@
 ﻿using Application.Common.Interfaces.ApiServices;
+using Application.Common.Interfaces.Persistence;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -16,11 +17,13 @@ public class SendMessagesCommandHandler : IRequestHandler<SendMessagesCommand, U
 {
     private readonly IMapper _mapper;
     private readonly ILogicAppApiService _logicAppApiService;
+    private readonly IApplicationDbContext _dbContext;
 
-    public SendMessagesCommandHandler(IMapper mapper, ILogicAppApiService logicAppApiService)
+    public SendMessagesCommandHandler(IMapper mapper, ILogicAppApiService logicAppApiService, IApplicationDbContext dbContext)
     {
         _mapper = mapper;
         _logicAppApiService = logicAppApiService;
+        _dbContext = dbContext;
     }
 
     public async Task<Unit> Handle(SendMessagesCommand request, CancellationToken cancellationToken)
@@ -33,6 +36,8 @@ public class SendMessagesCommandHandler : IRequestHandler<SendMessagesCommand, U
             Subject = "Someone just reached out to you on rimaz.dev",
             Content = request.Content
         };
+        await _dbContext.Messages.AddAsync(message);
+        await _dbContext.SaveChangesAsync(cancellationToken);
         await _logicAppApiService.SendEmailAsync(message);
         return Unit.Value;
     }
