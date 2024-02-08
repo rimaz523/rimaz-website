@@ -51,6 +51,15 @@ public class ApplicationDbContextInitialiser
             _context.BlogPosts.Add(new BlogPost
             {
                 Id = Guid.NewGuid(),
+                Title = "Containerize a .NET Core Web Api App with Docker",
+                Content = "In this article I will be showing you how easy it is to containerize your .net core 8.0 web api app using Docker. Although I’m specifically going to show you how to create containers for your .net core app, you can use the same approach to containerize apps in most other programming languages.",
+                Image = "/blog-preview-url/dotnet-docker-container.png",
+                Url = "https://rimazmohommed523.medium.com/containerize-a-net-core-web-api-app-with-docker-2cdba52a8978",
+                PublishedDate = new DateTimeOffset(new DateTime(2024, 02, 08))
+            });
+            _context.BlogPosts.Add(new BlogPost
+            {
+                Id = Guid.NewGuid(),
                 Title = "React 101 : Creating your starter React app using Yarn Berry (yarn@3.3.1)",
                 Content = "In this article I’ll be showing you how to set up a starter react app in windows using the create-react-app command, configure your editor — VS Code, and version control the app.",
                 Image = "/blog-preview-url/reactjs-v1.jpg",
