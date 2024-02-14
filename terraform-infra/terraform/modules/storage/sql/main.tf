@@ -12,13 +12,13 @@ resource "azurerm_mssql_server" "sql_server" {
 }
 
 resource "azurerm_mssql_database" "sql_db" {
-  name                        = lower("${var.name}-db")
-  server_id                   = azurerm_mssql_server.sql_server.id
-  collation                   = "SQL_Latin1_General_CP1_CI_AS"
-  max_size_gb                 = 2
-  min_capacity                = 0.5
-  auto_pause_delay_in_minutes = 60
-  sku_name                    = var.sku
+  name                 = lower("${var.name}-db")
+  server_id            = azurerm_mssql_server.sql_server.id
+  collation            = "SQL_Latin1_General_CP1_CI_AS"
+  max_size_gb          = 2
+  min_capacity         = 0
+  sku_name             = var.sku
+  storage_account_type = "Local"
 }
 
 resource "azurerm_mssql_firewall_rule" "example" {
