@@ -1,9 +1,19 @@
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+
 import Branding from './Branding'
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 export default {
   title: 'Components/Branding',
   component: Branding,
+  decorators: [
+    (Story) => (
+      <Router>
+        <Story />
+      </Router>
+    ),
+  ],
   tags: ['autodocs'],
 }
 
