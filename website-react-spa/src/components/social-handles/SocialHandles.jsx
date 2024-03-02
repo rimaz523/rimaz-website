@@ -25,7 +25,7 @@ export default function SocialHandles() {
         <IconButton
           sx={{ mx: 1 }}
           onClick={() => {
-            window.open('https://github.com/rimaz523')
+            window.open(process.env.REACT_APP_SOCIAL_GITHUB_URL)
           }}
         >
           <GitHubIcon
@@ -41,7 +41,7 @@ export default function SocialHandles() {
         <IconButton
           sx={{ mx: 1 }}
           onClick={() => {
-            window.open('https://rimazmohommed523.medium.com')
+            window.open(process.env.REACT_APP_SOCIAL_MEDIUM_URL)
           }}
         >
           <SvgIcon
@@ -62,7 +62,7 @@ export default function SocialHandles() {
         <IconButton
           sx={{ mx: 1 }}
           onClick={() => {
-            window.open('https://www.linkedin.com/in/rimazmohommed')
+            window.open(process.env.REACT_APP_SOCIAL_LINKEDIN_URL)
           }}
         >
           <LinkedInIcon
@@ -78,7 +78,7 @@ export default function SocialHandles() {
         <IconButton
           sx={{ mx: 1 }}
           onClick={() => {
-            window.open('https://stackoverflow.com/users/4546132/rimaz-mohommed')
+            window.open(process.env.REACT_APP_SOCIAL_STACKOVERFLOW_URL)
           }}
         >
           <SvgIcon
@@ -108,7 +108,7 @@ export default function SocialHandles() {
         <IconButton
           sx={{ mx: 1 }}
           onClick={() => {
-            window.open('https://twitter.com/rimaz_mohommed')
+            window.open(process.env.REACT_APP_SOCIAL_TWITTER_URL)
           }}
         >
           <svg

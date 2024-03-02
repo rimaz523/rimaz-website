@@ -18,6 +18,7 @@ This is the frontend of my dev website created using react js https://rimaz.dev
 - Clone the project locally
 - Install dependencies
   - `yarn install`
+- Create a new .env.development file in the root of project. Copy the values from the [.env.development file in az storage](https://rmzadminstore.blob.core.windows.net/react-webapp/.env.development)
 - Start the application
   - `yarn start`
 - To run storybook
