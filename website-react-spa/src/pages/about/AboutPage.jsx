@@ -65,9 +65,7 @@ const AboutPage = () => {
             variant='contained'
             style={{ width: '300px' }}
             onClick={() => {
-              window.open(
-                'https://raw.githubusercontent.com/rimaz523/Resume/master/RimazMohommed.pdf',
-              )
+              window.open(process.env.REACT_APP_RESUME_DOWNLOAD_URL)
             }}
           >
             Download Resume

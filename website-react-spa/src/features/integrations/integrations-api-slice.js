@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const integrationsApiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://rimaz-dev-backend-apim.azure-api.net/v1/api/',
+    baseUrl: process.env.REACT_APP_INTEGRATIONS_APIM_URL,
     prepareHeaders(headers) {
       headers.set('Ocp-Apim-Subscription-Key', process.env.REACT_APP_APIM_KEY)
       headers.set('Content-Type', 'application/json')

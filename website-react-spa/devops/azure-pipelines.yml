@@ -32,6 +32,16 @@ stages:
               cd website-react-spa && yarn install
             retryCountOnTaskFailure: 3
             displayName: 'Initialize project'
+          - task: DownloadSecureFile@1
+            displayName: 'Download Env variables for production'
+            inuts:
+              secureFile: '.env.production'
+          - task: CopyFiles@2
+            displayName: 'Copy .env vars file to project root'
+            inputs:
+              contents: '**/*.env.production'
+              targetFolder: 'website-react-spa/'
+              cleanTargetFolder: false
           - script: |
               cd website-react-spa && yarn build
             displayName: 'Build the project'
