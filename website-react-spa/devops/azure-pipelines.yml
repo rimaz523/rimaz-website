@@ -34,7 +34,7 @@ stages:
             displayName: 'Initialize project'
           - task: DownloadSecureFile@1
             displayName: 'Download Env variables for production'
-            inuts:
+            inputs:
               secureFile: '.env.production'
           - task: CopyFiles@2
             displayName: 'Copy .env vars file to project root'
