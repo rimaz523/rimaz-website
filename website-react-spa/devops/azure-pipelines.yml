@@ -39,6 +39,7 @@ stages:
           - task: CopyFiles@2
             displayName: 'Copy .env vars file to project root'
             inputs:
+              sourceFolder: '$(Agent.TempDirectory)'
               contents: '**/*.env.production'
               targetFolder: 'website-react-spa/'
               cleanTargetFolder: false
