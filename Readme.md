@@ -2,7 +2,8 @@
 
 ## Description
 
-This is the repo for my dev website https://rimaz.dev.
+This is the repo for my dev website.
+Site URL : https://rimaz.dev
 
 ## Technologies & Tools used in the web application include:
 

@@ -3,7 +3,7 @@
 ## Description
 
 This code creates the infrastructure of my dev website using terraform.
-Site URL : https://rimaz.dev.
+Site URL : https://rimaz.dev
 
 ## Technologies & Tools used include:
 
