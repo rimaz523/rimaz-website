@@ -1,6 +1,7 @@
 using Application;
 using Infrastructure;
 using Infrastructure.Persistence;
+using WebApi.Infrastructure;
 
 namespace WebApi;
 
@@ -19,6 +20,10 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        // Configure Exception Handlers
+        builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+        builder.Services.AddProblemDetails();
+
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
@@ -36,12 +41,9 @@ public class Program
         // Configure the HTTP request pipeline.
         app.UseSwagger();
         app.UseSwaggerUI();
-
         app.UseHttpsRedirection();
-
         app.UseAuthorization();
-
-
+        app.UseExceptionHandler();
         app.MapControllers();
 
         app.Run();

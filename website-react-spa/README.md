@@ -2,7 +2,8 @@
 
 ## Description
 
-This is the frontend of my dev website created using react js https://rimaz.dev
+This is the frontend of my dev website created using react js.
+Site URL : https://rimaz.dev
 
 ## Technologies & Tools used in the front-end single page web application include:
 
