@@ -1,23 +1,25 @@
-# My Developer Website's Platform Infrastructure Code
+## My Developer Website's Platform Infrastructure Code
 
-## Description
+[![Build Status](https://dev.azure.com/rimazmohommed523/Rimaz%20-%20Website/_apis/build/status%2Frimaz523.rimaz-website-infra?branchName=master)](https://dev.azure.com/rimazmohommed523/Rimaz%20-%20Website/_build/latest?definitionId=19&branchName=master)
+
+### Description
 
 This code creates the infrastructure of my dev website using terraform.
 Site URL : https://rimaz.dev
 
-## Technologies & Tools used include:
+### Technologies & Tools used include:
 
 - Terraform v1.7.1
 - CI/CD using Azure DevOps
 
 
-## Prerequisites
+### Prerequisites
 
 - Install [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli). v2.45.0
 - Install [Terraform](https://developer.hashicorp.com/terraform/downloads) v1.3.8
 - Install Powershell 7
 
-## Running Terraform Locally
+### Running Terraform Locally
 
 - Clone the project locally
 - Run `/scripts/set_access_key.ps1` to login to azure cli, select your subscription and then set your access_key to the tfstate backend stored in azure storage.
@@ -26,7 +28,7 @@ Site URL : https://rimaz.dev
 - Run `terraform plan -out terraform.tfplan --var-file="dev.tfvars"` to see your planned changes
 - Run `terraform apply terraform.tfplan` to apply your changes to the cloud environment
 
-## Upgrading to a newer version of Terraform
+### Upgrading to a newer version of Terraform
 
 - Download/Install the latest terraform binary from https://developer.hashicorp.com/terraform/install
 - Replace the old binary with the new one (Your Environment variable should point to the binary)
@@ -39,13 +41,13 @@ Site URL : https://rimaz.dev
 - Run `terraform apply terraform.tfplan` to apply your changes to the cloud environment
 - 
 
-## Configuring VSCode
+### Configuring VSCode
 
 - Install the most recent version of VSCode
 
-## Project Wiki :
+### Project Wiki :
 TODO
 
-## Learn More
+### Learn More
 
 You can learn more about terraform by visiting the official documentation [here.](https://developer.hashicorp.com/terraform/docs).
