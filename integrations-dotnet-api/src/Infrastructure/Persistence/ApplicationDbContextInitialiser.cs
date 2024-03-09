@@ -51,6 +51,15 @@ public class ApplicationDbContextInitialiser
             _context.BlogPosts.Add(new BlogPost
             {
                 Id = Guid.NewGuid(),
+                Title = "Deploying your docker image to Minikube",
+                Content = "In this tutorial I’ll be showing you how you can quickly set up minikube on your local windows machine, and then deploy a docker image successfully in it.",
+                Image = "/blog-preview-url/docker-minikube.png",
+                Url = "https://rimazmohommed523.medium.com/deploying-your-docker-image-to-minikube-1ff265722d2c",
+                PublishedDate = new DateTimeOffset(new DateTime(2024, 02, 18))
+            });
+            _context.BlogPosts.Add(new BlogPost
+            {
+                Id = Guid.NewGuid(),
                 Title = "Containerize a .NET Core Web Api App with Docker",
                 Content = "In this article I will be showing you how easy it is to containerize your .net core 8.0 web api app using Docker. Although I’m specifically going to show you how to create containers for your .net core app, you can use the same approach to containerize apps in most other programming languages.",
                 Image = "/blog-preview-url/dotnet-docker-container.png",
