@@ -1,11 +1,13 @@
-# My Developer Website Frontend React SPA
+## My Developer Website Frontend React SPA
+
+[![Build Status](https://dev.azure.com/rimazmohommed523/Rimaz%20-%20Website/_apis/build/status%2Frimaz523.rimaz-website-react?branchName=master)](https://dev.azure.com/rimazmohommed523/Rimaz%20-%20Website/_build/latest?definitionId=18&branchName=master)
 
 ## Description
 
 This is the frontend of my dev website created using react js.
 Site URL : https://rimaz.dev
 
-## Technologies & Tools used in the front-end single page web application include:
+### Technologies & Tools used in the front-end single page web application include:
 
 - ReactJS ^18.2.0
 - Material UI ^5.13.7
@@ -14,7 +16,7 @@ Site URL : https://rimaz.dev
 - NPM v10.2.4
 - CI/CD using Azure DevOps
 
-## Installation Instructions
+### Installation Instructions
 
 - Clone the project locally
 - Install dependencies
@@ -25,17 +27,15 @@ Site URL : https://rimaz.dev
 - To run storybook
   - `yarn storybook`
 
-## Configuring VSCode
+### Configuring VSCode
 
 - Install the most recent version of VSCode
 
-## Project Wiki :
-
-TODO
+### Project Wiki :
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Learn More
+### Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
