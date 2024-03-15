@@ -23,8 +23,8 @@ public class GetAllBlogPreviewsQueryHandler : IRequestHandler<GetAllBlogPreviews
 
     public async Task<List<BlogPreviewDto>> Handle(GetAllBlogPreviewsQuery request, CancellationToken cancellationToken)
     {
-        var results = request.Limit.HasValue ? 
-            _dbContext.BlogPosts.Take(request.Limit.Value).OrderByDescending(x => x.PublishedDate).ToList() 
+        var results = request.Limit.HasValue ?
+            _dbContext.BlogPosts.Take(request.Limit.Value).OrderByDescending(x => x.PublishedDate).ToList()
             : _dbContext.BlogPosts.OrderByDescending(x => x.PublishedDate).ToList();
         return _mapper.Map<List<BlogPreviewDto>>(results);
     }
