@@ -9,7 +9,14 @@ import CardMedia from '@mui/material/CardMedia'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
-const BlogPreview = ({ title, content, image, url }) => {
+const BlogPreview = ({ title, publishedDate, content, image, url }) => {
+  const publishedDateObj = new Date(publishedDate)
+  // Format the date
+  const formattedDate = publishedDateObj.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: '2-digit',
+  })
   return (
     <Card variant='outlined' sx={{ m: 2, borderRadius: '10px', height: '100%' }}>
       <CardActionArea
@@ -34,6 +41,9 @@ const BlogPreview = ({ title, content, image, url }) => {
             <Typography gutterBottom variant='h6' component='div'>
               {title}
             </Typography>
+            <Typography variant='subtitle2' color='text.secondary' sx={{ pb: 2 }} gutterBottom>
+              Published on {formattedDate}
+            </Typography>
             <Typography variant='body2' color='text.secondary'>
               {content}
             </Typography>
@@ -46,6 +56,7 @@ const BlogPreview = ({ title, content, image, url }) => {
 
 BlogPreview.propTypes = {
   title: PropTypes.string,
+  publishedDate: PropTypes.string,
   content: PropTypes.string,
   url: PropTypes.string,
   image: PropTypes.string,
