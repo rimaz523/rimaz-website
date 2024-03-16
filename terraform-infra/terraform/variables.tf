@@ -147,6 +147,24 @@ variable "app_insights" {
   }
 }
 
+variable "web_tests" {
+  description = "create application insights availability tests"
+  type = map(object({
+    url           = string
+    geo_locations = list(string)
+    frequency     = number
+    timeout       = number
+  }))
+  default = {
+    "blog_home_page" = {
+      url           = "#{standard_web_test_blog_url}#"
+      geo_locations = ["emea-au-syd-edge", "apac-hk-hkn-azr"] //australia east + east asia. For the list of geo locations see : https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/app/monitor-web-app-availability#location-population-tags
+      frequency     = 900
+      timeout       = 120
+    }
+  }
+}
+
 variable "key_vaults" {
   description = "create key vault resources"
   type = map(object({
