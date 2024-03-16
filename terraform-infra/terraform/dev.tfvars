@@ -99,3 +99,12 @@ apis = {
     whitelist_frontend_webapp_domain_www    = "https://www.rimaz.dev/"
   }
 }
+
+web_tests = {
+  "blog_home_page" = {
+    url           = "https://rimaz.dev"
+    geo_locations = ["emea-au-syd-edge", "apac-hk-hkn-azr"] //australia east + east asia. For the list of geo locations see : https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/app/monitor-web-app-availability#location-population-tags
+    frequency     = 900
+    timeout       = 120
+  }
+}

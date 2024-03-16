@@ -43,3 +43,5 @@ variables:
   value: rimaz-data-dev-rg
 - name: app_key_vault
   value: rimaz-dev-app-kv
+- name: standard_web_test_blog_url
+  value: https://rimaz.dev/
