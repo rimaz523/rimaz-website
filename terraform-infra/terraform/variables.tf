@@ -298,7 +298,6 @@ variable "logic_apps" {
   type = map(object({
     deployment_mode = string
     connection_name = string
-
   }))
   default = {
     "send-email" = {
@@ -317,6 +316,63 @@ variable "sql_servers" {
     # To list all sql skus for region in your cli : az sql db list-editions -l australiaeast -o table
     "app" = {
       sku = "Basic"
+    }
+  }
+}
+
+variable "app_insights_alerts" {
+  description = "applicatoin insights alerts"
+  type = map(object({
+    action_group_name = string
+    email_receivers = map(object({
+      email                   = string
+      use_common_alert_schema = bool
+    }))
+    push_notification_receivers = map(object({
+      email = string
+    }))
+    alerts = map(object({
+      description            = string
+      frequency              = string
+      window_size            = string
+      severity               = number
+      metric_namespace       = string
+      metric_name            = string
+      aggregation            = string
+      operator               = string
+      threshold              = number
+      skip_metric_validation = bool
+    }))
+  }))
+  default = {
+    "rmz-site-grp" = {
+      action_group_name = "Rimaz Website Monitor Action Group"
+      email_receivers = {
+        "alert-developer" = {
+          email                   = "#{company_email}#"
+          use_common_alert_schema = true
+        }
+      }
+      push_notification_receivers = {
+        "push-to-developer-app" = {
+          email = "#{company_email}#"
+        }
+      }
+      alerts = {
+        "Rimaz Blog Website Availability" = {
+          description            = "Alert will be triggered when Availability is less than 100%."
+          frequency              = "PT15M"
+          window_size            = "PT15M"
+          severity               = 0
+          metric_namespace       = "microsoft.insights/components"
+          metric_name            = "availabilityResults/availabilityPercentage"
+          aggregation            = "Average"
+          operator               = "LessThan"
+          threshold              = 100
+          skip_metric_validation = false
+        }
+
+      }
     }
   }
 }

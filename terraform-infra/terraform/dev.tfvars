@@ -108,3 +108,35 @@ web_tests = {
     timeout       = 120
   }
 }
+
+app_insights_alerts = {
+  "rmz-site-grp" = {
+    action_group_name = "Rimaz Website Monitor Action Group"
+    email_receivers = {
+      "alert-developer" = {
+        email                   = "rimazmohommed523@gmail.com"
+        use_common_alert_schema = true
+      }
+    }
+    push_notification_receivers = {
+      "push-to-developer-app" = {
+        email = "rimazmohommed523@gmail.com"
+      }
+    }
+    alerts = {
+      "Rimaz Blog Website Availability" = {
+        description            = "Alert will be triggered when Availability is less than 100%."
+        frequency              = "PT15M"
+        window_size            = "PT15M"
+        severity               = 0
+        metric_namespace       = "microsoft.insights/components"
+        metric_name            = "availabilityResults/availabilityPercentage"
+        aggregation            = "Average"
+        operator               = "LessThan"
+        threshold              = 100
+        skip_metric_validation = false
+      }
+
+    }
+  }
+}
