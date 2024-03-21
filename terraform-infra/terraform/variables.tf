@@ -376,3 +376,23 @@ variable "app_insights_alerts" {
     }
   }
 }
+
+variable "cdns" {
+  description = "creates an azure cdn"
+  type = map(object({
+    sku           = string
+    location      = string
+    endpoint      = string
+    hostname      = string
+    custom_domain = string
+  }))
+  default = {
+    "app" = {
+      sku           = "Standard_Microsoft"
+      location      = "global"
+      endpoint      = "blob"
+      hostname      = "rimazdevappstore.blob.core.windows.net"
+      custom_domain = "cdn.rimaz.dev"
+    }
+  }
+}
