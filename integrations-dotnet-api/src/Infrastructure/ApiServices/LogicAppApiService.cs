@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Json;
+﻿using System.Text;
+using System.Text.Json;
 using Application.Common.Interfaces.ApiServices;
 using Domain.Entities;
 using Infrastructure.Common;
@@ -19,6 +20,7 @@ public class LogicAppApiService : ILogicAppApiService
 
     public async Task SendEmailAsync(Message message)
     {
-        await _httpClient.PostAsJsonAsync(_options.Value.LogicAppSendEmailUrl, message);
+        var content = new StringContent(JsonSerializer.Serialize(message), Encoding.UTF8, "application/json");
+        await _httpClient.PostAsync(_options.Value.LogicAppSendEmailUrl, content);
     }
 }
