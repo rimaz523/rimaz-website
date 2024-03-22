@@ -45,3 +45,5 @@ variables:
   value: rimaz-dev-app-kv
 - name: standard_web_test_blog_url
   value: https://rimaz.dev
+- name: standard_web_test_cdn_hero_url
+  value: https://cdn.rimaz.dev/app/hero-dark.jpg
