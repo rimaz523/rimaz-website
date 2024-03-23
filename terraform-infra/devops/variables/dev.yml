@@ -47,3 +47,5 @@ variables:
   value: https://rimaz.dev
 - name: standard_web_test_cdn_hero_url
   value: https://cdn.rimaz.dev/app/hero-dark.jpg
+- name: standard_web_test_api_health_url
+  value: https://rimaz-dev-backend-apim.azure-api.net/v1/api/health?subscription-key=f7c3ca94b5b94e6ab7bec64a983c3fb9

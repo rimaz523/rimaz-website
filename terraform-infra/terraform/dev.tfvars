@@ -107,6 +107,12 @@ web_tests = {
     frequency     = 900
     timeout       = 120
   },
+  "api_health" = {
+    url           = "https://rimaz-dev-backend-apim.azure-api.net/v1/api/health?subscription-key=f7c3ca94b5b94e6ab7bec64a983c3fb9"
+    geo_locations = ["emea-au-syd-edge", "apac-hk-hkn-azr", "emea-se-sto-edge", "us-il-ch1-azr", "latam-br-gru-edge"]
+    frequency     = 900
+    timeout       = 120
+  },
   "site_cdn" = {
     url           = "https://cdn.rimaz.dev/app/hero-dark.jpg"
     geo_locations = ["emea-au-syd-edge", "apac-hk-hkn-azr", "emea-se-sto-edge", "us-il-ch1-azr", "latam-br-gru-edge"]
