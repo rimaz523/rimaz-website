@@ -162,6 +162,12 @@ variable "web_tests" {
       frequency     = 900
       timeout       = 120
     },
+    "api_health" = {
+      url           = "#{standard_web_test_api_health_url}#"
+      geo_locations = ["emea-au-syd-edge", "apac-hk-hkn-azr", "emea-se-sto-edge", "us-il-ch1-azr", "latam-br-gru-edge"]
+      frequency     = 900
+      timeout       = 120
+    },
     "site_cdn" = {
       url           = "#{standard_web_test_cdn_hero_url}#"
       geo_locations = ["emea-au-syd-edge", "apac-hk-hkn-azr", "emea-se-sto-edge", "us-il-ch1-azr", "latam-br-gru-edge"]
