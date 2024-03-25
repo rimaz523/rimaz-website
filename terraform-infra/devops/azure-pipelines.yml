@@ -51,7 +51,6 @@ stages:
                 - template: './azure-deploy-step.yml'
                   parameters:
                     serviceConnection: $(azure-connection)
-                  parameters:
                     applyChanges: false
 
   - stage: 'Dev_Deploy'
@@ -71,5 +70,4 @@ stages:
                 - template: './azure-deploy-step.yml'
                   parameters:
                     serviceConnection: $(azure-connection)
-                  parameters:
                     applyChanges: true
