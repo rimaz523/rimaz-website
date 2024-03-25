@@ -34,6 +34,25 @@ stages:
             inputs:
               pathtoPublish: '$(Build.ArtifactStagingDirectory)'
 
+  - stage: 'Dev_Validate_Plan'
+    displayName: 'Validate Terraform Plan on Dev Env'
+    dependsOn: 'Build'
+    condition: and (succeeded(), eq(variables['Build.Reason'], 'PullRequest'))
+    variables:
+    - template: 'variables/dev.yml'
+    jobs:
+      - deployment: 'Deploy'
+        environment: 'DEV'
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - checkout: self
+                - template: './azure-deploy-step.yml'
+                  parameters:
+                    serviceConnection: $(azure-connection)
+                    applyChanges: false
+
   - stage: 'Dev_Deploy'
     displayName: 'Deploy to Dev Environment'
     dependsOn: 'Build'
@@ -51,3 +70,4 @@ stages:
                 - template: './azure-deploy-step.yml'
                   parameters:
                     serviceConnection: $(azure-connection)
+                    applyChanges: true
