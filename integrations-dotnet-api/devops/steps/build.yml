@@ -1,0 +1,49 @@
+parameters:
+- name : buildConfiguration
+
+steps:
+  - task: UseDotNet@2
+    displayName: 'Install .NET Core SDK'
+    inputs:
+      version: 8.x
+      performMultiLevelLookup: true
+      includePreviewVersions: true # Required for preview versions
+
+  - task: DotNetCoreCLI@2
+    displayName: Restore
+    inputs:
+      command: 'restore'
+      projects: '**/*.sln'
+      includeNuGetOrg: true
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Verify no formatting errors'
+    continueOnError: true
+    inputs:
+      command: 'custom'
+      custom: 'format'
+      arguments: 'integrations-dotnet-api/integrations-dotnet-api.sln --verify-no-changes --verbosity detailed'
+
+  - task: DotNetCoreCLI@2
+    displayName: Build
+    inputs:
+      command: build
+      projects: '**/*.sln'
+      arguments: '--no-restore --configuration ${{ parameters.buildConfiguration }}'
+
+  - task: DotNetCoreCLI@2
+    displayName: Publish
+    inputs:
+      command: publish
+      projects: '**/*.sln'
+      publishWebProjects: false
+      arguments: '--configuration ${{ parameters.buildConfiguration }} --output $(Build.ArtifactStagingDirectory)/${{ parameters.buildConfiguration }}'
+      zipAfterPublish: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Dotnet Release to  drop'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Swagger json to drop'
+    inputs:
+      pathtoPublish: 'integrations-dotnet-api/src/WebApi/swagger.json'
