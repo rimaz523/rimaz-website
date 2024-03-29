@@ -1,0 +1,13 @@
+steps:
+  - task: CopyFiles@2
+    displayName: 'Copy Terraform code'
+    inputs:
+      sourceFolder: 'terraform-infra/terraform'
+      contents: '**/*'
+      targetFolder: '$(Build.ArtifactStagingDirectory)/terraform'
+      cleanTargetFolder: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Terraform Code: drop'
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
