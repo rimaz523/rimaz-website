@@ -1,6 +1,6 @@
-parameters:
-- name : buildConfiguration
-- name : managedIdentityName
+# parameters:
+# - name : buildConfiguration
+# - name : managedIdentityName
 
 steps:
   - download: current
@@ -10,7 +10,7 @@ steps:
     displayName: Copy swagger json definition to az storage
     inputs:
       sourcePath: '$(Pipeline.Workspace)/drop/swagger.json'
-      azureSubscription: '${{ parameters.managedIdentityName }}'
+      azureSubscription: '$(managedIdentityName)'
       destination: AzureBlob
       storage: $(adminStorageAccount)
       containerName: $(swaggerContainer)
@@ -19,10 +19,10 @@ steps:
   - task: AzureWebApp@1
     displayName: 'Deploy .net core api to azure app service'
     inputs:
-      azureSubscription: '${{ parameters.managedIdentityName }}'
+      azureSubscription: '$(managedIdentityName)'
       appName: '$(project)-$(environment)-$(webAppName)'
       appType: 'webAppLinux'
-      package: '$(Pipeline.Workspace)/drop/${{ parameters.buildConfiguration }}/*.zip'
+      package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
       appSettings: |
         -APPINSIGHTS_INSTRUMENTATIONKEY $(keyVaultAppInsightsKey) 
         -APPLICATIONINSIGHTS_CONNECTION_STRING $(keyVaultAppInsightsConnectionString) 

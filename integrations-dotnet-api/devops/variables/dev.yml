@@ -14,7 +14,7 @@ variables:
 - name: swaggerContainer
   value: swagger-v1-dev
 - name: keyVaultLogicAppSendEmailUrlKey
-  value: 'http://www.test.com/'
+  value: '@Microsoft.KeyVault(SecretUri=https://rimaz-dev-app-kv.vault.azure.net/secrets/logic-app-send-email-url/)'
 - name: logicAppDomainUrl
   value: 'https://prod-20.australiaeast.logic.azure.com:443/'
 - name: azureSqlServerConnectionString

@@ -1,5 +1,5 @@
-parameters:
-- name : buildConfiguration
+# parameters:
+# - name : buildConfiguration
 
 steps:
   - task: UseDotNet@2
@@ -29,7 +29,7 @@ steps:
     inputs:
       command: build
       projects: '**/*.sln'
-      arguments: '--no-restore --configuration ${{ parameters.buildConfiguration }}'
+      arguments: '--no-restore --configuration $(buildConfiguration)'
 
   - task: DotNetCoreCLI@2
     displayName: Publish
@@ -37,7 +37,7 @@ steps:
       command: publish
       projects: '**/*.sln'
       publishWebProjects: false
-      arguments: '--configuration ${{ parameters.buildConfiguration }} --output $(Build.ArtifactStagingDirectory)/${{ parameters.buildConfiguration }}'
+      arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
       zipAfterPublish: true
 
   - task: PublishBuildArtifacts@1
