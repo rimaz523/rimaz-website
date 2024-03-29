@@ -30,7 +30,7 @@ stages:
     variables:
     - template: 'variables/dev.yml'
     jobs:
-      - deployment: 'Deploy'
+      - deployment: 'Validate'
         environment: 'DEV'
         strategy:
           runOnce:
