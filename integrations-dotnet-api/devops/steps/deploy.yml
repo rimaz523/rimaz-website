@@ -10,7 +10,7 @@ steps:
     displayName: Copy swagger json definition to az storage
     inputs:
       sourcePath: '$(Pipeline.Workspace)/drop/swagger.json'
-      azureSubscription: '${{ parameters.managedIdentityName }}''
+      azureSubscription: '${{ parameters.managedIdentityName }}'
       destination: AzureBlob
       storage: $(adminStorageAccount)
       containerName: $(swaggerContainer)
