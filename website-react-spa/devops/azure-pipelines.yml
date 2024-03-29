@@ -9,8 +9,10 @@ trigger:
 
 variables:
   - template: variables/build.yml
-  - template: variables/dev.yml
   - template: variables/service-connections.yml
+
+pool:
+  vmImage: '$(buildVmImage)'
 
 stages:
   - stage: 'Build'
@@ -18,55 +20,14 @@ stages:
     jobs:
       - job: 'Build'
         displayName: 'Build job'
-        pool:
-          vmImage: '$(buildVmImage)'
-
         steps:
-          - task: NodeTool@0
-            inputs:
-              versionSpec: '$(nodeVersion)'
-            displayName: 'Install Node.js'
-          - script: 'npm install --global yarn'
-            displayName: 'Install Yarn'
-          - script: |
-              cd website-react-spa && yarn install
-            retryCountOnTaskFailure: 3
-            displayName: 'Initialize project'
-          - task: DownloadSecureFile@1
-            displayName: 'Download Env variables for production'
-            inputs:
-              secureFile: '.env.production'
-          - task: CopyFiles@2
-            displayName: 'Copy .env vars file to project root'
-            inputs:
-              sourceFolder: '$(Agent.TempDirectory)'
-              contents: '**/*.env.production'
-              targetFolder: 'website-react-spa/'
-              cleanTargetFolder: false
-          - script: |
-              cd website-react-spa && yarn build
-            displayName: 'Build the project'
-          - task: CopyFiles@2
-            inputs:
-              sourceFolder: 'website-react-spa/build'
-              contents: '**/*'
-              targetFolder: '$(Build.ArtifactStagingDirectory)'
-              cleanTargetFolder: true
-          - task: ArchiveFiles@2
-            inputs:
-              rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
-              archiveType: 'zip'
-              archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-              includeRootFolder: false
-              replaceExistingArchive: true
-          - task: PublishBuildArtifacts@1
-            displayName: 'Publish Artifact: drop'
-            inputs:
-              pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+          - template: './steps/build.yml'
 
   - stage: 'Deploy_Dev'
     displayName: 'Deploy to Dev'
     dependsOn: 'Build'
+    variables:
+      - template: './variables/dev.yml'
     condition: and (succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
     jobs:
       - deployment: 'Deploy'
@@ -76,24 +37,4 @@ stages:
           runOnce:
             deploy:
               steps:
-                - download: current
-                  artifact: drop
-                - task: AzureWebApp@1
-                  displayName: 'Deploy react front-end webapp to azure app service'
-                  inputs:
-                    azureSubscription: '$(managedIdentityName)'
-                    appName: '$(project)-$(environment)-$(webAppName)'
-                    appType: 'webAppLinux'
-                    package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
-                    appSettings: |
-                      -APPINSIGHTS_INSTRUMENTATIONKEY $(keyVaultAppInsightsKey) 
-                      -APPLICATIONINSIGHTS_CONNECTION_STRING $(keyVaultAppInsightsConnectionString) 
-                      -APPINSIGHTS_PROFILERFEATURE_VERSION 1.0.0 
-                      -APPINSIGHTS_SNAPSHOTFEATURE_VERSION 1.0.0 
-                      -ApplicationInsightsAgent_EXTENSION_VERSION ~3 
-                      -DiagnosticServices_EXTENSION_VERSION ~3 
-                      -InstrumentationEngine_EXTENSION_VERSION disabled 
-                      -SnapshotDebugger_EXTENSION_VERSION disabled 
-                      -XDT_MicrosoftApplicationInsights_BaseExtensions disabled 
-                      -XDT_MicrosoftApplicationInsights_Mode recommended 
-                      -XDT_MicrosoftApplicationInsights_PreemptSdk disabled
+                - template: './steps/deploy.yml'

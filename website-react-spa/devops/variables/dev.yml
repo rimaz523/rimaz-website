@@ -1,9 +1,11 @@
 variables:
-  - name: buildVmImage
-    value: windows-latest
-  - name: nodeVersion
-    value: 18.13.0
   - name: keyVaultAppInsightsKey
     value: '@Microsoft.KeyVault(SecretUri=https://rimaz-dev-app-kv.vault.azure.net/secrets/application-insights-key/)'
   - name: keyVaultAppInsightsConnectionString
     value: '@Microsoft.KeyVault(SecretUri=https://rimaz-dev-app-kv.vault.azure.net/secrets/application-insights-conn-string/)'
+  - name: project
+    value: rimaz
+  - name: environment
+    value: dev
+  - name: webAppName
+    value: node-react

@@ -1,7 +1,5 @@
 variables:
-  - name: project
-    value: rimaz
-  - name: environment
-    value: dev
-  - name: webAppName
-    value: node-react
+  - name: buildVmImage
+    value: windows-latest
+  - name: nodeVersion
+    value: 18.13.0
