@@ -1,6 +1,3 @@
-# parameters:
-# - name : buildConfiguration
-
 steps:
   - task: UseDotNet@2
     displayName: 'Install .NET Core SDK'

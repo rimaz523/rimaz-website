@@ -22,15 +22,13 @@ stages:
         displayName: 'Build job'
         steps:
         - template: 'steps/build.yml'
-          # parameters:
-          #   buildConfiguration: $(buildConfiguration)
 
   - stage: 'Deploy_Dev'
     displayName: 'Deploy to Dev'
     dependsOn: 'Build'
     variables:
     - template: variables/dev.yml
-    # condition: and (succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
+    condition: and (succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
     jobs:
       - deployment: 'Deploy'
         displayName: 'Deploy job'
@@ -40,6 +38,3 @@ stages:
             deploy:
               steps:
                 - template: 'steps/deploy.yml'
-                  # parameters:
-                  #   buildConfiguration: $(buildConfiguration)
-                  #   managedIdentityName: $(managedIdentityName)
