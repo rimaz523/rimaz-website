@@ -21,18 +21,7 @@ stages:
       - job: 'Build'
         displayName: 'Build job'
         steps:
-          - task: CopyFiles@2
-            displayName: 'Copy Terraform code'
-            inputs:
-              sourceFolder: 'terraform-infra/terraform'
-              contents: '**/*'
-              targetFolder: '$(Build.ArtifactStagingDirectory)/terraform'
-              cleanTargetFolder: true
-
-          - task: PublishBuildArtifacts@1
-            displayName: 'Publish Terraform Code: drop'
-            inputs:
-              pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          - template: './steps/build.yml'
 
   - stage: 'Dev_Validate_Plan'
     displayName: 'Validate Terraform Plan on Dev Env'
@@ -41,16 +30,14 @@ stages:
     variables:
     - template: 'variables/dev.yml'
     jobs:
-      - deployment: 'Deploy'
+      - deployment: 'Validate'
         environment: 'DEV'
         strategy:
           runOnce:
             deploy:
               steps:
-                - checkout: self
-                - template: './azure-deploy-step.yml'
+                - template: './steps/deploy.yml'
                   parameters:
-                    serviceConnection: $(azure-connection)
                     applyChanges: false
 
   - stage: 'Dev_Deploy'
@@ -66,8 +53,6 @@ stages:
           runOnce:
             deploy:
               steps:
-                - checkout: self
-                - template: './azure-deploy-step.yml'
+                - template: './steps/deploy.yml'
                   parameters:
-                    serviceConnection: $(azure-connection)
                     applyChanges: true

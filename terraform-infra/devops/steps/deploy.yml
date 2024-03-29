@@ -1,5 +1,4 @@
 parameters:
-- name : serviceConnection
 - name : applyChanges
 
 steps:
@@ -24,7 +23,7 @@ steps:
 - task: AzureCLI@2
   displayName: "Set Storage Access key"
   inputs:
-    azureSubscription: '${{ parameters.serviceConnection }}'
+    azureSubscription: '$(azure-connection)'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: |
@@ -36,13 +35,13 @@ steps:
   inputs:
     command: 'init'
     workingDirectory: '$(Pipeline.Workspace)/drop/terraform/'
-    backendServiceArm: '${{ parameters.serviceConnection }}'
+    backendServiceArm: '$(azure-connection)'
 
 - task: TerraformCLI@0
   displayName: 'Terraform Plan'
   inputs:
     command: 'plan'
-    environmentServiceName: '${{ parameters.serviceConnection }}'
+    environmentServiceName: '$(azure-connection)'
     runAzLogin: true
     workingDirectory: '$(Pipeline.Workspace)/drop/terraform/'
     publishPlanResults: 'terraform.tfplan'
@@ -52,6 +51,6 @@ steps:
   condition: ${{ eq(parameters.applyChanges, true) }}
   inputs:
     command: 'apply'
-    environmentServiceName: '${{ parameters.serviceConnection }}'
+    environmentServiceName: '$(azure-connection)'
     runAzLogin: true
     workingDirectory: '$(Pipeline.Workspace)/drop/terraform/'

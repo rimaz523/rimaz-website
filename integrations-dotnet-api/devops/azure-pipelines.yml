@@ -20,54 +20,8 @@ stages:
     jobs:
       - job: 'Build'
         displayName: 'Build job'
-
         steps:
-          - task: UseDotNet@2
-            displayName: 'Install .NET Core SDK'
-            inputs:
-              version: 6.x
-              performMultiLevelLookup: true
-              includePreviewVersions: true # Required for preview versions
-
-          - task: DotNetCoreCLI@2
-            displayName: Restore
-            inputs:
-              command: 'restore'
-              projects: '**/*.sln'
-              includeNuGetOrg: true
-
-          - task: DotNetCoreCLI@2
-            displayName: 'Verify no formatting errors'
-            continueOnError: true
-            inputs:
-              command: 'custom'
-              custom: 'format'
-              arguments: 'integrations-dotnet-api/integrations-dotnet-api.sln --verify-no-changes --verbosity detailed'
-
-          - task: DotNetCoreCLI@2
-            displayName: Build
-            inputs:
-              command: build
-              projects: '**/*.sln'
-              arguments: '--no-restore --configuration $(buildConfiguration)'
-
-          - task: DotNetCoreCLI@2
-            displayName: Publish
-            inputs:
-              command: publish
-              projects: '**/*.sln'
-              publishWebProjects: false
-              arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
-              zipAfterPublish: true
-
-          - task: PublishBuildArtifacts@1
-            displayName: 'Publish Artifact: Dotnet Release to  drop'
-
-          - task: PublishBuildArtifacts@1
-            displayName: 'Publish Artifact: Swagger json to drop'
-            inputs:
-              pathtoPublish: 'integrations-dotnet-api/src/WebApi/swagger.json'
-
+        - template: 'steps/build.yml'
 
   - stage: 'Deploy_Dev'
     displayName: 'Deploy to Dev'
@@ -83,38 +37,4 @@ stages:
           runOnce:
             deploy:
               steps:
-                - download: current
-                  artifact: drop
-
-                - task: AzureFileCopy@4
-                  displayName: Copy swagger json definition to az storage
-                  inputs:
-                    sourcePath: '$(Pipeline.Workspace)/drop/swagger.json'
-                    azureSubscription: $(managedIdentityName)
-                    destination: AzureBlob
-                    storage: $(adminStorageAccount)
-                    containerName: $(swaggerContainer)
-                    cleanTargetBeforeCopy: true
-
-                - task: AzureWebApp@1
-                  displayName: 'Deploy .net core api to azure app service'
-                  inputs:
-                    azureSubscription: '$(managedIdentityName)'
-                    appName: '$(project)-$(environment)-$(webAppName)'
-                    appType: 'webAppLinux'
-                    package: '$(Pipeline.Workspace)/drop/$(buildConfiguration)/*.zip'
-                    appSettings: |
-                      -APPINSIGHTS_INSTRUMENTATIONKEY $(keyVaultAppInsightsKey) 
-                      -APPLICATIONINSIGHTS_CONNECTION_STRING $(keyVaultAppInsightsConnectionString) 
-                      -APPINSIGHTS_PROFILERFEATURE_VERSION 1.0.0 
-                      -APPINSIGHTS_SNAPSHOTFEATURE_VERSION 1.0.0 
-                      -ApplicationInsightsAgent_EXTENSION_VERSION ~3 
-                      -DiagnosticServices_EXTENSION_VERSION ~3 
-                      -InstrumentationEngine_EXTENSION_VERSION ~1 
-                      -SnapshotDebugger_EXTENSION_VERSION ~1 
-                      -XDT_MicrosoftApplicationInsights_BaseExtensions ~1 
-                      -XDT_MicrosoftApplicationInsights_Mode recommended 
-                      -XDT_MicrosoftApplicationInsights_PreemptSdk disabled 
-                      -IntegrationOptions__LogicAppSendEmailUrl $(keyVaultLogicAppSendEmailUrlKey) 
-                      -IntegrationOptions__LogicAppDomain $(logicAppDomainUrl) 
-                      -Persistence__SqlServerConnectionString $(azureSqlServerConnectionString) 
+                - template: 'steps/deploy.yml'
