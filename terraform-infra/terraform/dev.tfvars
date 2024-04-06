@@ -103,19 +103,19 @@ apis = {
 web_tests = {
   "blog_home_page" = {
     url           = "https://rimaz.dev"
-    geo_locations = ["emea-au-syd-edge", "apac-hk-hkn-azr"] //australia east + east asia. For the list of geo locations see : https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/app/monitor-web-app-availability#location-population-tags
+    geo_locations = ["emea-au-syd-edge"] //australia east. For the list of geo locations see : https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/app/monitor-web-app-availability#location-population-tags
     frequency     = 900
     timeout       = 120
   },
   "api_health" = {
     url           = "https://rimaz-dev-backend-apim.azure-api.net/v1/api/blogPreviews?limit=4&subscription-key=f7c3ca94b5b94e6ab7bec64a983c3fb9"
-    geo_locations = ["emea-au-syd-edge", "apac-hk-hkn-azr"]
+    geo_locations = ["emea-au-syd-edge"]
     frequency     = 900
     timeout       = 120
   },
   "site_cdn" = {
     url           = "https://cdn.rimaz.dev/app/hero-dark.jpg"
-    geo_locations = ["emea-au-syd-edge", "apac-hk-hkn-azr"]
+    geo_locations = ["emea-au-syd-edge"]
     frequency     = 900
     timeout       = 120
   }

@@ -158,19 +158,19 @@ variable "web_tests" {
   default = {
     "blog_home_page" = {
       url           = "#{standard_web_test_blog_url}#"
-      geo_locations = ["emea-au-syd-edge", "apac-hk-hkn-azr"] //australia east + east asia. For the list of geo locations see : https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/app/monitor-web-app-availability#location-population-tags
+      geo_locations = ["emea-au-syd-edge"] //australia east. For the list of geo locations see : https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/app/monitor-web-app-availability#location-population-tags
       frequency     = 900
       timeout       = 120
     },
     "api_health" = {
       url           = "#{standard_web_test_api_health_url}#"
-      geo_locations = ["emea-au-syd-edge", "apac-hk-hkn-azr"]
+      geo_locations = ["emea-au-syd-edge"]
       frequency     = 900
       timeout       = 120
     },
     "site_cdn" = {
       url           = "#{standard_web_test_cdn_hero_url}#"
-      geo_locations = ["emea-au-syd-edge", "apac-hk-hkn-azr"]
+      geo_locations = ["emea-au-syd-edge"]
       frequency     = 900
       timeout       = 120
     }
