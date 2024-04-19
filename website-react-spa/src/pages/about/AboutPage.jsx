@@ -8,6 +8,7 @@ import CardContent from '@mui/material/CardContent'
 import Stack from '@mui/material/Stack'
 
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload'
+import CodeIcon from '@mui/icons-material/Code'
 import WorkIcon from '@mui/icons-material/Work'
 
 const AboutPage = () => {
@@ -74,8 +75,25 @@ const AboutPage = () => {
       </Stack>
       <Box sx={{ flexGrow: 1 }}>
         <Typography variant='h4' px={{ xs: 2, md: 2 }} py={{ xs: 4 }} textAlign='center'>
-          Experience
+          Professional Experience
         </Typography>
+        <Card>
+          <CardContent>
+            <Stack direction='row' alignItems='center'>
+              <WorkIcon />
+              <Typography px={2} variant='subtitle1' component={'div'} sx={{ fontWeight: 'bold' }}>
+                Nib
+              </Typography>
+            </Stack>
+            <Typography variant='overline' component={'div'}>
+              Apr 2024 - Present
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color='text.secondary'>
+              Senior developer in the orbit platform working with .NET framework, Angular,
+              terraform, Azure and related Microsoft technologies
+            </Typography>
+          </CardContent>
+        </Card>
         <Card>
           <CardContent>
             <Stack direction='row' alignItems='center'>
@@ -85,7 +103,7 @@ const AboutPage = () => {
               </Typography>
             </Stack>
             <Typography variant='overline' component={'div'}>
-              Oct 2022 - Present
+              Oct 2022 - Apr 2024
             </Typography>
             <Typography sx={{ mb: 1.5 }} color='text.secondary'>
               Developed a comprehensive integration solution utilizing .NET 6.0 with Azure functions
@@ -134,6 +152,46 @@ const AboutPage = () => {
               experience for our clients who use Toggl for time tracking. Improved product security
               emphatically against numerous vulnerabilities. Standardized the development process
               for Open Source. Senior Software Engineer in the Customizations Department.
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
+      <Box sx={{ flexGrow: 1 }}>
+        <Typography variant='h4' px={{ xs: 2, md: 2 }} py={{ xs: 4 }} textAlign='center'>
+          Projects / Open Source
+        </Typography>
+        <Card>
+          <CardContent>
+            <Stack direction='row' alignItems='center'>
+              <CodeIcon />
+              <Typography px={2} variant='subtitle1' component={'div'} sx={{ fontWeight: 'bold' }}>
+                Clean Lean Architecture Solution Template
+              </Typography>
+            </Stack>
+            <Typography variant='overline' component={'div'}>
+              <a
+                target='_blank'
+                rel='noreferrer'
+                href='https://github.com/rimaz523/Clean.Lean.Architecture.WebApi.AspNetCore.Solution.Template'
+              >
+                View on github
+              </a>
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color='text.secondary'>
+              Implemented a .NET Core template is to expedite the process for developers to swiftly
+              establish a .NET Core Web API project that adheres to clean architecture principles.
+              This includes features like Mediatr pipeline for logging, error handling,
+              FluentValidation for api inputs, API integration with a 3rd party using HttpClient &
+              Polly for retries, Efcore Sql Server implementation with localdb, and an .editorconfig
+              file for consistent code styles. You can install this package from{' '}
+              <a
+                target='_blank'
+                rel='noreferrer'
+                href='https://www.nuget.org/packages/Clean.Lean.Architecture.WebApi.AspNetCore.Solution.Template/'
+              >
+                nuget.org
+              </a>
+              .
             </Typography>
           </CardContent>
         </Card>
