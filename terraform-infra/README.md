@@ -32,6 +32,7 @@ Site URL : https://rimaz.dev
 
 - Download/Install the latest terraform binary from https://developer.hashicorp.com/terraform/install
 - Replace the old binary with the new one (Your Environment variable should point to the binary)
+- Note : Alternatively, if you are using Chocolatey, you can upgrade terraform using the following command `choco upgrade terraform`
 - Run `terraform -v` to check if newer version is running
 - Update the `providers.tf` file in your code and set the latest terraform (and optionally azurem provider) version
 - In the terminal change to the `/terraform` directory.
