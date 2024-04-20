@@ -75,6 +75,69 @@ const AboutPage = () => {
       </Stack>
       <Box sx={{ flexGrow: 1 }}>
         <Typography variant='h4' px={{ xs: 2, md: 2 }} py={{ xs: 4 }} textAlign='center'>
+          Projects / Open Source
+        </Typography>
+        <Card>
+          <CardContent>
+            <Stack direction='row' alignItems='center'>
+              <CodeIcon />
+              <Typography px={2} variant='subtitle1' component={'div'} sx={{ fontWeight: 'bold' }}>
+                Clean Lean Architecture Solution Template
+              </Typography>
+            </Stack>
+            <Typography variant='overline' component={'div'}>
+              <a
+                target='_blank'
+                rel='noreferrer'
+                href='https://github.com/rimaz523/Clean.Lean.Architecture.WebApi.AspNetCore.Solution.Template'
+              >
+                View on github
+              </a>
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color='text.secondary'>
+              Implemented a .NET Core template to expedite the process of swiftly establishing a
+              .NET Core Web API project that adheres to clean architecture principles. This template
+              includes features like Mediatr pipeline for logging, error handling, FluentValidation
+              for api inputs, API integration with a 3rd party using HttpClient & Polly for retries,
+              Efcore Sql Server implementation with localdb, and an .editorconfig file for
+              consistent code styles. You can install this package from{' '}
+              <a
+                target='_blank'
+                rel='noreferrer'
+                href='https://www.nuget.org/packages/Clean.Lean.Architecture.WebApi.AspNetCore.Solution.Template/'
+              >
+                nuget.org
+              </a>
+              .
+            </Typography>
+          </CardContent>
+          <CardContent>
+            <Stack direction='row' alignItems='center'>
+              <CodeIcon />
+              <Typography px={2} variant='subtitle1' component={'div'} sx={{ fontWeight: 'bold' }}>
+                Blog Website
+              </Typography>
+            </Stack>
+            <Typography variant='overline' component={'div'}>
+              <a target='_blank' rel='noreferrer' href='https://github.com/rimaz523/rimaz-website'>
+                View on github
+              </a>
+            </Typography>
+            <Typography sx={{ mb: 1.5 }} color='text.secondary'>
+              My public developer blog website repository, which is a monorepo housing various
+              components: a frontend ReactJS single-page application (SPA), a web API backend
+              developed with dotnet core and the clean architecture pattern, and infrastructure as
+              code (IAC) using Terraform for site setup. The website is accessible at{' '}
+              <a target='_blank' rel='noreferrer' href='https://rimaz.dev'>
+                rimaz.dev
+              </a>
+              .
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
+      <Box sx={{ flexGrow: 1 }}>
+        <Typography variant='h4' px={{ xs: 2, md: 2 }} py={{ xs: 4 }} textAlign='center'>
           Professional Experience
         </Typography>
         <Card>
@@ -152,46 +215,6 @@ const AboutPage = () => {
               experience for our clients who use Toggl for time tracking. Improved product security
               emphatically against numerous vulnerabilities. Standardized the development process
               for Open Source. Senior Software Engineer in the Customizations Department.
-            </Typography>
-          </CardContent>
-        </Card>
-      </Box>
-      <Box sx={{ flexGrow: 1 }}>
-        <Typography variant='h4' px={{ xs: 2, md: 2 }} py={{ xs: 4 }} textAlign='center'>
-          Projects / Open Source
-        </Typography>
-        <Card>
-          <CardContent>
-            <Stack direction='row' alignItems='center'>
-              <CodeIcon />
-              <Typography px={2} variant='subtitle1' component={'div'} sx={{ fontWeight: 'bold' }}>
-                Clean Lean Architecture Solution Template
-              </Typography>
-            </Stack>
-            <Typography variant='overline' component={'div'}>
-              <a
-                target='_blank'
-                rel='noreferrer'
-                href='https://github.com/rimaz523/Clean.Lean.Architecture.WebApi.AspNetCore.Solution.Template'
-              >
-                View on github
-              </a>
-            </Typography>
-            <Typography sx={{ mb: 1.5 }} color='text.secondary'>
-              Implemented a .NET Core template is to expedite the process for developers to swiftly
-              establish a .NET Core Web API project that adheres to clean architecture principles.
-              This includes features like Mediatr pipeline for logging, error handling,
-              FluentValidation for api inputs, API integration with a 3rd party using HttpClient &
-              Polly for retries, Efcore Sql Server implementation with localdb, and an .editorconfig
-              file for consistent code styles. You can install this package from{' '}
-              <a
-                target='_blank'
-                rel='noreferrer'
-                href='https://www.nuget.org/packages/Clean.Lean.Architecture.WebApi.AspNetCore.Solution.Template/'
-              >
-                nuget.org
-              </a>
-              .
             </Typography>
           </CardContent>
         </Card>
