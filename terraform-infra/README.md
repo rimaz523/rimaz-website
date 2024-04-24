@@ -40,7 +40,6 @@ Site URL : https://rimaz.dev
 - Run `terraform init -backend-config="key=dev.terraform.tfstate"`
 - Run `terraform plan -out terraform.tfplan --var-file="dev.tfvars"` to see your planned changes
 - Run `terraform apply terraform.tfplan` to apply your changes to the cloud environment
-- 
 
 ### Configuring VSCode
 
