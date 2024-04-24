@@ -322,12 +322,16 @@ variable "logic_apps" {
 variable "sql_servers" {
   description = "create SQL servers"
   type = map(object({
-    sku = string
+    sku                      = string
+    ms_entra_login_username  = string
+    ms_entra_login_object_id = string
   }))
   default = {
     # To list all sql skus for region in your cli : az sql db list-editions -l australiaeast -o table
     "app" = {
-      sku = "Basic"
+      sku                      = "Basic"
+      ms_entra_login_username  = "rimazmohommed523_gmail.com#EXT#@rimazmohommed523gmail.onmicrosoft.com"
+      ms_entra_login_object_id = "3207c7da-5eed-46eb-abd3-1deb49b95e1e"
     }
   }
 }

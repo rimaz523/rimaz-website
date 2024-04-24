@@ -148,7 +148,6 @@ app_insights_alerts = {
         threshold              = 100
         skip_metric_validation = false
       }
-
     }
   }
 }

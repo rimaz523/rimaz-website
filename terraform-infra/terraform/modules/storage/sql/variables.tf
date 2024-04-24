@@ -39,3 +39,13 @@ variable "admin_login_password" {
   type        = string
   sensitive   = true
 }
+
+variable "ms_entra_login_username" {
+  description = "Database server MS Entra login username."
+  type        = string
+}
+
+variable "ms_entra_login_object_id" {
+  description = "Database server MS Entra login object id."
+  type        = string
+}
