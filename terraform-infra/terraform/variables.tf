@@ -411,3 +411,17 @@ variable "cdns" {
     }
   }
 }
+
+variable "add_rg_locks" {
+  description = "creates resource locks to prevent accidental modification or deletion of resource groups"
+  type = map(object({
+    lock_level = string
+    reason     = string
+  }))
+  default = {
+    "data" = {
+      lock_level = "CanNotDelete"
+      reason     = "Prevent accidental deletion of data"
+    }
+  }
+}
