@@ -53,7 +53,14 @@ const MainMenu = () => {
       >
         <MenuIcon />
       </IconButton>
-      <Drawer anchor='right' open={open} onClose={toggleDrawer(false)}>
+      <Drawer
+        anchor='right'
+        open={open}
+        onClose={toggleDrawer(false)}
+        PaperProps={{
+          sx: { opacity: 0.8, borderTopLeftRadius: '25px', borderBottomLeftRadius: '25px' },
+        }}
+      >
         <Box
           sx={{
             p: 2,
