@@ -53,14 +53,7 @@ const MainMenu = () => {
       >
         <MenuIcon />
       </IconButton>
-      <Drawer
-        anchor='right'
-        open={open}
-        onClose={toggleDrawer(false)}
-        PaperProps={{
-          sx: { opacity: 0.9, borderTopLeftRadius: '10px', borderBottomLeftRadius: '10px' },
-        }}
-      >
+      <Drawer anchor='right' open={open} onClose={toggleDrawer(false)}>
         <Box
           sx={{
             p: 2,
@@ -74,31 +67,19 @@ const MainMenu = () => {
           <Divider sx={{ mb: 2 }} />
 
           <Box sx={{ mb: 2, width: { sm: 300 } }}>
-            <ListItemButton
-              onClick={() => routeToPage('/')}
-              selected={isHomeRouteMatched}
-              style={{ border: isHomeRouteMatched ? '1px solid' : '', borderRadius: '10px' }}
-            >
+            <ListItemButton onClick={() => routeToPage('/')} selected={isHomeRouteMatched}>
               <ListItemIcon>
                 <HomeIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
               <ListItemText primary='Home' />
             </ListItemButton>
-            <ListItemButton
-              onClick={() => routeToPage('/blog')}
-              selected={isBlogRouteMatched}
-              style={{ border: isBlogRouteMatched ? '1px solid' : '', borderRadius: '10px' }}
-            >
+            <ListItemButton onClick={() => routeToPage('/blog')} selected={isBlogRouteMatched}>
               <ListItemIcon>
                 <DescriptionIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
               <ListItemText primary='Blog' />
             </ListItemButton>
-            <ListItemButton
-              onClick={() => routeToPage('/about')}
-              selected={isAboutRouteMatched}
-              style={{ border: isAboutRouteMatched ? '1px solid' : '', borderRadius: '10px' }}
-            >
+            <ListItemButton onClick={() => routeToPage('/about')} selected={isAboutRouteMatched}>
               <ListItemIcon>
                 <AccountCircleIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
@@ -107,7 +88,6 @@ const MainMenu = () => {
             <ListItemButton
               onClick={() => routeToPage('/contact')}
               selected={isContactRouteMatched}
-              style={{ border: isContactRouteMatched ? '1px solid' : '', borderRadius: '10px' }}
             >
               <ListItemIcon>
                 <EmailIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
@@ -115,20 +95,14 @@ const MainMenu = () => {
               <ListItemText primary='Contact' />
             </ListItemButton>
             {isDarkMode ? (
-              <ListItemButton
-                onClick={() => dispatch(setLightMode())}
-                style={{ borderRadius: '10px' }}
-              >
+              <ListItemButton onClick={() => dispatch(setLightMode())}>
                 <ListItemIcon>
                   <LightModeIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
                 </ListItemIcon>
                 <ListItemText primary='Light Mode' />
               </ListItemButton>
             ) : (
-              <ListItemButton
-                onClick={() => dispatch(setDarkMode())}
-                style={{ borderRadius: '10px' }}
-              >
+              <ListItemButton onClick={() => dispatch(setDarkMode())}>
                 <ListItemIcon>
                   <DarkModeIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
                 </ListItemIcon>
