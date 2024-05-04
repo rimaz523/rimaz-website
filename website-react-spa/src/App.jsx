@@ -12,51 +12,12 @@ import BlogPage from './pages/blog/BlogPage'
 import ContactPage from './pages/contact/ContactPage'
 import HomePage from './pages/home/HomePage'
 import PageNotFound from './pages/page-not-found/PageNotFound'
+import darkTheme from './themes/DarkTheme'
+import lightTheme from './themes/LightTheme'
 
 function App() {
   const isDarkMode = useSelector((state) => state.theme.darkmode)
-  const theme = createTheme({
-    palette: {
-      mode: isDarkMode ? 'dark' : 'light',
-      primary: {
-        light: '#cfd8dc',
-        main: '#455a64',
-        dark: '#263238',
-        contrastText: '#fff',
-      },
-      secondary: {
-        light: '#fafafa',
-        main: '#eeeeee',
-        dark: '#bdbdbd',
-        contrastText: '#000',
-      },
-    },
-    components: {
-      MuiListItemButton: {
-        styleOverrides: {
-          root: ({ theme }) =>
-            theme.unstable_sx({
-              mb: 1,
-              borderRadius: '10px',
-              '&.Mui-selected': {
-                border: '1px solid',
-              },
-            }),
-        },
-      },
-      MuiDrawer: {
-        styleOverrides: {
-          root: {
-            '.MuiDrawer-paperAnchorRight': {
-              opacity: 0.8,
-              borderTopLeftRadius: '10px',
-              borderBottomLeftRadius: '10px',
-            },
-          },
-        },
-      },
-    },
-  })
+  const theme = isDarkMode ? createTheme(darkTheme) : createTheme(lightTheme)
 
   return (
     <StyledEngineProvider injectFirst>

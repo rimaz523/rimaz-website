@@ -71,19 +71,34 @@ const MainMenu = () => {
               <ListItemIcon>
                 <HomeIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
-              <ListItemText primary='Home' />
+              <ListItemText
+                primary='Home'
+                primaryTypographyProps={{
+                  fontWeight: 'bold',
+                }}
+              />
             </ListItemButton>
             <ListItemButton onClick={() => routeToPage('/blog')} selected={isBlogRouteMatched}>
               <ListItemIcon>
                 <DescriptionIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
-              <ListItemText primary='Blog' />
+              <ListItemText
+                primary='Blog'
+                primaryTypographyProps={{
+                  fontWeight: 'bold',
+                }}
+              />
             </ListItemButton>
             <ListItemButton onClick={() => routeToPage('/about')} selected={isAboutRouteMatched}>
               <ListItemIcon>
                 <AccountCircleIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
-              <ListItemText primary='About' />
+              <ListItemText
+                primary='About'
+                primaryTypographyProps={{
+                  fontWeight: 'bold',
+                }}
+              />
             </ListItemButton>
             <ListItemButton
               onClick={() => routeToPage('/contact')}
@@ -92,21 +107,36 @@ const MainMenu = () => {
               <ListItemIcon>
                 <EmailIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
               </ListItemIcon>
-              <ListItemText primary='Contact' />
+              <ListItemText
+                primary='Contact'
+                primaryTypographyProps={{
+                  fontWeight: 'bold',
+                }}
+              />
             </ListItemButton>
             {isDarkMode ? (
               <ListItemButton onClick={() => dispatch(setLightMode())}>
                 <ListItemIcon>
                   <LightModeIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
                 </ListItemIcon>
-                <ListItemText primary='Light Mode' />
+                <ListItemText
+                  primary='Light Mode'
+                  primaryTypographyProps={{
+                    fontWeight: 'bold',
+                  }}
+                />
               </ListItemButton>
             ) : (
               <ListItemButton onClick={() => dispatch(setDarkMode())}>
                 <ListItemIcon>
                   <DarkModeIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
                 </ListItemIcon>
-                <ListItemText primary='Dark Mode' />
+                <ListItemText
+                  primary='Dark Mode'
+                  primaryTypographyProps={{
+                    fontWeight: 'bold',
+                  }}
+                />
               </ListItemButton>
             )}
           </Box>
