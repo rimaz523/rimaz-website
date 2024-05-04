@@ -9,9 +9,9 @@ const lightTheme = {
     },
     secondary: {
       light: '#fafafa',
-      main: '#eeeeee',
+      main: '#263238',
       dark: '#bdbdbd',
-      contrastText: '#000',
+      contrastText: '#fff',
     },
   },
   components: {
