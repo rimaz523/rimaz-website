@@ -31,6 +31,31 @@ function App() {
         contrastText: '#000',
       },
     },
+    components: {
+      MuiListItemButton: {
+        styleOverrides: {
+          root: ({ theme }) =>
+            theme.unstable_sx({
+              mb: 1,
+              borderRadius: '10px',
+              '&.Mui-selected': {
+                border: '1px solid',
+              },
+            }),
+        },
+      },
+      MuiDrawer: {
+        styleOverrides: {
+          root: {
+            '.MuiDrawer-paperAnchorRight': {
+              opacity: 0.8,
+              borderTopLeftRadius: '10px',
+              borderBottomLeftRadius: '10px',
+            },
+          },
+        },
+      },
+    },
   })
 
   return (
