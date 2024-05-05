@@ -38,6 +38,8 @@ const lightTheme = {
             opacity: 0.8,
             borderTopLeftRadius: '10px',
             borderBottomLeftRadius: '10px',
+            backgroundColor: '#263238',
+            color: '#fff',
           },
         },
       },
