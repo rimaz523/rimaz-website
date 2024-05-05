@@ -13,6 +13,10 @@ const lightTheme = {
       dark: '#bdbdbd',
       contrastText: '#fff',
     },
+    background: {
+      default: '#eceff1',
+      paper: '#EBEFF5',
+    },
   },
   components: {
     MuiListItemButton: {
