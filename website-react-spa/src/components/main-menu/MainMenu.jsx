@@ -61,7 +61,7 @@ const MainMenu = () => {
           }}
         >
           <IconButton sx={{ mb: 2 }} onClick={toggleDrawer(false)}>
-            <CloseIcon />
+            <CloseIcon sx={{ color: 'primary.light' }} />
           </IconButton>
 
           <Divider sx={{ mb: 2 }} />
@@ -69,7 +69,7 @@ const MainMenu = () => {
           <Box sx={{ mb: 2, width: { sm: 300 } }}>
             <ListItemButton onClick={() => routeToPage('/')} selected={isHomeRouteMatched}>
               <ListItemIcon>
-                <HomeIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
+                <HomeIcon sx={{ color: 'primary.light' }} />
               </ListItemIcon>
               <ListItemText
                 primary='Home'
@@ -80,7 +80,7 @@ const MainMenu = () => {
             </ListItemButton>
             <ListItemButton onClick={() => routeToPage('/blog')} selected={isBlogRouteMatched}>
               <ListItemIcon>
-                <DescriptionIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
+                <DescriptionIcon sx={{ color: 'primary.light' }} />
               </ListItemIcon>
               <ListItemText
                 primary='Blog'
@@ -91,7 +91,7 @@ const MainMenu = () => {
             </ListItemButton>
             <ListItemButton onClick={() => routeToPage('/about')} selected={isAboutRouteMatched}>
               <ListItemIcon>
-                <AccountCircleIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
+                <AccountCircleIcon sx={{ color: 'primary.light' }} />
               </ListItemIcon>
               <ListItemText
                 primary='About'
@@ -105,7 +105,7 @@ const MainMenu = () => {
               selected={isContactRouteMatched}
             >
               <ListItemIcon>
-                <EmailIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
+                <EmailIcon sx={{ color: 'primary.light' }} />
               </ListItemIcon>
               <ListItemText
                 primary='Contact'
@@ -117,7 +117,7 @@ const MainMenu = () => {
             {isDarkMode ? (
               <ListItemButton onClick={() => dispatch(setLightMode())}>
                 <ListItemIcon>
-                  <LightModeIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
+                  <LightModeIcon sx={{ color: 'primary.light' }} />
                 </ListItemIcon>
                 <ListItemText
                   primary='Light Mode'
@@ -129,7 +129,7 @@ const MainMenu = () => {
             ) : (
               <ListItemButton onClick={() => dispatch(setDarkMode())}>
                 <ListItemIcon>
-                  <DarkModeIcon sx={{ color: isDarkMode ? 'primary.main' : '' }} />
+                  <DarkModeIcon sx={{ color: 'primary.light' }} />
                 </ListItemIcon>
                 <ListItemText
                   primary='Dark Mode'
