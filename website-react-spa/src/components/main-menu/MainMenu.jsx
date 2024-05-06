@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useMatch } from 'react-router-dom'
 
+import { Stack, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
 import Drawer from '@mui/material/Drawer'
@@ -60,9 +61,43 @@ const MainMenu = () => {
             h: 1,
           }}
         >
-          <IconButton sx={{ mb: 2 }} onClick={toggleDrawer(false)}>
-            <CloseIcon sx={{ color: 'primary.light' }} />
-          </IconButton>
+          <Stack direction='row' justifyContent='space-between' spacing={2} sx={{ mb: 2 }}>
+            <IconButton onClick={toggleDrawer(false)}>
+              <CloseIcon sx={{ color: 'primary.light' }} />
+            </IconButton>
+            <Stack
+              direction='row'
+              justifyContent='center'
+              alignItems='center'
+              sx={{
+                flexGrow: 1,
+                '&:hover': {
+                  opacity: [0.9, 0.8, 0.7],
+                  cursor: 'pointer',
+                },
+              }}
+              onClick={() => navigate('/')}
+            >
+              <Typography
+                variant='h5'
+                component='div'
+                sx={{ flexGrow: 1 }}
+                fontWeight='900'
+                fontFamily='Roboto'
+              >
+                rimaz mohommed
+              </Typography>
+            </Stack>
+            {isDarkMode ? (
+              <IconButton onClick={() => dispatch(setLightMode())}>
+                <LightModeIcon sx={{ color: 'primary.light' }} />
+              </IconButton>
+            ) : (
+              <IconButton onClick={() => dispatch(setDarkMode())}>
+                <DarkModeIcon sx={{ color: 'primary.light' }} />
+              </IconButton>
+            )}
+          </Stack>
 
           <Divider sx={{ mb: 2 }} />
 
@@ -114,31 +149,6 @@ const MainMenu = () => {
                 }}
               />
             </ListItemButton>
-            {isDarkMode ? (
-              <ListItemButton onClick={() => dispatch(setLightMode())}>
-                <ListItemIcon>
-                  <LightModeIcon sx={{ color: 'primary.light' }} />
-                </ListItemIcon>
-                <ListItemText
-                  primary='Light Mode'
-                  primaryTypographyProps={{
-                    fontWeight: 'bold',
-                  }}
-                />
-              </ListItemButton>
-            ) : (
-              <ListItemButton onClick={() => dispatch(setDarkMode())}>
-                <ListItemIcon>
-                  <DarkModeIcon sx={{ color: 'primary.light' }} />
-                </ListItemIcon>
-                <ListItemText
-                  primary='Dark Mode'
-                  primaryTypographyProps={{
-                    fontWeight: 'bold',
-                  }}
-                />
-              </ListItemButton>
-            )}
           </Box>
         </Box>
       </Drawer>
