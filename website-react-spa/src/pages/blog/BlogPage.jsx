@@ -25,7 +25,7 @@ BlogPage.propTypes = {
 }
 
 BlogPage.defaultProps = {
-  content: 'Venture into my realm of thoughts and musings!',
+  content: 'Insights from the Code Frontier',
 }
 
 export default BlogPage
