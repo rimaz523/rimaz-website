@@ -19,10 +19,9 @@ const Branding = ({ title, subtitle }) => {
           cursor: 'pointer',
         },
       }}
-      spacing={0.5}
       onClick={() => navigate('/')}
     >
-      <Typography variant='h5' component='div' sx={{ flexGrow: 1, mt: 2 }}>
+      <Typography variant='h5' component='div' sx={{ flexGrow: 1, mt: 1 }}>
         {title}
       </Typography>
       <Typography variant='overline' display='block' gutterBottom>
