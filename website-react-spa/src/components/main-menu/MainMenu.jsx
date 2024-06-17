@@ -88,15 +88,6 @@ const MainMenu = () => {
                 rimaz mohommed
               </Typography>
             </Stack>
-            {isDarkMode ? (
-              <IconButton onClick={() => dispatch(setLightMode())}>
-                <LightModeIcon sx={{ color: 'primary.light' }} />
-              </IconButton>
-            ) : (
-              <IconButton onClick={() => dispatch(setDarkMode())}>
-                <DarkModeIcon sx={{ color: 'primary.light' }} />
-              </IconButton>
-            )}
           </Stack>
 
           <Divider sx={{ mb: 2 }} />
@@ -149,6 +140,31 @@ const MainMenu = () => {
                 }}
               />
             </ListItemButton>
+            {isDarkMode ? (
+              <ListItemButton onClick={() => dispatch(setLightMode())}>
+                <ListItemIcon>
+                  <LightModeIcon sx={{ color: 'primary.light' }} />
+                </ListItemIcon>
+                <ListItemText
+                  primary='Light Mode'
+                  primaryTypographyProps={{
+                    fontWeight: 'bold',
+                  }}
+                />
+              </ListItemButton>
+            ) : (
+              <ListItemButton onClick={() => dispatch(setDarkMode())}>
+                <ListItemIcon>
+                  <DarkModeIcon sx={{ color: 'primary.light' }} />
+                </ListItemIcon>
+                <ListItemText
+                  primary='Dark Mode'
+                  primaryTypographyProps={{
+                    fontWeight: 'bold',
+                  }}
+                />
+              </ListItemButton>
+            )}
           </Box>
         </Box>
       </Drawer>
