@@ -90,7 +90,7 @@ const MainMenu = () => {
             </Stack>
           </Stack>
 
-          <Divider sx={{ mb: 2 }} />
+          <Divider sx={{ mb: 4, border: '1px solid' }} />
 
           <Box sx={{ mb: 2, width: { sm: 300 } }}>
             <ListItemButton onClick={() => routeToPage('/')} selected={isHomeRouteMatched}>
