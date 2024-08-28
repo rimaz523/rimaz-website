@@ -425,3 +425,25 @@ variable "add_rg_locks" {
     }
   }
 }
+
+variable "cosmosdbs" {
+  description = "create cosmos databases"
+  type = map(object({
+    kind = string
+    containers = map(object({
+      partition_key  = string
+      max_throughput = number
+    }))
+  }))
+  default = {
+    "app" = {
+      kind = "GlobalDocumentDB",
+      containers = {
+        "articles" = {
+          partition_key  = "/slug"
+          max_throughput = 1000
+        }
+      }
+    }
+  }
+}
