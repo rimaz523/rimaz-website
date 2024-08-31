@@ -8,5 +8,5 @@ public class ArticleDto : IMapFrom<Article>
     public string Title { get; set; } = string.Empty;
     public string Slug { get; set; } = string.Empty;
     public string Image { get; set; } = string.Empty;
-    public IEnumerable<Section> Sections { get; set; } = Enumerable.Empty<Section>();
+    public ICollection<Section> Sections { get; set; } = new List<Section>();
 }
