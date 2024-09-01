@@ -244,6 +244,15 @@ variable "app_key_vault_secrets" {
     "application-insights-conn-string" = {
       secret = "connection_string"
     }
+    "cosmos-app-endpoint" = {
+      secret = "cosmos_app_endpoint"
+    }
+    "cosmos-app-read-only-key" = {
+      secret = "cosmos_app_read_only_key"
+    }
+    "cosmos-app-sql-database" = {
+      secret = "cosmos_app_sql_database"
+    }
   }
 }
 

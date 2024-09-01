@@ -11,5 +11,6 @@ variable "secret_name" {
 variable "secret_value" {
   description = "The secret value."
   type        = string
+  sensitive   = true
 }
 
