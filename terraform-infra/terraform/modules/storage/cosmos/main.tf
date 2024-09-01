@@ -39,8 +39,4 @@ resource "azurerm_cosmosdb_sql_container" "cosmosdb_sql_container" {
   database_name         = azurerm_cosmosdb_sql_database.cosmosdb_sql_database.name
   partition_key_path    = each.value.partition_key
   partition_key_version = 1
-
-  # autoscale_settings {
-  #   max_throughput = each.value.max_throughput
-  # }
 }

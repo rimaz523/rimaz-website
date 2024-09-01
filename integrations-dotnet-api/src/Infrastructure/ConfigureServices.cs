@@ -3,6 +3,7 @@ using Application.Common.Interfaces.Persistence;
 using Infrastructure.ApiServices;
 using Infrastructure.Common;
 using Infrastructure.Persistence;
+using Infrastructure.Persistence.CosmosDb;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,13 @@ namespace Infrastructure
                 }));
             services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
             services.AddScoped<ApplicationDbContextInitialiser>();
+            services.AddDbContext<ApplicationCosmosDbContext>(options =>
+                options.UseCosmos(
+                    configuration.GetSection("Persistence").GetSection("CosmosAppEndpoint").Value,
+                    configuration.GetSection("Persistence").GetSection("CosmosAppReadOnlyKey").Value,
+                    configuration.GetSection("Persistence").GetSection("CosmosAppDatabase").Value
+                    ));
+            services.AddScoped<IApplicationCosmosDbContext>(provider => provider.GetRequiredService<ApplicationCosmosDbContext>());
             return services;
         }
 
