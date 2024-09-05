@@ -1,6 +1,5 @@
 ﻿using Application.Common.Interfaces.Persistence;
 using AutoMapper;
-using Domain.Entities;
 using MediatR;
 
 namespace Application.BlogPreviews.Queries.GetAllBlogPreviews;
