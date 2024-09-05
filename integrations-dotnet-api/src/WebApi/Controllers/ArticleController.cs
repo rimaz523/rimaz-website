@@ -15,7 +15,7 @@ public class ArticleController : ApiControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<ArticleDto>> GetBlogPreviews([FromQuery] GetArticleQuery query)
+    public async Task<ActionResult<ArticleDto>> GetArticleBySlug([FromQuery] GetArticleQuery query)
     {
         return await Mediator.Send(query);
     }
