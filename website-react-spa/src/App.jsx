@@ -8,6 +8,7 @@ import { StyledEngineProvider, ThemeProvider, createTheme } from '@mui/material/
 import Footer from './components/footer/Footer'
 import MainAppBar from './components/main-app-bar/MainAppBar'
 import AboutPage from './pages/about/AboutPage'
+import ArticlePage from './pages/article/ArticlePage'
 import BlogPage from './pages/blog/BlogPage'
 import ContactPage from './pages/contact/ContactPage'
 import HomePage from './pages/home/HomePage'
@@ -26,6 +27,7 @@ function App() {
         <MainAppBar />
         <Routes>
           <Route path='/' element={<HomePage />} />
+          <Route path='/article/:slug' element={<ArticlePage />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='/blog' element={<BlogPage />} />
           <Route path='/contact' element={<ContactPage />} />

@@ -21,6 +21,14 @@ export const integrationsApiSlice = createApi({
           }
         },
       }),
+      article: builder.query({
+        query: ({ slug }) => {
+          return {
+            url: 'article?slug=' + slug,
+            method: 'GET',
+          }
+        },
+      }),
       sendMessage: builder.mutation({
         query: (data) => {
           const { message, ...body } = data
@@ -36,4 +44,5 @@ export const integrationsApiSlice = createApi({
   },
 })
 
-export const { useBlogPreviewsQuery, useSendMessageMutation } = integrationsApiSlice
+export const { useBlogPreviewsQuery, useArticleQuery, useSendMessageMutation } =
+  integrationsApiSlice

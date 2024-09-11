@@ -1,0 +1,212 @@
+{
+  "id": "9055d441-4656-485b-8d70-05a2b5140f22",
+  "title": "Deploying your docker image to Minikube",
+  "slug": "deploying-your-docker-image-to-minikube",
+  "sections": [
+    {
+      "id": "254c64e5-2585-4034-a93f-5858229d2e84",
+      "type": "segment",
+      "contents": [
+        "In this tutorial I will be showing you how you can quickly set up minikube on your local windows machine, and then deploy a docker image successfully in it.",
+        "This tutorial continues from my previous post Containerize a .NET Core Web Api App with Docker."
+      ]
+    },
+    {
+      "id": "61f669a9-09f2-4e30-8d1b-ae686b2b4ce6",
+      "type": "heading",
+      "contents": ["Enabling Hyper-V"]
+    },
+    {
+      "id": "068a437e-6841-4d13-ad94-8b477c0e22b5",
+      "type": "segment",
+      "contents": [
+        "Before you install Minikube, ensure Hyper-v is enabled on your windows machine.",
+        "You can verify this by clicking on the start menu and searching for `Turn Windows features on or off`."
+      ]
+    },
+    {
+      "id": "69bf5566-6c7b-440d-9011-85e29fc09225",
+      "type": "image",
+      "contents": ["1.png"]
+    },
+    {
+      "id": "9b277f89-f7fe-4cda-977a-8e37493fd631",
+      "type": "segment",
+      "contents": [
+        "If you are using windows Home edition, this Hyper-V feature will not be available for you in the list.",
+        "If that is the case then create a new .bat file with the following content :"
+      ]
+    },
+    {
+      "id": "97818da3-2975-4de5-8159-2f0e4c861abb",
+      "type": "code",
+      "contents": [
+        "pushd '%~dp0'",
+        "dir /b %SystemRoot%servicingPackages*Hyper-V*.mum >hyper-v.txt",
+        "for /f %%i in (\"findstr /i . hyper-v.txt 2^>nul\") do dism /online /norestart /add-package:'%SystemRoot%\\servicing\\Packages\\%%i'",
+        "del hyper-v.txt",
+        "Dism /online /enable-feature /featurename:Microsoft-Hyper-V -All /LimitAccess /ALL"
+      ]
+    },
+    {
+      "id": "81a7617d-c6fb-440c-a1e1-5d7cf4756b35",
+      "type": "segment",
+      "contents": [
+        "Save the .bat script, then right-click and Run as Administrator.",
+        "Once the script completes execution, you might have to restart your PC, after which you will see the Hyper-v option available under the Turn Windows features on or off screen.",
+        "Issue on github : https://github.com/MicrosoftDocs/Virtualization-Documentation/issues/915"
+      ]
+    },
+    {
+      "id": "94e5e361-ae82-458a-a8a7-73c97243700e",
+      "type": "heading",
+      "contents": ["Installing Minikube"]
+    },
+    {
+      "id": "a79c52d1-e17b-4bb5-a830-0809cb515e68",
+      "type": "segment",
+      "contents": [
+        "To install minikube you can follow the installation steps in https://minikube.sigs.k8s.io/docs/start/",
+        "In my case I’ve used the chocolatey command :"
+      ]
+    },
+    {
+      "id": "b3efba0f-bb98-4264-81eb-8280b027953b",
+      "type": "code",
+      "contents": ["choco install minikube"]
+    },
+    {
+      "id": "f6f98e84-751c-4cff-a07d-87636cf1dcaf",
+      "type": "segment",
+      "contents": [
+        "Once the installation is complete, you can run the following command to start minikube"
+      ]
+    },
+    {
+      "id": "5c1d082f-476d-468b-bb5c-5363733f384d",
+      "type": "code",
+      "contents": ["minikube start"]
+    },
+    {
+      "id": "8feb72f7-4ebf-42ed-97fb-44922ba48c43",
+      "type": "image",
+      "contents": ["2.png"]
+    },
+    {
+      "id": "b77458f4-5057-44cc-b63e-07d850c1f176",
+      "type": "segment",
+      "contents": [
+        "NOTE : Kubectl should already be installed on your windows machine, if you had enabled Kubernetes in docker desktop. Otherwise install Kubectl https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/"
+      ]
+    },
+    {
+      "id": "0a321165-a64b-4f8b-bac4-d80da06d22b3",
+      "type": "heading",
+      "contents": ["Deploying our Docker image"]
+    },
+    {
+      "id": "3d2c783f-cb50-4118-8997-e7e550687e69",
+      "type": "segment",
+      "contents": [
+        "We will be using the docker image we created in our pervious tutorial to minikube.",
+        "Lets first create a simple deployment.yml file and save it.",
+        "If you are new to kubernetes and need to understand the contents of this deployment.yml file, then check out the following link for the detailed explaination: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+      ]
+    },
+    {
+      "id": "e897c18b-5112-40b7-8934-4bb707c99e51",
+      "type": "image",
+      "contents": ["3.png"]
+    },
+    {
+      "id": "f7f0389f-4276-4055-93b9-18636827416f",
+      "type": "segment",
+      "contents": ["Lets now apply this deployment using kubectl"]
+    },
+    {
+      "id": "ad624173-ef5d-47cf-9f8b-05e2797e7617",
+      "type": "code",
+      "contents": ["kubectl apply -f ./deployment.yml"]
+    },
+    {
+      "id": "6abe7667-a26e-4b1a-9afd-a4e62b1eccd4",
+      "type": "image",
+      "contents": ["4.png"]
+    },
+    {
+      "id": "5e122321-f61d-400b-955c-f912d7eb7c2c",
+      "type": "segment",
+      "contents": [
+        "We can now see our deployment, replicasets and pods using the commands above.",
+        "To expose our service run the following command :"
+      ]
+    },
+    {
+      "id": "72a44709-8f30-46bd-a8a4-e41bba34d279",
+      "type": "code",
+      "contents": [
+        "kubectl expose deployment webapi-deployment --name=webapi --type=LoadBalancer --target-port=8080"
+      ]
+    },
+    {
+      "id": "35dfcf42-c772-4bd1-831a-50ddcbfb5089",
+      "type": "segment",
+      "contents": ["To get the exposed service url run :"]
+    },
+    {
+      "id": "7774e235-8610-470c-8717-ef8f35945e2b",
+      "type": "code",
+      "contents": ["minikube service webapi --url"]
+    },
+    {
+      "id": "ff87ec72-94f6-40c9-b4cd-b61279bed897",
+      "type": "image",
+      "contents": ["5.png"]
+    },
+    {
+      "id": "0a09d166-a46a-454f-a195-d317de0b123d",
+      "type": "segment",
+      "contents": [
+        "You can now access your webapi running in minikube by going to the URL http://127.0.0.1:59267/swagger/index.html"
+      ]
+    },
+    {
+      "id": "5d7d1b08-f9da-4ea4-b8b6-23eab6a159e8",
+      "type": "image",
+      "contents": ["6.png"]
+    },
+    {
+      "id": "4aafac1a-021e-4816-8f61-f9f1bc3b2bb3",
+      "type": "segment",
+      "contents": [
+        "Congratulations, you now have a web api running on minikube!",
+        "To tear down your deployment and service run:"
+      ]
+    },
+    {
+      "id": "737c4d9a-04c4-4c29-bec6-06fc16827e98",
+      "type": "code",
+      "contents": ["kubectl delete deployment webapi-deployment", "kubectl delete service webapi"]
+    },
+    {
+      "id": "6ae700cf-f273-4202-b942-f0d64d9ee799",
+      "type": "segment",
+      "contents": ["To stop minikube :"]
+    },
+    {
+      "id": "be4b4746-7ad6-43c8-8294-32c042e66015",
+      "type": "code",
+      "contents": ["minikube stop"]
+    },
+    {
+      "id": "302052fc-f430-4861-ba9c-a8613b0a53d4",
+      "type": "segment",
+      "contents": ["To delete your local minikube cluster :"]
+    },
+    {
+      "id": "b1d59b04-ca86-4097-ae7b-94c1d965bac6",
+      "type": "code",
+      "contents": ["minikube delete"]
+    }
+  ]
+}
