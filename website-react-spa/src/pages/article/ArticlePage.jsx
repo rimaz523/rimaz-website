@@ -1,10 +1,12 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import PropTypes from 'prop-types'
 
 import { Box, Typography, Card, CardContent } from '@mui/material'
 import LinearProgress from '@mui/material/LinearProgress'
+import Stack from '@mui/material/Stack'
 
 import Image from 'mui-image'
 
@@ -13,6 +15,7 @@ import { useArticleQuery } from '../../features/integrations/integrations-api-sl
 const ArticlePage = ({ content }) => {
   const { slug } = useParams()
   const { data = {}, isFetching } = useArticleQuery({ slug })
+  const isDarkMode = useSelector((state) => state.theme.darkmode)
 
   return isFetching ? (
     <Box sx={{ width: '100%' }}>
@@ -30,17 +33,28 @@ const ArticlePage = ({ content }) => {
         <CardContent>
           {data.sections.map(function (section) {
             return (
-              <div key={section.id}>
+              <Stack
+                direction='column'
+                key={section.id}
+                spacing={section.type === 'code' ? 0 : 1}
+                mt={2}
+                px={2}
+                width={section.type === 'image' ? { xs: '100%', md: '60%' } : {}}
+              >
                 {section.type === 'segment' &&
                   section.contents.map(function (segment) {
-                    return <p key={segment}>{segment}</p>
+                    return <Typography key={segment}>{segment}</Typography>
                   })}
                 {section.type === 'code' &&
                   section.contents.map(function (code) {
                     return (
-                      <p key={code} style={{ backgroundColor: '#d3d3d3' }}>
+                      <Typography
+                        pl={2}
+                        key={code}
+                        backgroundColor={isDarkMode ? '#3a3b3c' : '#d3d3d3'}
+                      >
                         {code}
-                      </p>
+                      </Typography>
                     )
                   })}
                 {section.type === 'image' && (
@@ -52,16 +66,15 @@ const ArticlePage = ({ content }) => {
                       section.contents,
                     )}
                     showLoading
-                    style={{ width: '60%' }}
                   />
                   // for mobile image, do 100%
                 )}
                 {section.type === 'heading' && (
-                  <Typography variant='h6' sx={{ fontWeight: 'bold' }}>
+                  <Typography variant='h6' pt={2} sx={{ fontWeight: 'bold' }}>
                     {section.contents}
                   </Typography>
                 )}
-              </div>
+              </Stack>
             )
           })}
         </CardContent>
