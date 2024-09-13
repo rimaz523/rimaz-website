@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import PropTypes from 'prop-types'
 
@@ -9,8 +10,9 @@ import CardMedia from '@mui/material/CardMedia'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
-const BlogPreview = ({ title, publishedDate, content, image, url }) => {
+const BlogPreview = ({ title, publishedDate, content, image, url, slug }) => {
   const publishedDateObj = new Date(publishedDate)
+  const navigate = useNavigate()
   // Format the date
   const formattedDate = publishedDateObj.toLocaleDateString('en-US', {
     year: 'numeric',
@@ -27,7 +29,7 @@ const BlogPreview = ({ title, publishedDate, content, image, url }) => {
           height: '100%',
         }}
         onClick={() => {
-          window.open(url)
+          slug ? navigate('/blog/' + slug) : window.open(url)
         }}
       >
         <Stack direction='column' sx={{ height: '100%' }}>
@@ -60,6 +62,7 @@ BlogPreview.propTypes = {
   content: PropTypes.string,
   url: PropTypes.string,
   image: PropTypes.string,
+  slug: PropTypes.string,
 }
 
 BlogPreview.defaultProps = {

@@ -21,7 +21,7 @@ export const integrationsApiSlice = createApi({
           }
         },
       }),
-      article: builder.query({
+      getArticleBySlug: builder.query({
         query: ({ slug }) => {
           return {
             url: 'article?slug=' + slug,
@@ -44,5 +44,5 @@ export const integrationsApiSlice = createApi({
   },
 })
 
-export const { useBlogPreviewsQuery, useArticleQuery, useSendMessageMutation } =
+export const { useBlogPreviewsQuery, useGetArticleBySlugQuery, useSendMessageMutation } =
   integrationsApiSlice

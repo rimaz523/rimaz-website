@@ -2,19 +2,17 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
-import PropTypes from 'prop-types'
-
 import { Box, Typography, Card, CardContent } from '@mui/material'
 import LinearProgress from '@mui/material/LinearProgress'
 import Stack from '@mui/material/Stack'
 
 import Image from 'mui-image'
 
-import { useArticleQuery } from '../../features/integrations/integrations-api-slice'
+import { useGetArticleBySlugQuery } from '../../features/integrations/integrations-api-slice'
 
-const ArticlePage = ({ content }) => {
+const ArticlePage = () => {
   const { slug } = useParams()
-  const { data = {}, isFetching } = useArticleQuery({ slug })
+  const { data = {}, isFetching } = useGetArticleBySlugQuery({ slug })
   const isDarkMode = useSelector((state) => state.theme.darkmode)
 
   return isFetching ? (
@@ -81,14 +79,6 @@ const ArticlePage = ({ content }) => {
       </Card>
     </Box>
   )
-}
-
-ArticlePage.propTypes = {
-  content: PropTypes.string,
-}
-
-ArticlePage.defaultProps = {
-  content: 'Deploying your docker image to Minikube',
 }
 
 export default ArticlePage

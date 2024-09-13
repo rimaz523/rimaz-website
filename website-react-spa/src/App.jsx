@@ -27,9 +27,9 @@ function App() {
         <MainAppBar />
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/article/:slug' element={<ArticlePage />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='/blog' element={<BlogPage />} />
+          <Route path='/blog/:slug' element={<ArticlePage />} />
           <Route path='/contact' element={<ContactPage />} />
           {/* Using path="*"" means "match anything", so this route
               acts like a catch-all for URLs that we don't have explicit
