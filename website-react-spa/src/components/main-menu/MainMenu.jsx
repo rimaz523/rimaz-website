@@ -29,6 +29,7 @@ const MainMenu = () => {
   const navigate = useNavigate()
   const isHomeRouteMatched = useMatch('/') !== null
   const isBlogRouteMatched = useMatch('/blog') !== null
+  const isArticleRouteMatched = useMatch('/blog/:slug') !== null
   const isAboutRouteMatched = useMatch('/about') !== null
   const isContactRouteMatched = useMatch('/contact') !== null
 
@@ -104,7 +105,10 @@ const MainMenu = () => {
                 }}
               />
             </ListItemButton>
-            <ListItemButton onClick={() => routeToPage('/blog')} selected={isBlogRouteMatched}>
+            <ListItemButton
+              onClick={() => routeToPage('/blog')}
+              selected={isBlogRouteMatched || isArticleRouteMatched}
+            >
               <ListItemIcon>
                 <DescriptionIcon sx={{ color: 'primary.light' }} />
               </ListItemIcon>
