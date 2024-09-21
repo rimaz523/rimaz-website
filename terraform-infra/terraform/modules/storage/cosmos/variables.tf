@@ -35,3 +35,8 @@ variable "containers" {
     max_throughput = number
   }))
 }
+
+variable "whitelist_ip_addresses" {
+  description = "comma separated string of ip addresses to whitelist on the cosmos firewall"
+  type        = string
+}
