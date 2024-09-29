@@ -59,6 +59,10 @@ variable "linux_webapps" {
     "api" = {
       stack         = "dotnet"
       stack_version = "8.0"
+    },
+    "angular" = {
+      stack         = "node"
+      stack_version = "18-lts"
     }
   }
 }
@@ -114,6 +118,11 @@ variable "web_app_ssl_domains" {
     }
     "api.rimaz.dev" = {
       web_app_key = "api"
+      ssl_state   = "SniEnabled"
+    }
+
+    "angular.rimaz.dev" = {
+      web_app_key = "angular"
       ssl_state   = "SniEnabled"
     }
   }
