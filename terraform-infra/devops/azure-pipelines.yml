@@ -6,6 +6,7 @@ trigger:
     exclude:
       - website-react-spa/*
       - integrations-dotnet-api/*
+      - website-angular-spa/*
 
 variables:
   - template: 'variables/service-connections.yml'
