@@ -1,0 +1,31 @@
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '$(nodeVersion)'
+    displayName: 'Install Node.js'
+  - script: 'npm install --global yarn'
+    displayName: 'Install Yarn'
+  - script: 'npm install -g @angular/cli'
+    displayName: 'Install Angular Cli'
+  - script: 'cd website-angular-spa && yarn install'
+    displayName: 'Initialize project'
+  - script: |
+      cd website-angular-spa && ng build
+    displayName: 'Build the project'
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: 'website-angular-spa/dist/website-angular-spa/browser'
+      contents: '**/*'
+      targetFolder: '$(Build.ArtifactStagingDirectory)'
+      cleanTargetFolder: true
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      includeRootFolder: false
+      replaceExistingArchive: true
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
