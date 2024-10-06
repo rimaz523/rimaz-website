@@ -2,7 +2,7 @@ steps:
   - download: current
     artifact: drop
   - task: AzureWebApp@1
-    displayName: 'Deploy react front-end webapp to azure app service'
+    displayName: 'Deploy vue front-end webapp to azure app service'
     inputs:
       azureSubscription: '$(managedIdentityName)'
       appName: '$(project)-$(environment)-$(webAppName)'
