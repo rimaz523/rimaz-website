@@ -1,0 +1,42 @@
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+      - terraform-infra/*
+      - integrations-dotnet-api/*
+      - website-angular-spa/*
+      - website-react-spa/*
+
+variables:
+  - template: variables/build.yml
+  - template: variables/service-connections.yml
+
+pool:
+  vmImage: '$(buildVmImage)'
+
+stages:
+  - stage: 'Build'
+    displayName: 'Build the front end react web application'
+    jobs:
+      - job: 'Build'
+        displayName: 'Build job'
+        steps:
+          - template: './steps/build.yml'
+
+  - stage: 'Deploy_Dev'
+    displayName: 'Deploy to Dev'
+    dependsOn: 'Build'
+    variables:
+      - template: './variables/dev.yml'
+    condition: and (succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
+    jobs:
+      - deployment: 'Deploy'
+        displayName: 'Deploy job'
+        environment: DEV
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: './steps/deploy.yml'
