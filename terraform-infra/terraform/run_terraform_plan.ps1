@@ -1,0 +1,1 @@
+terraform plan -out terraform.tfplan --var-file="dev.tfvars"

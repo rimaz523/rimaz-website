@@ -7,6 +7,7 @@ trigger:
       - terraform-infra/*
       - integrations-dotnet-api/*
       - website-react-spa/*
+      - website-vue-spa/*
 
 variables:
   - template: variables/build.yml

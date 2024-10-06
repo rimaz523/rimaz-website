@@ -7,6 +7,7 @@ trigger:
       - website-react-spa/*
       - integrations-dotnet-api/*
       - website-angular-spa/*
+      - website-vue-spa/*
 
 variables:
   - template: 'variables/service-connections.yml'

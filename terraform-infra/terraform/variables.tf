@@ -54,7 +54,7 @@ variable "linux_webapps" {
   default = {
     "react" = {
       stack         = "node"
-      stack_version = "18-lts"
+      stack_version = "20-lts"
     },
     "api" = {
       stack         = "dotnet"
@@ -62,7 +62,11 @@ variable "linux_webapps" {
     },
     "angular" = {
       stack         = "node"
-      stack_version = "18-lts"
+      stack_version = "20-lts"
+    },
+    "vue" = {
+      stack         = "node"
+      stack_version = "20-lts"
     }
   }
 }
@@ -120,9 +124,12 @@ variable "web_app_ssl_domains" {
       web_app_key = "api"
       ssl_state   = "SniEnabled"
     }
-
     "angular.rimaz.dev" = {
       web_app_key = "angular"
+      ssl_state   = "SniEnabled"
+    }
+    "vue.rimaz.dev" = {
+      web_app_key = "vue"
       ssl_state   = "SniEnabled"
     }
   }
