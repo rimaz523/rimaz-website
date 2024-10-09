@@ -50,23 +50,28 @@ variable "linux_webapps" {
   type = map(object({
     stack         = string
     stack_version = string
+    always_on     = bool
   }))
   default = {
     "react" = {
       stack         = "node"
       stack_version = "20-lts"
+      always_on     = true
     },
     "api" = {
       stack         = "dotnet"
       stack_version = "8.0"
+      always_on     = true
     },
     "angular" = {
       stack         = "node"
       stack_version = "20-lts"
+      always_on     = false
     },
     "vue" = {
       stack         = "node"
       stack_version = "20-lts"
+      always_on     = false
     }
   }
 }

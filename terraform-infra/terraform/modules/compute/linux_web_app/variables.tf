@@ -37,3 +37,8 @@ variable "stack_version" {
   description = "Version of the stack."
   type        = string
 }
+
+variable "always_on" {
+  description = "Is the app always on?."
+  type        = bool
+}

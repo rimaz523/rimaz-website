@@ -10,6 +10,7 @@ module "linux_web_app" {
   name                = each.key
   stack               = each.value.stack
   stack_version       = each.value.stack_version
+  always_on           = each.value.always_on
 
   depends_on = [
     module.resource_group["app"].id,
