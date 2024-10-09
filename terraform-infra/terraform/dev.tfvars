@@ -16,7 +16,7 @@ resource_groups = {
 
 service_plans = {
   "asp" = {
-    sku = "B1"
+    sku = "B2"
     os  = "Linux"
   }
 }

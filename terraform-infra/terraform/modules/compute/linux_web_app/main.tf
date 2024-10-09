@@ -9,7 +9,7 @@ resource "azurerm_linux_web_app" "webapp_linux" {
   https_only          = true
 
   site_config {
-    always_on                     = true
+    always_on                     = var.always_on
     app_command_line              = var.stack == "node" ? "pm2 serve /home/site/wwwroot --spa --no-daemon" : null
     ip_restriction_default_action = var.name == "api" ? "Deny" : "Allow"
 
