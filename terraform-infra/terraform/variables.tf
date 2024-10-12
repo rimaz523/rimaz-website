@@ -110,6 +110,14 @@ variable "key_vault_secrets" {
   }
 }
 
+variable "app_service_certificates" {
+  description = "create app service certificates for the hosted web apps"
+  type        = map(object({}))
+  default = {
+    "rimaz-ssl" = {}
+  }
+}
+
 variable "web_app_ssl_domains" {
   description = "Custom domain and ssl bindings for the hosted web apps"
   type = map(object({
