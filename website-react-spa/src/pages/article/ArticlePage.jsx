@@ -21,7 +21,7 @@ const ArticlePage = () => {
   }
 
   return isFetching ? (
-    <Box sx={{ width: '100%' }}>
+    <Box my={{ xs: 20, sm: 20, md: 30 }}>
       <LinearProgress />
     </Box>
   ) : (
