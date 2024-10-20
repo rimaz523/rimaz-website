@@ -42,6 +42,17 @@ const ArticlePage = () => {
                     direction='column'
                     key={section.id}
                     spacing={section.type === 'code' ? 0 : 1}
+                    style={
+                      section.type === 'code'
+                        ? {
+                            'border-radius': '10px',
+                            padding: '10px',
+                          }
+                        : {}
+                    }
+                    backgroundColor={
+                      section.type === 'code' ? (isDarkMode ? '#3a3b3c' : '#d3d3d3') : ''
+                    }
                     mt={2}
                     px={2}
                     width={section.type === 'image' ? { xs: '100%', md: '60%' } : {}}
@@ -70,6 +81,7 @@ const ArticlePage = () => {
                           '/',
                           section.contents,
                         )}
+                        style={{ 'border-radius': '5px' }}
                         showLoading
                       />
                       // for mobile image, do 100%
