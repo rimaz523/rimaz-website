@@ -45,8 +45,9 @@ const ArticlePage = () => {
                     style={
                       section.type === 'code'
                         ? {
-                            'border-radius': '10px',
+                            borderRadius: '10px',
                             padding: '10px',
+                            overflowX: 'auto',
                           }
                         : {}
                     }
@@ -67,7 +68,7 @@ const ArticlePage = () => {
                           <Typography
                             pl={2}
                             key={code}
-                            backgroundColor={isDarkMode ? '#3a3b3c' : '#d3d3d3'}
+                            // backgroundColor={isDarkMode ? '#3a3b3c' : '#d3d3d3'}
                           >
                             {code}
                           </Typography>
@@ -81,7 +82,7 @@ const ArticlePage = () => {
                           '/',
                           section.contents,
                         )}
-                        style={{ 'border-radius': '5px' }}
+                        style={{ borderRadius: '5px' }}
                         showLoading
                       />
                       // for mobile image, do 100%
