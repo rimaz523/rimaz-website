@@ -12,6 +12,7 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import BugReportIcon from '@mui/icons-material/BugReport'
 import CloseIcon from '@mui/icons-material/Close'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import DescriptionIcon from '@mui/icons-material/Description'
@@ -144,13 +145,28 @@ const MainMenu = () => {
                 }}
               />
             </ListItemButton>
+            <ListItemButton
+              onClick={() =>
+                window.open(process.env.REACT_APP_SOCIAL_GITHUB_URL + '/rimaz-website/issues/new')
+              }
+            >
+              <ListItemIcon>
+                <BugReportIcon sx={{ color: 'primary.light' }} />
+              </ListItemIcon>
+              <ListItemText
+                primary='Report an issue'
+                primaryTypographyProps={{
+                  fontWeight: 'bold',
+                }}
+              />
+            </ListItemButton>
             {isDarkMode ? (
               <ListItemButton onClick={() => dispatch(setLightMode())}>
                 <ListItemIcon>
                   <LightModeIcon sx={{ color: 'primary.light' }} />
                 </ListItemIcon>
                 <ListItemText
-                  primary='Light Mode'
+                  primary='Light mode'
                   primaryTypographyProps={{
                     fontWeight: 'bold',
                   }}
@@ -162,7 +178,7 @@ const MainMenu = () => {
                   <DarkModeIcon sx={{ color: 'primary.light' }} />
                 </ListItemIcon>
                 <ListItemText
-                  primary='Dark Mode'
+                  primary='Dark mode'
                   primaryTypographyProps={{
                     fontWeight: 'bold',
                   }}
