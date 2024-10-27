@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useMatch } from 'react-router-dom'
 
-import { Stack, Typography } from '@mui/material'
+import { Avatar, Stack, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
 import Drawer from '@mui/material/Drawer'
@@ -13,7 +13,6 @@ import ListItemText from '@mui/material/ListItemText'
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import BugReportIcon from '@mui/icons-material/BugReport'
-import CloseIcon from '@mui/icons-material/Close'
 import DarkModeIcon from '@mui/icons-material/DarkMode'
 import DescriptionIcon from '@mui/icons-material/Description'
 import EmailIcon from '@mui/icons-material/Email'
@@ -63,33 +62,35 @@ const MainMenu = () => {
             h: 1,
           }}
         >
-          <Stack direction='row' justifyContent='space-between' spacing={2} sx={{ mb: 2 }}>
-            <IconButton onClick={toggleDrawer(false)}>
-              <CloseIcon sx={{ color: 'primary.light' }} />
-            </IconButton>
-            <Stack
-              direction='row'
-              justifyContent='center'
-              alignItems='center'
-              sx={{
-                flexGrow: 1,
-                '&:hover': {
-                  opacity: [0.9, 0.8, 0.7],
-                  cursor: 'pointer',
-                },
-              }}
-              onClick={() => navigate('/')}
+          <Stack
+            direction='row'
+            justifyContent='center'
+            alignItems='center'
+            spacing={2}
+            mb={2}
+            ml={1}
+            sx={{
+              flexGrow: 1,
+              '&:hover': {
+                opacity: [0.9, 0.8, 0.7],
+                cursor: 'pointer',
+              },
+            }}
+            onClick={() => navigate('/')}
+          >
+            <Avatar
+              alt='Rimaz Mohommed'
+              src={process.env.REACT_APP_BLOB_STORE_BASE_URL.concat('/about/profile.jpg')}
+            />
+            <Typography
+              variant='h5'
+              component='div'
+              sx={{ flexGrow: 1 }}
+              fontWeight='500'
+              fontFamily='Roboto'
             >
-              <Typography
-                variant='h5'
-                component='div'
-                sx={{ flexGrow: 1 }}
-                fontWeight='900'
-                fontFamily='Roboto'
-              >
-                rimaz mohommed
-              </Typography>
-            </Stack>
+              Rimaz Mohommed
+            </Typography>
           </Stack>
 
           <Divider sx={{ mb: 4, border: '1px solid' }} />
