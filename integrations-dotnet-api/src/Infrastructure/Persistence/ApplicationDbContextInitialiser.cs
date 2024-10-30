@@ -46,6 +46,47 @@ public class ApplicationDbContextInitialiser
 
     public async Task TrySeedAsync()
     {
+        if (!_context.SocialHandles.Any())
+        {
+            _context.SocialHandles.Add(new SocialHandle
+            {
+                Id = Guid.NewGuid(),
+                Name = "Github",
+                Url = "https://github.com/rimaz523",
+                DisplayOrder = 1
+            });
+            _context.SocialHandles.Add(new SocialHandle
+            {
+                Id = Guid.NewGuid(),
+                Name = "Medium",
+                Url = "https://rimazmohommed523.medium.com",
+                DisplayOrder = 2
+            });
+            _context.SocialHandles.Add(new SocialHandle
+            {
+                Id = Guid.NewGuid(),
+                Name = "Linkedin",
+                Url = "https://www.linkedin.com/in/rimazmohommed",
+                DisplayOrder = 3
+            });
+            _context.SocialHandles.Add(new SocialHandle
+            {
+                Id = Guid.NewGuid(),
+                Name = "Stackoverflow",
+                Url = "https://stackoverflow.com/users/4546132/rimaz-mohommed",
+                DisplayOrder = 4
+            });
+            _context.SocialHandles.Add(new SocialHandle
+            {
+                Id = Guid.NewGuid(),
+                Name = "Twitter",
+                Url = "https://twitter.com/rimaz_mohommed",
+                DisplayOrder = 5
+            });
+
+            await _context.SaveChangesAsync();
+        }
+
         if (!_context.BlogPosts.Any())
         {
             _context.BlogPosts.Add(new BlogPost

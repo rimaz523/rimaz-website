@@ -5,14 +5,14 @@ import { Box, Button } from '@mui/material'
 
 import BlogList from '../../components/blog-list/BlogList'
 import Hero from '../../components/hero/Hero'
-import SocialHandles from '../../components/social-handles/SocialHandles'
+import SocialHandlesBand from '../../components/social-handles/SocialHandlesBand'
 
 const HomePage = () => {
   const navigate = useNavigate()
   return (
     <>
       <Hero />
-      <SocialHandles />
+      <SocialHandlesBand />
       <BlogList limit={4} />
       <Box textAlign='center' pt={{ xs: 2 }} pb={{ xs: 2 }}>
         <Button variant='contained' onClick={() => navigate('/blog')}>
