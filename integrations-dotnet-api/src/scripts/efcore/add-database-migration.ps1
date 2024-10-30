@@ -11,7 +11,7 @@ else
     & .\install-efcore-design-tools.ps1
 
     Write-Host "Adding Migration $migrationName" -ForegroundColor Green
-    dotnet ef migrations add $migrationName --project ..\..\Infrastructure\Infrastructure.csproj --startup-project ..\..\WebApi\WebApi.csproj
+    dotnet ef migrations add $migrationName --project ..\..\Infrastructure\Infrastructure.csproj --startup-project ..\..\WebApi\WebApi.csproj --context ApplicationDbContext
 
     & .\uninstall-efcore-design-tools.ps1
 }
