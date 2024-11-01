@@ -29,6 +29,14 @@ export const integrationsApiSlice = createApi({
           }
         },
       }),
+      socialHandles: builder.query({
+        query: () => {
+          return {
+            url: 'socialhandles',
+            method: 'GET',
+          }
+        },
+      }),
       sendMessage: builder.mutation({
         query: (data) => {
           const { message, ...body } = data
@@ -44,5 +52,9 @@ export const integrationsApiSlice = createApi({
   },
 })
 
-export const { useBlogPreviewsQuery, useGetArticleBySlugQuery, useSendMessageMutation } =
-  integrationsApiSlice
+export const {
+  useBlogPreviewsQuery,
+  useSocialHandlesQuery,
+  useGetArticleBySlugQuery,
+  useSendMessageMutation,
+} = integrationsApiSlice

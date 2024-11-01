@@ -9,7 +9,9 @@ import SvgIcon from '@mui/material/SvgIcon'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 
-export default function SocialHandle({ social, url }) {
+import { GITHUB, MEDIUM, LINKEDIN, STACKOVERFLOW, TWITTER } from '../../constants/constants'
+
+export default function SocialHandle({ name, url }) {
   const isDarkMode = useSelector((state) => state.theme.darkmode)
 
   return (
@@ -19,7 +21,7 @@ export default function SocialHandle({ social, url }) {
         window.open(url)
       }}
     >
-      {social === 'GITHUB' ? (
+      {name === GITHUB ? (
         <GitHubIcon
           fontSize='large'
           sx={{
@@ -30,7 +32,7 @@ export default function SocialHandle({ social, url }) {
           }}
         />
       ) : null}
-      {social === 'MEDIUM' ? (
+      {name === MEDIUM ? (
         <SvgIcon
           fontSize='large'
           sx={{
@@ -46,7 +48,7 @@ export default function SocialHandle({ social, url }) {
           </svg>
         </SvgIcon>
       ) : null}
-      {social === 'LINKEDIN' ? (
+      {name === LINKEDIN ? (
         <LinkedInIcon
           fontSize='large'
           sx={{
@@ -57,7 +59,7 @@ export default function SocialHandle({ social, url }) {
           }}
         />
       ) : null}
-      {social === 'STACKOVERFLOW' ? (
+      {name === STACKOVERFLOW ? (
         <SvgIcon
           fontSize='large'
           sx={{
@@ -82,7 +84,7 @@ export default function SocialHandle({ social, url }) {
           </svg>
         </SvgIcon>
       ) : null}
-      {social === 'TWITTER' ? (
+      {name === TWITTER ? (
         <svg
           xmlns='http://www.w3.org/2000/svg'
           viewBox='0 0 30 30'
@@ -100,6 +102,6 @@ export default function SocialHandle({ social, url }) {
 }
 
 SocialHandle.propTypes = {
-  social: PropTypes.string,
+  name: PropTypes.string,
   url: PropTypes.string,
 }

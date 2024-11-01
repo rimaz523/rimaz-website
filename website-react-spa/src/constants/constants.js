@@ -1,0 +1,5 @@
+export const GITHUB = 'Github'
+export const MEDIUM = 'Medium'
+export const LINKEDIN = 'Linkedin'
+export const STACKOVERFLOW = 'Stackoverflow'
+export const TWITTER = 'Twitter'
