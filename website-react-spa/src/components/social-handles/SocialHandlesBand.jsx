@@ -2,11 +2,19 @@ import React from 'react'
 
 import { Container } from '@mui/material'
 import Box from '@mui/material/Box'
+import LinearProgress from '@mui/material/LinearProgress'
 
+import { useSocialHandlesQuery } from '../../features/integrations/integrations-api-slice'
 import SocialHandle from './SocialHandle'
 
 export default function SocialHandlesBand() {
-  return (
+  const { data = [], isFetching } = useSocialHandlesQuery()
+
+  return isFetching ? (
+    <Box sx={{ width: '100%' }}>
+      <LinearProgress />
+    </Box>
+  ) : (
     <Box
       sx={{
         flexGrow: 1,
@@ -16,14 +24,9 @@ export default function SocialHandlesBand() {
       }}
     >
       <Container sx={{ textAlign: 'center', justifyContent: 'space-between' }}>
-        <SocialHandle social='GITHUB' url='https://github.com/rimaz523' />
-        <SocialHandle social='MEDIUM' url='https://rimazmohommed523.medium.com' />
-        <SocialHandle social='LINKEDIN' url='https://www.linkedin.com/in/rimazmohommed' />
-        <SocialHandle
-          social='STACKOVERFLOW'
-          url='https://stackoverflow.com/users/4546132/rimaz-mohommed'
-        />
-        <SocialHandle social='TWITTER' url='https://twitter.com/rimaz_mohommed' />
+        {data.map((socialHandle) => {
+          return <SocialHandle {...socialHandle} key={socialHandle.name} />
+        })}
       </Container>
     </Box>
   )
