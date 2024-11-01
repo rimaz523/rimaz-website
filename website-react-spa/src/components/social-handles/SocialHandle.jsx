@@ -9,7 +9,7 @@ import SvgIcon from '@mui/material/SvgIcon'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 
-import { GITHUB, MEDIUM, LINKEDIN, STACKOVERFLOW, TWITTER } from '../../constants/constants'
+import { GITHUB, MEDIUM, LINKEDIN, STACKOVERFLOW, TWITTER } from '../../constants'
 
 export default function SocialHandle({ name, url }) {
   const isDarkMode = useSelector((state) => state.theme.darkmode)
