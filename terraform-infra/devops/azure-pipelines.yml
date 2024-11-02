@@ -9,6 +9,12 @@ trigger:
       - website-angular-spa/*
       - website-vue-spa/*
 
+parameters:
+  - name: forceApiRecreation
+    type: boolean
+    default: false
+    displayName: "Force APIM API re-creation?"
+
 variables:
   - template: 'variables/service-connections.yml'
   - template: 'variables/build.yml'
@@ -41,6 +47,7 @@ stages:
                 - template: './steps/deploy.yml'
                   parameters:
                     applyChanges: false
+                    forceApiRecreation: false # We never force delete the APIM API on a terraform plan operation
 
   - stage: 'Dev_Deploy'
     displayName: 'Deploy to Dev Environment'
@@ -58,3 +65,4 @@ stages:
                 - template: './steps/deploy.yml'
                   parameters:
                     applyChanges: true
+                    forceApiRecreation: ${{ parameters.forceApiRecreation }}
