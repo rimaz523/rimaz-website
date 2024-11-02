@@ -14,7 +14,6 @@ parameters:
     type: boolean
     default: false
     displayName: "Force APIM API re-creation?"
-    description: "Set to true to delete the APIM API to that terraform can re-create it."
 
 variables:
   - template: 'variables/service-connections.yml'
