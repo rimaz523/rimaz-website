@@ -1,5 +1,6 @@
 parameters:
 - name : applyChanges
+- name : forceApiRecreation
 
 steps:
 - download: current
@@ -19,6 +20,17 @@ steps:
   displayName: "Install Terraform Latest"
   inputs:
     terraformVersion: latest
+
+- task: AzureCLI@2
+  displayName: "Force Delete APIM API"
+  condition: ${{ eq(parameters.forceApiRecreation, true) }}
+  inputs:
+    azureSubscription: '$(azure-connection)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az account set --subscription "Rimaz" &&
+      az apim api delete -g rimaz-common-dev-rg -n rimaz-dev-backend-apim --api-id rimaz-backend-dev-api -y
 
 - task: AzureCLI@2
   displayName: "Set Storage Access key"
