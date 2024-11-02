@@ -47,6 +47,7 @@ stages:
                 - template: './steps/deploy.yml'
                   parameters:
                     applyChanges: false
+                    forceApiRecreation: false # We never force delete the APIM API on a terraform plan operation
 
   - stage: 'Dev_Deploy'
     displayName: 'Deploy to Dev Environment'
