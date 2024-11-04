@@ -3,9 +3,7 @@ using AutoMapper;
 using MediatR;
 
 namespace Application.SocialHandles.Queries.GetSocialHandlesInDisplayOrder;
-public class GetSocialHandlesInDisplayOrderQuery : IRequest<List<SocialHandleDto>>
-{
-}
+public class GetSocialHandlesInDisplayOrderQuery : IRequest<List<SocialHandleDto>> { }
 
 public class GetSocialHandlesInDisplayOrderQueryHandler : IRequestHandler<GetSocialHandlesInDisplayOrderQuery, List<SocialHandleDto>>
 {
