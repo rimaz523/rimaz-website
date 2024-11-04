@@ -139,15 +139,6 @@
         "tags": [
           "SocialHandles"
         ],
-        "parameters": [
-          {
-            "name": "query",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/GetSocialHandlesInDisplayOrderQuery"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -245,10 +236,6 @@
             "format": "date-time"
           }
         },
-        "additionalProperties": false
-      },
-      "GetSocialHandlesInDisplayOrderQuery": {
-        "type": "object",
         "additionalProperties": false
       },
       "Section": {

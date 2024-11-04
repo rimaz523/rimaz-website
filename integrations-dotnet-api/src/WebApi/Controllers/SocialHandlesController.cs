@@ -15,8 +15,8 @@ public class SocialHandlesController : ApiControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<SocialHandleDto>>> GetSocialHandles([FromQuery] GetSocialHandlesInDisplayOrderQuery query)
+    public async Task<ActionResult<List<SocialHandleDto>>> GetSocialHandles()
     {
-        return await Mediator.Send(query);
+        return await Mediator.Send(new GetSocialHandlesInDisplayOrderQuery());
     }
 }
