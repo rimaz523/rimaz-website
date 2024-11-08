@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useMatch } from 'react-router-dom'
 
-import { Avatar, Stack, Typography } from '@mui/material'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
 import Drawer from '@mui/material/Drawer'
@@ -21,6 +20,7 @@ import LightModeIcon from '@mui/icons-material/LightMode'
 import MenuIcon from '@mui/icons-material/Menu'
 
 import { setLightMode, setDarkMode } from '../../features/theme/themeSlice'
+import MainMenuHeader from './MainMenuHeader'
 
 const MainMenu = () => {
   const [open, setDrawerOpenState] = useState(false)
@@ -62,36 +62,7 @@ const MainMenu = () => {
             h: 1,
           }}
         >
-          <Stack
-            direction='row'
-            justifyContent='center'
-            alignItems='center'
-            spacing={2}
-            mb={2}
-            ml={1}
-            sx={{
-              flexGrow: 1,
-              '&:hover': {
-                opacity: [0.9, 0.8, 0.7],
-                cursor: 'pointer',
-              },
-            }}
-            onClick={() => navigate('/')}
-          >
-            <Avatar
-              alt='Rimaz Mohommed'
-              src={process.env.REACT_APP_BLOB_STORE_BASE_URL.concat('/about/profile.jpg')}
-            />
-            <Typography
-              variant='h5'
-              component='div'
-              sx={{ flexGrow: 1 }}
-              fontWeight='500'
-              fontFamily='Roboto'
-            >
-              Rimaz Mohommed
-            </Typography>
-          </Stack>
+          <MainMenuHeader title='Rimaz Mohommed' avatarUrl='/about/profile.jpg' />
 
           <Divider sx={{ mb: 4, border: '1px solid' }} />
 
