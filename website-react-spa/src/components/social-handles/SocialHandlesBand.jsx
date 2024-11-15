@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import { Container } from '@mui/material'
 import Box from '@mui/material/Box'
@@ -9,7 +10,7 @@ import SocialHandle from './SocialHandle'
 
 export default function SocialHandlesBand() {
   const { data = [], isFetching } = useSocialHandlesQuery()
-
+  const isDarkMode = useSelector((state) => state.theme.darkmode)
   return isFetching ? (
     <Box sx={{ width: '100%' }}>
       <LinearProgress />
@@ -25,7 +26,7 @@ export default function SocialHandlesBand() {
     >
       <Container sx={{ textAlign: 'center', justifyContent: 'space-between' }}>
         {data.map((socialHandle) => {
-          return <SocialHandle {...socialHandle} key={socialHandle.name} />
+          return <SocialHandle {...socialHandle} isDarkMode={isDarkMode} key={socialHandle.name} />
         })}
       </Container>
     </Box>

@@ -1,5 +1,4 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 
 import PropTypes from 'prop-types'
 
@@ -9,8 +8,7 @@ import SvgIcon from '@mui/material/SvgIcon'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 
-export default function SocialHandle({ name, url }) {
-  const isDarkMode = useSelector((state) => state.theme.darkmode)
+export default function SocialHandle({ name, url, isDarkMode }) {
   const SocialHandleIcon = iconsRenderer[name]
   return (
     <IconButton
@@ -126,4 +124,5 @@ const iconsRenderer = {
 SocialHandle.propTypes = {
   name: PropTypes.string,
   url: PropTypes.string,
+  isDarkMode: PropTypes.bool,
 }
