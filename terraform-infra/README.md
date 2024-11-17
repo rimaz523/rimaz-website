@@ -9,14 +9,14 @@ Site URL : https://rimaz.dev
 
 ### Technologies & Tools used include:
 
-- Terraform v1.7.1
+- Terraform v1.9.8
 - CI/CD using Azure DevOps
 
 
 ### Prerequisites
 
 - Install [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli). v2.45.0
-- Install [Terraform](https://developer.hashicorp.com/terraform/downloads) v1.3.8
+- Install [Terraform](https://developer.hashicorp.com/terraform/downloads) v1.9.8
 - Install Powershell 7
 
 ### Running Terraform Locally
@@ -58,8 +58,8 @@ You can learn more about terraform by visiting the official documentation [here.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.8.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=3.100.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.9.8 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=4.10.0 |
 
 ## Providers
 
