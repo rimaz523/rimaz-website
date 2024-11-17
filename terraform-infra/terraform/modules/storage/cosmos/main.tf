@@ -23,7 +23,7 @@ resource "azurerm_cosmosdb_account" "cosmosdb_account" {
     name = "EnableServerless"
   }
 
-  ip_range_filter = "${var.whitelist_ip_addresses},104.42.195.92,40.76.54.131,52.176.6.30,52.169.50.45,52.187.184.26,13.88.56.148,40.91.218.243,13.91.105.215,4.210.172.107" // Appending azure public IP to whitelist in cosmos firewall for access via portal (see : https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-configure-firewall#azure-public)
+  ip_range_filter = distinct(concat(var.whitelist_ip_addresses, ["104.42.195.92", "40.76.54.131", "52.176.6.30", "52.169.50.45", "52.187.184.26", "13.88.56.148", "40.91.218.243", "13.91.105.215", "4.210.172.107"])) // Appending azure public IP to whitelist in cosmos firewall for access via portal (see : https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-configure-firewall#azure-public)
 }
 
 resource "azurerm_cosmosdb_sql_database" "cosmosdb_sql_database" {
@@ -39,7 +39,7 @@ resource "azurerm_cosmosdb_sql_container" "cosmosdb_sql_container" {
   resource_group_name   = var.resource_group_name
   account_name          = azurerm_cosmosdb_account.cosmosdb_account.name
   database_name         = azurerm_cosmosdb_sql_database.cosmosdb_sql_database.name
-  partition_key_path    = each.value.partition_key
+  partition_key_paths   = [each.value.partition_key]
   partition_key_version = 1
 }
 
