@@ -60,7 +60,7 @@ variable "linux_webapps" {
     },
     "api" = {
       stack         = "dotnet"
-      stack_version = "8.0"
+      stack_version = "9.0"
       always_on     = true
     },
     "angular" = {
