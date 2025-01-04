@@ -122,7 +122,7 @@ public class ApplicationDbContextInitialiser
                 Title = "React 102 : Configuring code formatting using Prettier, ESLint & Husky",
                 Content = "In this article I’ll be diving into setting up pettier, eslint and husky for configuring the code formatting rules for your react js application. I will be using yarn as my package manager.",
                 Image = "/blog-preview-url/reactjs-v2.jpg",
-                Url = "https://rimazmohommed523.medium.com/react-101-creating-your-starter-react-app-using-yarn-berry-yarn-3-3-1-e40ed98ec14",
+                Url = "https://rimazmohommed523.medium.com/react-102-configuring-code-formatting-using-prettier-eslint-husky-f207f1bcebed",
                 PublishedDate = new DateTimeOffset(new DateTime(2023, 06, 13))
             });
             _context.BlogPosts.Add(new BlogPost
@@ -169,6 +169,15 @@ public class ApplicationDbContextInitialiser
                 Image = "/blog-preview-url/azure-developer-study-guide.jpg",
                 Url = "https://rimazmohommed523.medium.com/az-204-azure-developer-associate-study-guide-7750b9854fb0",
                 PublishedDate = new DateTimeOffset(new DateTime(2021, 01, 26))
+            });
+            _context.BlogPosts.Add(new BlogPost
+            {
+                Id = Guid.NewGuid(),
+                Title = "Running a .NET Core 9.0 API with SQL Server Seamlessly Using Docker Containers",
+                Content = "In this article, I will demonstrate how to run a .NET Core 9.0 API application inside a Docker container and connect it to another container running SQL Server. For this demo, I will use Docker Desktop.",
+                Image = "/blog-preview-url/docker-dotnetcore9-mssql.png",
+                Url = "https://rimazmohommed523.medium.com/running-a-net-core-9-0-api-with-sql-server-seamlessly-using-docker-containers-20ebcd9e44d7",
+                PublishedDate = new DateTimeOffset(new DateTime(2025, 01, 04))
             });
 
             await _context.SaveChangesAsync();
