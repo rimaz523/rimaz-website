@@ -55,7 +55,7 @@ variable "linux_webapps" {
   default = {
     "react" = {
       stack         = "node"
-      stack_version = "20-lts"
+      stack_version = "22-lts"
       always_on     = true
     },
     "api" = {
@@ -65,12 +65,12 @@ variable "linux_webapps" {
     },
     "angular" = {
       stack         = "node"
-      stack_version = "20-lts"
+      stack_version = "22-lts"
       always_on     = false
     },
     "vue" = {
       stack         = "node"
-      stack_version = "20-lts"
+      stack_version = "22-lts"
       always_on     = false
     }
   }
