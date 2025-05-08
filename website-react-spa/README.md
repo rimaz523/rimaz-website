@@ -12,8 +12,8 @@ Site URL : https://rimaz.dev
 - ReactJS ^18.2.0
 - Material UI ^5.13.7
 - Yarn v1.22.19
-- Node v20.11.1 LTS
-- NPM v10.2.4
+- Node v22.12.0
+- NPM v11.3.0
 - CI/CD using Azure DevOps
 
 ### Installation Instructions
