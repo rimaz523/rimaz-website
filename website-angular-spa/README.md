@@ -9,19 +9,18 @@ Site URL : https://angular.rimaz.dev
 
 ### Technologies & Tools used in the front-end single page web application include:
 
-- Angular Cli ^18.2.5
-- Yarn v1.22.19
-- Node v20.11.1 LTS
-- NPM v10.2.4
+- Angular Cli ^19.2.11
+- Node v22.12.0 LTS
+- NPM v11.3.0
 - CI/CD using Azure DevOps
 
 ### Installation Instructions
 
 - Clone the project locally
 - Install dependencies
-  - `yarn install`
+  - `npm install`
 - Start the application
-  - `ng serve --open` OR `yarn start --open`
+  - `ng serve --open` OR `npm start --open`
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5.
 
