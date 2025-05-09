@@ -20,7 +20,7 @@ Site URL : https://angular.rimaz.dev
 - Install dependencies
   - `npm install`
 - Start the application
-  - `ng serve --open` OR `npm start --open`
+  - `ng serve` OR `npm start`
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5.
 
