@@ -1,0 +1,21 @@
+.hero-container {
+  background-image: url('https://cdn.rimaz.dev/app/hero-dark.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 100px 20px;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30vh;
+  position: relative;
+}
+
+.hero-title {
+  font-size: 1.25rem;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+}
