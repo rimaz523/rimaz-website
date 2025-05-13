@@ -1,0 +1,23 @@
+.header-spacer {
+  flex: 1 1 auto;
+}
+
+.logo span {
+  display: block;
+  text-align: left;
+}
+
+span.name {
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.334;
+  letter-spacing: 0em;
+}
+
+span.title {
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 2.66;
+  letter-spacing: 0.08333em;
+  text-transform: uppercase;
+}
