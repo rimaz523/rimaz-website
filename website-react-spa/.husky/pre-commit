@@ -13,10 +13,16 @@ echo -e "${GREEN}auto-generating terraform readme.md${NC}"
 cd terraform-infra/terraform/
 terraform-docs -c tfdocs-config.yml .
 
-# format frontend js code
-echo -e "${GREEN}formatting js code${NC}"
+# format react frontend js code
+echo -e "${GREEN}formatting react js code${NC}"
 cd ../../website-react-spa
 yarn lint-staged
+
+# format angular frontend js code
+echo -e "${GREEN}formatting angular code${NC}"
+cd ../website-angular-spa
+npx prettier --write .
+npm run lint
 
 
 
