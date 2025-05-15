@@ -1,0 +1,25 @@
+@use '@angular/material' as mat;
+
+html {
+  color-scheme: light dark;
+  @include mat.theme(
+    (
+      color: mat.$violet-palette,
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+@include mat.core(); // Already required for theming
+
+// Optional: Apply the default typography config
+@include mat.all-component-typographies();
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}

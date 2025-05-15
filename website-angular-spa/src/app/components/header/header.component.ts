@@ -7,6 +7,6 @@ import { MatToolbarModule } from '@angular/material/toolbar'
   selector: 'rmz-header',
   imports: [MatToolbarModule, MatButtonModule, MatIconModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css',
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {}
