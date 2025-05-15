@@ -1,19 +1,19 @@
 @use '@angular/material' as mat;
 
+@include mat.core(); // required for theming
+
 html {
   color-scheme: light dark;
   @include mat.theme(
     (
-      color: mat.$violet-palette,
+      color: mat.$azure-palette,
       typography: Roboto,
       density: 0,
     )
   );
 }
 
-@include mat.core(); // Already required for theming
-
-// Optional: Apply the default typography config
+// Apply the default typography config
 @include mat.all-component-typographies();
 
 html,
