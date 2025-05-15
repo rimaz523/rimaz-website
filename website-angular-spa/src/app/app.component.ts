@@ -7,7 +7,7 @@ import { HeaderComponent } from './components/header/header.component'
   selector: 'rmz-root',
   imports: [RouterOutlet, HomeComponent, HeaderComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'website-angular-spa'

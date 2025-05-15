@@ -5,6 +5,6 @@ import { HeroComponent } from '../../components/hero/hero.component'
   selector: 'rmz-home',
   imports: [HeroComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {}
