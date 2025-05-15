@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use 'app/theme-colors' as rmz-theme;
 
 @include mat.core(); // required for theming
 
@@ -6,7 +7,10 @@ html {
   color-scheme: light dark;
   @include mat.theme(
     (
-      color: mat.$azure-palette,
+      color: (
+        primary: rmz-theme.$primary-palette,
+        tertiary: rmz-theme.$tertiary-palette,
+      ),
       typography: Roboto,
       density: 0,
     )

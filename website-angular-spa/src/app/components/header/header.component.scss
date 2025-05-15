@@ -3,8 +3,16 @@
 mat-toolbar {
   @include mat.toolbar-overrides(
     (
-      container-background-color: #455a64,
+      container-background-color: var(--mat-sys-on-primary-fixed-variant),
       container-text-color: #ffffff,
+    )
+  );
+}
+
+mat-icon {
+  @include mat.icon-overrides(
+    (
+      color: #ffffff,
     )
   );
 }
