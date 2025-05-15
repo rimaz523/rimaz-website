@@ -1,3 +1,28 @@
+@use '@angular/material' as mat;
+
+mat-toolbar {
+  @include mat.toolbar-overrides(
+    (
+      container-background-color: var(--mat-sys-on-primary-fixed-variant),
+      container-text-color: #ffffff,
+    )
+  );
+}
+
+mat-icon {
+  @include mat.icon-overrides(
+    (
+      color: #ffffff,
+    )
+  );
+}
+
+.sticky-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 100; /* Ensure the toolbar is above other content */
+}
+
 .header-spacer {
   flex: 1 1 auto;
 }
@@ -7,10 +32,6 @@
   text-align: left;
 }
 
-span.title {
-  font-weight: 400;
-  font-size: 0.75rem;
-  line-height: 2.66;
-  letter-spacing: 0.08333em;
+span.mat-caption {
   text-transform: uppercase;
 }

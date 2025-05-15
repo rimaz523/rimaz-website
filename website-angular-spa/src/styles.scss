@@ -1,19 +1,23 @@
 @use '@angular/material' as mat;
+@use 'app/theme-colors' as rmz-theme;
+
+@include mat.core(); // required for theming
 
 html {
   color-scheme: light dark;
   @include mat.theme(
     (
-      color: mat.$violet-palette,
+      color: (
+        primary: rmz-theme.$primary-palette,
+        tertiary: rmz-theme.$tertiary-palette,
+      ),
       typography: Roboto,
       density: 0,
     )
   );
 }
 
-@include mat.core(); // Already required for theming
-
-// Optional: Apply the default typography config
+// Apply the default typography config
 @include mat.all-component-typographies();
 
 html,
