@@ -1,5 +1,6 @@
+@use 'app/shared/scss/normalize';
+@use 'app/shared/scss/theme/theme-colors' as rmz-theme;
 @use '@angular/material' as mat;
-@use 'app/theme-colors' as rmz-theme;
 
 @include mat.core(); // required for theming
 
