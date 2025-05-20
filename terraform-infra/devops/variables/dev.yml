@@ -18,7 +18,7 @@ variables:
 - name: admin_key_vault
   value: rimaz-kv
 - name: kv_ssl_cert_name
-  value: rimaz-dev-pfx-certificate-2024
+  value: rimaz-dev-pfx-certificate-2025
 - name: tenant_id
   value: "dd8e7948-f3de-4949-8fa8-cec81e0878d8"
 - name: devops_service_principal_id
