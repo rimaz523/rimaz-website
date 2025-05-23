@@ -1,0 +1,16 @@
+<mat-toolbar class="sticky-toolbar">
+  <div class="logo">
+    <span class="mat-title">Rimaz Mohommed</span>
+    <span class="mat-caption">Full Stack Developer • DevOps Engineer</span>
+  </div>
+  <span class="header-spacer"></span>
+  <button mat-icon-button aria-label="menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <button *ngIf="isDark" mat-icon-button aria-label="light mode icon" (click)="setLightMode()">
+    <mat-icon>light_mode</mat-icon>
+  </button>
+  <button *ngIf="!isDark" mat-icon-button aria-label="dark mode icon" (click)="setDarkMode()">
+    <mat-icon>dark_mode</mat-icon>
+  </button>
+</mat-toolbar>
