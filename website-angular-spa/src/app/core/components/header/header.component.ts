@@ -1,9 +1,9 @@
-import { Component, Renderer2 } from '@angular/core'
+import { Component } from '@angular/core'
 import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { NgIf } from '@angular/common'
-import { DARK_MODE } from '../../../shared/constants/app.constants'
+import { ThemeService } from '../../services/theme.services'
 
 @Component({
   selector: 'rmz-header',
@@ -14,14 +14,14 @@ import { DARK_MODE } from '../../../shared/constants/app.constants'
 export class HeaderComponent {
   isDark = false
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private themeService: ThemeService) {
+    this.isDark = this.themeService.getIsDark()
+  }
 
   setDarkMode(): void {
-    this.isDark = true
-    this.renderer.addClass(document.documentElement, DARK_MODE)
+    this.isDark = this.themeService.setDarkMode()
   }
   setLightMode(): void {
-    this.isDark = false
-    this.renderer.removeClass(document.documentElement, DARK_MODE)
+    this.isDark = this.themeService.setLightMode()
   }
 }

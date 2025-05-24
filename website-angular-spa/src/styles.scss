@@ -4,6 +4,20 @@
 
 @include mat.core(); // required for theming
 
+// Apply the default typography config
+@include mat.all-component-typographies();
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+
+// Theme-specific overrides
+
+//LIGHT-MODE
 html {
   color-scheme: light;
   @include mat.theme(
@@ -18,17 +32,10 @@ html {
   );
 }
 
+//DARK-MODE
 html.dark-mode {
   color-scheme: dark;
-}
-
-// Apply the default typography config
-@include mat.all-component-typographies();
-
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
+  .hero-container {
+    background-image: url('https://cdn.rimaz.dev/app/hero-dark.jpg');
+  }
 }
