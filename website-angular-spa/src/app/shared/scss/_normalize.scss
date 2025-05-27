@@ -90,3 +90,8 @@ textarea:not([rows]) {
 :target {
   scroll-margin-block: 5ex;
 }
+
+/* Remove any user agent margin set on body */
+body {
+  margin: 0;
+}
