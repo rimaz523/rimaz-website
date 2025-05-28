@@ -1,584 +1,594 @@
 {
-  "pipes": [],
-  "interfaces": [],
-  "injectables": [
-    {
-      "name": "ThemeService",
-      "id": "injectable-ThemeService-2321f5737980001fcd42d5f7678d2d39c4e7a3130054b73a83a559f051db4006e98d9e840de8228986be585bb2a9bcb3c286328449ee6a9611f5c0e5a88c4907",
-      "file": "src/app/core/services/theme.services.ts",
-      "properties": [
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [
         {
-          "name": "isDark",
-          "defaultValue": "false",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "indexKey": "",
-          "optional": false,
-          "description": "",
-          "line": 6
-        }
-      ],
-      "methods": [
-        {
-          "name": "getIsDark",
-          "args": [],
-          "optional": false,
-          "returnType": "boolean",
-          "typeParameters": [],
-          "line": 36,
-          "deprecated": false,
-          "deprecationMessage": ""
-        },
-        {
-          "name": "loadTheme",
-          "args": [],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 12,
-          "deprecated": false,
-          "deprecationMessage": ""
-        },
-        {
-          "name": "setDarkMode",
-          "args": [],
-          "optional": false,
-          "returnType": "boolean",
-          "typeParameters": [],
-          "line": 22,
-          "deprecated": false,
-          "deprecationMessage": ""
-        },
-        {
-          "name": "setLightMode",
-          "args": [],
-          "optional": false,
-          "returnType": "boolean",
-          "typeParameters": [],
-          "line": 29,
-          "deprecated": false,
-          "deprecationMessage": ""
-        }
-      ],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "description": "",
-      "rawdescription": "\n",
-      "sourceCode": "import { Injectable } from '@angular/core'\nimport { APP_THEME, DARK_MODE } from '../../shared/constants/app.constants'\n\n@Injectable({ providedIn: 'root' })\nexport class ThemeService {\n  isDark = false\n\n  constructor() {\n    this.loadTheme()\n  }\n\n  loadTheme(): void {\n    const theme = localStorage.getItem(APP_THEME)\n    if (theme === DARK_MODE) {\n      document.documentElement.classList.add(DARK_MODE)\n      this.isDark = true\n    } else {\n      document.documentElement.classList.remove(DARK_MODE)\n    }\n  }\n\n  setDarkMode(): boolean {\n    this.isDark = true\n    document.documentElement.classList.add(DARK_MODE)\n    localStorage.setItem(APP_THEME, DARK_MODE)\n    return this.isDark\n  }\n\n  setLightMode(): boolean {\n    this.isDark = false\n    document.documentElement.classList.remove(DARK_MODE)\n    localStorage.removeItem(APP_THEME)\n    return this.isDark\n  }\n\n  getIsDark(): boolean {\n    return this.isDark\n  }\n}\n",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [],
-        "line": 6
-      },
-      "extends": [],
-      "type": "injectable"
-    }
-  ],
-  "guards": [],
-  "interceptors": [],
-  "classes": [],
-  "directives": [],
-  "components": [
-    {
-      "name": "AppComponent",
-      "id": "component-AppComponent-c6e47a53ae82b31c4be026a0c12129e872e7d2c39dc6ce0c5bca2dd11b9b8999e7b2f1ae9d7a0fe255cb5c6a8a13f1842199409c628d04dd19a473850bc6ba38",
-      "file": "src/app/app.component.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "rmz-root",
-      "styleUrls": [],
-      "styles": [],
-      "templateUrl": ["./app.component.html"],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [
-        {
-          "name": "title",
-          "defaultValue": "'website-angular-spa'",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "indexKey": "",
-          "optional": false,
-          "description": "",
-          "line": 14
-        }
-      ],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": false,
-      "imports": [
-        {
-          "name": "RouterOutlet"
-        },
-        {
-          "name": "HomeComponent",
-          "type": "component"
-        },
-        {
-          "name": "HeaderComponent",
-          "type": "component"
-        },
-        {
-          "name": "FooterComponent",
-          "type": "component"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component } from '@angular/core'\nimport { RouterOutlet } from '@angular/router'\nimport { HomeComponent } from './pages/home/home.component'\nimport { HeaderComponent } from './core/components/header/header.component'\nimport { ThemeService } from './core/services/theme.services'\nimport { FooterComponent } from './core/components/footer/footer.component'\n\n@Component({\n  selector: 'rmz-root',\n  imports: [RouterOutlet, HomeComponent, HeaderComponent, FooterComponent],\n  templateUrl: './app.component.html',\n})\nexport class AppComponent {\n  title = 'website-angular-spa'\n\n  constructor(private themeService: ThemeService) {}\n}\n",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [
-          {
-            "name": "themeService",
-            "type": "ThemeService",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 14,
-        "jsdoctags": [
-          {
-            "name": "themeService",
-            "type": "ThemeService",
+            "name": "ThemeService",
+            "id": "injectable-ThemeService-2321f5737980001fcd42d5f7678d2d39c4e7a3130054b73a83a559f051db4006e98d9e840de8228986be585bb2a9bcb3c286328449ee6a9611f5c0e5a88c4907",
+            "file": "src/app/core/services/theme.services.ts",
+            "properties": [
+                {
+                    "name": "isDark",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                }
+            ],
+            "methods": [
+                {
+                    "name": "getIsDark",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "loadTheme",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "setDarkMode",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 22,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "setLightMode",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
-      },
-      "extends": [],
-      "templateData": "<rmz-header></rmz-header>\n<rmz-home></rmz-home>\n<rmz-footer></rmz-footer>\n<router-outlet />\n"
-    },
-    {
-      "name": "FooterComponent",
-      "id": "component-FooterComponent-182c058ade67541796427fbc38582f0b0774a50b104c150fb16ccfe221bcd8a67fb23927a9ed39d90e1f19a03da2d601b065239a708f4d4a2d74cdc6c3dbd6e5",
-      "file": "src/app/core/components/footer/footer.component.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "rmz-footer",
-      "styleUrls": [],
-      "styles": [],
-      "templateUrl": ["./footer.component.html"],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [
-        {
-          "name": "getCopyrightInformation",
-          "args": [],
-          "optional": false,
-          "returnType": "string",
-          "typeParameters": [],
-          "line": 10,
-          "deprecated": false,
-          "deprecationMessage": ""
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core'\nimport { APP_THEME, DARK_MODE } from '../../shared/constants/app.constants'\n\n@Injectable({ providedIn: 'root' })\nexport class ThemeService {\n  isDark = false\n\n  constructor() {\n    this.loadTheme()\n  }\n\n  loadTheme(): void {\n    const theme = localStorage.getItem(APP_THEME)\n    if (theme === DARK_MODE) {\n      document.documentElement.classList.add(DARK_MODE)\n      this.isDark = true\n    } else {\n      document.documentElement.classList.remove(DARK_MODE)\n    }\n  }\n\n  setDarkMode(): boolean {\n    this.isDark = true\n    document.documentElement.classList.add(DARK_MODE)\n    localStorage.setItem(APP_THEME, DARK_MODE)\n    return this.isDark\n  }\n\n  setLightMode(): boolean {\n    this.isDark = false\n    document.documentElement.classList.remove(DARK_MODE)\n    localStorage.removeItem(APP_THEME)\n    return this.isDark\n  }\n\n  getIsDark(): boolean {\n    return this.isDark\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 6
+            },
+            "extends": [],
+            "type": "injectable"
         }
-      ],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": false,
-      "imports": [],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component } from '@angular/core'\n\n@Component({\n  selector: 'rmz-footer',\n  imports: [],\n  templateUrl: './footer.component.html',\n  styleUrl: './footer.component.scss',\n})\nexport class FooterComponent {\n  getCopyrightInformation() {\n    return 'Copyright © ' + new Date().getFullYear() + ' Rimaz Mohommed'\n  }\n}\n",
-      "styleUrl": "./footer.component.scss",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": [],
-      "templateData": "<footer>\n  <hr />\n  <h3 class=\"footer-info\">{{ getCopyrightInformation() }}</h3>\n</footer>\n"
-    },
-    {
-      "name": "HeaderComponent",
-      "id": "component-HeaderComponent-517372d6b6dd158e2cdfc3d1d49b4a0e58ee7f464c81aa77610ab046f3fbb8e29ca0fc8123b8b1cb5b132236718afc2b52afe765985c6b7ac1b278a42f1deb07",
-      "file": "src/app/core/components/header/header.component.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "rmz-header",
-      "styleUrls": [],
-      "styles": [],
-      "templateUrl": ["./header.component.html"],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [
-        {
-          "name": "isDark",
-          "defaultValue": "false",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "indexKey": "",
-          "optional": false,
-          "description": "",
-          "line": 15
-        }
-      ],
-      "methodsClass": [
-        {
-          "name": "setDarkMode",
-          "args": [],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 21,
-          "deprecated": false,
-          "deprecationMessage": ""
-        },
-        {
-          "name": "setLightMode",
-          "args": [],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 24,
-          "deprecated": false,
-          "deprecationMessage": ""
-        }
-      ],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": false,
-      "imports": [
-        {
-          "name": "MatToolbarModule",
-          "type": "module"
-        },
-        {
-          "name": "MatButtonModule",
-          "type": "module"
-        },
-        {
-          "name": "MatIconModule",
-          "type": "module"
-        },
-        {
-          "name": "NgIf"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component } from '@angular/core'\nimport { MatIconModule } from '@angular/material/icon'\nimport { MatButtonModule } from '@angular/material/button'\nimport { MatToolbarModule } from '@angular/material/toolbar'\nimport { NgIf } from '@angular/common'\nimport { ThemeService } from '../../services/theme.services'\n\n@Component({\n  selector: 'rmz-header',\n  imports: [MatToolbarModule, MatButtonModule, MatIconModule, NgIf],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss',\n})\nexport class HeaderComponent {\n  isDark = false\n\n  constructor(private themeService: ThemeService) {\n    this.isDark = this.themeService.getIsDark()\n  }\n\n  setDarkMode(): void {\n    this.isDark = this.themeService.setDarkMode()\n  }\n  setLightMode(): void {\n    this.isDark = this.themeService.setLightMode()\n  }\n}\n",
-      "styleUrl": "./header.component.scss",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [
-          {
-            "name": "themeService",
-            "type": "ThemeService",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 15,
-        "jsdoctags": [
-          {
-            "name": "themeService",
-            "type": "ThemeService",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
-      },
-      "extends": [],
-      "templateData": "<mat-toolbar class=\"sticky-toolbar\">\n  <div class=\"logo\">\n    <span class=\"mat-title\">Rimaz Mohommed</span>\n    <span class=\"mat-caption\">Full Stack Developer • DevOps Engineer</span>\n  </div>\n  <span class=\"header-spacer\"></span>\n  <button mat-icon-button aria-label=\"menu icon\">\n    <mat-icon>menu</mat-icon>\n  </button>\n  <button *ngIf=\"isDark\" mat-icon-button aria-label=\"light mode icon\" (click)=\"setLightMode()\">\n    <mat-icon>light_mode</mat-icon>\n  </button>\n  <button *ngIf=\"!isDark\" mat-icon-button aria-label=\"dark mode icon\" (click)=\"setDarkMode()\">\n    <mat-icon>dark_mode</mat-icon>\n  </button>\n</mat-toolbar>\n"
-    },
-    {
-      "name": "HeroComponent",
-      "id": "component-HeroComponent-36d905b2f8cfd2c9bfb073b724d0b353f51dac7adb716540c7b93c3d594fec6f1d38919fb4af960b6cd2eabe2c97ef5cf0c1f18d09671cb5bbe671bc3a1d827f",
-      "file": "src/app/components/hero/hero.component.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "rmz-hero",
-      "styleUrls": [],
-      "styles": [],
-      "templateUrl": ["./hero.component.html"],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": false,
-      "imports": [
-        {
-          "name": "MatCardModule",
-          "type": "module"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component } from '@angular/core'\nimport { MatCardModule } from '@angular/material/card'\n\n@Component({\n  selector: 'rmz-hero',\n  imports: [MatCardModule],\n  templateUrl: './hero.component.html',\n  styleUrl: './hero.component.scss',\n})\nexport class HeroComponent {}\n",
-      "styleUrl": "./hero.component.scss",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": [],
-      "templateData": "<mat-card class=\"hero-container mat-elevation-z4\">\n  <mat-card-content class=\"hero-content\">\n    <h1 class=\"mat-h1\">I am a full stack .NET developer specializing in Azure.</h1>\n    <h2 class=\"mat-h2\">Welcome to my blog!</h2>\n  </mat-card-content>\n</mat-card>\n"
-    },
-    {
-      "name": "HomeComponent",
-      "id": "component-HomeComponent-0e3168e109950ddd8b771a89026dc1aca21222d7dd7deaa24088943c82ad3d482b8d4bf6e8b5106dad673c42ade6edff32b2867a3ec1822cdc7ce7326f0a3c85",
-      "file": "src/app/pages/home/home.component.ts",
-      "encapsulation": [],
-      "entryComponents": [],
-      "inputs": [],
-      "outputs": [],
-      "providers": [],
-      "selector": "rmz-home",
-      "styleUrls": [],
-      "styles": [],
-      "templateUrl": ["./home.component.html"],
-      "viewProviders": [],
-      "hostDirectives": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [],
-      "deprecated": false,
-      "deprecationMessage": "",
-      "hostBindings": [],
-      "hostListeners": [],
-      "standalone": false,
-      "imports": [
-        {
-          "name": "HeroComponent",
-          "type": "component"
-        }
-      ],
-      "description": "",
-      "rawdescription": "\n",
-      "type": "component",
-      "sourceCode": "import { Component } from '@angular/core'\nimport { HeroComponent } from '../../components/hero/hero.component'\n\n@Component({\n  selector: 'rmz-home',\n  imports: [HeroComponent],\n  templateUrl: './home.component.html',\n  styleUrl: './home.component.scss',\n})\nexport class HomeComponent {}\n",
-      "styleUrl": "./home.component.scss",
-      "assetsDirs": [],
-      "styleUrlsData": "",
-      "stylesData": "",
-      "extends": [],
-      "templateData": "<rmz-hero></rmz-hero>\n"
-    }
-  ],
-  "modules": [],
-  "miscellaneous": {
-    "variables": [
-      {
-        "name": "APP_THEME",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/shared/constants/app.constants.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "string",
-        "defaultValue": "'app-theme'"
-      },
-      {
-        "name": "appConfig",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/app.config.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "ApplicationConfig",
-        "defaultValue": "{\n  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)],\n}"
-      },
-      {
-        "name": "DARK_MODE",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/shared/constants/app.constants.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "string",
-        "defaultValue": "'dark-mode'"
-      }
     ],
-    "functions": [],
-    "typealiases": [],
-    "enumerations": [],
-    "groupedVariables": {
-      "src/app/shared/constants/app.constants.ts": [
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
         {
-          "name": "APP_THEME",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/app/shared/constants/app.constants.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "defaultValue": "'app-theme'"
+            "name": "AppComponent",
+            "id": "component-AppComponent-c6e47a53ae82b31c4be026a0c12129e872e7d2c39dc6ce0c5bca2dd11b9b8999e7b2f1ae9d7a0fe255cb5c6a8a13f1842199409c628d04dd19a473850bc6ba38",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "rmz-root",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "title",
+                    "defaultValue": "'website-angular-spa'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [
+                {
+                    "name": "RouterOutlet"
+                },
+                {
+                    "name": "HomeComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "HeaderComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "FooterComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core'\nimport { RouterOutlet } from '@angular/router'\nimport { HomeComponent } from './pages/home/home.component'\nimport { HeaderComponent } from './core/components/header/header.component'\nimport { ThemeService } from './core/services/theme.services'\nimport { FooterComponent } from './core/components/footer/footer.component'\n\n@Component({\n  selector: 'rmz-root',\n  imports: [RouterOutlet, HomeComponent, HeaderComponent, FooterComponent],\n  templateUrl: './app.component.html',\n})\nexport class AppComponent {\n  title = 'website-angular-spa'\n\n  constructor(private themeService: ThemeService) {}\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "themeService",
+                        "type": "ThemeService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "themeService",
+                        "type": "ThemeService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "templateData": "<rmz-header></rmz-header>\n<rmz-home></rmz-home>\n<rmz-footer></rmz-footer>\n<router-outlet />\n"
         },
         {
-          "name": "DARK_MODE",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/app/shared/constants/app.constants.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "string",
-          "defaultValue": "'dark-mode'"
-        }
-      ],
-      "src/app/app.config.ts": [
+            "name": "FooterComponent",
+            "id": "component-FooterComponent-182c058ade67541796427fbc38582f0b0774a50b104c150fb16ccfe221bcd8a67fb23927a9ed39d90e1f19a03da2d601b065239a708f4d4a2d74cdc6c3dbd6e5",
+            "file": "src/app/core/components/footer/footer.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "rmz-footer",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./footer.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "getCopyrightInformation",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 10,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core'\n\n@Component({\n  selector: 'rmz-footer',\n  imports: [],\n  templateUrl: './footer.component.html',\n  styleUrl: './footer.component.scss',\n})\nexport class FooterComponent {\n  getCopyrightInformation() {\n    return 'Copyright © ' + new Date().getFullYear() + ' Rimaz Mohommed'\n  }\n}\n",
+            "styleUrl": "./footer.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<footer>\n  <hr />\n  <h3 class=\"footer-info\">{{ getCopyrightInformation() }}</h3>\n</footer>\n"
+        },
         {
-          "name": "appConfig",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/app/app.config.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "ApplicationConfig",
-          "defaultValue": "{\n  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)],\n}"
+            "name": "HeaderComponent",
+            "id": "component-HeaderComponent-517372d6b6dd158e2cdfc3d1d49b4a0e58ee7f464c81aa77610ab046f3fbb8e29ca0fc8123b8b1cb5b132236718afc2b52afe765985c6b7ac1b278a42f1deb07",
+            "file": "src/app/core/components/header/header.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "rmz-header",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./header.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "isDark",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "setDarkMode",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "setLightMode",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [
+                {
+                    "name": "MatToolbarModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatButtonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "MatIconModule",
+                    "type": "module"
+                },
+                {
+                    "name": "NgIf"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core'\nimport { MatIconModule } from '@angular/material/icon'\nimport { MatButtonModule } from '@angular/material/button'\nimport { MatToolbarModule } from '@angular/material/toolbar'\nimport { NgIf } from '@angular/common'\nimport { ThemeService } from '../../services/theme.services'\n\n@Component({\n  selector: 'rmz-header',\n  imports: [MatToolbarModule, MatButtonModule, MatIconModule, NgIf],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss',\n})\nexport class HeaderComponent {\n  isDark = false\n\n  constructor(private themeService: ThemeService) {\n    this.isDark = this.themeService.getIsDark()\n  }\n\n  setDarkMode(): void {\n    this.isDark = this.themeService.setDarkMode()\n  }\n  setLightMode(): void {\n    this.isDark = this.themeService.setLightMode()\n  }\n}\n",
+            "styleUrl": "./header.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "themeService",
+                        "type": "ThemeService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 15,
+                "jsdoctags": [
+                    {
+                        "name": "themeService",
+                        "type": "ThemeService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "templateData": "<mat-toolbar class=\"sticky-toolbar\">\n  <div class=\"logo\">\n    <span class=\"mat-title\">Rimaz Mohommed</span>\n    <span class=\"mat-caption\">Full Stack Developer • DevOps Engineer</span>\n  </div>\n  <span class=\"header-spacer\"></span>\n  <button mat-icon-button aria-label=\"menu icon\">\n    <mat-icon>menu</mat-icon>\n  </button>\n  <button *ngIf=\"isDark\" mat-icon-button aria-label=\"light mode icon\" (click)=\"setLightMode()\">\n    <mat-icon>light_mode</mat-icon>\n  </button>\n  <button *ngIf=\"!isDark\" mat-icon-button aria-label=\"dark mode icon\" (click)=\"setDarkMode()\">\n    <mat-icon>dark_mode</mat-icon>\n  </button>\n</mat-toolbar>\n"
+        },
+        {
+            "name": "HeroComponent",
+            "id": "component-HeroComponent-36d905b2f8cfd2c9bfb073b724d0b353f51dac7adb716540c7b93c3d594fec6f1d38919fb4af960b6cd2eabe2c97ef5cf0c1f18d09671cb5bbe671bc3a1d827f",
+            "file": "src/app/components/hero/hero.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "rmz-hero",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./hero.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [
+                {
+                    "name": "MatCardModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core'\nimport { MatCardModule } from '@angular/material/card'\n\n@Component({\n  selector: 'rmz-hero',\n  imports: [MatCardModule],\n  templateUrl: './hero.component.html',\n  styleUrl: './hero.component.scss',\n})\nexport class HeroComponent {}\n",
+            "styleUrl": "./hero.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<mat-card class=\"hero-container mat-elevation-z4\">\n  <mat-card-content class=\"hero-content\">\n    <h1 class=\"mat-h1\">I am a full stack .NET developer specializing in Azure.</h1>\n    <h2 class=\"mat-h2\">Welcome to my blog!</h2>\n  </mat-card-content>\n</mat-card>\n"
+        },
+        {
+            "name": "HomeComponent",
+            "id": "component-HomeComponent-0e3168e109950ddd8b771a89026dc1aca21222d7dd7deaa24088943c82ad3d482b8d4bf6e8b5106dad673c42ade6edff32b2867a3ec1822cdc7ce7326f0a3c85",
+            "file": "src/app/pages/home/home.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "rmz-home",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./home.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": false,
+            "imports": [
+                {
+                    "name": "HeroComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core'\nimport { HeroComponent } from '../../components/hero/hero.component'\n\n@Component({\n  selector: 'rmz-home',\n  imports: [HeroComponent],\n  templateUrl: './home.component.html',\n  styleUrl: './home.component.scss',\n})\nexport class HomeComponent {}\n",
+            "styleUrl": "./home.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<rmz-hero></rmz-hero>\n"
         }
-      ]
+    ],
+    "modules": [],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "APP_THEME",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/constants/app.constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'app-theme'"
+            },
+            {
+                "name": "appConfig",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/app.config.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ApplicationConfig",
+                "defaultValue": "{\n  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)],\n}"
+            },
+            {
+                "name": "DARK_MODE",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/constants/app.constants.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'dark-mode'"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/app/shared/constants/app.constants.ts": [
+                {
+                    "name": "APP_THEME",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/constants/app.constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'app-theme'"
+                },
+                {
+                    "name": "DARK_MODE",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/constants/app.constants.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'dark-mode'"
+                }
+            ],
+            "src/app/app.config.ts": [
+                {
+                    "name": "appConfig",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/app.config.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ApplicationConfig",
+                    "defaultValue": "{\n  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)],\n}"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
     },
-    "groupedFunctions": {},
-    "groupedEnumerations": {},
-    "groupedTypeAliases": {}
-  },
-  "routes": [],
-  "coverage": {
-    "count": 0,
-    "status": "low",
-    "files": [
-      {
-        "filePath": "src/app/app.component.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "AppComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/3",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/app.config.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "appConfig",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/components/hero/hero.component.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "HeroComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/core/components/footer/footer.component.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "FooterComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/2",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/core/components/header/header.component.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "HeaderComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/5",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/core/services/theme.services.ts",
-        "type": "injectable",
-        "linktype": "injectable",
-        "name": "ThemeService",
-        "coveragePercent": 0,
-        "coverageCount": "0/7",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/pages/home/home.component.ts",
-        "type": "component",
-        "linktype": "component",
-        "name": "HomeComponent",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/shared/constants/app.constants.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "APP_THEME",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/shared/constants/app.constants.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "DARK_MODE",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      }
-    ]
-  }
+    "routes": [],
+    "coverage": {
+        "count": 0,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.config.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "appConfig",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/hero/hero.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HeroComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/components/footer/footer.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "FooterComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/components/header/header.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HeaderComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/services/theme.services.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "ThemeService",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/home/home.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HomeComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/constants/app.constants.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "APP_THEME",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/constants/app.constants.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "DARK_MODE",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
 }
