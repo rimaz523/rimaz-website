@@ -1,8 +1,10 @@
 <mat-toolbar class="sticky-toolbar">
-  <div class="logo">
-    <span class="mat-title">Rimaz Mohommed</span>
-    <span class="mat-caption">Full Stack Developer • DevOps Engineer</span>
-  </div>
+  <a class="logo-link" [routerLink]="ROUTER_TOKENS.HOME">
+    <div class="logo">
+      <span class="mat-title">Rimaz Mohommed</span>
+      <span class="mat-caption">Full Stack Developer • DevOps Engineer</span>
+    </div>
+  </a>
   <span class="header-spacer"></span>
   <button mat-icon-button aria-label="menu icon">
     <mat-icon>menu</mat-icon>

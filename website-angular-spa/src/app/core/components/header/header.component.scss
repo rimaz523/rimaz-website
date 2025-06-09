@@ -7,6 +7,12 @@ mat-toolbar {
       container-text-color: #ffffff,
     )
   );
+  a.logo-link {
+    text-decoration: none;
+  }
+  :visited {
+    color: inherit;
+  }
 }
 
 mat-icon {
