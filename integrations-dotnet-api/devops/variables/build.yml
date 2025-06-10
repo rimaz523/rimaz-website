@@ -2,4 +2,4 @@ variables:
 - name: buildConfiguration
   value: Release
 - name: buildVmImage
-  value: windows-latest
+  value: windows-2025
