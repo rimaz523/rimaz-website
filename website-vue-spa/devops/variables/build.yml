@@ -1,5 +1,5 @@
 variables:
   - name: buildVmImage
-    value: windows-latest
+    value: windows-2025
   - name: nodeVersion
     value: 20.11.1
