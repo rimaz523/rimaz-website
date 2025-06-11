@@ -1,8 +1,8 @@
 import { Component } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
-import { HeaderComponent } from './core/components/header/header.component'
-import { ThemeService } from './core/services/theme.services'
-import { FooterComponent } from './core/components/footer/footer.component'
+import { HeaderComponent } from '@core/components/header/header.component'
+import { ThemeService } from '@core/services/theme.services'
+import { FooterComponent } from '@core/components/footer/footer.component'
 
 @Component({
   selector: 'rmz-root',
