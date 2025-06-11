@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { APP_THEME, DARK_MODE } from '../../shared/constants/app.constants'
+import { APP_THEME, DARK_MODE } from '@shared/constants/app.constants'
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
