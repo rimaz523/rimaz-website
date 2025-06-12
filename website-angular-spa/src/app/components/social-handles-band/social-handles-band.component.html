@@ -1,0 +1,8 @@
+<div class="social-handles-section">
+  <mat-divider></mat-divider>
+  <div class="handles">
+    <rmz-social-handle
+      *ngFor="let socialHandle of getOrderedSocialHandles()"
+      [socialHandle]="socialHandle"></rmz-social-handle>
+  </div>
+</div>
