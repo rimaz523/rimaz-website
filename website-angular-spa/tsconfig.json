@@ -24,7 +24,8 @@
       "@core/services/*": ["app/core/services/*"],
       "@pages/*": ["app/pages/*"],
       "@shared/constants/*": ["app/shared/constants/*"],
-      "@shared/scss/*": ["app/shared/scss/*"]
+      "@shared/scss/*": ["app/shared/scss/*"],
+      "@models/*": ["app/models/*"]
     }
   },
   "angularCompilerOptions": {

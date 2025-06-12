@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { SocialHandlesComponent } from './social-handles.component'
+import { SocialHandleComponent } from './social-handle.component'
 
-describe('SocialHandlesComponent', () => {
-  let component: SocialHandlesComponent
-  let fixture: ComponentFixture<SocialHandlesComponent>
+describe('SocialHandleComponent', () => {
+  let component: SocialHandleComponent
+  let fixture: ComponentFixture<SocialHandleComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SocialHandlesComponent],
+      imports: [SocialHandleComponent],
     }).compileComponents()
 
-    fixture = TestBed.createComponent(SocialHandlesComponent)
+    fixture = TestBed.createComponent(SocialHandleComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })
