@@ -1,5 +1,7 @@
-import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular'
+import { applicationConfig, componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular'
 import { HeaderComponent } from './header.component'
+import { provideRouter } from '@angular/router'
+import { routes } from '../../../app.routes'
 
 const meta: Meta<HeaderComponent> = {
   title: 'Core/Header',
@@ -11,6 +13,9 @@ const meta: Meta<HeaderComponent> = {
       story =>
         `<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />${story}`,
     ),
+    applicationConfig({
+      providers: [provideRouter(routes)],
+    }),
   ],
 }
 
