@@ -12,29 +12,6 @@ import { ISocialHandle } from '@models/social-handle.model'
 export class SocialHandleComponent {
   @Input() socialHandle!: ISocialHandle
 
-  getIconByName(name: string): string {
-    let icon = ''
-    switch (name) {
-      case 'Github':
-        icon = 'github'
-        break
-      case 'Medium':
-        icon = 'medium'
-        break
-      case 'Linkedin':
-        icon = 'linkedin'
-        break
-      case 'Stackoverflow':
-        icon = 'stack-overflow'
-        break
-      case 'Twitter':
-        icon = 'twitter-x'
-        break
-    }
-
-    return icon
-  }
-
   openLinkInNewTab(url: string) {
     window.open(url, '_blank')
   }
