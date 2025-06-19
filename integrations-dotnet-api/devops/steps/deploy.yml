@@ -2,7 +2,7 @@ steps:
   - download: current
     artifact: drop
 
-  - task: AzureFileCopy@4
+  - task: AzureFileCopy@6
     displayName: Copy swagger json definition to az storage
     inputs:
       sourcePath: '$(Pipeline.Workspace)/drop/swagger.json'
