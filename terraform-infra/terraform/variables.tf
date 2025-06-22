@@ -342,7 +342,7 @@ variable "apis" {
       whitelist_frontend_webapp_domain         = "#{apim_policy_whitelist_frontend_webapp_domain}#"
       whitelist_frontend_webapp_domain_www     = "#{apim_policy_whitelist_frontend_webapp_domain_www}#"
       whitelist_localhost_domain_angular       = "http://localhost:4200/"
-      whitelist_frontend_webapp_domain_angular = "#{apim_policy_whitelist_frontend_webapp_domain}#"
+      whitelist_frontend_webapp_domain_angular = "#{apim_policy_whitelist_frontend_webapp_domain_angular}#"
     }
   }
 }
