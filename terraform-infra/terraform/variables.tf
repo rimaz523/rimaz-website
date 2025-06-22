@@ -318,27 +318,31 @@ variable "apims" {
 variable "apis" {
   description = "create APIs"
   type = map(object({
-    api_revision                            = string
-    path                                    = string
-    service_url                             = string
-    azure_storage_container_url_for_swagger = string
-    swagger_file_name                       = string
-    swagger_format                          = string
-    whitelist_localhost_domain              = string
-    whitelist_frontend_webapp_domain        = string
-    whitelist_frontend_webapp_domain_www    = string
+    api_revision                             = string
+    path                                     = string
+    service_url                              = string
+    azure_storage_container_url_for_swagger  = string
+    swagger_file_name                        = string
+    swagger_format                           = string
+    whitelist_localhost_domain               = string
+    whitelist_frontend_webapp_domain         = string
+    whitelist_frontend_webapp_domain_www     = string
+    whitelist_localhost_domain_angular       = string
+    whitelist_frontend_webapp_domain_angular = string
   }))
   default = {
     "Backend" = {
-      api_revision                            = "v1"
-      path                                    = "v1"
-      service_url                             = "#{api_domain_url}#"
-      azure_storage_container_url_for_swagger = "#{az_storage_container_url_for_swagger}#"
-      swagger_file_name                       = "swagger.json"
-      swagger_format                          = "openapi+json-link"
-      whitelist_localhost_domain              = "http://localhost:3000/"
-      whitelist_frontend_webapp_domain        = "#{apim_policy_whitelist_frontend_webapp_domain}#"
-      whitelist_frontend_webapp_domain_www    = "#{apim_policy_whitelist_frontend_webapp_domain_www}#"
+      api_revision                             = "v1"
+      path                                     = "v1"
+      service_url                              = "#{api_domain_url}#"
+      azure_storage_container_url_for_swagger  = "#{az_storage_container_url_for_swagger}#"
+      swagger_file_name                        = "swagger.json"
+      swagger_format                           = "openapi+json-link"
+      whitelist_localhost_domain               = "http://localhost:3000/"
+      whitelist_frontend_webapp_domain         = "#{apim_policy_whitelist_frontend_webapp_domain}#"
+      whitelist_frontend_webapp_domain_www     = "#{apim_policy_whitelist_frontend_webapp_domain_www}#"
+      whitelist_localhost_domain_angular       = "http://localhost:4200/"
+      whitelist_frontend_webapp_domain_angular = "#{apim_policy_whitelist_frontend_webapp_domain}#"
     }
   }
 }
