@@ -2,14 +2,13 @@ import { Component } from '@angular/core'
 import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { MatToolbarModule } from '@angular/material/toolbar'
-import { NgIf } from '@angular/common'
 import { ThemeService } from '@core/services/theme.services'
 import { RouterLink } from '@angular/router'
 import { ROUTER_TOKENS } from '../../../app.routes'
 
 @Component({
   selector: 'rmz-header',
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, NgIf, RouterLink],
+  imports: [MatToolbarModule, MatButtonModule, MatIconModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
