@@ -3,12 +3,12 @@
     "interfaces": [
         {
             "name": "ISocialHandle",
-            "id": "interface-ISocialHandle-eb1511fb16c9eea9c0a7c8f24ce1fb5354ae3a0d77bf20155df79fa8d2150011a275951935be63e816f3c5825070d6b9e7a12bfbc727262a38483ee162d178bd",
+            "id": "interface-ISocialHandle-f092a6ebdc40828ee053e0fc6a6aa96a8b249e031f4c9d069d14a4267f7df824e2ad469308e7b7f9957cbfbd45707e713e6c782edbf05a4ec9d6d4a3c4d4cbc2",
             "file": "src/app/models/social-handle.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "export interface ISocialHandle {\r\n  name: string\r\n  url: string\r\n  displayOrder: number\r\n}\r\n",
+            "sourceCode": "export interface ISocialHandle {\n  name: string\n  url: string\n  displayOrder: number\n}\n",
             "properties": [
                 {
                     "name": "displayOrder",
@@ -50,7 +50,7 @@
     "injectables": [
         {
             "name": "IconService",
-            "id": "injectable-IconService-4b6a77d4c99f841794f031a9a9cb09b10221f007772d486552dfbaf85676ea0d06da4e3b3f0e28a0451d5cf1504bfb440ba456626522e7d581725a9afd8382d2",
+            "id": "injectable-IconService-f9b663b8116f16cfa195b34cbda5783e02c3ab7911a2c74c42bf24d1e198820d324b600f7236ae704844871220d61437c56212dd33c0b17aba9f41b78d5351cf",
             "file": "src/app/core/services/icon.service.ts",
             "properties": [],
             "methods": [
@@ -60,7 +60,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 14,
+                    "line": 15,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -69,7 +69,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core'\nimport { MatIconRegistry } from '@angular/material/icon'\nimport { DomSanitizer } from '@angular/platform-browser'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class IconService {\n  constructor(\n    private matIconRegistry: MatIconRegistry,\n    private domSanitizer: DomSanitizer,\n  ) {}\n\n  init() {\n    this.matIconRegistry.addSvgIcon(\n      'medium',\n      this.domSanitizer.bypassSecurityTrustResourceUrl('custom-icons/medium.svg'),\n    )\n    this.matIconRegistry.addSvgIcon(\n      'stack-overflow',\n      this.domSanitizer.bypassSecurityTrustResourceUrl('custom-icons/stack-overflow.svg'),\n    )\n    this.matIconRegistry.addSvgIcon(\n      'twitter-x',\n      this.domSanitizer.bypassSecurityTrustResourceUrl('custom-icons/twitter-x.svg'),\n    )\n    this.matIconRegistry.addSvgIcon(\n      'linkedin',\n      this.domSanitizer.bypassSecurityTrustResourceUrl('custom-icons/linkedin.svg'),\n    )\n    this.matIconRegistry.addSvgIcon(\n      'github',\n      this.domSanitizer.bypassSecurityTrustResourceUrl('custom-icons/github.svg'),\n    )\n  }\n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core'\nimport { MatIconRegistry } from '@angular/material/icon'\nimport { DomSanitizer } from '@angular/platform-browser'\nimport { IconNames, IconResourceUrls } from '@shared/constants/app.constants'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class IconService {\n  constructor(\n    private matIconRegistry: MatIconRegistry,\n    private domSanitizer: DomSanitizer,\n  ) {}\n\n  init() {\n    this.matIconRegistry.addSvgIcon(\n      IconNames.Medium,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.Medium),\n    )\n    this.matIconRegistry.addSvgIcon(\n      IconNames.StackOverflow,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.StackOverflow),\n    )\n    this.matIconRegistry.addSvgIcon(\n      IconNames.TwitterX,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.TwitterX),\n    )\n    this.matIconRegistry.addSvgIcon(\n      IconNames.Linkedin,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.Linkedin),\n    )\n    this.matIconRegistry.addSvgIcon(\n      IconNames.Github,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.Github),\n    )\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -89,7 +89,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 8,
+                "line": 9,
                 "jsdoctags": [
                     {
                         "name": "matIconRegistry",
@@ -111,6 +111,49 @@
                     }
                 ]
             },
+            "extends": [],
+            "type": "injectable"
+        },
+        {
+            "name": "SocialHandlesService",
+            "id": "injectable-SocialHandlesService-b26aac1cc00d0e77ead59ce6b16ff1057dca4d9383f357b06cbbfd1cf06523977004a2dd7c63acd951767304e34de95fd12dc965ee2928a77db9b967fc3d0625",
+            "file": "src/app/components/social-handles-band/social-handles.service.ts",
+            "properties": [
+                {
+                    "name": "http",
+                    "defaultValue": "inject(HttpClient)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "socialHandles$",
+                    "defaultValue": "this.http.get<ISocialHandle[]>(\n    'https://rimaz-dev-backend-apim.azure-api.net/v1/api/socialhandles',\n    {\n      headers: {\n        'ocp-apim-subscription-key': 'f7c3ca94b5b94e6ab7bec64a983c3fb9',\n      },\n    },\n  )",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        148
+                    ]
+                }
+            ],
+            "methods": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { inject, Injectable } from '@angular/core'\nimport { ISocialHandle } from '@models/social-handle.model'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class SocialHandlesService {\n  private http = inject(HttpClient)\n  readonly socialHandles$ = this.http.get<ISocialHandle[]>(\n    'https://rimaz-dev-backend-apim.azure-api.net/v1/api/socialhandles',\n    {\n      headers: {\n        'ocp-apim-subscription-key': 'f7c3ca94b5b94e6ab7bec64a983c3fb9',\n      },\n    },\n  )\n}\n",
             "extends": [],
             "type": "injectable"
         },
@@ -511,7 +554,7 @@
         },
         {
             "name": "HomeComponent",
-            "id": "component-HomeComponent-bb499e25c4f71ad7ce3183e308b16b4001d0bdc97b4618d1f869d29925933f03bcb262e8a244311694f773b959a0b8340781a6af995acd8a1c6c159b3846ae24",
+            "id": "component-HomeComponent-8350a5f1a6cbbff6406c37aa53533ebe282f6ed9b14868275ae55906bacf20f0fbf0c7f473b1083daf939d23ab679b00cfce86dc24bfd2b69d7b19279c56f6ef",
             "file": "src/app/pages/home/home.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -548,13 +591,13 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core'\r\nimport { HeroComponent } from '@components/hero/hero.component'\r\nimport { SocialHandlesBandComponent } from '@components/social-handles-band/social-handles-band.component'\r\n\r\n@Component({\r\n  selector: 'rmz-home',\r\n  imports: [HeroComponent, SocialHandlesBandComponent],\r\n  templateUrl: './home.component.html',\r\n  styleUrl: './home.component.scss',\r\n})\r\nexport class HomeComponent {}\r\n",
+            "sourceCode": "import { Component } from '@angular/core'\nimport { HeroComponent } from '@components/hero/hero.component'\nimport { SocialHandlesBandComponent } from '@components/social-handles-band/social-handles-band.component'\n\n@Component({\n  selector: 'rmz-home',\n  imports: [HeroComponent, SocialHandlesBandComponent],\n  templateUrl: './home.component.html',\n  styleUrl: './home.component.scss',\n})\nexport class HomeComponent {}\n",
             "styleUrl": "./home.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<rmz-hero></rmz-hero>\r\n<rmz-social-handles-band></rmz-social-handles-band>\r\n"
+            "templateData": "<rmz-hero></rmz-hero>\n<rmz-social-handles-band></rmz-social-handles-band>\n"
         },
         {
             "name": "PageNotFoundComponent",
@@ -623,7 +666,7 @@
         },
         {
             "name": "SocialHandleComponent",
-            "id": "component-SocialHandleComponent-1b84d59aa0c873bbcf072d862e3d9f5734edb78a2e7c483c4896f494da46412e205521dadf22640403970ba12bdfc2a0de282cf7f5f1042228835a5a4d5107c2",
+            "id": "component-SocialHandleComponent-fca5cac67874edd3b69fdcf42c95389dcc971fae627fbdb34d9cdbf90f51b1ab1aa03afb5ffd7675fd1a6714cdac1f7207eb6a34dc6a2230c78ccc0a3f060618",
             "file": "src/app/components/social-handle/social-handle.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -652,34 +695,6 @@
             "propertiesClass": [],
             "methodsClass": [
                 {
-                    "name": "getIconByName",
-                    "args": [
-                        {
-                            "name": "name",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "string",
-                    "typeParameters": [],
-                    "line": 15,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "name",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
                     "name": "openLinkInNewTab",
                     "args": [
                         {
@@ -692,7 +707,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 38,
+                    "line": 15,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -726,17 +741,17 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core'\r\nimport { MatButtonModule } from '@angular/material/button'\r\nimport { MatIconModule } from '@angular/material/icon'\r\nimport { ISocialHandle } from '@models/social-handle.model'\r\n\r\n@Component({\r\n  selector: 'rmz-social-handle',\r\n  imports: [MatIconModule, MatButtonModule],\r\n  templateUrl: './social-handle.component.html',\r\n  styleUrl: './social-handle.component.scss',\r\n})\r\nexport class SocialHandleComponent {\r\n  @Input() socialHandle!: ISocialHandle\r\n\r\n  getIconByName(name: string): string {\r\n    let icon = ''\r\n    switch (name) {\r\n      case 'Github':\r\n        icon = 'github'\r\n        break\r\n      case 'Medium':\r\n        icon = 'medium'\r\n        break\r\n      case 'Linkedin':\r\n        icon = 'linkedin'\r\n        break\r\n      case 'Stackoverflow':\r\n        icon = 'stack-overflow'\r\n        break\r\n      case 'Twitter':\r\n        icon = 'twitter-x'\r\n        break\r\n    }\r\n\r\n    return icon\r\n  }\r\n\r\n  openLinkInNewTab(url: string) {\r\n    window.open(url, '_blank')\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input } from '@angular/core'\nimport { MatButtonModule } from '@angular/material/button'\nimport { MatIconModule } from '@angular/material/icon'\nimport { ISocialHandle } from '@models/social-handle.model'\n\n@Component({\n  selector: 'rmz-social-handle',\n  imports: [MatIconModule, MatButtonModule],\n  templateUrl: './social-handle.component.html',\n  styleUrl: './social-handle.component.scss',\n})\nexport class SocialHandleComponent {\n  @Input() socialHandle!: ISocialHandle\n\n  openLinkInNewTab(url: string) {\n    window.open(url, '_blank')\n  }\n}\n",
             "styleUrl": "./social-handle.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"handle\">\r\n  <button mat-fab (click)=\"openLinkInNewTab(socialHandle.url)\">\r\n    <mat-icon [svgIcon]=\"getIconByName(socialHandle.name)\"></mat-icon>\r\n  </button>\r\n</div>\r\n"
+            "templateData": "<div class=\"handle\">\n  <button mat-fab (click)=\"openLinkInNewTab(socialHandle.url)\">\n    <mat-icon [svgIcon]=\"socialHandle.name\"></mat-icon>\n  </button>\n</div>\n"
         },
         {
             "name": "SocialHandlesBandComponent",
-            "id": "component-SocialHandlesBandComponent-043f03bacc85ca8bd324b9d09c9745edff114112cc813a50fc96278982fdca7fe1b532ec03a742ef415835fbe1e40dc70a51af3545bd479fc57812dd624420be",
+            "id": "component-SocialHandlesBandComponent-a2148f4b7cbbae02204f3b47c540c9ce795c496349741b765e8aae1c21eb20790c657ab986106d727ed461aee3b3079e4b159a988b23ac80a683d263b84d6107",
             "file": "src/app/components/social-handles-band/social-handles-band.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -755,28 +770,35 @@
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "socialHandles",
+                    "name": "socialHandles$",
+                    "defaultValue": "this.socialHandlesService.socialHandles$.pipe(shareReplay(1))",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "ISocialHandle[]",
+                    "type": "",
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 15
-                }
-            ],
-            "methodsClass": [
+                    "line": 17,
+                    "modifierKind": [
+                        148
+                    ]
+                },
                 {
-                    "name": "getOrderedSocialHandles",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "ISocialHandle[]",
-                    "typeParameters": [],
-                    "line": 47,
+                    "name": "socialHandlesService",
+                    "defaultValue": "inject(SocialHandlesService)",
                     "deprecated": false,
-                    "deprecationMessage": ""
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16,
+                    "modifierKind": [
+                        123
+                    ]
                 }
             ],
+            "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -796,27 +818,20 @@
                     "type": "component"
                 },
                 {
-                    "name": "NgFor"
+                    "name": "AsyncPipe",
+                    "type": "pipe"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core'\r\nimport { MatDividerModule } from '@angular/material/divider'\r\nimport { MatIconModule } from '@angular/material/icon'\r\nimport { SocialHandleComponent } from '../social-handle/social-handle.component'\r\nimport { ISocialHandle } from '@models/social-handle.model'\r\nimport { NgFor } from '@angular/common'\r\n\r\n@Component({\r\n  selector: 'rmz-social-handles-band',\r\n  imports: [MatDividerModule, MatIconModule, SocialHandleComponent, NgFor],\r\n  templateUrl: './social-handles-band.component.html',\r\n  styleUrl: './social-handles-band.component.scss',\r\n})\r\nexport class SocialHandlesBandComponent {\r\n  socialHandles: ISocialHandle[]\r\n\r\n  constructor() {\r\n    this.socialHandles = [\r\n      {\r\n        name: 'Github',\r\n        url: 'https://github.com/rimaz523',\r\n        displayOrder: 1,\r\n      },\r\n      {\r\n        name: 'Medium',\r\n        url: 'https://rimazmohommed523.medium.com',\r\n        displayOrder: 2,\r\n      },\r\n      {\r\n        name: 'Linkedin',\r\n        url: 'https://www.linkedin.com/in/rimazmohommed',\r\n        displayOrder: 3,\r\n      },\r\n      {\r\n        name: 'Stackoverflow',\r\n        url: 'https://stackoverflow.com/users/4546132/rimaz-mohommed',\r\n        displayOrder: 4,\r\n      },\r\n      {\r\n        name: 'Twitter',\r\n        url: 'https://twitter.com/rimaz_mohommed',\r\n        displayOrder: 5,\r\n      },\r\n    ]\r\n  }\r\n\r\n  getOrderedSocialHandles(): ISocialHandle[] {\r\n    return this.socialHandles.sort((a, b) => a.displayOrder - b.displayOrder)\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, inject } from '@angular/core'\nimport { MatDividerModule } from '@angular/material/divider'\nimport { MatIconModule } from '@angular/material/icon'\nimport { SocialHandleComponent } from '@components/social-handle/social-handle.component'\nimport { AsyncPipe } from '@angular/common'\nimport { SocialHandlesService } from '@components/social-handles-band/social-handles.service'\nimport { shareReplay } from 'rxjs'\n\n@Component({\n  selector: 'rmz-social-handles-band',\n  imports: [MatDividerModule, MatIconModule, SocialHandleComponent, AsyncPipe],\n  templateUrl: './social-handles-band.component.html',\n  styleUrl: './social-handles-band.component.scss',\n})\nexport class SocialHandlesBandComponent {\n  private socialHandlesService = inject(SocialHandlesService)\n  readonly socialHandles$ = this.socialHandlesService.socialHandles$.pipe(shareReplay(1))\n}\n",
             "styleUrl": "./social-handles-band.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 15
-            },
             "extends": [],
-            "templateData": "<div class=\"social-handles-section\">\r\n  <mat-divider></mat-divider>\r\n  <div class=\"handles\">\r\n    <rmz-social-handle\r\n      *ngFor=\"let socialHandle of getOrderedSocialHandles()\"\r\n      [socialHandle]=\"socialHandle\"></rmz-social-handle>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"social-handles-section\">\n  <mat-divider></mat-divider>\n  <div class=\"handles\">\n    @for (socialHandle of socialHandles$ | async; track socialHandle.name) {\n      <rmz-social-handle [socialHandle]=\"socialHandle\"></rmz-social-handle>\n    }\n  </div>\n</div>\n"
         }
     ],
     "modules": [],
@@ -856,6 +871,88 @@
         "functions": [],
         "typealiases": [],
         "enumerations": [
+            {
+                "name": "IconNames",
+                "childs": [
+                    {
+                        "name": "Github",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "Github"
+                    },
+                    {
+                        "name": "Medium",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "Medium"
+                    },
+                    {
+                        "name": "Linkedin",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "Linkedin"
+                    },
+                    {
+                        "name": "StackOverflow",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "Stackoverflow"
+                    },
+                    {
+                        "name": "TwitterX",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "Twitter"
+                    }
+                ],
+                "ctype": "miscellaneous",
+                "subtype": "enum",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "file": "src/app/shared/constants/app.constants.ts"
+            },
+            {
+                "name": "IconResourceUrls",
+                "childs": [
+                    {
+                        "name": "Github",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "custom-icons/github.svg"
+                    },
+                    {
+                        "name": "Medium",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "custom-icons/medium.svg"
+                    },
+                    {
+                        "name": "Linkedin",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "custom-icons/linkedin.svg"
+                    },
+                    {
+                        "name": "StackOverflow",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "custom-icons/stack-overflow.svg"
+                    },
+                    {
+                        "name": "TwitterX",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "value": "custom-icons/twitter-x.svg"
+                    }
+                ],
+                "ctype": "miscellaneous",
+                "subtype": "enum",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "file": "src/app/shared/constants/app.constants.ts"
+            },
             {
                 "name": "ROUTER_TOKENS",
                 "childs": [
@@ -918,6 +1015,90 @@
         },
         "groupedFunctions": {},
         "groupedEnumerations": {
+            "src/app/shared/constants/app.constants.ts": [
+                {
+                    "name": "IconNames",
+                    "childs": [
+                        {
+                            "name": "Github",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "Github"
+                        },
+                        {
+                            "name": "Medium",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "Medium"
+                        },
+                        {
+                            "name": "Linkedin",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "Linkedin"
+                        },
+                        {
+                            "name": "StackOverflow",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "Stackoverflow"
+                        },
+                        {
+                            "name": "TwitterX",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "Twitter"
+                        }
+                    ],
+                    "ctype": "miscellaneous",
+                    "subtype": "enum",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "file": "src/app/shared/constants/app.constants.ts"
+                },
+                {
+                    "name": "IconResourceUrls",
+                    "childs": [
+                        {
+                            "name": "Github",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "custom-icons/github.svg"
+                        },
+                        {
+                            "name": "Medium",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "custom-icons/medium.svg"
+                        },
+                        {
+                            "name": "Linkedin",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "custom-icons/linkedin.svg"
+                        },
+                        {
+                            "name": "StackOverflow",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "custom-icons/stack-overflow.svg"
+                        },
+                        {
+                            "name": "TwitterX",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "value": "custom-icons/twitter-x.svg"
+                        }
+                    ],
+                    "ctype": "miscellaneous",
+                    "subtype": "enum",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "file": "src/app/shared/constants/app.constants.ts"
+                }
+            ],
             "src/app/app.routes.ts": [
                 {
                     "name": "ROUTER_TOKENS",
@@ -985,7 +1166,7 @@
                 "linktype": "component",
                 "name": "SocialHandleComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -994,7 +1175,16 @@
                 "linktype": "component",
                 "name": "SocialHandlesBandComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/social-handles-band/social-handles.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "SocialHandlesService",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {

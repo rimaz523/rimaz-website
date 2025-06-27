@@ -1,7 +1,7 @@
 <div class="social-handles-section">
   <mat-divider></mat-divider>
   <div class="handles">
-    @for (socialHandle of socialHandles$ | async; track socialHandle.name) {
+    @for (socialHandle of socialHandles(); track socialHandle.name) {
       <rmz-social-handle [socialHandle]="socialHandle"></rmz-social-handle>
     }
   </div>

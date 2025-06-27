@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing'
 
-import { SocialHandlesService } from './social-handles-band/social-handles.service'
+import { SocialHandlesService } from '@components/social-handles-band/social-handles.service'
 
 describe('SocialHandlesBandService', () => {
   let service: SocialHandlesService
