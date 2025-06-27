@@ -4,5 +4,8 @@
     @for (socialHandle of socialHandles(); track socialHandle.name) {
       <rmz-social-handle [socialHandle]="socialHandle"></rmz-social-handle>
     }
+    @if (socialHandlesApiError()?.statusCode) {
+      <span>{{ socialHandlesApiError()?.message }}</span>
+    }
   </div>
 </div>
