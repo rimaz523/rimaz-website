@@ -13,4 +13,5 @@ import { SocialHandlesService } from '@components/social-handles-band/social-han
 export class SocialHandlesBandComponent {
   private socialHandlesService = inject(SocialHandlesService)
   readonly socialHandles = this.socialHandlesService.socialHandles
+  readonly socialHandlesApiError = this.socialHandlesService.socialHandlesError
 }
