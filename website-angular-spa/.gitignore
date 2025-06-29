@@ -42,3 +42,7 @@ testem.log
 Thumbs.db
 
 *storybook.log
+
+# Do not commit environment vars
+/src/environments/environment.development.ts
+/src/environments/environment.ts

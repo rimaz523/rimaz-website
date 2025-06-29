@@ -5,6 +5,17 @@ steps:
     displayName: 'Install Node.js'
   - script: 'npm install -g @angular/cli'
     displayName: 'Install Angular Cli'
+  - task: DownloadSecureFile@1
+    displayName: 'Download Env variables for production'
+    inputs:
+      secureFile: 'environment.ts'
+  - task: CopyFiles@2
+    displayName: 'Copy .env vars file to project root'
+    inputs:
+      sourceFolder: '$(Agent.TempDirectory)'
+      contents: '**/environment.ts'
+      targetFolder: 'website-angular-spa/src/environments/'
+      cleanTargetFolder: false
   - script: 'cd website-angular-spa && npm install'
     displayName: 'Initialize project'
   - script: |
