@@ -5,6 +5,7 @@ import { toSignal } from '@angular/core/rxjs-interop'
 import { catchError, map, of, shareReplay } from 'rxjs'
 import { Result } from '@models/result.model'
 import { ErrorService } from '@core/services/error.service'
+import { environment } from 'environments/environment'
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +15,9 @@ export class SocialHandlesService {
   private errorService = inject(ErrorService)
 
   private readonly socialHandles$ = this.http
-    .get<ISocialHandle[]>('https://rimaz-dev-backend-apim.azure-api.net/v1/api/socialhandles', {
+    .get<ISocialHandle[]>(environment.Integrations_Apim_Url + 'socialhandles', {
       headers: {
-        'ocp-apim-subscription-key': 'f7c3ca94b5b94e6ab7bec64a983c3fb9',
+        'ocp-apim-subscription-key': environment.Integrations_Apim_Subscription_Key,
       },
     })
     .pipe(
