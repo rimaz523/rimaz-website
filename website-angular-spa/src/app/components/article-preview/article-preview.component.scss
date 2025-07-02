@@ -1,7 +1,17 @@
-.example-card {
+.selectable-card {
   max-width: 400px;
   height: 500px;
   margin: 10px;
+
+  cursor: pointer;
+  transition:
+    box-shadow 0.3s,
+    transform 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
 
   .card-content {
     margin-top: 15px;
