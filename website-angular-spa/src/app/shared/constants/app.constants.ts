@@ -15,3 +15,12 @@ export const enum IconResourceUrls {
   StackOverflow = 'custom-icons/stack-overflow.svg',
   TwitterX = 'custom-icons/twitter-x.svg',
 }
+
+export const enum ErrorMessages {
+  Unknown_Error = 'An unknown error occurred.',
+}
+
+export const enum ApiRoutes {
+  socialHandles = 'socialhandles',
+  articlePreviews = 'blogPreviews',
+}

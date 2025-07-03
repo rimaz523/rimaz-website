@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
 import { IArticle } from '@models/article.model'
+import { environment } from 'environments/environment'
 
 @Component({
   selector: 'rmz-article-preview',
@@ -11,6 +12,8 @@ import { IArticle } from '@models/article.model'
 })
 export class ArticlePreviewComponent {
   @Input() article!: IArticle
+
+  public Cdn_Url: string = environment.Cdn_Url
 
   openLinkInNewTab(url: string) {
     window.open(url, '_blank')

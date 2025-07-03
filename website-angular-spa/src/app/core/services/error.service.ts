@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { ErrorModel } from '@models/error.model'
+import { ErrorMessages } from '@shared/constants/app.constants'
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { ErrorModel } from '@models/error.model'
 export class ErrorService {
   getErrorModel(genericError: unknown): ErrorModel {
     const error: ErrorModel = {
-      message: 'An unknown error occurred.',
+      message: ErrorMessages.Unknown_Error,
       statusCode: undefined,
     }
 
