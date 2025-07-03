@@ -1,9 +1,5 @@
 <mat-card class="selectable-card" appearance="outlined" (click)="openLinkInNewTab(article.url)">
-  <img
-    class="card-image"
-    mat-card-image
-    [src]="'https://cdn.rimaz.dev/' + article.image"
-    [alt]="article.title" />
+  <img class="card-image" mat-card-image [src]="Cdn_Url + article.image" [alt]="article.title" />
 
   <mat-card-header>
     <mat-card-title>

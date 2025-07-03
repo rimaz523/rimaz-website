@@ -6,6 +6,7 @@ import { Result } from '@models/result.model'
 import { ErrorService } from '@core/services/error.service'
 import { environment } from 'environments/environment'
 import { IArticle } from '@models/article.model'
+import { ApiRoutes } from '@shared/constants/app.constants'
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class ArticlePreviewService {
   private errorService = inject(ErrorService)
 
   private readonly articlePreviewList$ = this.http
-    .get<IArticle[]>(environment.Integrations_Apim_Url + 'blogPreviews?limit=4', {
+    .get<IArticle[]>(`${environment.Integrations_Apim_Url}${ApiRoutes.articlePreviews}?limit=4`, {
       headers: {
         'ocp-apim-subscription-key': environment.Integrations_Apim_Subscription_Key,
       },
