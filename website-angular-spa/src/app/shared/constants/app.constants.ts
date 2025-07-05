@@ -20,6 +20,10 @@ export const enum ErrorMessages {
   Unknown_Error = 'An unknown error occurred.',
 }
 
+export const enum HttpRequestHeaders {
+  apimSubscriptionKey = 'ocp-apim-subscription-key',
+}
+
 export const enum ApiRoutes {
   socialHandles = 'socialhandles',
   articlePreviews = 'blogPreviews',

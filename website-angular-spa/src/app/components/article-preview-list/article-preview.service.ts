@@ -16,11 +16,7 @@ export class ArticlePreviewService {
   private errorService = inject(ErrorService)
 
   private readonly articlePreviewList$ = this.http
-    .get<IArticle[]>(`${environment.Integrations_Apim_Url}${ApiRoutes.articlePreviews}?limit=4`, {
-      headers: {
-        'ocp-apim-subscription-key': environment.Integrations_Apim_Subscription_Key,
-      },
-    })
+    .get<IArticle[]>(`${environment.Integrations_Apim_Url}${ApiRoutes.articlePreviews}?limit=4`)
     .pipe(
       map(data => ({ data: data, error: undefined }) as Result<IArticle[]>),
       shareReplay(1),
