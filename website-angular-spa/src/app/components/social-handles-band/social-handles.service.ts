@@ -16,11 +16,7 @@ export class SocialHandlesService {
   private errorService = inject(ErrorService)
 
   private readonly socialHandles$ = this.http
-    .get<ISocialHandle[]>(`${environment.Integrations_Apim_Url}${ApiRoutes.socialHandles}`, {
-      headers: {
-        'ocp-apim-subscription-key': environment.Integrations_Apim_Subscription_Key,
-      },
-    })
+    .get<ISocialHandle[]>(`${environment.Integrations_Apim_Url}${ApiRoutes.socialHandles}`)
     .pipe(
       map(data => ({ data: data, error: undefined }) as Result<ISocialHandle[]>),
       shareReplay(1),
