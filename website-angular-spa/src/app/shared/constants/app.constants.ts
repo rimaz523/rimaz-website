@@ -28,3 +28,8 @@ export const enum ApiRoutes {
   socialHandles = 'socialhandles',
   articlePreviews = 'blogPreviews',
 }
+
+export const enum CdnRoutes {
+  heroImageDark = 'app/hero-dark.jpg',
+  heroImageLight = 'app/hero-light.jpg',
+}

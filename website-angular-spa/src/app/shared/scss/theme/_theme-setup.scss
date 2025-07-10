@@ -24,9 +24,6 @@ html {
 //DARK-MODE
 html.dark-mode {
   color-scheme: dark;
-  .hero-container {
-    background-image: url('https://cdn.rimaz.dev/app/hero-dark.jpg');
-  }
 
   .selectable-card {
     &:hover {
