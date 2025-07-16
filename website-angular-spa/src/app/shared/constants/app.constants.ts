@@ -1,5 +1,5 @@
-export const APP_THEME = 'app-theme'
-export const DARK_MODE = 'dark-mode'
+export const appTheme = 'app-theme'
+export const darkMode = 'dark-mode'
 
 export const enum IconNames {
   Github = 'Github',

@@ -13,7 +13,7 @@ import { environment } from 'environments/environment'
 export class ArticlePreviewComponent {
   @Input() article!: IArticle
 
-  public Cdn_Url: string = environment.Cdn_Url
+  public cdnUrl: string = environment.cdnUrl
 
   openLinkInNewTab(url: string) {
     window.open(url, '_blank')

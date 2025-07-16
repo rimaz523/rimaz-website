@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { MatCardModule } from '@angular/material/card'
 import { RouterLink } from '@angular/router'
-import { ROUTER_TOKENS } from '../../app.routes'
+import { RouterTokens } from '../../app.routes'
 import { MatButtonModule } from '@angular/material/button'
 
 @Component({
@@ -11,5 +11,5 @@ import { MatButtonModule } from '@angular/material/button'
   styleUrl: './page-not-found.component.scss',
 })
 export class PageNotFoundComponent {
-  readonly ROUTER_TOKENS = ROUTER_TOKENS
+  readonly routerTokens = RouterTokens
 }

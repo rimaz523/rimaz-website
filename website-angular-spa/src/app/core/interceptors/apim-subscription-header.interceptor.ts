@@ -10,7 +10,7 @@ export function apimSubscriptionHeaderInterceptor(
   const newReq = req.clone({
     headers: req.headers.append(
       HttpRequestHeaders.apimSubscriptionKey,
-      environment.Integrations_Apim_Subscription_Key,
+      environment.integrationsApimSubscriptionKey,
     ),
   })
 

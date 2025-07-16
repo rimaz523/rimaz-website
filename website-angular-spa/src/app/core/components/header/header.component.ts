@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { ThemeService } from '@core/services/theme.services'
 import { RouterLink } from '@angular/router'
-import { ROUTER_TOKENS } from '../../../app.routes'
+import { RouterTokens } from '../../../app.routes'
 
 @Component({
   selector: 'rmz-header',
@@ -14,7 +14,7 @@ import { ROUTER_TOKENS } from '../../../app.routes'
 })
 export class HeaderComponent {
   isDark = false
-  readonly ROUTER_TOKENS = ROUTER_TOKENS
+  readonly routerTokens = RouterTokens
 
   constructor(private themeService: ThemeService) {
     this.isDark = this.themeService.getIsDark()
