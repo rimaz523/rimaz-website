@@ -2,8 +2,9 @@ import { Component, inject } from '@angular/core'
 import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { MatToolbarModule } from '@angular/material/toolbar'
-import { ThemeService } from '@core/services/theme.services'
 import { RouterLink } from '@angular/router'
+
+import { ThemeService } from '@core/services/theme.services'
 import { RouterTokens } from '../../../app.routes'
 
 @Component({

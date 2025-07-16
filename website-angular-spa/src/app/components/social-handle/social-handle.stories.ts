@@ -1,4 +1,5 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular'
+
 import { SocialHandleComponent } from './social-handle.component'
 
 const meta: Meta<SocialHandleComponent> = {

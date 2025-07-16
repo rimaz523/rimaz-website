@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core'
-import { ArticlePreviewComponent } from '../article-preview/article-preview.component'
 import { MatGridListModule } from '@angular/material/grid-list'
+
+import { ArticlePreviewComponent } from '../article-preview/article-preview.component'
 import { ArticlePreviewService } from './article-preview.service'
 
 @Component({

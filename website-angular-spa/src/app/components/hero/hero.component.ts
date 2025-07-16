@@ -1,5 +1,6 @@
 import { Component, effect, ElementRef, inject, Renderer2 } from '@angular/core'
 import { MatCardModule } from '@angular/material/card'
+
 import { ThemeService } from '@core/services/theme.services'
 import { CdnRoutes } from '@shared/constants/app.constants'
 import { environment } from 'environments/environment'
