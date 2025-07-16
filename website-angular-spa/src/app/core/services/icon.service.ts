@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core'
+import { inject, Injectable } from '@angular/core'
 import { MatIconRegistry } from '@angular/material/icon'
 import { DomSanitizer } from '@angular/platform-browser'
 import { IconNames, IconResourceUrls } from '@shared/constants/app.constants'
@@ -7,10 +7,8 @@ import { IconNames, IconResourceUrls } from '@shared/constants/app.constants'
   providedIn: 'root',
 })
 export class IconService {
-  constructor(
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer,
-  ) {}
+  private matIconRegistry = inject(MatIconRegistry)
+  private domSanitizer = inject(DomSanitizer)
 
   init() {
     this.matIconRegistry.addSvgIcon(

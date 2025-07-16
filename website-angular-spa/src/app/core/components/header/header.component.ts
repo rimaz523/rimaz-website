@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, inject } from '@angular/core'
 import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { MatToolbarModule } from '@angular/material/toolbar'
@@ -13,10 +13,12 @@ import { RouterTokens } from '../../../app.routes'
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  private themeService = inject(ThemeService)
+
   isDark = false
   readonly routerTokens = RouterTokens
 
-  constructor(private themeService: ThemeService) {
+  constructor() {
     this.isDark = this.themeService.getIsDark()
   }
 
