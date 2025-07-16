@@ -16,7 +16,7 @@ export class SocialHandlesService {
   private errorService = inject(ErrorService)
 
   private readonly socialHandles$ = this.http
-    .get<ISocialHandle[]>(`${environment.Integrations_Apim_Url}${ApiRoutes.socialHandles}`)
+    .get<ISocialHandle[]>(`${environment.integrationsApimUrl}${ApiRoutes.socialHandles}`)
     .pipe(
       map(data => ({ data: data, error: undefined }) as Result<ISocialHandle[]>),
       shareReplay(1),
