@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { computed, inject, Injectable } from '@angular/core'
 import { toSignal } from '@angular/core/rxjs-interop'
 import { catchError, map, of, shareReplay } from 'rxjs'
+
 import { Result } from '@models/result.model'
 import { ErrorService } from '@core/services/error.service'
 import { environment } from 'environments/environment'

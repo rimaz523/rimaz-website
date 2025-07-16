@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
+
 import { HeaderComponent } from '@core/components/header/header.component'
-import { ThemeService } from '@core/services/theme.services'
 import { FooterComponent } from '@core/components/footer/footer.component'
 
 @Component({
@@ -11,6 +11,4 @@ import { FooterComponent } from '@core/components/footer/footer.component'
 })
 export class AppComponent {
   title = 'website-angular-spa'
-
-  constructor(private themeService: ThemeService) {}
 }

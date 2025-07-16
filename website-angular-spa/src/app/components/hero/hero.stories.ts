@@ -1,4 +1,5 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular'
+
 import { HeroComponent } from './hero.component'
 
 const meta: Meta<HeroComponent> = {

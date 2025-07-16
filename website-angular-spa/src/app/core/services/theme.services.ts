@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core'
+
 import { appTheme, darkMode } from '@shared/constants/app.constants'
 
 @Injectable({ providedIn: 'root' })

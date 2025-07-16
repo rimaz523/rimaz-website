@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { HttpClient, HttpHandler } from '@angular/common/http'
 
 import { SocialHandlesBandComponent } from './social-handles-band.component'
-import { HttpClient, HttpHandler } from '@angular/common/http'
 
 describe('SocialHandlesBandComponent', () => {
   let component: SocialHandlesBandComponent

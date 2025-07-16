@@ -2,22 +2,22 @@ export const appTheme = 'app-theme'
 export const darkMode = 'dark-mode'
 
 export const enum IconNames {
-  Github = 'Github',
-  Medium = 'Medium',
-  Linkedin = 'Linkedin',
-  StackOverflow = 'Stackoverflow',
-  TwitterX = 'Twitter',
+  github = 'Github',
+  medium = 'Medium',
+  linkedin = 'Linkedin',
+  stackOverflow = 'Stackoverflow',
+  twitterX = 'Twitter',
 }
 export const enum IconResourceUrls {
-  Github = 'custom-icons/github.svg',
-  Medium = 'custom-icons/medium.svg',
-  Linkedin = 'custom-icons/linkedin.svg',
-  StackOverflow = 'custom-icons/stack-overflow.svg',
-  TwitterX = 'custom-icons/twitter-x.svg',
+  github = 'custom-icons/github.svg',
+  medium = 'custom-icons/medium.svg',
+  linkedin = 'custom-icons/linkedin.svg',
+  stackOverflow = 'custom-icons/stack-overflow.svg',
+  twitterX = 'custom-icons/twitter-x.svg',
 }
 
 export const enum ErrorMessages {
-  Unknown_Error = 'An unknown error occurred.',
+  unknown = 'An unknown error occurred.',
 }
 
 export const enum HttpRequestHeaders {

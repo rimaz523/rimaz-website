@@ -13,6 +13,5 @@ export function apimSubscriptionHeaderInterceptor(
       environment.integrationsApimSubscriptionKey,
     ),
   })
-
   return next(newReq)
 }

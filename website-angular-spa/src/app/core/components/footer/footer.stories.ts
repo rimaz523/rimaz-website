@@ -1,4 +1,5 @@
 import { componentWrapperDecorator, Meta, StoryObj } from '@storybook/angular'
+
 import { FooterComponent } from './footer.component'
 
 const meta: Meta<FooterComponent> = {
