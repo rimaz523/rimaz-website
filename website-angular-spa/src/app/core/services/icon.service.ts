@@ -14,24 +14,24 @@ export class IconService {
 
   init() {
     this.matIconRegistry.addSvgIcon(
-      IconNames.Medium,
-      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.Medium),
+      IconNames.medium,
+      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.medium),
     )
     this.matIconRegistry.addSvgIcon(
-      IconNames.StackOverflow,
-      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.StackOverflow),
+      IconNames.stackOverflow,
+      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.stackOverflow),
     )
     this.matIconRegistry.addSvgIcon(
-      IconNames.TwitterX,
-      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.TwitterX),
+      IconNames.twitterX,
+      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.twitterX),
     )
     this.matIconRegistry.addSvgIcon(
-      IconNames.Linkedin,
-      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.Linkedin),
+      IconNames.linkedin,
+      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.linkedin),
     )
     this.matIconRegistry.addSvgIcon(
-      IconNames.Github,
-      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.Github),
+      IconNames.github,
+      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.github),
     )
   }
 }

@@ -2,7 +2,7 @@
   <mat-divider></mat-divider>
   <div class="handles">
     @for (socialHandle of socialHandles(); track socialHandle.name) {
-      <rmz-social-handle [socialHandle]="socialHandle"></rmz-social-handle>
+      <rmz-social-handle [socialHandle]="socialHandle" />
     }
     @if (socialHandlesApiError()?.statusCode) {
       <span>{{ socialHandlesApiError()?.message }}</span>

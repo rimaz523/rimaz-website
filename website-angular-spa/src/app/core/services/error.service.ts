@@ -9,7 +9,7 @@ import { ErrorMessages } from '@shared/constants/app.constants'
 export class ErrorService {
   getErrorModel(genericError: unknown): ErrorModel {
     const error: ErrorModel = {
-      message: ErrorMessages.Unknown_Error,
+      message: ErrorMessages.unknown,
       statusCode: undefined,
     }
 
