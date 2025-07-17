@@ -19,13 +19,9 @@
     "module": "ES2022",
     "baseUrl": "./src",
     "paths": {
-      "@components/*": ["app/components/*"],
-      "@core/components/*": ["app/core/components/*"],
-      "@core/services/*": ["app/core/services/*"],
-      "@pages/*": ["app/pages/*"],
-      "@shared/constants/*": ["app/shared/constants/*"],
-      "@shared/scss/*": ["app/shared/scss/*"],
-      "@models/*": ["app/models/*"]
+      "@core/*": ["app/core/*"],
+      "@features/*": ["app/features/*"],
+      "@shared/*": ["app/shared/*"]
     }
   },
   "angularCompilerOptions": {

@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core'
 import { MatDividerModule } from '@angular/material/divider'
 import { MatIconModule } from '@angular/material/icon'
 
-import { SocialHandleComponent } from '@components/social-handle/social-handle.component'
-import { SocialHandlesService } from '@components/social-handles-band/social-handles.service'
+import { SocialHandleComponent } from '@features/social/components/social-handle/social-handle.component'
+import { SocialHandlesService } from '@features/social/components/social-handles-band/social-handles.service'
 
 @Component({
   selector: 'rmz-social-handles-band',

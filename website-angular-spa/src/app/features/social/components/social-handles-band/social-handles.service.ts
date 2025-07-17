@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http'
 import { computed, inject, Injectable } from '@angular/core'
-import { ISocialHandle } from '@models/social-handle.model'
+import { ISocialHandle } from '@features/social/social-handle.model'
 import { toSignal } from '@angular/core/rxjs-interop'
 import { catchError, map, of, shareReplay } from 'rxjs'
 
-import { Result } from '@models/result.model'
+import { Result } from '@core/models/result.model'
 import { ErrorService } from '@core/services/error.service'
 import { environment } from 'environments/environment'
 import { ApiRoutes } from '@shared/constants/app.constants'

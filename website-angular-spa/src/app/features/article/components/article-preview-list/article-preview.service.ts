@@ -3,10 +3,10 @@ import { computed, inject, Injectable } from '@angular/core'
 import { toSignal } from '@angular/core/rxjs-interop'
 import { catchError, map, of, shareReplay } from 'rxjs'
 
-import { Result } from '@models/result.model'
+import { Result } from '@core/models/result.model'
 import { ErrorService } from '@core/services/error.service'
 import { environment } from 'environments/environment'
-import { IArticle } from '@models/article.model'
+import { IArticle } from '@features/article/article.model'
 import { ApiRoutes } from '@shared/constants/app.constants'
 
 @Injectable({

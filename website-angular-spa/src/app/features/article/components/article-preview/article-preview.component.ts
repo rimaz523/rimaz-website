@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
-import { IArticle } from '@models/article.model'
 
+import { IArticle } from '@features/article/article.model'
 import { environment } from 'environments/environment'
 
 @Component({
