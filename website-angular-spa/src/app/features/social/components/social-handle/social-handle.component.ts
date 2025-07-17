@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 
-import { ISocialHandle } from '@models/social-handle.model'
+import { ISocialHandle } from '@features/social/social-handle.model'
 
 @Component({
   selector: 'rmz-social-handle',

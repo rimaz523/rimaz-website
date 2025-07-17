@@ -1,7 +1,7 @@
 import { HttpClient, HttpHandler } from '@angular/common/http'
 import { TestBed } from '@angular/core/testing'
 
-import { SocialHandlesService } from '@components/social-handles-band/social-handles.service'
+import { SocialHandlesService } from '@features/social/components/social-handles-band/social-handles.service'
 
 describe('SocialHandlesService', () => {
   let service: SocialHandlesService
