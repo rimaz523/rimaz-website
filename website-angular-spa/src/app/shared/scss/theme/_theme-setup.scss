@@ -1,7 +1,8 @@
 @use 'theme-colors' as rmz-theme;
 @use '@angular/material' as mat;
 
-@include mat.core(); // required for theming
+@include mat.elevation-classes();
+@include mat.app-background(); // required for theming
 @include mat.all-component-typographies(); // Apply the default typography config
 
 // Theme-specific overrides

@@ -4,7 +4,7 @@
         {
             "name": "ErrorModel",
             "id": "interface-ErrorModel-a6fd69555ea1c8e31538d87d2fac3ab25ef1f8d683440b57b299aac01ecb39da62e03ec359429b832ed3eb4f9479836062ab9d788ce037d0c2d63688abe541b7",
-            "file": "src/app/models/error.model.ts",
+            "file": "src/app/core/models/error.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
@@ -39,7 +39,7 @@
         {
             "name": "IArticle",
             "id": "interface-IArticle-7ce6435af1a20113e9e00a6ade47a1fa900ac5f049aa4d17a83a004e8f41f33ef26586cffe1695193ea61120d27bebf3a0c7d631024966051e9cb070a8d5fa31",
-            "file": "src/app/models/article.model.ts",
+            "file": "src/app/features/article/article.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
@@ -124,7 +124,7 @@
         {
             "name": "ISocialHandle",
             "id": "interface-ISocialHandle-f092a6ebdc40828ee053e0fc6a6aa96a8b249e031f4c9d069d14a4267f7df824e2ad469308e7b7f9957cbfbd45707e713e6c782edbf05a4ec9d6d4a3c4d4cbc2",
-            "file": "src/app/models/social-handle.model.ts",
+            "file": "src/app/features/social/social-handle.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
@@ -169,7 +169,7 @@
         {
             "name": "Result",
             "id": "interface-Result-ffea3d82968db8befcd36f1ce5050347b022233bafed04da02bf29a8ead87b76e55a0fea1057798b263e1b1cdf6dea693bc3e4c3e971a3f8036a72555c9f884c",
-            "file": "src/app/models/result.model.ts",
+            "file": "src/app/core/models/result.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
@@ -205,8 +205,8 @@
     "injectables": [
         {
             "name": "ArticlePreviewService",
-            "id": "injectable-ArticlePreviewService-8f81e0be4e2b5a8986b16ecf3d165fa592352d8338e42dbaf167f42a584091c32c95ac489c471498b3ac4b91a88f5ce52eeb0d64aae4a5c20e8dca8aab9d3d8d",
-            "file": "src/app/components/article-preview-list/article-preview.service.ts",
+            "id": "injectable-ArticlePreviewService-bffb6bc5cfd01f3b448753c612446c7d43ffc51cee234f89417945a6c4083c9bc1873cc33ec7a15532b14094188f2d7adc278bff59d9ba10ca1e3294e426242c",
+            "file": "src/app/features/article/components/article-preview-list/article-preview.service.ts",
             "properties": [
                 {
                     "name": "articlePreviewList$",
@@ -217,7 +217,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 18,
+                    "line": 19,
                     "modifierKind": [
                         123,
                         148
@@ -232,7 +232,10 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 35
+                    "line": 36,
+                    "modifierKind": [
+                        148
+                    ]
                 },
                 {
                     "name": "articlePreviewsError",
@@ -243,7 +246,10 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 36
+                    "line": 37,
+                    "modifierKind": [
+                        148
+                    ]
                 },
                 {
                     "name": "articlePreviewsResult",
@@ -254,9 +260,10 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 31,
+                    "line": 32,
                     "modifierKind": [
-                        123
+                        123,
+                        148
                     ]
                 },
                 {
@@ -268,7 +275,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 16,
+                    "line": 17,
                     "modifierKind": [
                         123
                     ]
@@ -282,7 +289,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 15,
+                    "line": 16,
                     "modifierKind": [
                         123
                     ]
@@ -293,13 +300,13 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { computed, inject, Injectable } from '@angular/core'\nimport { toSignal } from '@angular/core/rxjs-interop'\nimport { catchError, map, of, shareReplay } from 'rxjs'\nimport { Result } from '@models/result.model'\nimport { ErrorService } from '@core/services/error.service'\nimport { environment } from 'environments/environment'\nimport { IArticle } from '@models/article.model'\nimport { ApiRoutes } from '@shared/constants/app.constants'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class ArticlePreviewService {\n  private http = inject(HttpClient)\n  private errorService = inject(ErrorService)\n\n  private readonly articlePreviewList$ = this.http\n    .get<IArticle[]>(`${environment.integrationsApimUrl}${ApiRoutes.articlePreviews}?limit=4`)\n    .pipe(\n      map(data => ({ data: data, error: undefined }) as Result<IArticle[]>),\n      shareReplay(1),\n      catchError(error =>\n        of({\n          data: [],\n          error: this.errorService.getErrorModel(error),\n        } as Result<IArticle[]>),\n      ),\n    )\n\n  private articlePreviewsResult = toSignal(this.articlePreviewList$, {\n    initialValue: { data: [] } as Result<IArticle[]>,\n  })\n\n  articlePreviews = computed(() => this.articlePreviewsResult().data)\n  articlePreviewsError = computed(() => this.articlePreviewsResult().error)\n}\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { computed, inject, Injectable } from '@angular/core'\nimport { toSignal } from '@angular/core/rxjs-interop'\nimport { catchError, map, of, shareReplay } from 'rxjs'\n\nimport { Result } from '@core/models/result.model'\nimport { ErrorService } from '@core/services/error.service'\nimport { environment } from 'environments/environment'\nimport { IArticle } from '@features/article/article.model'\nimport { ApiRoutes } from '@shared/constants/app.constants'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class ArticlePreviewService {\n  private http = inject(HttpClient)\n  private errorService = inject(ErrorService)\n\n  private readonly articlePreviewList$ = this.http\n    .get<IArticle[]>(`${environment.integrationsApimUrl}${ApiRoutes.articlePreviews}?limit=4`)\n    .pipe(\n      map(data => ({ data: data, error: undefined }) as Result<IArticle[]>),\n      shareReplay(1),\n      catchError(error =>\n        of({\n          data: [],\n          error: this.errorService.getErrorModel(error),\n        } as Result<IArticle[]>),\n      ),\n    )\n\n  private readonly articlePreviewsResult = toSignal(this.articlePreviewList$, {\n    initialValue: { data: [] } as Result<IArticle[]>,\n  })\n\n  readonly articlePreviews = computed(() => this.articlePreviewsResult().data)\n  readonly articlePreviewsError = computed(() => this.articlePreviewsResult().error)\n}\n",
             "extends": [],
             "type": "injectable"
         },
         {
             "name": "ErrorService",
-            "id": "injectable-ErrorService-25434388465a73c4eb4e719770bbc6b5bbe8abe985ec3c295a5e285a2b030f35b3bd8f42d822bc6173dfb13ef38188901aaee5ca979dd7de463fcc41ee1ac88a",
+            "id": "injectable-ErrorService-e4ab30ca7fbdb8bf713fbc6990b2e4a469246839682ac2d1d28f7191476e0df19ae3f585c67a28c5ac420d4be3571b47ff45d0b702d9f8e2b4fd67c1187fb8d6",
             "file": "src/app/core/services/error.service.ts",
             "properties": [],
             "methods": [
@@ -316,7 +323,7 @@
                     "optional": false,
                     "returnType": "ErrorModel",
                     "typeParameters": [],
-                    "line": 10,
+                    "line": 11,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -336,15 +343,44 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { HttpErrorResponse } from '@angular/common/http'\nimport { Injectable } from '@angular/core'\nimport { ErrorModel } from '@models/error.model'\nimport { ErrorMessages } from '@shared/constants/app.constants'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class ErrorService {\n  getErrorModel(genericError: unknown): ErrorModel {\n    const error: ErrorModel = {\n      message: ErrorMessages.Unknown_Error,\n      statusCode: undefined,\n    }\n\n    if (genericError instanceof HttpErrorResponse) {\n      error.message = genericError.error.message\n      error.statusCode = genericError.error.statusCode\n    } else if (genericError instanceof Error) {\n      error.message = genericError.message\n    }\n    return error\n  }\n}\n",
+            "sourceCode": "import { HttpErrorResponse } from '@angular/common/http'\nimport { Injectable } from '@angular/core'\n\nimport { ErrorModel } from '@core/models/error.model'\nimport { ErrorMessages } from '@shared/constants/app.constants'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class ErrorService {\n  getErrorModel(genericError: unknown): ErrorModel {\n    const error: ErrorModel = {\n      message: ErrorMessages.unknown,\n      statusCode: undefined,\n    }\n\n    if (genericError instanceof HttpErrorResponse) {\n      error.message = genericError.error.message\n      error.statusCode = genericError.error.statusCode\n    } else if (genericError instanceof Error) {\n      error.message = genericError.message\n    }\n    return error\n  }\n}\n",
             "extends": [],
             "type": "injectable"
         },
         {
             "name": "IconService",
-            "id": "injectable-IconService-f9b663b8116f16cfa195b34cbda5783e02c3ab7911a2c74c42bf24d1e198820d324b600f7236ae704844871220d61437c56212dd33c0b17aba9f41b78d5351cf",
+            "id": "injectable-IconService-56686a10d99ee2abf570f919e539bdf06817c25e3e719e2d010b3861ce2bc066d7a9193429305086e457a326d0e4754dafb5b000f79d18dc9e38091425b6928f",
             "file": "src/app/core/services/icon.service.ts",
-            "properties": [],
+            "properties": [
+                {
+                    "name": "domSanitizer",
+                    "defaultValue": "inject(DomSanitizer)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "matIconRegistry",
+                    "defaultValue": "inject(MatIconRegistry)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
             "methods": [
                 {
                     "name": "init",
@@ -352,7 +388,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 15,
+                    "line": 14,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -361,55 +397,14 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core'\nimport { MatIconRegistry } from '@angular/material/icon'\nimport { DomSanitizer } from '@angular/platform-browser'\nimport { IconNames, IconResourceUrls } from '@shared/constants/app.constants'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class IconService {\n  constructor(\n    private matIconRegistry: MatIconRegistry,\n    private domSanitizer: DomSanitizer,\n  ) {}\n\n  init() {\n    this.matIconRegistry.addSvgIcon(\n      IconNames.Medium,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.Medium),\n    )\n    this.matIconRegistry.addSvgIcon(\n      IconNames.StackOverflow,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.StackOverflow),\n    )\n    this.matIconRegistry.addSvgIcon(\n      IconNames.TwitterX,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.TwitterX),\n    )\n    this.matIconRegistry.addSvgIcon(\n      IconNames.Linkedin,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.Linkedin),\n    )\n    this.matIconRegistry.addSvgIcon(\n      IconNames.Github,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.Github),\n    )\n  }\n}\n",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "matIconRegistry",
-                        "type": "MatIconRegistry",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "domSanitizer",
-                        "type": "DomSanitizer",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 9,
-                "jsdoctags": [
-                    {
-                        "name": "matIconRegistry",
-                        "type": "MatIconRegistry",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "domSanitizer",
-                        "type": "DomSanitizer",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
+            "sourceCode": "import { inject, Injectable } from '@angular/core'\nimport { MatIconRegistry } from '@angular/material/icon'\nimport { DomSanitizer } from '@angular/platform-browser'\n\nimport { IconNames, IconResourceUrls } from '@shared/constants/app.constants'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class IconService {\n  private matIconRegistry = inject(MatIconRegistry)\n  private domSanitizer = inject(DomSanitizer)\n\n  init() {\n    this.matIconRegistry.addSvgIcon(\n      IconNames.medium,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.medium),\n    )\n    this.matIconRegistry.addSvgIcon(\n      IconNames.stackOverflow,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.stackOverflow),\n    )\n    this.matIconRegistry.addSvgIcon(\n      IconNames.twitterX,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.twitterX),\n    )\n    this.matIconRegistry.addSvgIcon(\n      IconNames.linkedin,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.linkedin),\n    )\n    this.matIconRegistry.addSvgIcon(\n      IconNames.github,\n      this.domSanitizer.bypassSecurityTrustResourceUrl(IconResourceUrls.github),\n    )\n  }\n}\n",
             "extends": [],
             "type": "injectable"
         },
         {
             "name": "SocialHandlesService",
-            "id": "injectable-SocialHandlesService-26bc6bfb3d4505dc29e113892101ddd6d5b1c555ffb9ce4941f4c057178b858f04ca1b7608cc1c50224a9406e21113d87424bf801b6a71418a4fea9b4f79f01c",
-            "file": "src/app/components/social-handles-band/social-handles.service.ts",
+            "id": "injectable-SocialHandlesService-a4af2fd0ad1ebb90c4122c7af13fa0bdc2e52492af01601738709b4f9b70daa7c19c45a0c32d872f1ebfc863792f2e47bc36aec71fbeb51b6d006e65154a4864",
+            "file": "src/app/features/social/components/social-handles-band/social-handles.service.ts",
             "properties": [
                 {
                     "name": "errorService",
@@ -420,7 +415,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 16,
+                    "line": 17,
                     "modifierKind": [
                         123
                     ]
@@ -434,7 +429,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 15,
+                    "line": 16,
                     "modifierKind": [
                         123
                     ]
@@ -448,7 +443,10 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 35
+                    "line": 36,
+                    "modifierKind": [
+                        148
+                    ]
                 },
                 {
                     "name": "socialHandles$",
@@ -459,7 +457,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 18,
+                    "line": 19,
                     "modifierKind": [
                         123,
                         148
@@ -474,7 +472,10 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 36
+                    "line": 37,
+                    "modifierKind": [
+                        148
+                    ]
                 },
                 {
                     "name": "socialHandlesResult",
@@ -485,9 +486,10 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 31,
+                    "line": 32,
                     "modifierKind": [
-                        123
+                        123,
+                        148
                     ]
                 }
             ],
@@ -496,13 +498,13 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { computed, inject, Injectable } from '@angular/core'\nimport { ISocialHandle } from '@models/social-handle.model'\nimport { toSignal } from '@angular/core/rxjs-interop'\nimport { catchError, map, of, shareReplay } from 'rxjs'\nimport { Result } from '@models/result.model'\nimport { ErrorService } from '@core/services/error.service'\nimport { environment } from 'environments/environment'\nimport { ApiRoutes } from '@shared/constants/app.constants'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class SocialHandlesService {\n  private http = inject(HttpClient)\n  private errorService = inject(ErrorService)\n\n  private readonly socialHandles$ = this.http\n    .get<ISocialHandle[]>(`${environment.integrationsApimUrl}${ApiRoutes.socialHandles}`)\n    .pipe(\n      map(data => ({ data: data, error: undefined }) as Result<ISocialHandle[]>),\n      shareReplay(1),\n      catchError(error =>\n        of({\n          data: [],\n          error: this.errorService.getErrorModel(error),\n        } as Result<ISocialHandle[]>),\n      ),\n    )\n\n  private socialHandlesResult = toSignal(this.socialHandles$, {\n    initialValue: { data: [] } as Result<ISocialHandle[]>,\n  })\n\n  socialHandles = computed(() => this.socialHandlesResult().data)\n  socialHandlesError = computed(() => this.socialHandlesResult().error)\n}\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { computed, inject, Injectable } from '@angular/core'\nimport { ISocialHandle } from '@features/social/social-handle.model'\nimport { toSignal } from '@angular/core/rxjs-interop'\nimport { catchError, map, of, shareReplay } from 'rxjs'\n\nimport { Result } from '@core/models/result.model'\nimport { ErrorService } from '@core/services/error.service'\nimport { environment } from 'environments/environment'\nimport { ApiRoutes } from '@shared/constants/app.constants'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class SocialHandlesService {\n  private http = inject(HttpClient)\n  private errorService = inject(ErrorService)\n\n  private readonly socialHandles$ = this.http\n    .get<ISocialHandle[]>(`${environment.integrationsApimUrl}${ApiRoutes.socialHandles}`)\n    .pipe(\n      map(data => ({ data: data, error: undefined }) as Result<ISocialHandle[]>),\n      shareReplay(1),\n      catchError(error =>\n        of({\n          data: [],\n          error: this.errorService.getErrorModel(error),\n        } as Result<ISocialHandle[]>),\n      ),\n    )\n\n  private readonly socialHandlesResult = toSignal(this.socialHandles$, {\n    initialValue: { data: [] } as Result<ISocialHandle[]>,\n  })\n\n  readonly socialHandles = computed(() => this.socialHandlesResult().data)\n  readonly socialHandlesError = computed(() => this.socialHandlesResult().error)\n}\n",
             "extends": [],
             "type": "injectable"
         },
         {
             "name": "ThemeService",
-            "id": "injectable-ThemeService-f5e93f7f3cab86f6e14c9fda1df87f0fce414465b74349475e2a57f56b2618471e9c7263c7991be14e3c768ed139adc92326fa15227704ddbabf8030c37fbb95",
+            "id": "injectable-ThemeService-91a05d728426b5e5af84f17b9daf7bb228c610b00abf55c8a667ef1c4bbb672956a6ac6591f59beb1311c506eb26fc1d0a20f0b4914e3f434262557f5fea361c",
             "file": "src/app/core/services/theme.services.ts",
             "properties": [
                 {
@@ -514,7 +516,10 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 6
+                    "line": 7,
+                    "modifierKind": [
+                        148
+                    ]
                 }
             ],
             "methods": [
@@ -524,7 +529,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 37,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -534,7 +539,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 12,
+                    "line": 13,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -544,7 +549,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 22,
+                    "line": 23,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -554,7 +559,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 29,
+                    "line": 30,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -563,14 +568,14 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable, signal } from '@angular/core'\nimport { appTheme, darkMode } from '@shared/constants/app.constants'\n\n@Injectable({ providedIn: 'root' })\nexport class ThemeService {\n  isDark = signal(false)\n\n  constructor() {\n    this.loadTheme()\n  }\n\n  loadTheme(): void {\n    const theme = localStorage.getItem(appTheme)\n    if (theme === darkMode) {\n      document.documentElement.classList.add(darkMode)\n      this.isDark.set(true)\n    } else {\n      document.documentElement.classList.remove(darkMode)\n    }\n  }\n\n  setDarkMode(): boolean {\n    this.isDark.set(true)\n    document.documentElement.classList.add(darkMode)\n    localStorage.setItem(appTheme, darkMode)\n    return this.isDark()\n  }\n\n  setLightMode(): boolean {\n    this.isDark.set(false)\n    document.documentElement.classList.remove(darkMode)\n    localStorage.removeItem(appTheme)\n    return this.isDark()\n  }\n\n  getIsDark(): boolean {\n    return this.isDark()\n  }\n}\n",
+            "sourceCode": "import { Injectable, signal } from '@angular/core'\n\nimport { appTheme, darkMode } from '@shared/constants/app.constants'\n\n@Injectable({ providedIn: 'root' })\nexport class ThemeService {\n  readonly isDark = signal(false)\n\n  constructor() {\n    this.loadTheme()\n  }\n\n  loadTheme(): void {\n    const theme = localStorage.getItem(appTheme)\n    if (theme === darkMode) {\n      document.documentElement.classList.add(darkMode)\n      this.isDark.set(true)\n    } else {\n      document.documentElement.classList.remove(darkMode)\n    }\n  }\n\n  setDarkMode(): boolean {\n    this.isDark.set(true)\n    document.documentElement.classList.add(darkMode)\n    localStorage.setItem(appTheme, darkMode)\n    return this.isDark()\n  }\n\n  setLightMode(): boolean {\n    this.isDark.set(false)\n    document.documentElement.classList.remove(darkMode)\n    localStorage.removeItem(appTheme)\n    return this.isDark()\n  }\n\n  getIsDark(): boolean {\n    return this.isDark()\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 6
+                "line": 7
             },
             "extends": [],
             "type": "injectable"
@@ -583,7 +588,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-0348cfb31f3e879734eec5c22a36b1345ef0dbda177c95ae450225c5e01209239d28dea16155b82eb6a6128c2e94faea688fd6e00a4837950021d431e96fb5e2",
+            "id": "component-AppComponent-6be37d9e0f33165182e18a7ab08a008ac5fedb6d713020f131322c3c6d510edbf38b398dcbe0c593312b0d4d761e7046896e344f422da1eb6b5d64bc85f62fae",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -635,43 +640,17 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core'\nimport { RouterOutlet } from '@angular/router'\nimport { HeaderComponent } from '@core/components/header/header.component'\nimport { ThemeService } from '@core/services/theme.services'\nimport { FooterComponent } from '@core/components/footer/footer.component'\n\n@Component({\n  selector: 'rmz-root',\n  imports: [RouterOutlet, HeaderComponent, FooterComponent],\n  templateUrl: './app.component.html',\n})\nexport class AppComponent {\n  title = 'website-angular-spa'\n\n  constructor(private themeService: ThemeService) {}\n}\n",
+            "sourceCode": "import { Component } from '@angular/core'\nimport { RouterOutlet } from '@angular/router'\n\nimport { HeaderComponent } from '@core/layout/header/header.component'\nimport { FooterComponent } from '@core/layout/footer/footer.component'\n\n@Component({\n  selector: 'rmz-root',\n  imports: [RouterOutlet, HeaderComponent, FooterComponent],\n  templateUrl: './app.component.html',\n})\nexport class AppComponent {\n  title = 'website-angular-spa'\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "themeService",
-                        "type": "ThemeService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 13,
-                "jsdoctags": [
-                    {
-                        "name": "themeService",
-                        "type": "ThemeService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
             "extends": [],
-            "templateData": "<rmz-header></rmz-header>\n<router-outlet />\n<rmz-footer></rmz-footer>\n"
+            "templateData": "<rmz-header />\n<router-outlet />\n<rmz-footer />\n"
         },
         {
             "name": "ArticlePreviewComponent",
-            "id": "component-ArticlePreviewComponent-522e49161130668231a640741b851a08f54bfda0e4bf8f3d4146d22f5b276a720b5789833d3674f38677dd23ac2396d2d686846cff6b8a7b1ebd00333e68221f",
-            "file": "src/app/components/article-preview/article-preview.component.ts",
+            "id": "component-ArticlePreviewComponent-6fcac781c13009e590f563da1b26bd97833c2a12e14c8f13dc06acfa0ee9ad1eb9cdfbdaaed8b75b4af77de2700ce889a995b42e32a2ce3e60a8ab6ac5cf1dee",
+            "file": "src/app/features/article/components/article-preview/article-preview.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -690,13 +669,33 @@
                     "name": "article",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
-                    "type": "IArticle",
-                    "decorators": []
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
                 }
             ],
             "outputsClass": [],
             "propertiesClass": [
+                {
+                    "name": "article",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                },
                 {
                     "name": "cdnUrl",
                     "defaultValue": "environment.cdnUrl",
@@ -706,10 +705,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 16,
-                    "modifierKind": [
-                        125
-                    ]
+                    "line": 17
                 }
             ],
             "methodsClass": [
@@ -726,7 +722,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 18,
+                    "line": 19,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -760,18 +756,18 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core'\nimport { MatButtonModule } from '@angular/material/button'\nimport { MatCardModule } from '@angular/material/card'\nimport { IArticle } from '@models/article.model'\nimport { environment } from 'environments/environment'\n\n@Component({\n  selector: 'rmz-article-preview',\n  imports: [MatCardModule, MatButtonModule],\n  templateUrl: './article-preview.component.html',\n  styleUrl: './article-preview.component.scss',\n})\nexport class ArticlePreviewComponent {\n  @Input() article!: IArticle\n\n  public cdnUrl: string = environment.cdnUrl\n\n  openLinkInNewTab(url: string) {\n    window.open(url, '_blank')\n  }\n}\n",
+            "sourceCode": "import { Component, input } from '@angular/core'\nimport { MatButtonModule } from '@angular/material/button'\nimport { MatCardModule } from '@angular/material/card'\nimport { IArticle } from '@features/article/article.model'\n\nimport { environment } from 'environments/environment'\n\n@Component({\n  selector: 'rmz-article-preview',\n  imports: [MatCardModule, MatButtonModule],\n  templateUrl: './article-preview.component.html',\n  styleUrl: './article-preview.component.scss',\n})\nexport class ArticlePreviewComponent {\n  readonly article = input.required<IArticle>()\n\n  cdnUrl: string = environment.cdnUrl\n\n  openLinkInNewTab(url: string) {\n    window.open(url, '_blank')\n  }\n}\n",
             "styleUrl": "./article-preview.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<mat-card class=\"selectable-card\" appearance=\"outlined\" (click)=\"openLinkInNewTab(article.url)\">\n  <img class=\"card-image\" mat-card-image [src]=\"cdnUrl + article.image\" [alt]=\"article.title\" />\n\n  <mat-card-header>\n    <mat-card-title>\n      {{ article.title }}\n    </mat-card-title>\n    <mat-card-subtitle>{{ article.publishedDate }}</mat-card-subtitle>\n  </mat-card-header>\n  <mat-card-content class=\"card-content\">\n    <p>\n      {{ article.content }}\n    </p>\n  </mat-card-content>\n</mat-card>\n"
+            "templateData": "<mat-card class=\"selectable-card\" appearance=\"outlined\" (click)=\"openLinkInNewTab(article().url)\">\n  <img class=\"card-image\" mat-card-image [src]=\"cdnUrl + article().image\" [alt]=\"article().title\" />\n\n  <mat-card-header>\n    <mat-card-title>\n      {{ article().title }}\n    </mat-card-title>\n    <mat-card-subtitle>{{ article().publishedDate }}</mat-card-subtitle>\n  </mat-card-header>\n  <mat-card-content class=\"card-content\">\n    <p>\n      {{ article().content }}\n    </p>\n  </mat-card-content>\n</mat-card>\n"
         },
         {
             "name": "ArticlePreviewListComponent",
-            "id": "component-ArticlePreviewListComponent-7f6ace44c2153191e98f00bdefdb83ed0b62c7a014c103e6e449f025b532b21c85c08c6964095e821b4a335e60505170013428040907c0e39b79084355617a47",
-            "file": "src/app/components/article-preview-list/article-preview-list.component.ts",
+            "id": "component-ArticlePreviewListComponent-e4d4421f24c3bea3852957d9992bd572ec98180d3c77d30c0582a2c108942304569e6ec8d7278f08924712722b30ed5cc8053bc39845e8a2efd9f78c3ce0dbce",
+            "file": "src/app/features/article/components/article-preview-list/article-preview-list.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -797,7 +793,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 14,
+                    "line": 15,
                     "modifierKind": [
                         148
                     ]
@@ -811,7 +807,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 13,
+                    "line": 14,
                     "modifierKind": [
                         123
                     ]
@@ -836,7 +832,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, inject } from '@angular/core'\nimport { ArticlePreviewComponent } from '../article-preview/article-preview.component'\nimport { MatGridListModule } from '@angular/material/grid-list'\nimport { ArticlePreviewService } from './article-preview.service'\n\n@Component({\n  selector: 'rmz-article-preview-list',\n  imports: [ArticlePreviewComponent, MatGridListModule],\n  templateUrl: './article-preview-list.component.html',\n  styleUrl: './article-preview-list.component.scss',\n})\nexport class ArticlePreviewListComponent {\n  private articlePreviewService = inject(ArticlePreviewService)\n  readonly articlePreviews = this.articlePreviewService.articlePreviews\n}\n",
+            "sourceCode": "import { Component, inject } from '@angular/core'\nimport { MatGridListModule } from '@angular/material/grid-list'\n\nimport { ArticlePreviewComponent } from '@features/article/components/article-preview/article-preview.component'\nimport { ArticlePreviewService } from './article-preview.service'\n\n@Component({\n  selector: 'rmz-article-preview-list',\n  imports: [ArticlePreviewComponent, MatGridListModule],\n  templateUrl: './article-preview-list.component.html',\n  styleUrl: './article-preview-list.component.scss',\n})\nexport class ArticlePreviewListComponent {\n  private articlePreviewService = inject(ArticlePreviewService)\n  readonly articlePreviews = this.articlePreviewService.articlePreviews\n}\n",
             "styleUrl": "./article-preview-list.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -847,7 +843,7 @@
         {
             "name": "FooterComponent",
             "id": "component-FooterComponent-2f2033da2445a6c14337d154153ba7aa0cd56f4e68f8c9618fd7ded9d69eed0737be4249b5a54e4500274cabc021dc8e0af128cea66ba9ae1148cbbe49388e88",
-            "file": "src/app/core/components/footer/footer.component.ts",
+            "file": "src/app/core/layout/footer/footer.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -900,8 +896,8 @@
         },
         {
             "name": "HeaderComponent",
-            "id": "component-HeaderComponent-a4c5db208aa5b21288b1fa4f7313fb625842d757fd2ddbee06cfaf5715cf727eab34cffdf204b68aa027cee6c1056829073376340cbf43079ec4f48b5701f00e",
-            "file": "src/app/core/components/header/header.component.ts",
+            "id": "component-HeaderComponent-33a5d5e53ab024c05861692214bbd5826602ea6a550862162a16d30f7786937378f21c3113c9cb0ea31cc12e8b60e422d7ce8df590ed1ea291598ff65e6e00dc",
+            "file": "src/app/core/layout/header/header.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -927,7 +923,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 16
+                    "line": 19
                 },
                 {
                     "name": "routerTokens",
@@ -938,9 +934,23 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 17,
+                    "line": 20,
                     "modifierKind": [
                         148
+                    ]
+                },
+                {
+                    "name": "themeService",
+                    "defaultValue": "inject(ThemeService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17,
+                    "modifierKind": [
+                        123
                     ]
                 }
             ],
@@ -951,7 +961,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 23,
+                    "line": 26,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -961,7 +971,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 26,
+                    "line": 29,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -991,7 +1001,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core'\nimport { MatIconModule } from '@angular/material/icon'\nimport { MatButtonModule } from '@angular/material/button'\nimport { MatToolbarModule } from '@angular/material/toolbar'\nimport { ThemeService } from '@core/services/theme.services'\nimport { RouterLink } from '@angular/router'\nimport { RouterTokens } from '../../../app.routes'\n\n@Component({\n  selector: 'rmz-header',\n  imports: [MatToolbarModule, MatButtonModule, MatIconModule, RouterLink],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss',\n})\nexport class HeaderComponent {\n  isDark = false\n  readonly routerTokens = RouterTokens\n\n  constructor(private themeService: ThemeService) {\n    this.isDark = this.themeService.getIsDark()\n  }\n\n  setDarkMode(): void {\n    this.isDark = this.themeService.setDarkMode()\n  }\n  setLightMode(): void {\n    this.isDark = this.themeService.setLightMode()\n  }\n}\n",
+            "sourceCode": "import { Component, inject } from '@angular/core'\nimport { MatIconModule } from '@angular/material/icon'\nimport { MatButtonModule } from '@angular/material/button'\nimport { MatToolbarModule } from '@angular/material/toolbar'\nimport { RouterLink } from '@angular/router'\n\nimport { ThemeService } from '@core/services/theme.services'\nimport { RouterTokens } from '../../../app.routes'\n\n@Component({\n  selector: 'rmz-header',\n  imports: [MatToolbarModule, MatButtonModule, MatIconModule, RouterLink],\n  templateUrl: './header.component.html',\n  styleUrl: './header.component.scss',\n})\nexport class HeaderComponent {\n  private themeService = inject(ThemeService)\n\n  isDark = false\n  readonly routerTokens = RouterTokens\n\n  constructor() {\n    this.isDark = this.themeService.getIsDark()\n  }\n\n  setDarkMode(): void {\n    this.isDark = this.themeService.setDarkMode()\n  }\n  setLightMode(): void {\n    this.isDark = this.themeService.setLightMode()\n  }\n}\n",
             "styleUrl": "./header.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -1001,34 +1011,16 @@
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "themeService",
-                        "type": "ThemeService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 17,
-                "jsdoctags": [
-                    {
-                        "name": "themeService",
-                        "type": "ThemeService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
+                "args": [],
+                "line": 20
             },
             "extends": [],
             "templateData": "<mat-toolbar class=\"sticky-toolbar\">\n  <a class=\"logo-link\" [routerLink]=\"routerTokens.home\">\n    <div class=\"logo\">\n      <span class=\"mat-title\">Rimaz Mohommed</span>\n      <span class=\"mat-caption\">Full Stack Developer • DevOps Engineer</span>\n    </div>\n  </a>\n  <span class=\"header-spacer\"></span>\n  <button mat-icon-button aria-label=\"menu icon\">\n    <mat-icon>menu</mat-icon>\n  </button>\n  @if (isDark) {\n    <button mat-icon-button aria-label=\"light mode icon\" (click)=\"setLightMode()\">\n      <mat-icon>light_mode</mat-icon>\n    </button>\n  } @else {\n    <button mat-icon-button aria-label=\"dark mode icon\" (click)=\"setDarkMode()\">\n      <mat-icon>dark_mode</mat-icon>\n    </button>\n  }\n</mat-toolbar>\n"
         },
         {
             "name": "HeroComponent",
-            "id": "component-HeroComponent-419e42960ebc55c52db6e3c6d56b9cc1d2fed9d9898ae59d7f3722c14d8d6f1ca60dd0b3cdd8f16af5dcb5904a571d0ffdacd81ecc3a93409db1846d0cb51e8d",
-            "file": "src/app/components/hero/hero.component.ts",
+            "id": "component-HeroComponent-e19d34bc4d602c5d1081da8c2dd84847bcb61a7cfedf7cda2cdcd567059b1290c1dde85d283cb3c6d89c36fac6a85afba785e0d919b5b456e09920c8acd10677",
+            "file": "src/app/features/hero/hero.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1044,7 +1036,50 @@
             "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
-            "propertiesClass": [],
+            "propertiesClass": [
+                {
+                    "name": "elementRef",
+                    "defaultValue": "inject(ElementRef)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "renderer",
+                    "defaultValue": "inject(Renderer2)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "themeService",
+                    "defaultValue": "inject(ThemeService)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
             "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
@@ -1060,7 +1095,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, effect, ElementRef, Renderer2 } from '@angular/core'\nimport { MatCardModule } from '@angular/material/card'\nimport { ThemeService } from '@core/services/theme.services'\nimport { CdnRoutes } from '@shared/constants/app.constants'\nimport { environment } from 'environments/environment'\n\n@Component({\n  selector: 'rmz-hero',\n  imports: [MatCardModule],\n  templateUrl: './hero.component.html',\n  styleUrl: './hero.component.scss',\n})\nexport class HeroComponent {\n  constructor(\n    private el: ElementRef,\n    private renderer: Renderer2,\n    private themeService: ThemeService,\n  ) {\n    effect(() => {\n      this.renderer.setStyle(\n        this.el.nativeElement.querySelector('.hero-container'),\n        'background-image',\n        this.themeService.getIsDark()\n          ? `url(${environment.cdnUrl}${CdnRoutes.heroImageDark})`\n          : `url(${environment.cdnUrl}${CdnRoutes.heroImageLight})`,\n      )\n    })\n  }\n}\n",
+            "sourceCode": "import { Component, effect, ElementRef, inject, Renderer2 } from '@angular/core'\nimport { MatCardModule } from '@angular/material/card'\n\nimport { ThemeService } from '@core/services/theme.services'\nimport { CdnRoutes } from '@shared/constants/app.constants'\nimport { environment } from 'environments/environment'\n\n@Component({\n  selector: 'rmz-hero',\n  imports: [MatCardModule],\n  templateUrl: './hero.component.html',\n  styleUrl: './hero.component.scss',\n})\nexport class HeroComponent {\n  private elementRef = inject(ElementRef)\n  private renderer = inject(Renderer2)\n  private themeService = inject(ThemeService)\n\n  constructor() {\n    effect(() => {\n      this.renderer.setStyle(\n        this.elementRef.nativeElement.querySelector('.hero-container'),\n        'background-image',\n        this.themeService.getIsDark()\n          ? `url(${environment.cdnUrl}${CdnRoutes.heroImageDark})`\n          : `url(${environment.cdnUrl}${CdnRoutes.heroImageLight})`,\n      )\n    })\n  }\n}\n",
             "styleUrl": "./hero.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -1070,64 +1105,16 @@
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "el",
-                        "type": "ElementRef",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "renderer",
-                        "type": "Renderer2",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "themeService",
-                        "type": "ThemeService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 13,
-                "jsdoctags": [
-                    {
-                        "name": "el",
-                        "type": "ElementRef",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "renderer",
-                        "type": "Renderer2",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "themeService",
-                        "type": "ThemeService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
+                "args": [],
+                "line": 17
             },
             "extends": [],
             "templateData": "<mat-card class=\"hero-container mat-elevation-z4\">\n  <mat-card-content class=\"hero-content\">\n    <h1 class=\"mat-h1\">I am a full stack .NET developer specializing in Azure.</h1>\n    <h2 class=\"mat-h2\">Welcome to my blog!</h2>\n  </mat-card-content>\n</mat-card>\n"
         },
         {
             "name": "HomeComponent",
-            "id": "component-HomeComponent-df28191ee0d3aad4ab3fa0b9e81cbd971f3045db0c7f2ad1114d3f3bf59102d7d708fd08d53bb3e80b45fca28a23a15682da2aea1e2eac12dc6429c042db7efd",
-            "file": "src/app/pages/home/home.component.ts",
+            "id": "component-HomeComponent-a2a26a4256f14b4f04ee0c8139bdf34279d244a64ef552cdb3b98485e03e1b6bb98a60ba5e1443ef539cc31169cd24e56a0e277d8831232c5a6b57197b354211",
+            "file": "src/app/features/home/home.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1167,7 +1154,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core'\nimport { ArticlePreviewListComponent } from '@components/article-preview-list/article-preview-list.component'\nimport { HeroComponent } from '@components/hero/hero.component'\nimport { SocialHandlesBandComponent } from '@components/social-handles-band/social-handles-band.component'\n\n@Component({\n  selector: 'rmz-home',\n  imports: [HeroComponent, SocialHandlesBandComponent, ArticlePreviewListComponent],\n  templateUrl: './home.component.html',\n  styleUrl: './home.component.scss',\n})\nexport class HomeComponent {}\n",
+            "sourceCode": "import { Component } from '@angular/core'\n\nimport { ArticlePreviewListComponent } from '@features/article/components/article-preview-list/article-preview-list.component'\nimport { HeroComponent } from '@features/hero/hero.component'\nimport { SocialHandlesBandComponent } from '@features/social/components/social-handles-band/social-handles-band.component'\n\n@Component({\n  selector: 'rmz-home',\n  imports: [HeroComponent, SocialHandlesBandComponent, ArticlePreviewListComponent],\n  templateUrl: './home.component.html',\n  styleUrl: './home.component.scss',\n})\nexport class HomeComponent {}\n",
             "styleUrl": "./home.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -1177,8 +1164,8 @@
         },
         {
             "name": "PageNotFoundComponent",
-            "id": "component-PageNotFoundComponent-a80c7029fe58bfe143c00fba0e8341231ddd183e0d444678ba65b7c4b0cd01e65404f3d004dc27e748afb7582e6fa69e590574f2f89e91062101871f8896996e",
-            "file": "src/app/pages/page-not-found/page-not-found.component.ts",
+            "id": "component-PageNotFoundComponent-4fdf6fa10e2742dc1471933dc0c0c07713974decdafe60fe35351b0cab72a8f1cdb1a09ceae399e1fd99aecbfffddf21b8cdfef11bbd5195d23e94b9d9326817",
+            "file": "src/app/features/page-not-found/page-not-found.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1204,7 +1191,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 14,
+                    "line": 15,
                     "modifierKind": [
                         148
                     ]
@@ -1232,7 +1219,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core'\nimport { MatCardModule } from '@angular/material/card'\nimport { RouterLink } from '@angular/router'\nimport { RouterTokens } from '../../app.routes'\nimport { MatButtonModule } from '@angular/material/button'\n\n@Component({\n  selector: 'rmz-page-not-found',\n  imports: [MatCardModule, RouterLink, MatButtonModule],\n  templateUrl: './page-not-found.component.html',\n  styleUrl: './page-not-found.component.scss',\n})\nexport class PageNotFoundComponent {\n  readonly routerTokens = RouterTokens\n}\n",
+            "sourceCode": "import { Component } from '@angular/core'\nimport { MatCardModule } from '@angular/material/card'\nimport { RouterLink } from '@angular/router'\nimport { MatButtonModule } from '@angular/material/button'\n\nimport { RouterTokens } from '../../app.routes'\n\n@Component({\n  selector: 'rmz-page-not-found',\n  imports: [MatCardModule, RouterLink, MatButtonModule],\n  templateUrl: './page-not-found.component.html',\n  styleUrl: './page-not-found.component.scss',\n})\nexport class PageNotFoundComponent {\n  readonly routerTokens = RouterTokens\n}\n",
             "styleUrl": "./page-not-found.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
@@ -1242,8 +1229,8 @@
         },
         {
             "name": "SocialHandleComponent",
-            "id": "component-SocialHandleComponent-fca5cac67874edd3b69fdcf42c95389dcc971fae627fbdb34d9cdbf90f51b1ab1aa03afb5ffd7675fd1a6714cdac1f7207eb6a34dc6a2230c78ccc0a3f060618",
-            "file": "src/app/components/social-handle/social-handle.component.ts",
+            "id": "component-SocialHandleComponent-7af23870b004a3e4b840ab01b8a123187747c62a1bd9937100e1ac39867ff44be351e7c65dd901ed80f7b36279e90276931323a2821c9ad31398546591082901",
+            "file": "src/app/features/social/components/social-handle/social-handle.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1262,13 +1249,34 @@
                     "name": "socialHandle",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
-                    "type": "ISocialHandle",
-                    "decorators": []
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
                 }
             ],
             "outputsClass": [],
-            "propertiesClass": [],
+            "propertiesClass": [
+                {
+                    "name": "socialHandle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        148
+                    ],
+                    "required": true
+                }
+            ],
             "methodsClass": [
                 {
                     "name": "openLinkInNewTab",
@@ -1283,7 +1291,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 15,
+                    "line": 16,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "jsdoctags": [
@@ -1317,18 +1325,18 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core'\nimport { MatButtonModule } from '@angular/material/button'\nimport { MatIconModule } from '@angular/material/icon'\nimport { ISocialHandle } from '@models/social-handle.model'\n\n@Component({\n  selector: 'rmz-social-handle',\n  imports: [MatIconModule, MatButtonModule],\n  templateUrl: './social-handle.component.html',\n  styleUrl: './social-handle.component.scss',\n})\nexport class SocialHandleComponent {\n  @Input() socialHandle!: ISocialHandle\n\n  openLinkInNewTab(url: string) {\n    window.open(url, '_blank')\n  }\n}\n",
+            "sourceCode": "import { Component, input } from '@angular/core'\nimport { MatButtonModule } from '@angular/material/button'\nimport { MatIconModule } from '@angular/material/icon'\n\nimport { ISocialHandle } from '@features/social/social-handle.model'\n\n@Component({\n  selector: 'rmz-social-handle',\n  imports: [MatIconModule, MatButtonModule],\n  templateUrl: './social-handle.component.html',\n  styleUrl: './social-handle.component.scss',\n})\nexport class SocialHandleComponent {\n  readonly socialHandle = input.required<ISocialHandle>()\n\n  openLinkInNewTab(url: string) {\n    window.open(url, '_blank')\n  }\n}\n",
             "styleUrl": "./social-handle.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"handle\">\n  <button mat-fab (click)=\"openLinkInNewTab(socialHandle.url)\">\n    <mat-icon [svgIcon]=\"socialHandle.name\"></mat-icon>\n  </button>\n</div>\n"
+            "templateData": "<div class=\"handle\">\n  <button mat-fab (click)=\"openLinkInNewTab(socialHandle().url)\">\n    <mat-icon [svgIcon]=\"socialHandle().name\"></mat-icon>\n  </button>\n</div>\n"
         },
         {
             "name": "SocialHandlesBandComponent",
-            "id": "component-SocialHandlesBandComponent-8945225f1cf08c52a06958c1c2f93ada934e4aca31f4fb8648dc609c15e66944d4c62aa74f3d95128745784b0cbad5d8b003b21696d6078980d40c1b8b81ac70",
-            "file": "src/app/components/social-handles-band/social-handles-band.component.ts",
+            "id": "component-SocialHandlesBandComponent-96a512c7e3e2c62e405821b2ac2501f87231568823b350edf1d990b84f40f2cc06c2ab91724b9491b533c2fbe4aa7a53d9be99bdce85b0236f140372983acb9c",
+            "file": "src/app/features/social/components/social-handles-band/social-handles-band.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -1354,7 +1362,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 15,
+                    "line": 16,
                     "modifierKind": [
                         148
                     ]
@@ -1368,7 +1376,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 16,
+                    "line": 17,
                     "modifierKind": [
                         148
                     ]
@@ -1382,7 +1390,7 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 14,
+                    "line": 15,
                     "modifierKind": [
                         123
                     ]
@@ -1411,13 +1419,13 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, inject } from '@angular/core'\nimport { MatDividerModule } from '@angular/material/divider'\nimport { MatIconModule } from '@angular/material/icon'\nimport { SocialHandleComponent } from '@components/social-handle/social-handle.component'\nimport { SocialHandlesService } from '@components/social-handles-band/social-handles.service'\n\n@Component({\n  selector: 'rmz-social-handles-band',\n  imports: [MatDividerModule, MatIconModule, SocialHandleComponent],\n  templateUrl: './social-handles-band.component.html',\n  styleUrl: './social-handles-band.component.scss',\n})\nexport class SocialHandlesBandComponent {\n  private socialHandlesService = inject(SocialHandlesService)\n  readonly socialHandles = this.socialHandlesService.socialHandles\n  readonly socialHandlesApiError = this.socialHandlesService.socialHandlesError\n}\n",
+            "sourceCode": "import { Component, inject } from '@angular/core'\nimport { MatDividerModule } from '@angular/material/divider'\nimport { MatIconModule } from '@angular/material/icon'\n\nimport { SocialHandleComponent } from '@features/social/components/social-handle/social-handle.component'\nimport { SocialHandlesService } from '@features/social/components/social-handles-band/social-handles.service'\n\n@Component({\n  selector: 'rmz-social-handles-band',\n  imports: [MatDividerModule, MatIconModule, SocialHandleComponent],\n  templateUrl: './social-handles-band.component.html',\n  styleUrl: './social-handles-band.component.scss',\n})\nexport class SocialHandlesBandComponent {\n  private socialHandlesService = inject(SocialHandlesService)\n  readonly socialHandles = this.socialHandlesService.socialHandles\n  readonly socialHandlesApiError = this.socialHandlesService.socialHandlesError\n}\n",
             "styleUrl": "./social-handles-band.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"social-handles-section\">\n  <mat-divider></mat-divider>\n  <div class=\"handles\">\n    @for (socialHandle of socialHandles(); track socialHandle.name) {\n      <rmz-social-handle [socialHandle]=\"socialHandle\"></rmz-social-handle>\n    }\n    @if (socialHandlesApiError()?.statusCode) {\n      <span>{{ socialHandlesApiError()?.message }}</span>\n    }\n  </div>\n</div>\n"
+            "templateData": "<div class=\"social-handles-section\">\n  <mat-divider></mat-divider>\n  <div class=\"handles\">\n    @for (socialHandle of socialHandles(); track socialHandle.name) {\n      <rmz-social-handle [socialHandle]=\"socialHandle\" />\n    }\n    @if (socialHandlesApiError()?.statusCode) {\n      <span>{{ socialHandlesApiError()?.message }}</span>\n    }\n  </div>\n</div>\n"
         }
     ],
     "modules": [],
@@ -1572,7 +1580,7 @@
                 "name": "ErrorMessages",
                 "childs": [
                     {
-                        "name": "Unknown_Error",
+                        "name": "unknown",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "value": "An unknown error occurred."
@@ -1606,31 +1614,31 @@
                 "name": "IconNames",
                 "childs": [
                     {
-                        "name": "Github",
+                        "name": "github",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "value": "Github"
                     },
                     {
-                        "name": "Medium",
+                        "name": "medium",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "value": "Medium"
                     },
                     {
-                        "name": "Linkedin",
+                        "name": "linkedin",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "value": "Linkedin"
                     },
                     {
-                        "name": "StackOverflow",
+                        "name": "stackOverflow",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "value": "Stackoverflow"
                     },
                     {
-                        "name": "TwitterX",
+                        "name": "twitterX",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "value": "Twitter"
@@ -1647,31 +1655,31 @@
                 "name": "IconResourceUrls",
                 "childs": [
                     {
-                        "name": "Github",
+                        "name": "github",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "value": "custom-icons/github.svg"
                     },
                     {
-                        "name": "Medium",
+                        "name": "medium",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "value": "custom-icons/medium.svg"
                     },
                     {
-                        "name": "Linkedin",
+                        "name": "linkedin",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "value": "custom-icons/linkedin.svg"
                     },
                     {
-                        "name": "StackOverflow",
+                        "name": "stackOverflow",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "value": "custom-icons/stack-overflow.svg"
                     },
                     {
-                        "name": "TwitterX",
+                        "name": "twitterX",
                         "deprecated": false,
                         "deprecationMessage": "",
                         "value": "custom-icons/twitter-x.svg"
@@ -1868,7 +1876,7 @@
                     "name": "ErrorMessages",
                     "childs": [
                         {
-                            "name": "Unknown_Error",
+                            "name": "unknown",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "value": "An unknown error occurred."
@@ -1902,31 +1910,31 @@
                     "name": "IconNames",
                     "childs": [
                         {
-                            "name": "Github",
+                            "name": "github",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "value": "Github"
                         },
                         {
-                            "name": "Medium",
+                            "name": "medium",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "value": "Medium"
                         },
                         {
-                            "name": "Linkedin",
+                            "name": "linkedin",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "value": "Linkedin"
                         },
                         {
-                            "name": "StackOverflow",
+                            "name": "stackOverflow",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "value": "Stackoverflow"
                         },
                         {
-                            "name": "TwitterX",
+                            "name": "twitterX",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "value": "Twitter"
@@ -1943,31 +1951,31 @@
                     "name": "IconResourceUrls",
                     "childs": [
                         {
-                            "name": "Github",
+                            "name": "github",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "value": "custom-icons/github.svg"
                         },
                         {
-                            "name": "Medium",
+                            "name": "medium",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "value": "custom-icons/medium.svg"
                         },
                         {
-                            "name": "Linkedin",
+                            "name": "linkedin",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "value": "custom-icons/linkedin.svg"
                         },
                         {
-                            "name": "StackOverflow",
+                            "name": "stackOverflow",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "value": "custom-icons/stack-overflow.svg"
                         },
                         {
-                            "name": "TwitterX",
+                            "name": "twitterX",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "value": "custom-icons/twitter-x.svg"
@@ -2020,7 +2028,7 @@
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/2",
                 "status": "low"
             },
             {
@@ -2034,70 +2042,17 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/article-preview-list/article-preview-list.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "ArticlePreviewListComponent",
+                "filePath": "src/app/core/interceptors/apim-subscription-header.interceptor.ts",
+                "type": "function",
+                "linktype": "miscellaneous",
+                "linksubtype": "function",
+                "name": "apimSubscriptionHeaderInterceptor",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/app/components/article-preview-list/article-preview.service.ts",
-                "type": "injectable",
-                "linktype": "injectable",
-                "name": "ArticlePreviewService",
-                "coveragePercent": 0,
-                "coverageCount": "0/7",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/article-preview/article-preview.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "ArticlePreviewComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/4",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/hero/hero.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "HeroComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/2",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/social-handle/social-handle.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "SocialHandleComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/3",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/social-handles-band/social-handles-band.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "SocialHandlesBandComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/4",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/social-handles-band/social-handles.service.ts",
-                "type": "injectable",
-                "linktype": "injectable",
-                "name": "SocialHandlesService",
-                "coveragePercent": 0,
-                "coverageCount": "0/7",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/core/components/footer/footer.component.ts",
+                "filePath": "src/app/core/layout/footer/footer.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "FooterComponent",
@@ -2106,22 +2061,30 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/core/components/header/header.component.ts",
+                "filePath": "src/app/core/layout/header/header.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "HeaderComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
-                "filePath": "src/app/core/interceptors/apim-subscription-header.interceptor.ts",
-                "type": "function",
-                "linktype": "miscellaneous",
-                "linksubtype": "function",
-                "name": "apimSubscriptionHeaderInterceptor",
+                "filePath": "src/app/core/models/error.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ErrorModel",
                 "coveragePercent": 0,
-                "coverageCount": "0/1",
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/models/result.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Result",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -2139,7 +2102,7 @@
                 "linktype": "injectable",
                 "name": "IconService",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -2152,7 +2115,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/models/article.model.ts",
+                "filePath": "src/app/features/article/article.model.ts",
                 "type": "interface",
                 "linktype": "interface",
                 "name": "IArticle",
@@ -2161,34 +2124,43 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/models/error.model.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "ErrorModel",
+                "filePath": "src/app/features/article/components/article-preview-list/article-preview-list.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ArticlePreviewListComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
                 "status": "low"
             },
             {
-                "filePath": "src/app/models/result.model.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "Result",
+                "filePath": "src/app/features/article/components/article-preview-list/article-preview.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "ArticlePreviewService",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
-                "filePath": "src/app/models/social-handle.model.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "ISocialHandle",
+                "filePath": "src/app/features/article/components/article-preview/article-preview.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ArticlePreviewComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
-                "filePath": "src/app/pages/home/home.component.ts",
+                "filePath": "src/app/features/hero/hero.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HeroComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/features/home/home.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "HomeComponent",
@@ -2197,12 +2169,48 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/pages/page-not-found/page-not-found.component.ts",
+                "filePath": "src/app/features/page-not-found/page-not-found.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "PageNotFoundComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/features/social/components/social-handle/social-handle.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SocialHandleComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/features/social/components/social-handles-band/social-handles-band.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SocialHandlesBandComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/features/social/components/social-handles-band/social-handles.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "SocialHandlesService",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/features/social/social-handle.model.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ISocialHandle",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {

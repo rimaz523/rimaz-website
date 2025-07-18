@@ -33,10 +33,9 @@ module.exports = tseslint.config(
       '@angular-eslint/no-output-native': 'error',
       '@angular-eslint/component-class-suffix': 'error',
       '@angular-eslint/component-max-inline-declarations': 'error',
-      // TODO : enable after upgrade to angular @latest
-      // '@angular-eslint/no-developer-preview': 'error',
-      // '@angular-eslint/no-experimental': 'error',
-      // '@angular-eslint/no-lifecycle-hook-call': 'error',
+      '@angular-eslint/no-developer-preview': 'off',
+      '@angular-eslint/no-experimental': 'off',
+      '@angular-eslint/no-lifecycle-hook-call': 'off',
       '@angular-eslint/sort-lifecycle-methods': 'error',
       '@angular-eslint/directive-class-suffix': 'error',
       '@angular-eslint/prefer-signals': 'error',
