@@ -1,15 +1,15 @@
-<mat-card class="selectable-card" appearance="outlined" (click)="openLinkInNewTab(article.url)">
-  <img class="card-image" mat-card-image [src]="cdnUrl + article.image" [alt]="article.title" />
+<mat-card class="selectable-card" appearance="outlined" (click)="openLinkInNewTab(article().url)">
+  <img class="card-image" mat-card-image [src]="cdnUrl + article().image" [alt]="article().title" />
 
   <mat-card-header>
     <mat-card-title>
-      {{ article.title }}
+      {{ article().title }}
     </mat-card-title>
-    <mat-card-subtitle>{{ article.publishedDate }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ article().publishedDate }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content class="card-content">
     <p>
-      {{ article.content }}
+      {{ article().content }}
     </p>
   </mat-card-content>
 </mat-card>

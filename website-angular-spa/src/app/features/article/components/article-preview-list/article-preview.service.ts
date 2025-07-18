@@ -29,10 +29,10 @@ export class ArticlePreviewService {
       ),
     )
 
-  private articlePreviewsResult = toSignal(this.articlePreviewList$, {
+  private readonly articlePreviewsResult = toSignal(this.articlePreviewList$, {
     initialValue: { data: [] } as Result<IArticle[]>,
   })
 
-  articlePreviews = computed(() => this.articlePreviewsResult().data)
-  articlePreviewsError = computed(() => this.articlePreviewsResult().error)
+  readonly articlePreviews = computed(() => this.articlePreviewsResult().data)
+  readonly articlePreviewsError = computed(() => this.articlePreviewsResult().error)
 }

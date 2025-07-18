@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { HttpClient, HttpHandler } from '@angular/common/http'
 
 import { ArticlePreviewListComponent } from './article-preview-list.component'
 
@@ -9,6 +10,7 @@ describe('ArticlePreviewListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ArticlePreviewListComponent],
+      providers: [HttpClient, HttpHandler],
     }).compileComponents()
 
     fixture = TestBed.createComponent(ArticlePreviewListComponent)

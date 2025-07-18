@@ -4,7 +4,7 @@ import { appTheme, darkMode } from '@shared/constants/app.constants'
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
-  isDark = signal(false)
+  readonly isDark = signal(false)
 
   constructor() {
     this.loadTheme()

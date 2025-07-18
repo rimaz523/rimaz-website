@@ -29,10 +29,10 @@ export class SocialHandlesService {
       ),
     )
 
-  private socialHandlesResult = toSignal(this.socialHandles$, {
+  private readonly socialHandlesResult = toSignal(this.socialHandles$, {
     initialValue: { data: [] } as Result<ISocialHandle[]>,
   })
 
-  socialHandles = computed(() => this.socialHandlesResult().data)
-  socialHandlesError = computed(() => this.socialHandlesResult().error)
+  readonly socialHandles = computed(() => this.socialHandlesResult().data)
+  readonly socialHandlesError = computed(() => this.socialHandlesResult().error)
 }
