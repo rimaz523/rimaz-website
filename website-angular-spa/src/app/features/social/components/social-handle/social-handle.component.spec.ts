@@ -16,11 +16,6 @@ describe('SocialHandleComponent', () => {
   })
 
   it('should create', () => {
-    component.socialHandle = {
-      name: 'Github',
-      url: 'https://github.com/rimaz523',
-      displayOrder: 1,
-    }
     fixture.detectChanges()
     expect(component).toBeTruthy()
   })

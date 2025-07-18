@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, input } from '@angular/core'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 
@@ -11,7 +11,7 @@ import { ISocialHandle } from '@features/social/social-handle.model'
   styleUrl: './social-handle.component.scss',
 })
 export class SocialHandleComponent {
-  @Input() socialHandle!: ISocialHandle
+  readonly socialHandle = input.required<ISocialHandle>()
 
   openLinkInNewTab(url: string) {
     window.open(url, '_blank')
