@@ -1,4 +1,14 @@
 .card-preview-list-layout {
-  display: flex;
-  margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: 1fr; // Mobile default
+
+  @media (min-width: 600px) {
+    // iPad (portrait and up)
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    // Laptop and higher
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
