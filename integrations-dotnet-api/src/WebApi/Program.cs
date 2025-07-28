@@ -24,6 +24,19 @@ public class Program
         builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
         builder.Services.AddProblemDetails();
 
+        // Define the AllowAllOrigins Cors policy that will be activated in development environment only
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAllOrigins",
+                builder =>
+                {
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+        });
+
         var app = builder.Build();
 
         if (app.Environment.IsDevelopment())
@@ -35,7 +48,8 @@ public class Program
                 initialiser.InitialiseAsync().GetAwaiter().GetResult();
                 initialiser.SeedAsync().GetAwaiter().GetResult();
             }
-
+            // Allow All Origins for Cors in dev mode
+            app.UseCors("AllowAllOrigins");
         }
 
         // Configure the HTTP request pipeline.
