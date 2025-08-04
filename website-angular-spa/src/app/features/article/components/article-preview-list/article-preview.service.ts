@@ -32,7 +32,7 @@ export class ArticlePreviewService {
     initialValue: { data: [] } as Result<IArticle[]>,
   })
 
-  readonly articlePreviews = computed(() => this.articleListResult().data?.slice(0, 4))
-  readonly articleList = computed(() => this.articleListResult().data)
-  readonly getArticlesError = computed(() => this.articleListResult().error)
+  readonly articlePreviews = computed(() => this.allArticlePreviewsResult().data?.slice(0, 4))
+  readonly articleList = computed(() => this.allArticlePreviewsResult().data)
+  readonly getArticlesError = computed(() => this.allArticlePreviewsResult().error)
 }
