@@ -8,5 +8,10 @@ Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'npm start --prefix "..\
 # Give the apps 10 seconds to boot up
 Start-Sleep -Seconds 10
 
-Write-Host "Success!" -ForegroundColor Green
+Write-Host "Opening Angular frontend in chrome" -ForegroundColor Green
 Start-Process "chrome.exe" "http://localhost:4200/"
+
+Write-Host "Open project in VSCode" -ForegroundColor Green
+cd .. && code .
+
+Write-Host "Success!" -ForegroundColor Green
