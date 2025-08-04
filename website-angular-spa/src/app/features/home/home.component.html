@@ -1,3 +1,6 @@
 <rmz-hero />
 <rmz-social-handles-band />
-<rmz-article-preview-list />
+<rmz-article-preview-list [isPreview]="true" />
+<div class="user-options">
+  <button mat-raised-button [routerLink]="routerTokens.articles">View more</button>
+</div>
