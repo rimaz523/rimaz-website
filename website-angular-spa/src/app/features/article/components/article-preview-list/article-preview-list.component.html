@@ -1,5 +1,5 @@
 <div class="card-preview-list-layout">
-  @for (articlePreview of articlePreviews(); track articlePreview.id) {
+  @for (articlePreview of articles(); track articlePreview.id) {
     <rmz-article-preview [article]="articlePreview" />
   }
 </div>
