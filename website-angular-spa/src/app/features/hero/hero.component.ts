@@ -22,8 +22,8 @@ export class HeroComponent {
         this.elementRef.nativeElement.querySelector('.hero-container'),
         'background-image',
         this.themeService.getIsDark()
-          ? `url(${environment.cdnUrl}${CdnRoutes.heroImageDark})`
-          : `url(${environment.cdnUrl}${CdnRoutes.heroImageLight})`,
+          ? `url(${environment.cdnUrl}/${CdnRoutes.heroImageDark})`
+          : `url(${environment.cdnUrl}/${CdnRoutes.heroImageLight})`,
       )
     })
   }

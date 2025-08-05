@@ -5,6 +5,17 @@ Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'dotnet run --project ".
 Write-Host "Starting Angular frontend" -ForegroundColor Green
 Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'npm start --prefix "..\..\website-angular-spa"'
 
+Write-Host "Running Azurite" -ForegroundColor Green
+
+Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'azurite -s -l c:\azurite -d c:\azurite\debug.log'
+
+# Give the azurite 10 seconds to boot up
+Start-Sleep -Seconds 10
+
+Write-Host "Seeding local storage" -ForegroundColor Green
+
+Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'dotnet run --project "..\..\integrations-dotnet-api\tools\InitTool\InitTool.csproj"'
+
 # Give the apps 10 seconds to boot up
 Start-Sleep -Seconds 10
 

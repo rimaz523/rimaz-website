@@ -9,9 +9,10 @@ Site URL : https://angular.rimaz.dev
 
 ### Technologies & Tools used in the front-end single page web application include:
 
-- Angular Cli ^19.2.11
+- Angular Cli ^20.1.2
 - Node v22.12.0 LTS
 - NPM v11.3.0
+- Azurite v3.35.0 (installed via npm -g see : https://github.com/Azure/Azurite?tab=readme-ov-file#npm)
 - CI/CD using Azure DevOps
 
 ### Installation Instructions
