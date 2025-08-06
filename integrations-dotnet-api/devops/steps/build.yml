@@ -7,7 +7,7 @@ steps:
       includePreviewVersions: true # Required for preview versions
 
   - task: DotNetCoreCLI@2
-    displayName: Restore
+    displayName: Restore WebApi
     inputs:
       command: 'restore'
       projects: '**/WebApi.csproj'
@@ -22,17 +22,17 @@ steps:
       arguments: 'integrations-dotnet-api/integrations-dotnet-api.sln --verify-no-changes --verbosity detailed'
 
   - task: DotNetCoreCLI@2
-    displayName: Build
+    displayName: Build WebApi
     inputs:
       command: build
       projects: '**/WebApi.csproj'
       arguments: '--no-restore --configuration $(buildConfiguration)'
 
   - task: DotNetCoreCLI@2
-    displayName: Publish
+    displayName: Publish WebApi
     inputs:
       command: publish
-      projects: '**/*.sln'
+      projects: '**/WebApi.csproj'
       publishWebProjects: false
       arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/$(buildConfiguration)'
       zipAfterPublish: true
