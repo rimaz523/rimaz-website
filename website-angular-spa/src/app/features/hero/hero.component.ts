@@ -1,5 +1,8 @@
 import { Component, effect, ElementRef, inject, Renderer2 } from '@angular/core'
 import { MatCardModule } from '@angular/material/card'
+import { NgxShineBorderComponent } from '@omnedia/ngx-shine-border'
+import { NgxFlickeringGridComponent } from '@omnedia/ngx-flickering-grid'
+import { NgxShinyTextComponent } from '@omnedia/ngx-shiny-text'
 
 import { ThemeService } from '@core/services/theme.services'
 import { CdnRoutes } from '@shared/constants/app.constants'
@@ -7,7 +10,12 @@ import { environment } from 'environments/environment'
 
 @Component({
   selector: 'rmz-hero',
-  imports: [MatCardModule],
+  imports: [
+    MatCardModule,
+    NgxShineBorderComponent,
+    NgxFlickeringGridComponent,
+    NgxShinyTextComponent,
+  ],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
 })

@@ -1,6 +1,25 @@
 <mat-card class="hero-container mat-elevation-z4">
-  <mat-card-content class="hero-content">
-    <h1 class="mat-h1">I am a full stack .NET developer specializing in Azure.</h1>
-    <h2 class="mat-h2">Welcome to my blog!</h2>
-  </mat-card-content>
+  <om-shine-border
+    gradientColorStart="#1c1f26"
+    gradientColorMiddle="#354a53"
+    gradientColorEnd="#6c9ca7">
+    <div class="hero-grid">
+      <om-flickering-grid [maxOpacity]="0.9" color="#033a16">
+        <mat-card-content class="hero-content">
+          <h1 class="mat-h1">
+            <om-shiny-text
+              [text]="'I am a full stack .NET developer specializing in Azure.'"
+              [textColor]="'hsla(0, 0%, 87.5%, 0.7)'"
+              [shimmerColor]="'hsl(0, 0%, 100%)'"></om-shiny-text>
+          </h1>
+          <h1 class="mat-h1">
+            <om-shiny-text
+              [text]="'Welcome to my blog!'"
+              [textColor]="'hsla(0, 0%, 87.5%, 0.7)'"
+              [shimmerColor]="'hsl(0, 0%, 100%)'"></om-shiny-text>
+          </h1>
+        </mat-card-content>
+      </om-flickering-grid>
+    </div>
+  </om-shine-border>
 </mat-card>

@@ -10,4 +10,16 @@
   height: 400px;
   position: relative;
   border-radius: var(--mat-sys-corner-none);
+
+  .hero-content {
+    padding-top: 30px;
+
+    .mat-h1 {
+      font-weight: bolder;
+    }
+  }
+
+  .hero-grid {
+    padding: 5px;
+  }
 }
