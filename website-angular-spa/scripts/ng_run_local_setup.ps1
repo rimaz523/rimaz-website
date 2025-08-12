@@ -9,8 +9,8 @@ Write-Host "Running Azurite" -ForegroundColor Green
 
 Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'azurite -s -l c:\azurite -d c:\azurite\debug.log'
 
-# Give the azurite 10 seconds to boot up
-Start-Sleep -Seconds 10
+# Give the azurite 30 seconds to boot up
+Start-Sleep -Seconds 30
 
 Write-Host "Seeding local storage" -ForegroundColor Green
 
