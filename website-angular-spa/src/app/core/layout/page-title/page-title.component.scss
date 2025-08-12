@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .page-title {
+    margin-top: 50px;
+    .mat-h1 {
+      font-weight: 300;
+    }
+  }
+}
