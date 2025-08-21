@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router'
 
 import { ThemeService } from '@core/services/theme.services'
 import { RouterTokens } from '../../../app.routes'
+import { SideMenuService } from '@core/services/side-menu.service'
 
 @Component({
   selector: 'rmz-header',
@@ -15,6 +16,7 @@ import { RouterTokens } from '../../../app.routes'
 })
 export class HeaderComponent {
   private themeService = inject(ThemeService)
+  private sideMenuService = inject(SideMenuService)
 
   isDark = false
   readonly routerTokens = RouterTokens
@@ -28,5 +30,13 @@ export class HeaderComponent {
   }
   setLightMode(): void {
     this.isDark = this.themeService.setLightMode()
+  }
+
+  toggleSidenav(): void {
+    if (this.sideMenuService.isOpen()) {
+      this.sideMenuService.closeSidenav()
+    } else {
+      this.sideMenuService.openSidenav()
+    }
   }
 }
