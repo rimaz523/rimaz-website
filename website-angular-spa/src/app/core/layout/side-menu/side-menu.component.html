@@ -1,0 +1,40 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav [mode]="'over'" position="end" [fixedTopGap]="500" class="side-nav">
+    <mat-list>
+      <mat-list-item class="side-nav-item"
+        ><button mat-raised-button class="menu-button">
+          <mat-icon>home</mat-icon> Home
+        </button></mat-list-item
+      >
+      <mat-list-item class="side-nav-item"
+        ><button mat-raised-button class="menu-button">
+          <mat-icon>description</mat-icon>Articles
+        </button></mat-list-item
+      >
+      <mat-list-item class="side-nav-item"
+        ><button mat-raised-button class="menu-button">
+          <mat-icon>account_circle</mat-icon>About
+        </button></mat-list-item
+      >
+      <mat-list-item class="side-nav-item"
+        ><button mat-raised-button class="menu-button">
+          <mat-icon>email</mat-icon>Contact
+        </button></mat-list-item
+      >
+      <mat-list-item class="side-nav-item"
+        ><button mat-raised-button class="menu-button">
+          <mat-icon>report_problem</mat-icon>Report an Issue
+        </button></mat-list-item
+      >
+      <mat-list-item class="side-nav-item"
+        ><button mat-raised-button class="menu-button">
+          <mat-icon>dark_mode</mat-icon>Dark Mode
+        </button></mat-list-item
+      >
+    </mat-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet />
+  </mat-sidenav-content>
+</mat-sidenav-container>
