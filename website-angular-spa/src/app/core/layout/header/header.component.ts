@@ -4,7 +4,6 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { RouterLink } from '@angular/router'
 
-import { ThemeService } from '@core/services/theme.services'
 import { RouterTokens } from '../../../app.routes'
 import { SideMenuService } from '@core/services/side-menu.service'
 
@@ -15,22 +14,8 @@ import { SideMenuService } from '@core/services/side-menu.service'
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  private themeService = inject(ThemeService)
   private sideMenuService = inject(SideMenuService)
-
-  isDark = false
   readonly routerTokens = RouterTokens
-
-  constructor() {
-    this.isDark = this.themeService.getIsDark()
-  }
-
-  setDarkMode(): void {
-    this.isDark = this.themeService.setDarkMode()
-  }
-  setLightMode(): void {
-    this.isDark = this.themeService.setLightMode()
-  }
 
   toggleSidenav(): void {
     if (this.sideMenuService.isOpen()) {
