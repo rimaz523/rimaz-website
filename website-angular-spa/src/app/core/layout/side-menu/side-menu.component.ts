@@ -6,6 +6,7 @@ import { MatDividerModule } from '@angular/material/divider'
 import { MatListModule } from '@angular/material/list'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIcon } from '@angular/material/icon'
+import { ThemeService } from '@core/services/theme.services'
 
 @Component({
   selector: 'rmz-side-menu',
@@ -21,10 +22,14 @@ import { MatIcon } from '@angular/material/icon'
   styleUrl: './side-menu.component.scss',
 })
 export class SideMenuComponent {
+  private themeService = inject(ThemeService)
   private sideMenuService = inject(SideMenuService)
   readonly sidenav = viewChild<MatSidenav>('sidenav')
 
+  isDark = false
+
   constructor() {
+    this.isDark = this.themeService.getIsDark()
     effect(() => {
       if (this.sideMenuService.isOpen()) {
         this.openSidenav()
@@ -32,6 +37,15 @@ export class SideMenuComponent {
         this.closeSidenav()
       }
     })
+  }
+
+  setDarkMode(): void {
+    this.isDark = this.themeService.setDarkMode()
+    this.closeSidenav()
+  }
+  setLightMode(): void {
+    this.isDark = this.themeService.setLightMode()
+    this.closeSidenav()
   }
 
   openSidenav() {

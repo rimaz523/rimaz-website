@@ -26,11 +26,20 @@
           <mat-icon>report_problem</mat-icon>Report an Issue
         </button></mat-list-item
       >
-      <mat-list-item class="side-nav-item"
-        ><button mat-raised-button class="menu-button">
-          <mat-icon>dark_mode</mat-icon>Dark Mode
-        </button></mat-list-item
-      >
+
+      @if (isDark) {
+        <mat-list-item class="side-nav-item"
+          ><button mat-raised-button class="menu-button" (click)="setLightMode()">
+            <mat-icon>light_mode</mat-icon>Light Mode
+          </button></mat-list-item
+        >
+      } @else {
+        <mat-list-item class="side-nav-item"
+          ><button mat-raised-button class="menu-button" (click)="setDarkMode()">
+            <mat-icon>dark_mode</mat-icon>Dark Mode
+          </button></mat-list-item
+        >
+      }
     </mat-list>
   </mat-sidenav>
 

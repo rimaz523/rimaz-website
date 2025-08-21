@@ -1,6 +1,10 @@
 :host {
   .side-nav {
     opacity: 0.75;
+    position: fixed;
+    top: 65px;
+    bottom: 0;
+    height: 100%;
 
     .side-nav-item {
       padding-top: 20px;
