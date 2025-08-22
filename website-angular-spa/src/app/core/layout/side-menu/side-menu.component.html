@@ -2,12 +2,20 @@
   <mat-sidenav #sidenav [mode]="'over'" position="end" [fixedTopGap]="500" class="side-nav">
     <mat-list>
       <mat-list-item class="side-nav-item"
-        ><button mat-raised-button class="menu-button">
+        ><button
+          mat-raised-button
+          class="menu-button"
+          [routerLink]="routerTokens.home"
+          (click)="closeSidenav()">
           <mat-icon>home</mat-icon> Home
         </button></mat-list-item
       >
       <mat-list-item class="side-nav-item"
-        ><button mat-raised-button class="menu-button">
+        ><button
+          mat-raised-button
+          class="menu-button"
+          [routerLink]="routerTokens.articles"
+          (click)="closeSidenav()">
           <mat-icon>description</mat-icon>Articles
         </button></mat-list-item
       >
@@ -43,7 +51,7 @@
     </mat-list>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content class="sidenav__content">
     <router-outlet />
   </mat-sidenav-content>
 </mat-sidenav-container>
