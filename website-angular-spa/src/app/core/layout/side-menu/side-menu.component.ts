@@ -1,5 +1,5 @@
 import { Component, effect, inject, viewChild } from '@angular/core'
-import { RouterOutlet } from '@angular/router'
+import { RouterLink, RouterOutlet } from '@angular/router'
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav'
 import { SideMenuService } from '@core/services/side-menu.service'
 import { MatDividerModule } from '@angular/material/divider'
@@ -7,6 +7,8 @@ import { MatListModule } from '@angular/material/list'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIcon } from '@angular/material/icon'
 import { ThemeService } from '@core/services/theme.services'
+
+import { RouterTokens } from 'app/app.routes'
 
 @Component({
   selector: 'rmz-side-menu',
@@ -17,6 +19,7 @@ import { ThemeService } from '@core/services/theme.services'
     MatListModule,
     MatButtonModule,
     MatIcon,
+    RouterLink,
   ],
   templateUrl: './side-menu.component.html',
   styleUrl: './side-menu.component.scss',
@@ -24,7 +27,9 @@ import { ThemeService } from '@core/services/theme.services'
 export class SideMenuComponent {
   private themeService = inject(ThemeService)
   private sideMenuService = inject(SideMenuService)
+
   readonly sidenav = viewChild<MatSidenav>('sidenav')
+  readonly routerTokens = RouterTokens
 
   isDark = false
 

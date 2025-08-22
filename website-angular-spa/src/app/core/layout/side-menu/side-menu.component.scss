@@ -2,9 +2,14 @@
   .side-nav {
     opacity: 0.75;
     position: fixed;
-    top: 65px;
+    top: 55px;
     bottom: 0;
     height: 100%;
+
+    @media (min-width: 600px) {
+      // iPad (portrait and up)
+      top: 65px;
+    }
 
     .side-nav-item {
       padding-top: 20px;
@@ -19,5 +24,9 @@
         justify-content: left;
       }
     }
+  }
+
+  .sidenav__content {
+    overflow: hidden;
   }
 }
