@@ -30,7 +30,10 @@
         </button></mat-list-item
       >
       <mat-list-item class="side-nav-item"
-        ><button mat-raised-button class="menu-button">
+        ><button
+          mat-raised-button
+          class="menu-button"
+          (click)="openLinkInNewTab(githubReportIssueUrl)">
           <mat-icon>report_problem</mat-icon>Report an Issue
         </button></mat-list-item
       >
