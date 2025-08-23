@@ -9,6 +9,7 @@ import { MatIcon } from '@angular/material/icon'
 import { ThemeService } from '@core/services/theme.services'
 
 import { RouterTokens } from 'app/app.routes'
+import { environment } from 'environments/environment'
 
 @Component({
   selector: 'rmz-side-menu',
@@ -31,6 +32,7 @@ export class SideMenuComponent {
   readonly sidenav = viewChild<MatSidenav>('sidenav')
   readonly routerTokens = RouterTokens
 
+  githubReportIssueUrl = environment.githubReportIssueUrl
   isDark = false
 
   constructor() {
@@ -61,5 +63,9 @@ export class SideMenuComponent {
   closeSidenav() {
     this.sideMenuService.closeSidenav()
     this.sidenav()?.close()
+  }
+
+  openLinkInNewTab(url: string) {
+    window.open(url, '_blank')
   }
 }
