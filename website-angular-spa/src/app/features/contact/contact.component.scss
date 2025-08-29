@@ -1,0 +1,25 @@
+:host {
+  .contact__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 25px;
+
+    .contact__form-field {
+      width: 300px;
+
+      @media (min-width: 600px) {
+        // iPad (portrait and up)
+        width: 600px;
+      }
+    }
+
+    .contact__form-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

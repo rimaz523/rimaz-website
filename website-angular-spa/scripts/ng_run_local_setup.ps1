@@ -1,20 +1,17 @@
 Write-Host "Starting Dotnet core API" -ForegroundColor Green
-
-Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'dotnet run --project "..\..\integrations-dotnet-api\src\WebApi\WebApi.csproj"'
+Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'cd ..\..\integrations-dotnet-api\src\WebApi; dotnet run --project "WebApi.csproj"'
 
 Write-Host "Starting Angular frontend" -ForegroundColor Green
-Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'npm start --prefix "..\..\website-angular-spa"'
+Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'cd ..\..\website-angular-spa; npm start'
 
 Write-Host "Running Azurite" -ForegroundColor Green
-
 Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'azurite -s -l c:\azurite -d c:\azurite\debug.log'
 
 # Give the azurite 30 seconds to boot up
 Start-Sleep -Seconds 30
 
 Write-Host "Seeding local storage" -ForegroundColor Green
-
-Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'dotnet run --project "..\..\integrations-dotnet-api\tools\InitTool\InitTool.csproj"'
+Start-Process pwsh -ArgumentList '-NoExit', '-Command', 'cd ..\..\integrations-dotnet-api\tools\InitTool; dotnet run --project "InitTool.csproj"'
 
 # Give the apps 10 seconds to boot up
 Start-Sleep -Seconds 10
