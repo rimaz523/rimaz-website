@@ -1,1 +1,47 @@
-<p>contact works!</p>
+<rmz-page-title title="Get In Touch" />
+<div class="contact__container">
+  <form class="contact__form">
+    <p>
+      <mat-form-field appearance="outline" class="contact__form-field">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          placeholder="Name"
+          [formControl]="name"
+          type="text"
+          id="name"
+          name="name"
+          required />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" class="contact__form-field">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="Email"
+          [formControl]="email"
+          type="email"
+          id="email"
+          name="email"
+          required />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" class="contact__form-field">
+        <mat-label>Message</mat-label>
+        <textarea
+          matInput
+          placeholder="Message"
+          [formControl]="message"
+          id="message"
+          name="message"
+          rows="5"
+          required></textarea>
+      </mat-form-field>
+    </p>
+    <p class="contact__form-actions">
+      <button mat-raised-button matButton="outlined">Send Message</button>
+    </p>
+  </form>
+</div>
