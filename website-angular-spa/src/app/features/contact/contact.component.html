@@ -1,17 +1,19 @@
 <rmz-page-title title="Get In Touch" />
 <div class="contact__container">
-  <form class="contact__form">
+  <form class="contact__form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
     <p>
       <mat-form-field appearance="outline" class="contact__form-field">
         <mat-label>Name</mat-label>
         <input
           matInput
           placeholder="Name"
-          [formControl]="name"
+          formControlName="name"
           type="text"
           id="name"
-          name="name"
-          required />
+          name="name" />
+        @if (contactForm.controls.name.hasError('required')) {
+          <mat-error>Name is required.</mat-error>
+        }
       </mat-form-field>
     </p>
     <p>
@@ -20,11 +22,19 @@
         <input
           matInput
           placeholder="Email"
-          [formControl]="email"
+          formControlName="email"
           type="email"
           id="email"
-          name="email"
-          required />
+          name="email" />
+        @if (
+          contactForm.controls.email.hasError('email') &&
+          !contactForm.controls.email.hasError('required')
+        ) {
+          <mat-error>Please enter a valid email address.</mat-error>
+        }
+        @if (contactForm.controls.email.hasError('required')) {
+          <mat-error>Email is required.</mat-error>
+        }
       </mat-form-field>
     </p>
     <p>
@@ -33,15 +43,17 @@
         <textarea
           matInput
           placeholder="Message"
-          [formControl]="message"
+          formControlName="message"
           id="message"
           name="message"
-          rows="5"
-          required></textarea>
+          rows="5"></textarea>
+        @if (contactForm.controls.message.hasError('required')) {
+          <mat-error>Message is required.</mat-error>
+        }
       </mat-form-field>
     </p>
     <p class="contact__form-actions">
-      <button mat-raised-button matButton="outlined">Send Message</button>
+      <button type="submit" mat-raised-button matButton="outlined">Send</button>
     </p>
   </form>
 </div>
