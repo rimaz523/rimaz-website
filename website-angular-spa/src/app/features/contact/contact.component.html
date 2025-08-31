@@ -12,7 +12,7 @@
           id="name"
           name="name" />
         @if (contactForm.controls.name.hasError('required')) {
-          <mat-error>Name is required.</mat-error>
+          <mat-error>{{ validationMessages.required }}</mat-error>
         }
       </mat-form-field>
     </p>
@@ -30,10 +30,10 @@
           contactForm.controls.email.hasError('email') &&
           !contactForm.controls.email.hasError('required')
         ) {
-          <mat-error>Please enter a valid email address.</mat-error>
+          <mat-error>{{ validationMessages.email }}</mat-error>
         }
         @if (contactForm.controls.email.hasError('required')) {
-          <mat-error>Email is required.</mat-error>
+          <mat-error>{{ validationMessages.required }}</mat-error>
         }
       </mat-form-field>
     </p>
@@ -43,17 +43,22 @@
         <textarea
           matInput
           placeholder="Message"
-          formControlName="message"
-          id="message"
-          name="message"
+          formControlName="content"
+          id="content"
+          name="content"
           rows="5"></textarea>
-        @if (contactForm.controls.message.hasError('required')) {
-          <mat-error>Message is required.</mat-error>
+        @if (contactForm.controls.content.hasError('required')) {
+          <mat-error>{{ validationMessages.required }}</mat-error>
         }
       </mat-form-field>
     </p>
     <p class="contact__form-actions">
-      <button type="submit" mat-raised-button matButton="outlined">Send</button>
+      <button type="submit" mat-raised-button matButton="outlined">{{ buttonTexts.send }}</button>
     </p>
   </form>
 </div>
+@if (status() === 'loading') {
+  <div class="screen__loading">
+    <mat-spinner diameter="100"></mat-spinner>
+  </div>
+}
