@@ -6,7 +6,6 @@ import { MatInputModule } from '@angular/material/input'
 
 import { PageTitleComponent } from '@core/layout/page-title/page-title.component'
 import { ContactService } from './contact.service'
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import {
   ButtonTexts,
@@ -15,6 +14,7 @@ import {
   OperationStatus,
   ValidationMessages,
 } from '@shared/constants/app.constants'
+import { LoaderComponent } from '@core/layout/loader/loader.component'
 
 @Component({
   selector: 'rmz-contact',
@@ -24,7 +24,7 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatProgressSpinnerModule,
+    LoaderComponent,
   ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
