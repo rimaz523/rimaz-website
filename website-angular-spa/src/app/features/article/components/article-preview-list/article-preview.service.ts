@@ -7,7 +7,7 @@ import { Result } from '@core/models/result.model'
 import { ErrorService } from '@core/services/error.service'
 import { environment } from 'environments/environment'
 import { IArticle } from '@features/article/article.model'
-import { ApiRoutes } from '@shared/constants/app.constants'
+import { ApiRoutes, OperationStatus } from '@shared/constants/app.constants'
 
 @Injectable({
   providedIn: 'root',
@@ -23,13 +23,14 @@ export class ArticlePreviewService {
       catchError(error =>
         of({
           data: [],
+          status: OperationStatus.error,
           error: this.errorService.getErrorModel(error),
         } as Result<IArticle[]>),
       ),
     )
 
   private readonly allArticlePreviewsResult = toSignal(this.getArticlePreviews$, {
-    initialValue: { data: [] } as Result<IArticle[]>,
+    initialValue: { data: [], status: OperationStatus.success } as Result<IArticle[]>,
   })
 
   readonly articlePreviews = computed(() => this.allArticlePreviewsResult().data?.slice(0, 4))

@@ -20,6 +20,11 @@ export const enum ErrorMessages {
   unknown = 'An unknown error occurred.',
 }
 
+export const enum Messages {
+  contactSuccess = 'Thank you for your message!',
+  tryAgainLater = 'Please try again later.',
+}
+
 export const enum HttpRequestHeaders {
   apimSubscriptionKey = 'ocp-apim-subscription-key',
 }
@@ -27,9 +32,27 @@ export const enum HttpRequestHeaders {
 export const enum ApiRoutes {
   socialHandles = 'socialhandles',
   articlePreviews = 'blogPreviews',
+  message = 'message',
+}
+
+export enum OperationStatus {
+  idle = 'idle',
+  loading = 'loading',
+  success = 'success',
+  error = 'error',
 }
 
 export const enum CdnRoutes {
   heroImageDark = 'app/hero-dark.jpg',
   heroImageLight = 'app/hero-light.jpg',
+}
+
+export enum ButtonTexts {
+  send = 'Send',
+  dismiss = 'Dismiss',
+}
+
+export enum ValidationMessages {
+  required = 'This field is required.',
+  email = 'Please enter a valid email address.',
 }
