@@ -57,7 +57,7 @@
     </p>
   </form>
 </div>
-@if (status() === 'loading') {
+@if (status() === operationStatus.loading) {
   <div class="screen__loading">
     <mat-spinner diameter="100"></mat-spinner>
   </div>

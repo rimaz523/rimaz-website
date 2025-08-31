@@ -42,6 +42,7 @@ export class ContactComponent {
   })
   buttonTexts = ButtonTexts
   validationMessages = ValidationMessages
+  operationStatus = OperationStatus
 
   onSubmit() {
     if (this.contactForm.valid) {

@@ -13,7 +13,7 @@ export class ErrorService {
       message: ErrorMessages.unknown,
       statusCode: undefined,
     }
-    if (genericError instanceof HttpErrorResponse && genericError.error != null) {
+    if (genericError instanceof HttpErrorResponse && genericError.error !== null) {
       error.message = genericError.error.message
       error.statusCode = genericError.error.statusCode
     } else if (genericError instanceof Error) {

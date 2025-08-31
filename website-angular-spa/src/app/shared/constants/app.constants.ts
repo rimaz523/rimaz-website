@@ -35,7 +35,7 @@ export const enum ApiRoutes {
   message = 'message',
 }
 
-export const enum OperationStatus {
+export enum OperationStatus {
   idle = 'idle',
   loading = 'loading',
   success = 'success',
