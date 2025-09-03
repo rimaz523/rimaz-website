@@ -75,6 +75,8 @@ export class ContactComponent {
   openSnackBar(message: string) {
     this.snackBar.open(message, ButtonTexts.dismiss, {
       duration: 5000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
     })
   }
 }

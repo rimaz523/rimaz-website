@@ -10,6 +10,7 @@ import { ThemeService } from '@core/services/theme.services'
 
 import { RouterTokens } from 'app/app.routes'
 import { environment } from 'environments/environment'
+import { BrowserUtilsService } from '@core/services/browser-utils.service'
 
 @Component({
   selector: 'rmz-side-menu',
@@ -29,6 +30,7 @@ export class SideMenuComponent {
   private themeService = inject(ThemeService)
   private sideMenuService = inject(SideMenuService)
 
+  readonly browserUtilsService = inject(BrowserUtilsService)
   readonly sidenav = viewChild<MatSidenav>('sidenav')
   readonly routerTokens = RouterTokens
 
@@ -63,9 +65,5 @@ export class SideMenuComponent {
   closeSidenav() {
     this.sideMenuService.closeSidenav()
     this.sidenav()?.close()
-  }
-
-  openLinkInNewTab(url: string) {
-    window.open(url, '_blank')
   }
 }

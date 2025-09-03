@@ -1,1 +1,26 @@
-<p>about works!</p>
+<mat-card class="hero__card">
+  <rmz-page-title title="Behind The Code" />
+  <div class="hero__container">
+    <div class="hero__avatar-container">
+      <img mat-card-avatar class="hero__avatar" [src]="profileImageUrl" alt="Rimaz Mohommed" />
+    </div>
+
+    <div class="hero__info">
+      <h2 class="mat-h2">
+        I specialize as a full-stack developer implementing & deploying web and mobile apps using
+        .NET, Angular, React, Vue, Flutter, Terraform, Azure Cloud technologies & Azure Devops.
+      </h2>
+      <h2 class="mat-h2">
+        Outside of work, I enjoy working out at the gym, reading novels, Netflix, and improving my
+        acoustic guitar skills.
+      </h2>
+      <button
+        mat-raised-button
+        class="hero__download-button"
+        (click)="browserUtilsService.openLink(downloadResumeUrl)">
+        <mat-icon>cloud_download</mat-icon>Download Resume
+      </button>
+    </div>
+  </div>
+</mat-card>
+<rmz-page-title title="Projects / Open Source" />

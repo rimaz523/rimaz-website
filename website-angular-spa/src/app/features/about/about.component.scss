@@ -1,0 +1,33 @@
+.hero__card {
+  padding: 24px;
+  margin: auto;
+  margin-bottom: 24px;
+  border-radius: 0;
+  color: white;
+}
+
+.hero__container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+
+  .hero__avatar-container {
+    align-items: center;
+    margin: auto;
+  }
+}
+
+.hero__avatar {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.hero__info {
+  flex: 1;
+  min-width: 240px;
+  text-align: center;
+}
