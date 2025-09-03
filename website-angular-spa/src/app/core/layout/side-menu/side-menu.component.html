@@ -41,7 +41,7 @@
         ><button
           mat-raised-button
           class="menu-button"
-          (click)="openLinkInNewTab(githubReportIssueUrl)">
+          (click)="browserUtilsService.openLink(githubReportIssueUrl, true)">
           <mat-icon>report_problem</mat-icon>Report an Issue
         </button></mat-list-item
       >

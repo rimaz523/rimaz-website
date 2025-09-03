@@ -45,6 +45,8 @@ export enum OperationStatus {
 export const enum CdnRoutes {
   heroImageDark = 'app/hero-dark.jpg',
   heroImageLight = 'app/hero-light.jpg',
+  profileImage = 'about/profile.jpg',
+  aboutHeroBanner = 'app/coding3-backdrop.jpg',
 }
 
 export enum ButtonTexts {
