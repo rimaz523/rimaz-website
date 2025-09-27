@@ -4,6 +4,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Articles.Queries.GetArticle;
+
 public class GetArticleQuery : IRequest<ArticleDto>
 {
     public string Slug { get; set; } = string.Empty;

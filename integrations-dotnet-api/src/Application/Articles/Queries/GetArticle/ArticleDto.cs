@@ -2,6 +2,7 @@
 using Domain.Entities;
 
 namespace Application.Articles.Queries.GetArticle;
+
 public class ArticleDto : IMapFrom<Article>
 {
     public Guid Id { get; set; }

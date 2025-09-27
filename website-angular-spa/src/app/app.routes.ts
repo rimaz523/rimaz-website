@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router'
 
 import { AboutComponent } from '@features/about/about.component'
+import { ArticleComponent } from '@features/article/pages/article/article.component'
 import { ArticlesComponent } from '@features/article/pages/articles/articles.component'
 import { ContactComponent } from '@features/contact/contact.component'
 import { HomeComponent } from '@features/home/home.component'
@@ -8,6 +9,7 @@ import { HomeComponent } from '@features/home/home.component'
 export enum RouterTokens {
   home = '',
   about = 'about',
+  article = 'article',
   articles = 'articles',
   contact = 'contact',
   wildcard = '**',
@@ -21,6 +23,10 @@ export const routes: Routes = [
   {
     path: RouterTokens.about,
     component: AboutComponent,
+  },
+  {
+    path: RouterTokens.article,
+    component: ArticleComponent,
   },
   {
     path: RouterTokens.articles,

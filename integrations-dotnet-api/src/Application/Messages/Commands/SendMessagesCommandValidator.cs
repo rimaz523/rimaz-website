@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 
 namespace Application.Messages.Commands;
+
 public class SendMessagesCommandValidator : AbstractValidator<SendMessagesCommand>
 {
     public SendMessagesCommandValidator()
