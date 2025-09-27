@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace InitTool.Services;
+
 internal class BlobStorageService : IBlobStorageService
 {
     private readonly BlobServiceClient _blobServiceClient;

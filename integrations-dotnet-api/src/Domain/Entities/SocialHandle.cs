@@ -1,4 +1,5 @@
 ﻿namespace Domain.Entities;
+
 public class SocialHandle
 {
     public Guid Id { get; set; }

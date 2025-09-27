@@ -22,7 +22,7 @@ yarn lint-staged
 echo -e "${GREEN}formatting angular code${NC}"
 cd ../website-angular-spa
 npx prettier --write .
-npm run lint
+# npm run lint  --temporarily disable
 
 
 

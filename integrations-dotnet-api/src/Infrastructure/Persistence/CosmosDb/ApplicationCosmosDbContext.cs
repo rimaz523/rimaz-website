@@ -3,6 +3,7 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.CosmosDb;
+
 public class ApplicationCosmosDbContext : DbContext, IApplicationCosmosDbContext
 {
     public ApplicationCosmosDbContext(DbContextOptions<ApplicationCosmosDbContext> options) : base(options)

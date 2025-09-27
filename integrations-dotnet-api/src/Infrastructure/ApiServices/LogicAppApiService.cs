@@ -6,6 +6,7 @@ using Infrastructure.Common;
 using Microsoft.Extensions.Options;
 
 namespace Infrastructure.ApiServices;
+
 public class LogicAppApiService : ILogicAppApiService
 {
     private readonly HttpClient _httpClient;
