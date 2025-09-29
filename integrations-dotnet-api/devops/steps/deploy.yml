@@ -34,3 +34,4 @@ steps:
         -IntegrationOptions__LogicAppSendEmailUrl $(keyVaultLogicAppSendEmailUrlKey) 
         -IntegrationOptions__LogicAppDomain $(logicAppDomainUrl) 
         -Persistence__SqlServerConnectionString $(azureSqlServerConnectionString) 
+        -IntegrationOptions__WordpressApiUrl $(wordpressApiUrl) 

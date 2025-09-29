@@ -19,3 +19,5 @@ variables:
   value: 'https://prod-20.australiaeast.logic.azure.com:443/'
 - name: azureSqlServerConnectionString
   value: '@Microsoft.KeyVault(SecretUri=https://rimaz-dev-app-kv.vault.azure.net/secrets/sql-app-db-connection-string/)'
+- name: wordpressApiUrl
+  value: 'https://rimaz-blog-chghebe7d7frghh3.australiaeast-01.azurewebsites.net/wp-json/wp/v2/'
