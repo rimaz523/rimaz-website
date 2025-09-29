@@ -6,6 +6,7 @@ public class Article
     public string Title { get; set; } = string.Empty;
     public string Slug { get; set; } = string.Empty;
     public string Image { get; set; } = string.Empty;
+    public string Content { get; set; } = string.Empty;
     public ICollection<Section> Sections { get; set; } = new List<Section>();
 }
 

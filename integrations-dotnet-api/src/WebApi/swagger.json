@@ -17,6 +17,17 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "Source",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "Cosmos",
+                "Wordpress"
+              ],
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -191,6 +202,10 @@
             "nullable": true
           },
           "image": {
+            "type": "string",
+            "nullable": true
+          },
+          "content": {
             "type": "string",
             "nullable": true
           },

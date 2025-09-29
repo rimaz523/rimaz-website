@@ -36,6 +36,9 @@ namespace Infrastructure
                     configuration.GetSection("Persistence").GetSection("CosmosAppDatabase").Value
                     ));
             services.AddScoped<IApplicationCosmosDbContext>(provider => provider.GetRequiredService<ApplicationCosmosDbContext>());
+            services.AddHttpClient<IWordpressApiService, WordpressApiService>()
+                .SetHandlerLifetime(TimeSpan.FromMinutes(1))
+                .AddPolicyHandler(GetRetryPolicy());
             return services;
         }
 
