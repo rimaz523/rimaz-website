@@ -1,4 +1,4 @@
 <div class="article-content">
-  <h1 class="title">{{ title }}</h1>
-  <div [innerHTML]="getSanitizedContent(content)"></div>
+  <h1 class="title">{{ article().data?.title }}</h1>
+  <div [innerHTML]="sanitizedContent()"></div>
 </div>

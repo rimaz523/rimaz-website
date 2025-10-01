@@ -6,7 +6,7 @@ import { catchError, map, of } from 'rxjs'
 import { Result } from '@core/models/result.model'
 import { ErrorService } from '@core/services/error.service'
 import { environment } from 'environments/environment'
-import { IArticle } from '@features/article/article.model'
+import { IArticlePreview } from '@features/article/article-preview.model'
 import { ApiRoutes, OperationStatus } from '@shared/constants/app.constants'
 
 @Injectable({
@@ -17,23 +17,23 @@ export class ArticlePreviewService {
   private errorService = inject(ErrorService)
 
   private readonly getArticlePreviews$ = this.http
-    .get<IArticle[]>(`${environment.integrationsApimUrl}${ApiRoutes.articlePreviews}`)
+    .get<IArticlePreview[]>(`${environment.integrationsApimUrl}${ApiRoutes.articlePreviews}`)
     .pipe(
-      map(data => ({ data: data, error: undefined }) as Result<IArticle[]>),
+      map(data => ({ data: data, error: undefined }) as Result<IArticlePreview[]>),
       catchError(error =>
         of({
           data: [],
           status: OperationStatus.error,
           error: this.errorService.getErrorModel(error),
-        } as Result<IArticle[]>),
+        } as Result<IArticlePreview[]>),
       ),
     )
 
   private readonly allArticlePreviewsResult = toSignal(this.getArticlePreviews$, {
-    initialValue: { data: [], status: OperationStatus.success } as Result<IArticle[]>,
+    initialValue: { data: [], status: OperationStatus.success } as Result<IArticlePreview[]>,
   })
 
   readonly articlePreviews = computed(() => this.allArticlePreviewsResult().data?.slice(0, 4))
-  readonly articleList = computed(() => this.allArticlePreviewsResult().data)
-  readonly getArticlesError = computed(() => this.allArticlePreviewsResult().error)
+  readonly allArticlePreviewsList = computed(() => this.allArticlePreviewsResult().data)
+  readonly getArticlePreviewsError = computed(() => this.allArticlePreviewsResult().error)
 }
