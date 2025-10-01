@@ -32,6 +32,7 @@ export const enum HttpRequestHeaders {
 export const enum ApiRoutes {
   socialHandles = 'socialhandles',
   articlePreviews = 'blogPreviews',
+  article = 'article',
   message = 'message',
 }
 

@@ -3,7 +3,7 @@ import { MatGridListModule } from '@angular/material/grid-list'
 
 import { ArticlePreviewComponent } from '@features/article/components/article-preview/article-preview.component'
 import { ArticlePreviewService } from './article-preview.service'
-import { IArticle } from '@features/article/article.model'
+import { IArticlePreview } from '@features/article/article-preview.model'
 
 @Component({
   selector: 'rmz-article-preview-list',
@@ -15,14 +15,14 @@ export class ArticlePreviewListComponent {
   private articlePreviewService = inject(ArticlePreviewService)
 
   readonly isPreview = input.required<boolean>()
-  readonly articles = signal<IArticle[] | undefined>([])
+  readonly articlePreviews = signal<IArticlePreview[] | undefined>([])
 
   constructor() {
     effect(() => {
-      this.articles.set(
+      this.articlePreviews.set(
         this.isPreview()
           ? this.articlePreviewService.articlePreviews()
-          : this.articlePreviewService.articleList(),
+          : this.articlePreviewService.allArticlePreviewsList(),
       )
     })
   }

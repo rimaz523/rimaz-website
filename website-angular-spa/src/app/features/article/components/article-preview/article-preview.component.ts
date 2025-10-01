@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
-import { IArticle } from '@features/article/article.model'
+import { IArticlePreview } from '@features/article/article-preview.model'
 
 import { environment } from 'environments/environment'
 
@@ -12,7 +12,7 @@ import { environment } from 'environments/environment'
   styleUrl: './article-preview.component.scss',
 })
 export class ArticlePreviewComponent {
-  readonly article = input.required<IArticle>()
+  readonly articlePreview = input.required<IArticlePreview>()
 
   cdnUrl: string = environment.cdnUrl
 
