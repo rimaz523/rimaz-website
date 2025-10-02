@@ -28,11 +28,10 @@ public class WordpressApiService : IWordpressApiService
     {
         try
         {
-            var articles = await _httpClient.GetFromJsonAsync<IList<ArticleDto>>($"posts?slug={Slug}");
+            var articleDto = await _httpClient.GetFromJsonAsync<ArticleDto>($"posts/slug:{Slug}");
 
-            var articleDto = articles?.FirstOrDefault();
             var blogPreview = await _dbContext.BlogPosts.Where(x => x.Slug == Slug).FirstOrDefaultAsync();
-            if (articleDto is null || articleDto.Content?.Rendered is null || blogPreview is null)
+            if (articleDto is null || blogPreview is null)
             {
                 throw new NotFoundException();
             }
@@ -44,7 +43,7 @@ public class WordpressApiService : IWordpressApiService
                 Title = blogPreview.Title,
                 Image = blogPreview.Image,
                 Slug = articleDto.Slug,
-                Content = articleDto.Content.Rendered
+                Content = articleDto.Content
             };
         }
         catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
