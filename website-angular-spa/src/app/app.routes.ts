@@ -9,7 +9,7 @@ import { HomeComponent } from '@features/home/home.component'
 export enum RouterTokens {
   home = '',
   about = 'about',
-  article = 'article',
+  article = 'article/:slug',
   articles = 'articles',
   contact = 'contact',
   wildcard = '**',
