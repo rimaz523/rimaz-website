@@ -5,6 +5,7 @@ import { ArticleService } from './article.service'
 import { Result } from '@core/models/result.model'
 import { IArticle } from '@features/article/article.model'
 import { OperationStatus } from '@shared/constants/app.constants'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'rmz-article',
@@ -15,7 +16,9 @@ import { OperationStatus } from '@shared/constants/app.constants'
 export class ArticleComponent {
   private sanitizer = inject(DomSanitizer)
   private articleService = inject(ArticleService)
-  private slug = 'deploying-your-docker-image-to-minikube'
+  private route = inject(ActivatedRoute)
+  private slug = ''
+
   readonly article = signal<Result<IArticle | undefined>>({
     data: undefined,
     status: OperationStatus.loading,
@@ -23,6 +26,7 @@ export class ArticleComponent {
   readonly sanitizedContent = signal<SafeHtml>('')
 
   constructor() {
+    this.slug = this.route.snapshot.paramMap.get('slug') ?? ''
     effect(() => {
       this.articleService.getArticleBySlug(this.slug).subscribe(result => {
         this.article.set(result)

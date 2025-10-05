@@ -1,7 +1,7 @@
 <mat-card
   class="selectable-card"
   appearance="outlined"
-  (click)="openLinkInNewTab(articlePreview().url)">
+  (click)="openArticleLink(articlePreview().url, articlePreview().slug)">
   <img
     class="card-image"
     mat-card-image
