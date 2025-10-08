@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using Application.Common.Exceptions;
 using Application.Common.Interfaces.ApiServices;
@@ -21,6 +22,7 @@ public class WordpressApiService : IWordpressApiService
         _httpClient = httpClient;
         _options = options;
         _httpClient.BaseAddress = new Uri(_options.Value.WordpressApiUrl);
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _options.Value.WordpressAuthToken);
         _dbContext = dbContext;
     }
 

@@ -14,7 +14,7 @@ module "app_key_vault_secret" {
 
   key_vault_id = module.key_vault["app"].id
   secret_name  = each.key
-  secret_value = local.secrets[each.value.secret]
+  secret_value = each.value.use_local_value ? local.secrets[each.value.secret] : each.value.secret
 
   depends_on = [
     module.key_vault["app"].id,
