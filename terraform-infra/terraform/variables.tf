@@ -264,23 +264,33 @@ variable "app_key_vault_rbac" {
 variable "app_key_vault_secrets" {
   description = "create key vault resources"
   type = map(object({
-    secret = string
+    secret          = string,
+    use_local_value = bool
   }))
   default = {
     "application-insights-key" = {
-      secret = "instrumentation_key"
+      secret          = "instrumentation_key"
+      use_local_value = true
     }
     "application-insights-conn-string" = {
-      secret = "connection_string"
+      secret          = "connection_string"
+      use_local_value = true
     }
     "cosmos-app-endpoint" = {
-      secret = "cosmos_app_endpoint"
+      secret          = "cosmos_app_endpoint"
+      use_local_value = true
     }
     "cosmos-app-read-only-key" = {
-      secret = "cosmos_app_read_only_key"
+      secret          = "cosmos_app_read_only_key"
+      use_local_value = true
     }
     "cosmos-app-sql-database" = {
-      secret = "cosmos_app_sql_database"
+      secret          = "cosmos_app_sql_database"
+      use_local_value = true
+    }
+    "wordpress-api-key" = {
+      secret          = "wordpress_api_key"
+      use_local_value = false
     }
   }
 }

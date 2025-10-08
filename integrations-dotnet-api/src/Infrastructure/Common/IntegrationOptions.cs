@@ -5,4 +5,5 @@ public class IntegrationOptions
     public string LogicAppDomain { get; set; } = string.Empty;
     public string LogicAppSendEmailUrl { get; set; } = string.Empty;
     public string WordpressApiUrl { get; set; } = string.Empty;
+    public string WordpressAuthToken { get; set; } = string.Empty;
 }
