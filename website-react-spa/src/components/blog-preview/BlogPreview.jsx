@@ -29,7 +29,10 @@ const BlogPreview = ({ title, publishedDate, content, image, url, slug }) => {
           height: '100%',
         }}
         onClick={() => {
-          slug ? navigate('/blog/' + slug) : window.open(url)
+          // We will only navigate to slug for the minikube post as the react app it to be deprecated.
+          slug && slug === 'deploying-your-docker-image-to-minikube'
+            ? navigate('/blog/' + slug)
+            : window.open(url)
         }}
       >
         <Stack direction='column' sx={{ height: '100%' }}>
