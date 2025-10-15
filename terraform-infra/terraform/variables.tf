@@ -56,7 +56,7 @@ variable "linux_webapps" {
     "react" = {
       stack         = "node"
       stack_version = "22-lts"
-      always_on     = true
+      always_on     = false
     },
     "api" = {
       stack         = "dotnet"
@@ -66,7 +66,7 @@ variable "linux_webapps" {
     "angular" = {
       stack         = "node"
       stack_version = "22-lts"
-      always_on     = false
+      always_on     = true
     },
     "vue" = {
       stack         = "node"
@@ -126,11 +126,11 @@ variable "web_app_ssl_domains" {
   }))
   default = {
     "rimaz.dev" = {
-      web_app_key = "react"
+      web_app_key = "angular"
       ssl_state   = "IpBasedEnabled"
     }
     "www.rimaz.dev" = {
-      web_app_key = "react"
+      web_app_key = "angular"
       ssl_state   = "SniEnabled"
     }
     "api.rimaz.dev" = {
@@ -143,6 +143,10 @@ variable "web_app_ssl_domains" {
     }
     "vue.rimaz.dev" = {
       web_app_key = "vue"
+      ssl_state   = "SniEnabled"
+    }
+    "react.rimaz.dev" = {
+      web_app_key = "react"
       ssl_state   = "SniEnabled"
     }
   }
@@ -328,31 +332,31 @@ variable "apims" {
 variable "apis" {
   description = "create APIs"
   type = map(object({
-    api_revision                             = string
-    path                                     = string
-    service_url                              = string
-    azure_storage_container_url_for_swagger  = string
-    swagger_file_name                        = string
-    swagger_format                           = string
-    whitelist_localhost_domain               = string
-    whitelist_frontend_webapp_domain         = string
-    whitelist_frontend_webapp_domain_www     = string
-    whitelist_localhost_domain_angular       = string
-    whitelist_frontend_webapp_domain_angular = string
+    api_revision                            = string
+    path                                    = string
+    service_url                             = string
+    azure_storage_container_url_for_swagger = string
+    swagger_file_name                       = string
+    swagger_format                          = string
+    whitelist_localhost_domain              = string
+    whitelist_frontend_webapp_domain        = string
+    whitelist_frontend_webapp_domain_www    = string
+    whitelist_localhost_domain_react        = string
+    whitelist_frontend_webapp_domain_react  = string
   }))
   default = {
     "Backend" = {
-      api_revision                             = "v1"
-      path                                     = "v1"
-      service_url                              = "#{api_domain_url}#"
-      azure_storage_container_url_for_swagger  = "#{az_storage_container_url_for_swagger}#"
-      swagger_file_name                        = "swagger.json"
-      swagger_format                           = "openapi+json-link"
-      whitelist_localhost_domain               = "http://localhost:3000/"
-      whitelist_frontend_webapp_domain         = "#{apim_policy_whitelist_frontend_webapp_domain}#"
-      whitelist_frontend_webapp_domain_www     = "#{apim_policy_whitelist_frontend_webapp_domain_www}#"
-      whitelist_localhost_domain_angular       = "http://localhost:4200/"
-      whitelist_frontend_webapp_domain_angular = "#{apim_policy_whitelist_frontend_webapp_domain_angular}#"
+      api_revision                            = "v1"
+      path                                    = "v1"
+      service_url                             = "#{api_domain_url}#"
+      azure_storage_container_url_for_swagger = "#{az_storage_container_url_for_swagger}#"
+      swagger_file_name                       = "swagger.json"
+      swagger_format                          = "openapi+json-link"
+      whitelist_localhost_domain              = "http://localhost:4200/"
+      whitelist_frontend_webapp_domain        = "#{apim_policy_whitelist_frontend_webapp_domain}#"
+      whitelist_frontend_webapp_domain_www    = "#{apim_policy_whitelist_frontend_webapp_domain_www}#"
+      whitelist_localhost_domain_react        = "http://localhost:3000/"
+      whitelist_frontend_webapp_domain_react  = "#{apim_policy_whitelist_frontend_webapp_domain_react}#"
     }
   }
 }
