@@ -38,11 +38,11 @@ resource "azurerm_api_management_api_policy" "api_policies" {
 
   xml_content = templatefile("${path.root}/modules/integration/api_management_api/policies/inbound_cors_policy_xml.tftpl",
     {
-      localhost                   = var.whitelist_localhost_domain
-      hostedFrontendWebapp        = var.whitelist_frontend_webapp_domain
-      hostedFrontendWebappWWW     = var.whitelist_frontend_webapp_domain_www
-      localhostAngular            = var.whitelist_localhost_domain_angular
-      hostedFrontendWebappAngular = var.whitelist_frontend_webapp_domain_angular
+      localhost                 = var.whitelist_localhost_domain
+      hostedFrontendWebapp      = var.whitelist_frontend_webapp_domain
+      hostedFrontendWebappWWW   = var.whitelist_frontend_webapp_domain_www
+      localhostReact            = var.whitelist_localhost_domain_react
+      hostedFrontendWebappReact = var.whitelist_frontend_webapp_domain_react
     }
   )
 }

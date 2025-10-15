@@ -68,12 +68,12 @@ variable "whitelist_frontend_webapp_domain_www" {
   type        = string
 }
 
-variable "whitelist_localhost_domain_angular" {
-  description = "Localhost Angular url to whitelist for APIM access."
+variable "whitelist_localhost_domain_react" {
+  description = "Localhost react url to whitelist for APIM access."
   type        = string
 }
 
-variable "whitelist_frontend_webapp_domain_angular" {
+variable "whitelist_frontend_webapp_domain_react" {
   description = "Frontend Angular Webapp url to whitelist for APIM access."
   type        = string
 }

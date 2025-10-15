@@ -88,17 +88,17 @@ apims = {
 
 apis = {
   "Backend" = {
-    api_revision                             = "v1"
-    path                                     = "v1"
-    service_url                              = "https://api.rimaz.dev"
-    azure_storage_container_url_for_swagger  = "https://rmzadminstore.blob.core.windows.net/swagger-v1-dev/"
-    swagger_file_name                        = "swagger.json"
-    swagger_format                           = "openapi+json-link"
-    whitelist_localhost_domain               = "http://localhost:3000/"
-    whitelist_frontend_webapp_domain         = "https://rimaz.dev/"
-    whitelist_frontend_webapp_domain_www     = "https://www.rimaz.dev/"
-    whitelist_localhost_domain_angular       = "http://localhost:4200/"
-    whitelist_frontend_webapp_domain_angular = "https://angular.rimaz.dev/"
+    api_revision                            = "v1"
+    path                                    = "v1"
+    service_url                             = "https://api.rimaz.dev"
+    azure_storage_container_url_for_swagger = "https://rmzadminstore.blob.core.windows.net/swagger-v1-dev/"
+    swagger_file_name                       = "swagger.json"
+    swagger_format                          = "openapi+json-link"
+    whitelist_localhost_domain              = "http://localhost:4200/"
+    whitelist_frontend_webapp_domain        = "https://rimaz.dev/"
+    whitelist_frontend_webapp_domain_www    = "https://www.rimaz.dev/"
+    whitelist_localhost_domain_react        = "http://localhost:3000/"
+    whitelist_frontend_webapp_domain_react  = "https://react.rimaz.dev/"
   }
 }
 

@@ -39,8 +39,8 @@ variables:
   value: "https://rimaz.dev/"
 - name: apim_policy_whitelist_frontend_webapp_domain_www
   value: "https://www.rimaz.dev/"
-- name: apim_policy_whitelist_frontend_webapp_domain_angular
-  value: "https://angular.rimaz.dev/"
+- name: apim_policy_whitelist_frontend_webapp_domain_react
+  value: "https://react.rimaz.dev/"
 - name: data_resource_group
   value: rimaz-data-dev-rg
 - name: app_key_vault
