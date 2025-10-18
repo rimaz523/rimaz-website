@@ -1,11 +1,19 @@
-<mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav [mode]="'over'" position="end" [fixedTopGap]="500" class="side-nav">
-    <mat-list>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #sidenav
+    [mode]="'over'"
+    position="end"
+    [fixedTopGap]="500"
+    class="side-nav"
+    [autoFocus]="false">
+    <mat-list class="side-nav-list">
       <mat-list-item class="side-nav-item"
         ><button
           mat-raised-button
           class="menu-button"
           [routerLink]="routerTokens.home"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
           (click)="closeSidenav()">
           <mat-icon>home</mat-icon> Home
         </button></mat-list-item
@@ -15,6 +23,7 @@
           mat-raised-button
           class="menu-button"
           [routerLink]="routerTokens.articles"
+          routerLinkActive="active-link"
           (click)="closeSidenav()">
           <mat-icon>description</mat-icon>Articles
         </button></mat-list-item
@@ -24,6 +33,7 @@
           mat-raised-button
           class="menu-button"
           [routerLink]="routerTokens.about"
+          routerLinkActive="active-link"
           (click)="closeSidenav()">
           <mat-icon>account_circle</mat-icon>About
         </button></mat-list-item
@@ -33,6 +43,7 @@
           mat-raised-button
           class="menu-button"
           [routerLink]="routerTokens.contact"
+          routerLinkActive="active-link"
           (click)="closeSidenav()">
           <mat-icon>email</mat-icon>Contact
         </button></mat-list-item

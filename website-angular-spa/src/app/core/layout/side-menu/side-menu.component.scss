@@ -11,17 +11,26 @@
       top: 65px;
     }
 
-    .side-nav-item {
-      padding-top: 20px;
-      padding-bottom: 20px;
+    .side-nav-list {
+      padding-top: 50px;
 
-      .menu-button {
-        width: 100%;
-        border-radius: 8px;
-        margin-top: 25px;
-        margin-bottom: 25px;
-        padding-left: 25%;
-        justify-content: left;
+      .side-nav-item {
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        .menu-button {
+          width: 100%;
+          border-radius: 8px;
+          margin-top: 25px;
+          margin-bottom: 25px;
+          padding-left: 25%;
+          justify-content: left;
+          box-shadow: none;
+
+          &.active-link {
+            border: 2px solid var(--mat-sys-primary);
+          }
+        }
       }
     }
   }

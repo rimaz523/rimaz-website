@@ -1,5 +1,5 @@
 import { Component, effect, inject, viewChild } from '@angular/core'
-import { RouterLink, RouterOutlet } from '@angular/router'
+import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router'
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav'
 import { SideMenuService } from '@core/services/side-menu.service'
 import { MatDividerModule } from '@angular/material/divider'
@@ -22,6 +22,7 @@ import { BrowserUtilsService } from '@core/services/browser-utils.service'
     MatButtonModule,
     MatIcon,
     RouterLink,
+    RouterLinkActive,
   ],
   templateUrl: './side-menu.component.html',
   styleUrl: './side-menu.component.scss',
