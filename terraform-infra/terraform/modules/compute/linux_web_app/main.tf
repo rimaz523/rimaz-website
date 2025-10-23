@@ -35,8 +35,7 @@ resource "azurerm_linux_web_app" "webapp_linux" {
 
   lifecycle {
     ignore_changes = [
-      app_settings,
-      site_config[0].application_stack[0].dotnet_version // Temporarily ignore dotnet version until dotnet 10 support is added in the provider
+      app_settings
     ]
   }
 }
