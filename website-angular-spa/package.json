@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^20.1.2",
     "@angular/platform-browser-dynamic": "^20.1.2",
     "@angular/router": "^20.1.2",
+    "@azure/msal-angular": "^4.0.20",
+    "@azure/msal-browser": "^4.25.1",
     "@omnedia/ngx-flickering-grid": "^3.0.0",
     "@omnedia/ngx-shine-border": "^3.0.0",
     "@omnedia/ngx-shiny-text": "^3.0.0",
