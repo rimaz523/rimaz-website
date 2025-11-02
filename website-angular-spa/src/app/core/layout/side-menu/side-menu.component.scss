@@ -1,6 +1,6 @@
 :host {
   .side-nav {
-    opacity: 0.75;
+    opacity: 0.9;
     position: fixed;
     top: 55px;
     bottom: 0;
@@ -12,7 +12,12 @@
     }
 
     .side-nav-list {
-      padding-top: 50px;
+      padding-top: 40px;
+
+      .side-nav-divider {
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
 
       .side-nav-item {
         padding-top: 20px;
@@ -29,6 +34,20 @@
 
           &.active-link {
             border: 2px solid var(--mat-sys-primary);
+          }
+        }
+
+        .avatar-container {
+          display: flex;
+          align-items: center;
+          padding-left: 30px;
+
+          .avatar {
+            width: 50px;
+            height: 25px;
+          }
+          .greeting {
+            font-weight: 500;
           }
         }
       }
