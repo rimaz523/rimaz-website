@@ -35,7 +35,7 @@ export class ArticlePreviewComponent {
         data: {
           title: 'Sign in to continue reading',
           content:
-            'To access this article, please sign in to your account. Members enjoy unlimited reading and exclusive content.',
+            'This article is free to read — just log in to access it. Signing in lets you enjoy unlimited articles, personalized recommendations, and exclusive features at no cost.',
           hasPrimaryAction: true,
           primaryAction: 'Sign In',
           primaryCallbackFn: () => {
