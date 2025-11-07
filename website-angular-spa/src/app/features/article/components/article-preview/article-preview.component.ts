@@ -2,9 +2,12 @@ import { Component, inject, input } from '@angular/core'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
 import { Router } from '@angular/router'
+import { MsalService } from '@azure/msal-angular'
 import { IArticlePreview } from '@features/article/article-preview.model'
+import { MatDialog } from '@angular/material/dialog'
 
 import { environment } from 'environments/environment'
+import { DialogComponent } from '@core/layout/dialog/dialog.component'
 
 @Component({
   selector: 'rmz-article-preview',
@@ -14,15 +17,32 @@ import { environment } from 'environments/environment'
 })
 export class ArticlePreviewComponent {
   private router = inject(Router)
+  private authService = inject(MsalService)
   readonly articlePreview = input.required<IArticlePreview>()
+  readonly dialog = inject(MatDialog)
 
   cdnUrl: string = environment.cdnUrl
 
   openArticleLink(url: string, slug: string): void {
-    if (slug.trim() === '') {
-      window.open(url, '_blank')
+    if (this.authService.instance.getAllAccounts().length > 0) {
+      if (slug.trim() === '') {
+        window.open(url, '_blank')
+      } else {
+        this.router.navigate(['/article', slug])
+      }
     } else {
-      this.router.navigate(['/article', slug])
+      this.dialog.open(DialogComponent, {
+        data: {
+          title: 'Sign in to continue reading',
+          content:
+            'To access this article, please sign in to your account. Members enjoy unlimited reading and exclusive content.',
+          hasPrimaryAction: true,
+          primaryAction: 'Sign In',
+          primaryCallbackFn: () => {
+            this.authService.loginRedirect()
+          },
+        },
+      })
     }
   }
 }
