@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>{{ data.title }}</h2>
+<mat-dialog-content>{{ data.content }}</mat-dialog-content>
+<mat-dialog-actions>
+  @if (data.hasPrimaryAction) {
+    <button matButton mat-dialog-close (click)="data.primaryCallbackFn()" class="primary-button">
+      {{ data.primaryAction }}
+    </button>
+  }
+  <button matButton mat-dialog-close>Close</button>
+</mat-dialog-actions>
