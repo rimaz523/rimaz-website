@@ -127,7 +127,7 @@ variable "web_app_ssl_domains" {
   default = {
     "rimaz.dev" = {
       web_app_key = "angular"
-      ssl_state   = "IpBasedEnabled"
+      ssl_state   = "SniEnabled"
     }
     "www.rimaz.dev" = {
       web_app_key = "angular"
