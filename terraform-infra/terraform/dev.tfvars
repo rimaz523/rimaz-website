@@ -25,7 +25,7 @@ ssl_certificates = {
   "rimaz-ssl" = {
     kv_name           = "rimaz-kv"
     kv_resource_group = "rimaz-admin-rg"
-    ssl_cert_name     = "rimaz-dev-pfx-certificate-2025"
+    ssl_cert_name     = "rimaz-dev-pfx-certificate-2026-2041"
   }
 }
 
