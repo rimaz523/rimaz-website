@@ -304,11 +304,13 @@ variable "storage_accounts" {
   type = map(object({
     replication_type = string
     sku              = string
+    custom_domain    = string
   }))
   default = {
     "app" = {
       replication_type = "LRS"
       sku              = "Standard"
+      custom_domain    = "cdn.rimaz.dev"
     }
   }
 }
@@ -449,7 +451,7 @@ variable "app_insights_alerts" {
 }
 
 variable "cdns" {
-  description = "creates an azure cdn"
+  description = "creates an azure cdn (deprecated)"
   type = map(object({
     sku           = string
     location      = string
@@ -457,15 +459,7 @@ variable "cdns" {
     hostname      = string
     custom_domain = string
   }))
-  default = {
-    "app" = {
-      sku           = "Standard_Microsoft"
-      location      = "global"
-      endpoint      = "blob"
-      hostname      = "rimazdevappstore.blob.core.windows.net"
-      custom_domain = "cdn.rimaz.dev"
-    }
-  }
+  default = {}
 }
 
 variable "add_rg_locks" {

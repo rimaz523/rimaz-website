@@ -32,3 +32,8 @@ variable "replication_type" {
   description = "Replication type for the storage account"
   type        = string
 }
+
+variable "blob_custom_domain" {
+  description = "Custom domain for the blob endpoint"
+  type        = string
+}
