@@ -1,0 +1,16 @@
+rule_name,action,priority,ip_address
+Allow Cloudflare IPs,Allow,700,173.245.48.0/20
+Allow Cloudflare IPs,Allow,710,103.21.244.0/22
+Allow Cloudflare IPs,Allow,720,103.22.200.0/22
+Allow Cloudflare IPs,Allow,730,103.31.4.0/22
+Allow Cloudflare IPs,Allow,740,141.101.64.0/18
+Allow Cloudflare IPs,Allow,750,108.162.192.0/18
+Allow Cloudflare IPs,Allow,760,190.93.240.0/20
+Allow Cloudflare IPs,Allow,770,188.114.96.0/20
+Allow Cloudflare IPs,Allow,780,197.234.240.0/22
+Allow Cloudflare IPs,Allow,790,198.41.128.0/17
+Allow Cloudflare IPs,Allow,800,162.158.0.0/15
+Allow Cloudflare IPs,Allow,810,104.16.0.0/13
+Allow Cloudflare IPs,Allow,820,104.24.0.0/14
+Allow Cloudflare IPs,Allow,830,172.64.0.0/13
+Allow Cloudflare IPs,Allow,840,131.0.72.0/22

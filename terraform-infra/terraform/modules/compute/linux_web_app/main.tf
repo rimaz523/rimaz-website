@@ -11,7 +11,7 @@ resource "azurerm_linux_web_app" "webapp_linux" {
   site_config {
     always_on                     = var.always_on
     app_command_line              = var.stack == "node" ? "pm2 serve /home/site/wwwroot --spa --no-daemon" : null
-    ip_restriction_default_action = var.name == "api" ? "Deny" : "Allow"
+    ip_restriction_default_action = "Deny"
 
     application_stack {
       dotnet_version = var.stack == "dotnet" ? var.stack_version : null
@@ -19,7 +19,10 @@ resource "azurerm_linux_web_app" "webapp_linux" {
     }
 
     dynamic "ip_restriction" {
-      for_each = var.stack == "dotnet" ? csvdecode(file("${path.root}/modules/compute/linux_web_app/ip_restrictions/apim_australiaeast_whitelist_ips.csv")) : []
+      for_each = var.stack == "dotnet" ? concat(
+        csvdecode(file("${path.root}/modules/compute/linux_web_app/ip_restrictions/apim_australiaeast_whitelist_ips.csv")),
+        csvdecode(file("${path.root}/modules/compute/linux_web_app/ip_restrictions/cloudflare_whitelist_ips.csv"))
+      ) : csvdecode(file("${path.root}/modules/compute/linux_web_app/ip_restrictions/cloudflare_whitelist_ips.csv"))
       content {
         name       = ip_restriction.value.rule_name
         action     = ip_restriction.value.action
