@@ -8,4 +8,9 @@ resource "azurerm_storage_account" "app_store" {
   account_tier               = var.sku
   account_replication_type   = var.replication_type
   https_traffic_only_enabled = true
+
+  custom_domain {
+    name          = var.blob_custom_domain
+    use_subdomain = false
+  }
 }

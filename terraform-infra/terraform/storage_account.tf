@@ -9,6 +9,7 @@ module "storage_account" {
   project             = var.project
   sku                 = each.value.sku
   replication_type    = each.value.replication_type
+  blob_custom_domain  = each.value.custom_domain
 
   depends_on = [
     module.resource_group["data"].id
