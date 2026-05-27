@@ -106,6 +106,10 @@ variable "key_vault_secrets" {
     "sql-app-db-server-admin-login-password" = {
       kv_name           = "#{app_key_vault}#"
       kv_resource_group = "#{data_resource_group}#"
+    },
+    "logic-app-send-email-url" = {
+      kv_name           = "#{app_key_vault}#"
+      kv_resource_group = "#{data_resource_group}#"
     }
   }
 }
@@ -296,6 +300,10 @@ variable "app_key_vault_secrets" {
       secret          = "wordpress_api_key"
       use_local_value = false
     }
+    "logic-app-api-subscription-key" = {
+      secret          = "logic_app_api_subscription_primary_key"
+      use_local_value = true
+    }
   }
 }
 
@@ -359,6 +367,24 @@ variable "apis" {
       whitelist_frontend_webapp_domain_www    = "#{apim_policy_whitelist_frontend_webapp_domain_www}#"
       whitelist_localhost_domain_react        = "http://localhost:3000/"
       whitelist_frontend_webapp_domain_react  = "#{apim_policy_whitelist_frontend_webapp_domain_react}#"
+    }
+  }
+}
+
+variable "logic_app_apis" {
+  description = "create APIM APIs that front Logic App HTTP triggers"
+  type = map(object({
+    api_revision     = string
+    path             = string
+    backend_base_url = string
+    kv_secret_name   = string
+  }))
+  default = {
+    "SendEmail" = {
+      api_revision     = "v1"
+      path             = "send-email"
+      backend_base_url = "#{logic_app_base_url}#"
+      kv_secret_name   = "logic-app-send-email-url"
     }
   }
 }

@@ -31,7 +31,7 @@ steps:
         -XDT_MicrosoftApplicationInsights_BaseExtensions ~1 
         -XDT_MicrosoftApplicationInsights_Mode recommended 
         -XDT_MicrosoftApplicationInsights_PreemptSdk disabled 
-        -IntegrationOptions__LogicAppSendEmailUrl $(keyVaultLogicAppSendEmailUrlKey) 
-        -IntegrationOptions__LogicAppDomain $(logicAppDomainUrl) 
+        -IntegrationOptions__LogicAppApiUrl $(apimLogicAppUrl)
+        -IntegrationOptions__LogicAppApiSubscriptionKey $(keyVaultLogicAppApiSubscriptionKey)
         -Persistence__SqlServerConnectionString $(azureSqlServerConnectionString) 
         -IntegrationOptions__WordpressApiUrl $(wordpressApiUrl) 

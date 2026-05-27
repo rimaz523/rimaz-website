@@ -37,6 +37,10 @@ key_vault_secrets = {
   "sql-app-db-server-admin-login-password" = {
     kv_name           = "rimaz-dev-app-kv"
     kv_resource_group = "rimaz-data-dev-rg"
+  },
+  "logic-app-send-email-url" = {
+    kv_name           = "rimaz-dev-app-kv"
+    kv_resource_group = "rimaz-data-dev-rg"
   }
 }
 
@@ -83,6 +87,15 @@ apims = {
     company = "Rimaz"
     email   = "rimazmohommed523@gmail.com"
     sku     = "Consumption_0"
+  }
+}
+
+logic_app_apis = {
+  "SendEmail" = {
+    api_revision     = "v1"
+    path             = "send-email"
+    backend_base_url = "https://prod-20.australiaeast.logic.azure.com:443"
+    kv_secret_name   = "logic-app-send-email-url"
   }
 }
 
