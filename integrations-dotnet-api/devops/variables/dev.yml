@@ -5,6 +5,10 @@ variables:
   value: dev
 - name: webAppName
   value: dotnet-api
+- name: webAppResourceGroup
+  value: rimaz-app-dev-rg
+- name: scmAllowRuleName
+  value: pipeline-agent-temp
 - name: keyVaultAppInsightsKey
   value: '@Microsoft.KeyVault(SecretUri=https://rimaz-dev-app-kv.vault.azure.net/secrets/application-insights-key/)'
 - name: keyVaultAppInsightsConnectionString

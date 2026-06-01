@@ -12,6 +12,24 @@ steps:
       containerName: $(swaggerContainer)
       cleanTargetBeforeCopy: true
 
+  - task: AzureCLI@2
+    displayName: 'Whitelist pipeline agent IP on web app SCM firewall'
+    inputs:
+      azureSubscription: '$(managedIdentityName)'
+      scriptType: pscore
+      scriptLocation: inlineScript
+      inlineScript: |
+        $agentIp = (Invoke-RestMethod -Uri 'https://api.ipify.org').Trim()
+        Write-Host "Agent public IP: $agentIp"
+        az webapp config access-restriction add `
+          --resource-group $(webAppResourceGroup) `
+          --name $(project)-$(environment)-$(webAppName) `
+          --scm-site true `
+          --rule-name $(scmAllowRuleName) `
+          --action Allow `
+          --priority 100 `
+          --ip-address "$agentIp/32"
+
   - task: AzureWebApp@1
     displayName: 'Deploy .net core api to azure app service'
     inputs:
@@ -31,7 +49,21 @@ steps:
         -XDT_MicrosoftApplicationInsights_BaseExtensions ~1 
         -XDT_MicrosoftApplicationInsights_Mode recommended 
         -XDT_MicrosoftApplicationInsights_PreemptSdk disabled 
-        -IntegrationOptions__LogicAppApiUrl $(apimLogicAppUrl)
-        -IntegrationOptions__LogicAppApiSubscriptionKey $(keyVaultLogicAppApiSubscriptionKey)
+        -IntegrationOptions__LogicAppApiUrl $(apimLogicAppUrl) 
+        -IntegrationOptions__LogicAppApiSubscriptionKey $(keyVaultLogicAppApiSubscriptionKey) 
         -Persistence__SqlServerConnectionString $(azureSqlServerConnectionString) 
         -IntegrationOptions__WordpressApiUrl $(wordpressApiUrl) 
+
+  - task: AzureCLI@2
+    displayName: 'Remove pipeline agent IP from web app SCM firewall'
+    condition: always()
+    inputs:
+      azureSubscription: '$(managedIdentityName)'
+      scriptType: pscore
+      scriptLocation: inlineScript
+      inlineScript: |
+        az webapp config access-restriction remove `
+          --resource-group $(webAppResourceGroup) `
+          --name $(project)-$(environment)-$(webAppName) `
+          --scm-site true `
+          --rule-name $(scmAllowRuleName)
