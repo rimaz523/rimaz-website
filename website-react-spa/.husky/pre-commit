@@ -24,5 +24,49 @@ cd ../website-angular-spa
 npx prettier --write .
 # npm run lint  --temporarily disable
 
+# ---------------------------------------------------------------------------
+# Verification gate: lint/build ONLY the sub-projects with staged changes.
+# Runs after the formatters above and blocks the commit (exit 1) on failure.
+# ---------------------------------------------------------------------------
+RED="\033[0;31m"
+ROOT="$(git rev-parse --show-toplevel)"
+STAGED="$(git diff --cached --name-only)"
+FAIL=0
+
+if echo "$STAGED" | grep -q '^integrations-dotnet-api/'; then
+  echo -e "${GREEN}building dotnet api${NC}"
+  dotnet build "$ROOT/integrations-dotnet-api/integrations-dotnet-api.sln" --nologo || FAIL=1
+fi
+
+if echo "$STAGED" | grep -q '^website-react-spa/'; then
+  echo -e "${GREEN}linting react${NC}"
+  ( cd "$ROOT/website-react-spa" && yarn lint ) || FAIL=1
+fi
+
+if echo "$STAGED" | grep -q '^website-angular-spa/'; then
+  echo -e "${GREEN}linting angular${NC}"
+  ( cd "$ROOT/website-angular-spa" && npm run lint ) || FAIL=1
+fi
+
+if echo "$STAGED" | grep -q '^website-vue-spa/'; then
+  echo -e "${GREEN}linting vue${NC}"
+  ( cd "$ROOT/website-vue-spa" && npm run lint ) || FAIL=1
+fi
+
+if echo "$STAGED" | grep -q '^terraform-infra/'; then
+  echo -e "${GREEN}checking terraform fmt${NC}"
+  terraform -chdir="$ROOT/terraform-infra/terraform" fmt -check -recursive || FAIL=1
+  # validate needs an initialised working dir; only run it if one exists
+  if [ -d "$ROOT/terraform-infra/terraform/.terraform" ]; then
+    echo -e "${GREEN}validating terraform${NC}"
+    terraform -chdir="$ROOT/terraform-infra/terraform" validate || FAIL=1
+  fi
+fi
+
+if [ "$FAIL" -ne 0 ]; then
+  echo -e "${RED}pre-commit checks failed — commit aborted (use 'git commit --no-verify' to bypass)${NC}"
+  exit 1
+fi
+
 
 
