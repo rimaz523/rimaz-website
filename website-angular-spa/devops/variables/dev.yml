@@ -9,3 +9,7 @@ variables:
     value: dev
   - name: webAppName
     value: node-angular
+  - name: webAppResourceGroup
+    value: rimaz-app-dev-rg
+  - name: scmAllowRuleName
+    value: pipeline-agent-temp
