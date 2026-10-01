@@ -51,3 +51,5 @@ variables:
   value: https://cdn.rimaz.dev/app/hero-dark.jpg
 - name: standard_web_test_api_health_url
   value: https://rimaz-dev-backend-apim.azure-api.net/v1/api/blogPreviews?limit=4&subscription-key=f7c3ca94b5b94e6ab7bec64a983c3fb9
+- name: logic_app_base_url
+  value: https://prod-20.australiaeast.logic.azure.com:443
