@@ -25,6 +25,12 @@ resource "azurerm_mssql_database" "sql_db" {
   min_capacity         = 0
   sku_name             = var.sku
   storage_account_type = "Local"
+  enclave_type         = "Default"
+
+  # prevent the possibility of accidental data loss
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "azurerm_mssql_firewall_rule" "example" {
