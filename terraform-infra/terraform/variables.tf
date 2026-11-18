@@ -99,15 +99,15 @@ variable "key_vault_secrets" {
     kv_resource_group = string
   }))
   default = {
-    "sql-app-db-server-admin-login-name" = {
+    "Persistence--SqlServerAdminLoginName" = {
       kv_name           = "#{app_key_vault}#"
       kv_resource_group = "#{data_resource_group}#"
     },
-    "sql-app-db-server-admin-login-password" = {
+    "Persistence--SqlServerAdminLoginPassword" = {
       kv_name           = "#{app_key_vault}#"
       kv_resource_group = "#{data_resource_group}#"
     },
-    "logic-app-send-email-url" = {
+    "IntegrationOptions--LogicAppSendEmailUrl" = {
       kv_name           = "#{app_key_vault}#"
       kv_resource_group = "#{data_resource_group}#"
     }
@@ -276,32 +276,32 @@ variable "app_key_vault_secrets" {
     use_local_value = bool
   }))
   default = {
-    "application-insights-key" = {
-      secret          = "instrumentation_key"
+    "Application--InstrumentationKey" = {
+      secret          = "Application--InstrumentationKey"
       use_local_value = true
     }
-    "application-insights-conn-string" = {
-      secret          = "connection_string"
+    "Application--ConnectionString" = {
+      secret          = "Application--ConnectionString"
       use_local_value = true
     }
-    "cosmos-app-endpoint" = {
-      secret          = "cosmos_app_endpoint"
+    "Persistence--CosmosAppEndpoint" = {
+      secret          = "Persistence--CosmosAppEndpoint"
       use_local_value = true
     }
-    "cosmos-app-read-only-key" = {
-      secret          = "cosmos_app_read_only_key"
+    "Persistence--CosmosAppReadOnlyKey" = {
+      secret          = "Persistence--CosmosAppReadOnlyKey"
       use_local_value = true
     }
-    "cosmos-app-sql-database" = {
-      secret          = "cosmos_app_sql_database"
+    "Persistence--CosmosAppDatabase" = {
+      secret          = "Persistence--CosmosAppDatabase"
       use_local_value = true
     }
-    "wordpress-api-key" = {
-      secret          = "wordpress_api_key"
+    "IntegrationOptions--WordpressAuthToken" = {
+      secret          = "IntegrationOptions--WordpressAuthToken"
       use_local_value = false
     }
-    "logic-app-api-subscription-key" = {
-      secret          = "logic_app_api_subscription_primary_key"
+    "IntegrationOptions--LogicAppApiSubscriptionKey" = {
+      secret          = "IntegrationOptions--LogicAppApiSubscriptionKey"
       use_local_value = true
     }
   }
@@ -384,7 +384,7 @@ variable "logic_app_apis" {
       api_revision     = "v1"
       path             = "send-email"
       backend_base_url = "#{logic_app_base_url}#"
-      kv_secret_name   = "logic-app-send-email-url"
+      kv_secret_name   = "IntegrationOptions--LogicAppSendEmailUrl"
     }
   }
 }

@@ -30,15 +30,15 @@ ssl_certificates = {
 }
 
 key_vault_secrets = {
-  "sql-app-db-server-admin-login-name" = {
+  "Persistence--SqlServerAdminLoginName" = {
     kv_name           = "rimaz-dev-app-kv"
     kv_resource_group = "rimaz-data-dev-rg"
   },
-  "sql-app-db-server-admin-login-password" = {
+  "Persistence--SqlServerAdminLoginPassword" = {
     kv_name           = "rimaz-dev-app-kv"
     kv_resource_group = "rimaz-data-dev-rg"
   },
-  "logic-app-send-email-url" = {
+  "IntegrationOptions--LogicAppSendEmailUrl" = {
     kv_name           = "rimaz-dev-app-kv"
     kv_resource_group = "rimaz-data-dev-rg"
   }
@@ -95,7 +95,7 @@ logic_app_apis = {
     api_revision     = "v1"
     path             = "send-email"
     backend_base_url = "https://prod-20.australiaeast.logic.azure.com:443"
-    kv_secret_name   = "logic-app-send-email-url"
+    kv_secret_name   = "IntegrationOptions--LogicAppSendEmailUrl"
   }
 }
 
