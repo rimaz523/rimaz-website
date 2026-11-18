@@ -1,11 +1,11 @@
 locals {
   secrets = {
-    instrumentation_key                    = module.app_insights["app"].instrumentation_key
-    connection_string                      = module.app_insights["app"].connection_string
-    cosmos_app_endpoint                    = module.cosmosdb["app"].cosmos_app_endpoint
-    cosmos_app_read_only_key               = module.cosmosdb["app"].cosmos_app_read_only_key
-    cosmos_app_sql_database                = module.cosmosdb["app"].cosmos_app_sql_database
-    logic_app_api_subscription_primary_key = module.api_management_api_logic_app["SendEmail"].subscription_primary_key
+    Application--InstrumentationKey                = module.app_insights["app"].instrumentation_key
+    Application--ConnectionString                  = module.app_insights["app"].connection_string
+    Persistence--CosmosAppEndpoint                 = module.cosmosdb["app"].cosmos_app_endpoint
+    Persistence--CosmosAppReadOnlyKey              = module.cosmosdb["app"].cosmos_app_read_only_key
+    Persistence--CosmosAppDatabase                 = module.cosmosdb["app"].cosmos_app_sql_database
+    IntegrationOptions--LogicAppApiSubscriptionKey = module.api_management_api_logic_app["SendEmail"].subscription_primary_key
   }
 }
 
