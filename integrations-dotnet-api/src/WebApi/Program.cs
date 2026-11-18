@@ -1,4 +1,5 @@
 using Application;
+using Azure.Identity;
 using Infrastructure;
 using Infrastructure.Persistence;
 using WebApi.Infrastructure;
@@ -10,6 +11,15 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        // SWAGGER_GEN is set by the CreateSwaggerJson build target: generating the spec needs no secrets,
+        // so skip Key Vault to keep `dotnet swagger tofile` independent of Azure sign-in.
+        if (builder.Configuration["SWAGGER_GEN"] != "true")
+        {
+            var credentialOptions = new DefaultAzureCredentialOptions();
+            builder.Configuration.AddAzureKeyVault(
+                new Uri(builder.Configuration["KeyVault:Uri"] ?? throw new InvalidOperationException("KeyVault:Uri configuration is missing.")),
+                new DefaultAzureCredential(credentialOptions));
+        }
 
         // Add services to the container.
         builder.Services.AddApplication();
